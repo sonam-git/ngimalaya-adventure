@@ -2,11 +2,11 @@ import React from 'react';
 import { ArrowRight, Star, Users, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
-interface HeroProps {
+export interface HeroProps {
   onExploreTreks?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onExploreTreks }) => {
+const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks }) => {
   const { isDarkMode } = useTheme();
   
   return (
@@ -80,4 +80,6 @@ const Hero: React.FC<HeroProps> = ({ onExploreTreks }) => {
   );
 };
 
+// Explicit default export with proper type
+const Hero = HeroComponent;
 export default Hero;
