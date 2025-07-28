@@ -1,7 +1,7 @@
 {
-  "name": "sj-portfolio",
+  "name": "ngimalaya-adventure",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@react-pdf/renderer": "^4.3.0",
+    "framer-motion": "^12.23.11",
+    "lucide-react": "^0.532.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

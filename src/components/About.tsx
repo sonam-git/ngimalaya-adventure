@@ -1,65 +1,144 @@
-import React from 'react'
+import React from 'react';
+import { Award, Globe, Heart, Mountain } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const About: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  const achievements = [
+    {
+      icon: <Mountain className="text-blue-600" size={32} />,
+      title: "20+ Years",
+      description: "Trekking Experience"
+    },
+    {
+      icon: <Globe className="text-green-600" size={32} />,
+      title: "6 Languages",
+      description: "English, German, Japanese, Hindi, Nepali, Sherpa"
+    },
+    {
+      icon: <Award className="text-yellow-600" size={32} />,
+      title: "500+",
+      description: "Successful Expeditions"
+    },
+    {
+      icon: <Heart className="text-red-600" size={32} />,
+      title: "Founded 2016",
+      description: "Ngimalaya Adventure Nepal"
+    }
+  ];
+
   return (
-    <section id="about" className="py-24 bg-gray-50 dark:bg-gray-900 relative transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 mt-4">
-          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto mb-8"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
-            <p className="text-xl text-slate-700 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-              I'm a passionate developer with experience in modern web technologies. 
-              I love building applications that solve real-world problems and provide 
-              exceptional user experiences.
+    <section id="about" className={`py-20 transition-colors duration-300 ${
+      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
+              isDarkMode ? 'text-gray-100' : 'text-gray-900'
+            }`}>
+              About <span className="text-blue-600">Ngimalaya Adventure</span>
+            </h2>
+            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className={`text-xl max-w-3xl mx-auto transition-colors duration-300 ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
+              Where every trek tells a story and culture meets the clouds
             </p>
-            <p className="text-lg text-slate-600 dark:text-gray-400 leading-relaxed">
-              With a keen eye for design and a deep understanding of code, I bridge 
-              the gap between beautiful interfaces and robust functionality.
-            </p>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">50+</div>
-                <div className="text-sm text-slate-600 dark:text-gray-400 uppercase tracking-wide">Projects</div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left side - Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Ngima Nuru Sherpa"
+                  className="w-full h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-2xl font-bold">Ngima Nuru Sherpa</h3>
+                  <p className="text-blue-200">Founder & Expert Guide</p>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">3+</div>
-                <div className="text-sm text-slate-600 dark:text-gray-400 uppercase tracking-wide">Years</div>
+              
+              {/* Floating card */}
+              <div className={`absolute -bottom-6 -right-6 p-6 rounded-xl shadow-xl border transition-colors duration-300 ${
+                isDarkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'
+              }`}>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">2016</div>
+                  <div className={`text-sm transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>Founded</div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">100%</div>
-                <div className="text-sm text-slate-600 dark:text-gray-400 uppercase tracking-wide">Passion</div>
+            </div>
+
+            {/* Right side - Content */}
+            <div className="space-y-6">
+              <h3 className={`text-3xl font-bold mb-4 transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-100' : 'text-gray-900'
+              }`}>
+                A Journey Born from Passion
+              </h3>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Welcome to Ngimalaya Adventure Nepal, where the journey begins with a name rooted 
+                in the rich cultural heritage of the Sherpa community. I am <strong>Ngima Nuru Sherpa</strong>, 
+                born into the heart of the Himalayas and having spent two decades as a seasoned 
+                trekking guide.
+              </p>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                My passion for exploration has connected me with diverse cultures and people 
+                across the globe. Proficient in languages such as English, German, Japanese, 
+                Hindi, Nepali, and Sherpa, my extensive career has allowed me to traverse not 
+                only the stunning landscapes of Nepal but also venture into the vibrant tapestries 
+                of Japan and Germany.
+              </p>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Fueled by the desire to share the mesmerizing views of the Himalayas and the 
+                diverse cultures within Nepal, I founded Ngimalaya Adventure Nepal in 2016. 
+                Our commitment goes beyond conventional trekking experiences, as we strive to 
+                provide <strong>personalized plans, warm Nepali welcomes</strong>, and a team of experts 
+                dedicated to making every trekking adventure unforgettable.
+              </p>
+
+              <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                <p className="text-blue-800 italic text-lg font-medium">
+                  "Ngimalaya Adventure Nepal – Where Culture Meets the Clouds, and Every Trek Tells a Story!"
+                </p>
               </div>
             </div>
           </div>
-          
-          {/* Profile image with gradient border */}
-          <div className="relative">
-            <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 via-purple-500 to-indigo-600 rounded-full p-2">
-              <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-800">
-                <img 
-                  src="/profile.jpg" 
-                  alt="Profile picture" 
-                  className="w-full h-full object-cover object-center"
-                />
+
+          {/* Achievements Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {achievements.map((achievement, index) => (
+              <div 
+                key={index}
+                className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex justify-center mb-4">
+                  {achievement.icon}
+                </div>
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">
+                  {achievement.title}
+                </h4>
+                <p className="text-gray-600">
+                  {achievement.description}
+                </p>
               </div>
-            </div>
-            {/* Floating elements */}
-            <div className="absolute top-4 right-4 w-4 h-4 bg-yellow-400 rounded-full animate-ping"></div>
-            <div className="absolute bottom-8 left-8 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-1/2 left-4 w-2 h-2 bg-pink-400 rounded-full animate-bounce"></div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

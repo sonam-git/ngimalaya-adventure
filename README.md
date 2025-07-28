@@ -1,69 +1,106 @@
-# React + TypeScript + Vite
+# Ngimalaya Adventure Nepal - React Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive website for Ngimalaya Adventure Nepal, showcasing trekking and mountaineering services in the Himalayas.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🏔️ **Modern Design**: Clean, professional design with stunning mountain imagery
+- 📱 **Fully Responsive**: Optimized for all devices (mobile, tablet, desktop)
+- ⚡ **Fast Performance**: Built with React 19 and Vite for optimal performance
+- 🎨 **Beautiful UI**: Custom animations and smooth transitions
+- 🧭 **Easy Navigation**: Intuitive navigation with smooth scrolling
+- 📧 **Contact Forms**: Integrated contact form for inquiries
+- 🗺️ **Trek Filtering**: Advanced filtering and search for trekking packages
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 19 with TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Deployment**: Ready for production deployment
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Sections
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **Hero Section**: Eye-catching header with call-to-action
+2. **About Section**: Story of Ngima Nuru Sherpa and company background
+3. **Treks Section**: Filterable showcase of popular trekking destinations
+4. **Services Section**: Overview of all services offered
+5. **Contact Section**: Contact form and company information
+6. **Footer**: Links, contact info, and social media
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Popular Trek Packages
+
+- **Annapurna Base Camp Trek** (11 Days, 4,130m)
+- **Annapurna Circuit Trek** (17 Days, 5,416m)
+- **EBC Trek via Gokyo/Cho-La** (18 Days, 5,550m)
+- **Everest Three Passes Trek** (20 Days, 5,535m)
+- **Manaslu Circuit Trek** (18 Days, 5,106m)
+- **Kanchenjunga Circuit Trek** (25 Days, 5,143m)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (version 18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Install dependencies:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Start the development server:
+```bash
+npm run dev
 ```
+
+3. Open your browser and visit `http://localhost:5174`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Customization
+
+### Adding New Treks
+Edit `src/data/treks.ts` to add new trek packages with details like duration, altitude, difficulty, and description.
+
+### Updating Contact Information
+Update contact details in `src/components/ContactSection.tsx` and `src/components/Footer.tsx`.
+
+### Changing Colors/Styling
+The website uses Tailwind CSS. You can customize colors in `tailwind.config.js` or edit component styles directly.
+
+## Company Information
+
+**Ngimalaya Adventure Nepal**
+- Founded: 2016
+- Founder: Ngima Nuru Sherpa
+- Experience: 20+ years in trekking
+- Languages: English, German, Japanese, Hindi, Nepali, Sherpa
+- Specialization: Himalayan trekking and mountaineering
+
+## Contact
+
+- **Email**: info@ngimalayaadventure.com
+- **Phone**: +977-9841234567
+- **Location**: Thamel, Kathmandu, Nepal
+- **Facebook**: [Ngimalaya Adventure](https://www.facebook.com/Ngimalaya)
+
+## License
+
+© 2025 Ngimalaya Adventure Nepal. All rights reserved.
+
+---
+
+*"Where Culture Meets the Clouds, and Every Trek Tells a Story!"*

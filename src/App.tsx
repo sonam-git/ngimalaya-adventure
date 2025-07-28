@@ -1,11 +1,31 @@
 import { useEffect } from 'react'
-import Header from './components/Header'
-import SideNavBar from './components/SideNavBar'
-import MainContent from './components/MainContent'
-import ErrorBoundary from './components/ErrorBoundary'
-import { ThemeProvider } from './contexts/ThemeContext'
-import { SidebarProvider } from './contexts/SidebarContext'
+import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 import { suppressExtensionErrors, clearConsoleAndWelcome } from './utils/consoleUtils'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import About from './components/About'
+import TreksSection from './components/TreksSection'
+import ServicesSection from './components/ServicesSection'
+import ContactSection from './components/ContactSection'
+import Footer from './components/Footer'
+
+function AppContent() {
+  const { isDarkMode } = useTheme()
+
+  return (
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'
+    }`}>
+      <Header />
+      <Hero />
+      <About />
+      <TreksSection />
+      <ServicesSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  )
+}
 
 function App() {
   useEffect(() => {
@@ -20,15 +40,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <SidebarProvider>
-        <ErrorBoundary>
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-            <Header />
-            <SideNavBar />
-            <MainContent />
-          </div>
-        </ErrorBoundary>
-      </SidebarProvider>
+      <AppContent />
     </ThemeProvider>
   )
 }
