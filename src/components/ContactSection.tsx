@@ -77,13 +77,13 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className={`py-20 transition-colors duration-300 ${
+    <section id="contact" className={`scroll-offset-mobile py-6 md:py-10 transition-colors duration-300 ${
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-4 md:mb-6">
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>

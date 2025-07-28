@@ -5,9 +5,10 @@ import type { Trek } from '../data/treks';
 
 interface TrekCardProps {
   trek: Trek;
+  onExplore?: () => void;
 }
 
-const TrekCard: React.FC<TrekCardProps> = ({ trek }) => {
+const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
   const { isDarkMode } = useTheme();
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -81,7 +82,10 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek }) => {
             <span className="text-2xl font-bold text-blue-600">{trek.price}</span>
             <span className="text-gray-500 text-sm ml-1">per person</span>
           </div>
-          <button className="group/btn flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition-colors duration-300">
+          <button 
+            onClick={onExplore}
+            className="group/btn flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition-colors duration-300"
+          >
             <span>Explore</span>
             <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
           </button>

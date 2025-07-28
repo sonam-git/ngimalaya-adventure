@@ -2,15 +2,33 @@ import React, { useState } from 'react';
 import { Filter, Search } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { popularTreks } from '../data/treks';
+import type { Trek } from '../data/treks';
 import TrekCard from './TrekCard';
+import TrekDetail from './TrekDetail';
 
 const TreksSection: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [filteredTreks, setFilteredTreks] = useState(popularTreks);
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTrek, setSelectedTrek] = useState<Trek | null>(null);
 
   const difficultyLevels = ['All', 'Easy', 'Moderate', 'Challenging', 'Strenuous'];
+
+  // Show detail view
+  const handleTrekSelect = (trek: Trek) => {
+    setSelectedTrek(trek);
+  };
+
+  // Back to list view
+  const handleBackToList = () => {
+    setSelectedTrek(null);
+  };
+
+  // If a trek is selected, show the detail view
+  if (selectedTrek) {
+    return <TrekDetail trek={selectedTrek} onBack={handleBackToList} />;
+  }
 
   const handleFilter = (difficulty: string) => {
     setActiveFilter(difficulty);
@@ -49,13 +67,13 @@ const TreksSection: React.FC = () => {
   };
 
   return (
-    <section id="treks" className={`py-20 transition-colors duration-300 ${
+    <section id="treks" className={`scroll-offset-mobile py-6 md:py-10 transition-colors duration-300 ${
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-4 md:mb-6">
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
@@ -119,7 +137,7 @@ const TreksSection: React.FC = () => {
           {filteredTreks.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredTreks.map((trek) => (
-                <TrekCard key={trek.id} trek={trek} />
+                <TrekCard key={trek.id} trek={trek} onExplore={() => handleTrekSelect(trek)} />
               ))}
             </div>
           ) : (
