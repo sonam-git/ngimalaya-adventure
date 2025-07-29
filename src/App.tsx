@@ -25,6 +25,17 @@ function AppContent() {
     setCurrentView('regions')
   }
 
+  const handleWatchStory = () => {
+    // Scroll to the about section
+    const aboutSection = document.getElementById('about')
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   const handleRegionSelect = (region: Region) => {
     setSelectedRegion(region)
     setCurrentView('region-treks')
@@ -82,7 +93,7 @@ function AppContent() {
       default: // 'home'
         return (
           <>
-            <Hero onExploreTreks={handleExploreTreks} />
+            <Hero onExploreTreks={handleExploreTreks} onWatchStory={handleWatchStory} />
             <About />
             <TreksSection />
             <ServicesSection />

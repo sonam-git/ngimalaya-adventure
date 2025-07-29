@@ -11,14 +11,14 @@
     background-color: rgb(249 250 251); /* bg-gray-50 */
     transition: background-color 0.3s ease, color 0.3s ease;
     /* Add scroll padding to account for sticky header + top bar */
-    scroll-padding-top: 80px; /* Mobile - reduced gap */
+    scroll-padding-top: 108px; /* Mobile - precise header height */
     /* Enable smooth scrolling for anchor links */
     scroll-behavior: smooth;
   }
   
   @media (min-width: 768px) {
     html {
-      scroll-padding-top: 100px; /* Desktop - reduced gap */
+      scroll-padding-top: 112px; /* Desktop - slightly larger header */
     }
   }
 
@@ -44,14 +44,14 @@
     background-color: rgb(17 24 39); /* bg-gray-900 */
   }
 
-  /* Section scroll positioning - aggressive gap reduction */
+  /* Section scroll positioning - minimal gap */
   section[id] {
-    scroll-margin-top: 70px; /* Mobile - very tight */
+    scroll-margin-top: 108px; /* Mobile - precise header height */
   }
   
   @media (min-width: 768px) {
     section[id] {
-      scroll-margin-top: 90px; /* Desktop - tight */
+      scroll-margin-top: 112px; /* Desktop - precise header height */
     }
   }
   
@@ -302,18 +302,49 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
-  /* Custom scroll offset utilities - aggressive gap reduction */
+  /* Custom scroll offset utilities - minimal gap */
   .scroll-offset-mobile {
-    scroll-margin-top: 60px; /* Very tight mobile */
+    scroll-margin-top: 108px; /* Precise header height */
   }
   
   .scroll-offset-desktop {
-    scroll-margin-top: 80px; /* Tight desktop */
+    scroll-margin-top: 112px; /* Precise header height */
   }
   
   @media (min-width: 768px) {
     .scroll-offset-mobile {
-      scroll-margin-top: 80px; /* Consistent with desktop */
+      scroll-margin-top: 112px; /* Consistent with desktop */
     }
+  }
+
+  /* Custom scrollbar styles */
+  .scrollable-itinerary::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollable-itinerary::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+  }
+
+  .dark .scrollable-itinerary::-webkit-scrollbar-track {
+    background: #374151;
+  }
+
+  .scrollable-itinerary::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+  }
+
+  .scrollable-itinerary::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+  }
+
+  .dark .scrollable-itinerary::-webkit-scrollbar-thumb {
+    background: #60a5fa;
+  }
+
+  .dark .scrollable-itinerary::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
   }
 }

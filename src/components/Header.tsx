@@ -3,6 +3,7 @@ import { Menu, X, Phone, Mail, Facebook, Instagram, MessageCircle, Home, User, M
 import { useTheme } from '../contexts/ThemeContext';
 import logoImage from '../assets/images/logo.png';
 import ThemeToggle from './ThemeToggle';
+import BookingModal from './BookingModal';
 
 type ViewState = 'home' | 'regions' | 'region-treks' | 'trek-detail' | 'treks';
 
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
@@ -95,12 +97,12 @@ const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center space-x-3 md:space-x-6">
             <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
               <Phone size={14} className="text-blue-200" />
-              <span className="hidden sm:inline text-blue-100 font-medium">+977-9841234567</span>
+              <span className="hidden sm:inline text-blue-100 font-medium">+977 980-3499156</span>
               <span className="sm:hidden text-blue-100 font-medium">Call Us</span>
             </div>
             <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
               <Mail size={14} className="text-blue-200" />
-              <span className="hidden md:inline text-blue-100 font-medium">info@ngimalayaadventure.com</span>
+              <span className="hidden md:inline text-blue-100 font-medium">ngiman81@gmail.com</span>
               <span className="md:hidden hidden sm:inline text-blue-100 font-medium">Email</span>
             </div>
           </div>
@@ -155,7 +157,7 @@ const Header: React.FC<HeaderProps> = ({
           : `${isDarkMode ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm shadow-lg`
       }`}>
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-6">
             {/* Logo */}
             <a href="#home" className="flex items-center space-x-3 md:space-x-4 group relative">
               {/* Logo Container with Enhanced Styling */}
@@ -195,7 +197,7 @@ const Header: React.FC<HeaderProps> = ({
                     currentView === 'home'
                       ? isScrolled ? 'text-gray-400' : 'text-gray-400'
                       : 'text-gray-400'
-                  } hidden sm:block`}>
+                  }`}>
                     Since 2016
                   </p>
                 </div>
@@ -260,7 +262,10 @@ const Header: React.FC<HeaderProps> = ({
                         if (currentView === 'home') {
                           const element = document.getElementById(item.id);
                           if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
+                            element.scrollIntoView({ 
+                              behavior: 'smooth',
+                              block: 'start'
+                            });
                           }
                         }
                       }
@@ -300,7 +305,10 @@ const Header: React.FC<HeaderProps> = ({
               
               <ThemeToggle />
               
-              <button className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25 group overflow-hidden">
+              <button 
+                onClick={() => setIsBookingModalOpen(true)}
+                className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25 group overflow-hidden"
+              >
                 <span className="relative z-10">Book Now</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </button>
@@ -367,7 +375,10 @@ const Header: React.FC<HeaderProps> = ({
                         if (currentView === 'home') {
                           const element = document.getElementById(item.id);
                           if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
+                            element.scrollIntoView({ 
+                              behavior: 'smooth',
+                              block: 'start'
+                            });
                           }
                         }
                       }
@@ -417,7 +428,13 @@ const Header: React.FC<HeaderProps> = ({
                   <ThemeToggle />
                 </div>
                 
-                <button className="w-full relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group overflow-hidden">
+                <button 
+                  onClick={() => {
+                    setIsBookingModalOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group overflow-hidden"
+                >
                   <span className="relative z-10">Book Now</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom"></div>
                 </button>
@@ -426,6 +443,12 @@ const Header: React.FC<HeaderProps> = ({
           </div>
         )}
       </header>
+
+      {/* Booking Modal */}
+      <BookingModal 
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </>
   );
 };

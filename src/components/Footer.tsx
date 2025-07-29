@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
                 <div className="flex items-start space-x-3">
                   <MapPin className="text-blue-400 flex-shrink-0 mt-1" size={16} />
                   <div className="text-gray-300 text-sm">
-                    <p>Sarswatinagar, Kathmandu</p>
+                    <p>Sarswatinagar Marg, Kathmandu</p>
                     <p>Nepal</p>
                   </div>
                 </div>
@@ -137,20 +137,20 @@ const Footer: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <Phone className="text-blue-400 flex-shrink-0" size={16} />
                   <a 
-                    href="tel:+9779841234567"
+                    href="tel:+977980-3499156"
                     className="text-gray-300 hover:text-blue-400 transition-colors text-sm"
                   >
-                    +977-9841234567
+                    +977 980-3499156
                   </a>
                 </div>
                 
                 <div className="flex items-center space-x-3">
                   <Mail className="text-blue-400 flex-shrink-0" size={16} />
                   <a 
-                    href="mailto:info@ngimalayaadventure.com"
+                    href="mailto:ngiman81@gmail.com"
                     className="text-gray-300 hover:text-blue-400 transition-colors text-sm"
                   >
-                    info@ngimalayaadventure.com
+                    ngiman81@gmail.com
                   </a>
                 </div>
               </div>

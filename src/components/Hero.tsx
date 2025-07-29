@@ -4,9 +4,10 @@ import { useTheme } from '../contexts/ThemeContext';
 
 export interface HeroProps {
   onExploreTreks?: () => void;
+  onWatchStory?: () => void;
 }
 
-const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks }) => {
+const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onWatchStory }) => {
   const { isDarkMode } = useTheme();
   
   return (
@@ -49,7 +50,7 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks }) => {
         <div className="flex flex-wrap justify-center gap-8 mb-12">
           <div className="flex items-center space-x-2">
             <Star className="text-yellow-400" size={20} />
-            <span className="text-lg">500+ Happy Trekkers</span>
+            <span className="text-lg">1000+ Happy Trekkers</span>
           </div>
           <div className="flex items-center space-x-2">
             <Users className="text-blue-400" size={20} />
@@ -71,7 +72,9 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks }) => {
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <button className="group border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl">
+          <button 
+            onClick={onWatchStory}
+            className="group border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl">
             <span>Watch Our Story</span>
           </button>
         </div>

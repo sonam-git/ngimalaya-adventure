@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   ArrowLeft, 
   Calendar, 
@@ -10,10 +10,13 @@ import {
   AlertTriangle,
   Star,
   Award,
-  Thermometer
+  Thermometer,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import type { Trek } from '../data/treks';
 import { useTheme } from '../contexts/ThemeContext';
+import BookingModal from './BookingModal';
 
 interface TrekDetailProps {
   trek: Trek;
@@ -22,6 +25,8 @@ interface TrekDetailProps {
 
 const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
   const { isDarkMode } = useTheme();
+  const [isItineraryOpen, setIsItineraryOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
@@ -56,7 +61,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
                 isDarkMode 
                   ? 'rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)' 
                   : 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)'
-              }), url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`
+              }), url("${trek.image}")`
             }}
           />
           <div className="absolute inset-0 flex items-end">
@@ -133,42 +138,86 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
 
             {/* Itinerary */}
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Detailed Itinerary
-              </h2>
-              <div className="space-y-4">
-                {trek.itinerary.map((day, index) => (
-                  <div key={index} className={`border-l-4 border-blue-500 pl-6 pb-4 ${
-                    index !== trek.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
-                  }`}>
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-                        Day {day.day}
-                      </span>
-                      {day.walkingHours && (
-                        <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          <Clock size={14} className="inline mr-1" />
-                          {day.walkingHours}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {day.title}
-                    </h4>
-                    <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      {day.description}
-                    </p>
-                    <div className="flex space-x-4 text-sm">
-                      <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
-                        <strong>Accommodation:</strong> {day.accommodation}
-                      </span>
-                      <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
-                        <strong>Meals:</strong> {day.meals}
-                      </span>
-                    </div>
+              <button
+                onClick={() => setIsItineraryOpen(!isItineraryOpen)}
+                className={`w-full flex items-center justify-between text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}
+              >
+                <span>Detailed Itinerary</span>
+                <div className="flex items-center space-x-2">
+                  <span className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {isItineraryOpen ? 'Hide' : 'Show'} Details
+                  </span>
+                  {isItineraryOpen ? (
+                    <ChevronUp className="text-blue-600 dark:text-blue-400" size={24} />
+                  ) : (
+                    <ChevronDown className="text-blue-600 dark:text-blue-400" size={24} />
+                  )}
+                </div>
+              </button>
+              
+              {isItineraryOpen && (
+                <div className="pt-2">
+                  <div 
+                    className="scrollable-itinerary max-h-[500px] overflow-y-auto pr-2 space-y-4"
+                    style={{
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: '#3B82F6 #E5E7EB'
+                    }}
+                  >
+                    {trek.itinerary.map((day, index) => (
+                      <div key={index} className={`border-l-4 border-blue-500 pl-6 pb-4 ${
+                        index !== trek.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
+                      }`}>
+                        <div className="flex items-center space-x-2 mb-2">
+                          <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">
+                            Day {day.day}
+                          </span>
+                          {day.walkingHours && (
+                            <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <Clock size={14} className="inline mr-1" />
+                              {day.walkingHours}
+                            </span>
+                          )}
+                        </div>
+                        <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                          {day.title}
+                        </h4>
+                        <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          {day.description}
+                        </p>
+                        <div className="flex space-x-4 text-sm">
+                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
+                            <strong>Accommodation:</strong> {day.accommodation}
+                          </span>
+                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
+                            <strong>Meals:</strong> {day.meals}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
+              
+              {/* Itinerary Summary when collapsed */}
+              {!isItineraryOpen && (
+                <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
+                  <p className="mb-2">
+                    This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
+                      {trek.itinerary.length} Days Total
+                    </span>
+                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs">
+                      Max Altitude: {trek.altitude}
+                    </span>
+                    <span className="bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-400 px-2 py-1 rounded text-xs">
+                      {trek.difficulty} Level
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Included/Excluded */}
@@ -232,7 +281,10 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
                 <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>per person</p>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+              <button 
+                onClick={() => setIsBookingModalOpen(true)}
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+              >
                 Book Now
               </button>
 
@@ -251,10 +303,10 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
                 </p>
                 <div className="space-y-2 text-sm">
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
-                    📞 +977-1-4444444
+                    📞 +977 980-3499156
                   </p>
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
-                    ✉️ info@ngimalayaadventure.com
+                    ✉️ ngiman81@gmail.com
                   </p>
                 </div>
               </div>
@@ -289,6 +341,13 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal 
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        trek={trek}
+      />
     </div>
   );
 };

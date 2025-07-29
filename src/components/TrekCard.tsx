@@ -10,6 +10,7 @@ interface TrekCardProps {
 
 const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
   const { isDarkMode } = useTheme();
+  
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Easy': return 'bg-green-100 text-green-800';
@@ -27,7 +28,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
       {/* Image */}
       <div className="relative overflow-hidden h-64">
         <img 
-          src={`https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=400&h=300&fit=crop`}
+          src={trek.image}
           alt={trek.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
@@ -77,10 +78,10 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
         </div>
 
         {/* Price and CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
           <div>
             <span className="text-2xl font-bold text-blue-600">{trek.price}</span>
-            <span className="text-gray-500 text-sm ml-1">per person</span>
+            <span className={`text-sm ml-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>per person</span>
           </div>
           <button 
             onClick={onExplore}

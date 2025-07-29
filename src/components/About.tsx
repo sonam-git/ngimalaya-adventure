@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Globe, Heart, Mountain } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import aboutMeImage from '../assets/images/about-me.jpeg';
 
 const About: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -18,7 +19,7 @@ const About: React.FC = () => {
     {
       icon: <Award className="text-yellow-600" size={32} />,
       title: "500+",
-      description: "Successful Expeditions"
+      description: "Successful Trekkings & Tours"
     },
     {
       icon: <Heart className="text-red-600" size={32} />,
@@ -53,7 +54,7 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  src={aboutMeImage}
                   alt="Ngima Nuru Sherpa"
                   className="w-full h-96 object-cover"
                 />
@@ -85,14 +86,18 @@ const About: React.FC = () => {
                 A Journey Born from Passion
               </h3>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Welcome to Ngimalaya Adventure Nepal, where the journey begins with a name rooted 
                 in the rich cultural heritage of the Sherpa community. I am <strong>Ngima Nuru Sherpa</strong>, 
                 born into the heart of the Himalayas and having spent two decades as a seasoned 
                 trekking guide.
               </p>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 My passion for exploration has connected me with diverse cultures and people 
                 across the globe. Proficient in languages such as English, German, Japanese, 
                 Hindi, Nepali, and Sherpa, my extensive career has allowed me to traverse not 
@@ -100,7 +105,9 @@ const About: React.FC = () => {
                 of Japan and Germany.
               </p>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Fueled by the desire to share the mesmerizing views of the Himalayas and the 
                 diverse cultures within Nepal, I founded Ngimalaya Adventure Nepal in 2016. 
                 Our commitment goes beyond conventional trekking experiences, as we strive to 
@@ -108,8 +115,12 @@ const About: React.FC = () => {
                 dedicated to making every trekking adventure unforgettable.
               </p>
 
-              <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
-                <p className="text-blue-800 italic text-lg font-medium">
+              <div className={`p-6 rounded-xl border-l-4 border-blue-600 transition-colors duration-300 ${
+                isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'
+              }`}>
+                <p className={`italic text-lg font-medium transition-colors duration-300 ${
+                  isDarkMode ? 'text-blue-300' : 'text-blue-800'
+                }`}>
                   "Ngimalaya Adventure Nepal – Where Culture Meets the Clouds, and Every Trek Tells a Story!"
                 </p>
               </div>
@@ -121,15 +132,21 @@ const About: React.FC = () => {
             {achievements.map((achievement, index) => (
               <div 
                 key={index}
-                className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className={`text-center p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-white'
+                }`}
               >
                 <div className="flex justify-center mb-4">
                   {achievement.icon}
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">
+                <h4 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                }`}>
                   {achievement.title}
                 </h4>
-                <p className="text-gray-600">
+                <p className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
                   {achievement.description}
                 </p>
               </div>

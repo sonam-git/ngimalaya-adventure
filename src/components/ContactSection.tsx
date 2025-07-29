@@ -38,19 +38,19 @@ const ContactSection: React.FC = () => {
     {
       icon: <Phone className="text-blue-600" size={24} />,
       title: "Phone",
-      details: ["+977-9841234567", "+977-1-4567890"],
+      details: ["+977 980-3499156"],
       action: "Call Now"
     },
     {
       icon: <Mail className="text-green-600" size={24} />,
       title: "Email",
-      details: ["info@ngimalayaadventure.com", "ngima@ngimalayaadventure.com"],
+      details: ["ngiman81@gmail.com"],
       action: "Send Email"
     },
     {
       icon: <MapPin className="text-red-600" size={24} />,
       title: "Location",
-      details: ["Thamel, Kathmandu", "Nepal"],
+      details: ["Sarswatinagar Marg", "Kathmandu, Nepal"],
       action: "Get Directions"
     }
   ];
@@ -269,7 +269,7 @@ const ContactSection: React.FC = () => {
                   For urgent matters during your trek, contact our 24/7 emergency line:
                 </p>
                 <p className="text-red-800 font-bold mt-2">
-                  +977-9841234567
+                  +977 980-3499156
                 </p>
               </div>
             </div>
