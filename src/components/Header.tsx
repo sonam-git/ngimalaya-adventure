@@ -292,6 +292,12 @@ const Header: React.FC = () => {
                   <Link
                     key={item.name}
                     to={item.href}
+                    onClick={() => {
+                      // Ensure clean navigation by preventing any scroll behavior
+                      if (item.href.startsWith('/')) {
+                        window.scrollTo(0, 0);
+                      }
+                    }}
                     className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
                   >
                     <IconComponent 
@@ -441,7 +447,13 @@ const Header: React.FC = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      // Ensure clean navigation by preventing any scroll behavior
+                      if (item.href.startsWith('/')) {
+                        window.scrollTo(0, 0);
+                      }
+                    }}
                     className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden ${getMobileButtonStyles()}`}
                   >
                     <IconComponent 

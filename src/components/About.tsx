@@ -1,7 +1,7 @@
 import React from 'react';
 import { Globe, Heart, Mountain, Star, MapPin, Users2, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import aboutMeImage from '../assets/images/about-me.jpeg';
+import aboutMeImage from '../assets/images/ngima.png';
 
 const About: React.FC = () => {
   const { isDarkMode } = useTheme();
