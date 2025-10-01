@@ -40,7 +40,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
           <div className="flex items-center space-x-1">
             <Star className="text-yellow-500 fill-current" size={14} />
-            <span className="text-sm font-medium">4.8</span>
+            <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-800' : 'text-gray-600'}`}>4.8</span>
           </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -53,32 +53,32 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
         }`}>
           {trek.name}
         </h3>
-        
-        <p className="text-gray-600 mb-4 line-clamp-2">
+
+        <p className={` mb-4 line-clamp-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>
           {trek.description}
         </p>
 
         {/* Trek Details */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className={`grid grid-cols-2 gap-4 mb-4`}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Calendar size={16} className="text-blue-600" />
-            <span>{trek.duration}</span>
+            <span className={`${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>{trek.duration}</span>
           </div>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Mountain size={16} className="text-blue-600" />
-            <span>{trek.altitude}</span>
+            <span className={`${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>{trek.altitude}</span>
           </div>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Users size={16} className="text-blue-600" />
-            <span>{trek.groupSize}</span>
+            <span className={`${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>{trek.groupSize}</span>
           </div>
-          <div className="text-sm text-gray-600">
-            <span className="font-medium">Season:</span> {trek.season}
+          <div className={`text-sm ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>
+            <span className={`font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>Season:</span> {trek.season}
           </div>
         </div>
 
         {/* Price and CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700 ">
           <div>
             <span className="text-2xl font-bold text-blue-600">{trek.price}</span>
             <span className={`text-sm ml-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>per person</span>

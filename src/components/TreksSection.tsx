@@ -15,19 +15,14 @@ const TreksSection: React.FC = () => {
 
   const difficultyLevels = ['All', 'Easy', 'Moderate', 'Challenging', 'Strenuous'];
 
-  // Show detail view
+  // Select a trek for detail view
   const handleTrekSelect = (trek: Trek) => {
     setSelectedTrek(trek);
   };
 
-  // Back to list view
-  const handleBackToList = () => {
-    setSelectedTrek(null);
-  };
-
   // If a trek is selected, show the detail view
   if (selectedTrek) {
-    return <TrekDetail trek={selectedTrek} onBack={handleBackToList} />;
+    return <TrekDetail trek={selectedTrek} />;
   }
 
   const handleFilter = (difficulty: string) => {
@@ -67,7 +62,7 @@ const TreksSection: React.FC = () => {
   };
 
   return (
-    <section id="treks" className={`scroll-offset-mobile py-6 md:py-10 transition-colors duration-300 ${
+    <section id="treks" className={`scroll-offset-mobile py-12 md:py-20 transition-colors duration-300 ${
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       <div className="container mx-auto px-4">

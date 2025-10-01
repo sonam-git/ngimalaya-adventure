@@ -1,32 +1,20 @@
 import React from 'react';
-import { ArrowLeft, Mountain, Map } from 'lucide-react';
+import { Mountain, Map } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { trekRegions } from '../data/treks';
 import type { Region } from '../data/treks';
 import RegionCard from './RegionCard';
 
 interface RegionsExplorerProps {
-  onBack: () => void;
   onRegionSelect: (region: Region) => void;
 }
 
-const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onBack, onRegionSelect }) => {
+const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => {
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-20 md:pt-28`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-32 md:pt-36`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <button
-          onClick={onBack}
-          className={`flex items-center space-x-2 mb-8 text-blue-600 hover:text-blue-800 transition-colors ${
-            isDarkMode ? 'text-blue-400 hover:text-blue-300' : ''
-          }`}
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Home</span>
-        </button>
-
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">

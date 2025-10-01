@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Instagram, MessageCircle, Code } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import logoImage from '../assets/images/logo.png';
+import logoImage from '../assets/images/logo-dark.png';
 
 const Footer: React.FC = () => {
   const { isDarkMode } = useTheme();

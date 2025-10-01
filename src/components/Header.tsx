@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Facebook, Instagram, MessageCircle, Home, User, Mountain, Settings, MessageSquare, ArrowLeft } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import logoImage from '../assets/images/logo.png';
+import lightImage from '../assets/images/logo-light.png';
+import darkImage from '../assets/images/logo-dark.png';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
 
-type ViewState = 'home' | 'regions' | 'region-treks' | 'trek-detail' | 'treks';
-
-interface HeaderProps {
-  currentView?: ViewState;
-  onBackToHome?: () => void;
-  onBackToRegions?: () => void;
-  onBackToTreks?: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ 
-  currentView = 'home', 
-  onBackToHome, 
-  onBackToRegions, 
-  onBackToTreks 
-}) => {
+const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const { isDarkMode } = useTheme();
+  const location = useLocation();
+
+  // Get current view based on pathname
+  const getCurrentView = () => {
+    const path = location.pathname;
+    if (path === '/') return 'home';
+    if (path === '/treks') return 'treks';
+    if (path === '/regions') return 'treks';
+    if (path.startsWith('/treks/regions/')) return 'region-treks';
+    if (path.startsWith('/regions/')) return 'region-treks';
+    if (path.startsWith('/treks/')) return 'trek-detail';
+    if (path === '/about') return 'about';
+    if (path === '/services') return 'services';
+    if (path === '/contact') return 'contact';
+    return 'home';
+  };
+
+  const currentView = getCurrentView();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,8 +53,16 @@ const Header: React.FC<HeaderProps> = ({
             }
           }
         }
+      } else {
+        // For non-home pages, set active section based on current view
+        setActiveSection(currentView);
       }
     };
+    
+    // Set initial active section based on current view
+    if (currentView !== 'home') {
+      setActiveSection(currentView);
+    }
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -57,31 +71,41 @@ const Header: React.FC<HeaderProps> = ({
   // Define navigation items based on current view
   const getNavItems = () => {
     switch (currentView) {
-      case 'regions':
+      case 'treks':
         return [
-          { name: 'Home', href: '#home', action: onBackToHome, icon: Home, id: 'home' }
+          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
+          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
+          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
+          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
+          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
         ];
       case 'region-treks':
         return [
-          { name: 'Home', href: '#home', action: onBackToHome, icon: Home, id: 'home' },
-          { name: 'Back to Regions', href: '#', action: onBackToRegions, icon: ArrowLeft, id: 'back-regions' }
+          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
+          { name: 'Back to Regions', href: '/treks', icon: ArrowLeft, id: 'back-regions', isRouterLink: true }
         ];
       case 'trek-detail':
         return [
-          { name: 'Home', href: '#home', action: onBackToHome, icon: Home, id: 'home' },
-          { name: 'Back to Treks', href: '#', action: onBackToTreks, icon: ArrowLeft, id: 'back-treks' }
+          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
+          { name: 'Back to Regions', href: '/treks', icon: ArrowLeft, id: 'back-regions', isRouterLink: true }
         ];
-      case 'treks':
+      case 'about':
+      case 'services':
+      case 'contact':
         return [
-          { name: 'Home', href: '#home', action: onBackToHome, icon: Home, id: 'home' }
+          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
+          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
+          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
+          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
+          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
         ];
       default: // 'home'
         return [
-          { name: 'Home', href: '#home', icon: Home, id: 'home' },
-          { name: 'About', href: '#about', icon: User, id: 'about' },
-          { name: 'Treks', href: '#treks', icon: Mountain, id: 'treks' },
-          { name: 'Services', href: '#services', icon: Settings, id: 'services' },
-          { name: 'Contact', href: '#contact', icon: MessageSquare, id: 'contact' }
+          { name: 'Home', href: '#home', icon: Home, id: 'home', isRouterLink: false },
+          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
+          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
+          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
+          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
         ];
     }
   };
@@ -109,9 +133,13 @@ const Header: React.FC<HeaderProps> = ({
 
           {/* Center Tagline */}
           <div className="text-sm hidden lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-            Trek Higher. Breathe Deeper. Live Fuller.
+            Trek Higher | Breathe Deeper | Live Fuller.
           </div>
-
+     <div className="text-sm  lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
+          <div className="text-sm lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
+            ལྔི་མ་ལ་ཡ། བརྡ་དོན་ནེ་པཱལ།
+          </div>
+          </div>
           {/* Social Icons */}
           <div className="flex items-center space-x-2">
             <span className="text-xs text-blue-200 hidden md:inline mr-2 font-medium">Follow Us:</span>
@@ -159,19 +187,19 @@ const Header: React.FC<HeaderProps> = ({
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-6">
             {/* Logo */}
-            <a href="#home" className="flex items-center space-x-3 md:space-x-4 group relative">
+            <Link to="/" className="flex items-center space-x-3 md:space-x-4 group relative">
               {/* Logo Container with Enhanced Styling */}
               <div className="relative">
                 <img 
-                  src={logoImage} 
+                  src={isDarkMode ? darkImage : lightImage} 
                   alt="Ngimalaya Adventure Logo" 
-                  className="h-18 w-16 md:h-25 md:w-25 object-contain group-hover:scale-110 transition-all duration-300 drop-shadow-lg"
+                  className="h-20 w-25 md:h-25 md:w-25 object-contain group-hover:scale-110 transition-all duration-300 drop-shadow-lg"
                 />
               </div>
               
               {/* Brand Text with Enhanced Typography */}
               <div className="flex flex-col">
-                <h1 className={`text-xl md:text-3xl font-bold tracking-tight leading-none transition-all duration-300 ${
+                <h1 className={`text-xl md:text-xl font-bold tracking-tight leading-none transition-all duration-300 ${
                   currentView === 'home'
                     ? isScrolled 
                       ? `${isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}` 
@@ -207,13 +235,16 @@ const Header: React.FC<HeaderProps> = ({
               <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-300 ${
                 'w-0 group-hover:w-full'
               }`}></div>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
-                const isActive = activeSection === item.id && currentView === 'home';
+                // Updated active logic to handle both home scroll sections and route-based pages
+                const isActive = currentView === 'home' 
+                  ? activeSection === item.id 
+                  : currentView === item.id;
                 const isBackButton = item.name.startsWith('Back');
                 const isHomeButton = item.name === 'Home' && currentView !== 'home';
                 
@@ -242,31 +273,66 @@ const Header: React.FC<HeaderProps> = ({
                   }
                   
                   // Regular menu items
-                  return isScrolled 
-                    ? `${isDarkMode 
-                        ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-lg border-2 border-transparent hover:border-blue-500/30' 
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200'
-                      }` 
-                    : 'text-white hover:text-blue-200 hover:bg-white/10 backdrop-blur-sm hover:shadow-lg border-2 border-transparent hover:border-white/20';
+                  if (currentView === 'home') {
+                    return isScrolled 
+                      ? `${isDarkMode 
+                          ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-lg border-2 border-transparent hover:border-blue-500/30' 
+                          : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200'
+                        }` 
+                      : 'text-white hover:text-blue-200 hover:bg-white/10 backdrop-blur-sm hover:shadow-lg border-2 border-transparent hover:border-white/20';
+                  } else {
+                    // For non-home pages (about, services, contact)
+                    return isDarkMode 
+                      ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-lg border-2 border-transparent hover:border-blue-500/30' 
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200';
+                  }
                 };
                 
-                return (
+                return item.isRouterLink ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
+                  >
+                    <IconComponent 
+                      size={18} 
+                      className={`transition-all duration-300 ${
+                        isActive || isBackButton || isHomeButton
+                          ? 'text-white' 
+                          : 'group-hover:scale-110'
+                      }`} 
+                    />
+                    <span className="hidden lg:inline">{item.name}</span>
+                    
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                    )}
+                    
+                    {/* Enhanced glow effect for special buttons */}
+                    {(isBackButton || isHomeButton) && (
+                      <div className="absolute inset-0 rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"
+                           style={{
+                             background: isBackButton 
+                               ? 'linear-gradient(45deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
+                               : 'linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
+                           }}>
+                      </div>
+                    )}
+                  </Link>
+                ) : (
                   <button
                     key={item.name}
                     onClick={() => {
-                      if ('action' in item && item.action) {
-                        item.action();
-                      } else {
-                        setActiveSection(item.id);
-                        // For home view, scroll to section
-                        if (currentView === 'home') {
-                          const element = document.getElementById(item.id);
-                          if (element) {
-                            element.scrollIntoView({ 
-                              behavior: 'smooth',
-                              block: 'start'
-                            });
-                          }
+                      setActiveSection(item.id);
+                      // For home view, scroll to section
+                      if (currentView === 'home') {
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          element.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                          });
                         }
                       }
                     }}
@@ -316,10 +382,16 @@ const Header: React.FC<HeaderProps> = ({
 
             {/* Mobile menu button */}
             <button
-              className={`md:hidden ${isScrolled ? `${isDarkMode ? 'text-white' : 'text-gray-900'}` : 'text-white'}`}
+              className={`md:hidden mr-3 p-2 rounded-lg transition-all duration-300 hover:bg-white/10 ${
+                currentView === 'home'
+                  ? isScrolled 
+                    ? `${isDarkMode ? 'text-white' : 'text-gray-900'}` 
+                    : 'text-white'
+                  : `${isDarkMode ? 'text-white' : 'text-gray-900'}`
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
             </button>
           </div>
         </div>
@@ -334,7 +406,10 @@ const Header: React.FC<HeaderProps> = ({
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
-                const isActive = activeSection === item.id && currentView === 'home';
+                // Updated active logic to handle both home scroll sections and route-based pages
+                const isActive = currentView === 'home' 
+                  ? activeSection === item.id 
+                  : currentView === item.id;
                 const isBackButton = item.name.startsWith('Back');
                 const isHomeButton = item.name === 'Home' && currentView !== 'home';
                 
@@ -362,24 +437,64 @@ const Header: React.FC<HeaderProps> = ({
                     : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200';
                 };
                 
-                return (
+                return item.isRouterLink ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden ${getMobileButtonStyles()}`}
+                  >
+                    <IconComponent 
+                      size={20} 
+                      className={`transition-all duration-300 z-10 ${
+                        isActive || isBackButton || isHomeButton
+                          ? 'text-white' 
+                          : 'group-hover:scale-110'
+                      }`} 
+                    />
+                    <span className="font-semibold z-10">{item.name}</span>
+                    
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse z-10"></div>
+                    )}
+                    
+                    {/* Enhanced mobile button effects */}
+                    {(isBackButton || isHomeButton) && (
+                      <>
+                        <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                             style={{
+                               background: isBackButton 
+                                 ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
+                                 : 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
+                             }}>
+                        </div>
+                        <div className="absolute top-0 right-0 w-8 h-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300 transform rotate-12">
+                          <div className="w-full h-full rounded-full"
+                               style={{
+                                 background: isBackButton 
+                                   ? 'radial-gradient(circle, rgba(251, 146, 60, 0.6), transparent)' 
+                                   : 'radial-gradient(circle, rgba(74, 222, 128, 0.6), transparent)'
+                               }}>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </Link>
+                ) : (
                   <button
                     key={item.name}
                     onClick={() => {
                       setIsMobileMenuOpen(false);
-                      if ('action' in item && item.action) {
-                        item.action();
-                      } else {
-                        setActiveSection(item.id);
-                        // For home view, scroll to section
-                        if (currentView === 'home') {
-                          const element = document.getElementById(item.id);
-                          if (element) {
-                            element.scrollIntoView({ 
-                              behavior: 'smooth',
-                              block: 'start'
-                            });
-                          }
+                      setActiveSection(item.id);
+                      // For home view, scroll to section
+                      if (currentView === 'home') {
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          element.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                          });
                         }
                       }
                     }}
@@ -406,13 +521,18 @@ const Header: React.FC<HeaderProps> = ({
                         <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
                              style={{
                                background: isBackButton 
-                                 ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.4), rgba(251, 146, 60, 0.4))' 
-                                 : 'linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(74, 222, 128, 0.4))'
+                                 ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
+                                 : 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
                              }}>
                         </div>
-                        <div className="ml-auto">
-                          {isBackButton && <span className="text-xs bg-orange-500/20 text-orange-100 px-2 py-1 rounded-full">Back</span>}
-                          {isHomeButton && <span className="text-xs bg-green-500/20 text-green-100 px-2 py-1 rounded-full">Home</span>}
+                        <div className="absolute top-0 right-0 w-8 h-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300 transform rotate-12">
+                          <div className="w-full h-full rounded-full"
+                               style={{
+                                 background: isBackButton 
+                                   ? 'radial-gradient(circle, rgba(251, 146, 60, 0.6), transparent)' 
+                                   : 'radial-gradient(circle, rgba(74, 222, 128, 0.6), transparent)'
+                               }}>
+                          </div>
                         </div>
                       </>
                     )}
@@ -421,23 +541,24 @@ const Header: React.FC<HeaderProps> = ({
               })}
               
               <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                    Theme:
-                  </span>
-                  <ThemeToggle />
+                <div className="flex items-center justify-between space-x-3">
+                  {/* Book Now button - 75% width */}
+                  <button 
+                    onClick={() => {
+                      setIsBookingModalOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex-1 relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group overflow-hidden"
+                  >
+                    <span className="relative z-10">Book Now</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom"></div>
+                  </button>
+                  
+                  {/* Theme toggle - 25% width */}
+                  <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-700 px-3 py-3 rounded-xl">
+                    <ThemeToggle />
+                  </div>
                 </div>
-                
-                <button 
-                  onClick={() => {
-                    setIsBookingModalOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group overflow-hidden"
-                >
-                  <span className="relative z-10">Book Now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom"></div>
-                </button>
               </div>
             </div>
           </div>

@@ -97,7 +97,7 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section id="services" className={`scroll-offset-mobile py-6 md:py-10 transition-colors duration-300 ${
+    <section id="services" className={`scroll-offset-mobile py-12 md:py-20 transition-colors duration-300 ${
       isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
     }`}>
       <div className="container mx-auto px-4">
@@ -118,19 +118,19 @@ const ServicesSection: React.FC = () => {
           </div>
 
           {/* Main Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 ">
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group"
+                className={`${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'} p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group`}
               >
                 <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className={`leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {service.description}
                 </p>
               </div>
@@ -139,22 +139,22 @@ const ServicesSection: React.FC = () => {
 
           {/* Features Section */}
           <div className="mb-20">
-            <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h3 className={`text-3xl font-bold text-center ${isDarkMode ? 'text-gray-100' : 'text-gray-900'} mb-12`}>
               What Makes Us <span className="text-blue-600">Different</span>
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
                 <div 
                   key={index}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className={`${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'} p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300`}
                 >
                   <div className="flex items-center space-x-3 mb-4">
                     {feature.icon}
-                    <h4 className="font-bold text-gray-900">
+                    <h4 className={`font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                       {feature.title}
                     </h4>
                   </div>
-                  <p className="text-gray-600 text-sm">
+                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     {feature.description}
                   </p>
                 </div>

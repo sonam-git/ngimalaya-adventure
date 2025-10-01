@@ -302,18 +302,18 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
-  /* Custom scroll offset utilities - minimal gap */
+  /* Custom scroll offset utilities - mobile optimized */
   .scroll-offset-mobile {
-    scroll-margin-top: 108px; /* Precise header height */
+    scroll-margin-top: 120px; /* Account for top bar (52px) + main header (68px) on mobile */
   }
   
   .scroll-offset-desktop {
-    scroll-margin-top: 112px; /* Precise header height */
+    scroll-margin-top: 140px; /* Account for top bar (52px) + main header (88px) on desktop */
   }
   
   @media (min-width: 768px) {
     .scroll-offset-mobile {
-      scroll-margin-top: 112px; /* Consistent with desktop */
+      scroll-margin-top: 140px; /* Match desktop spacing */
     }
   }
 

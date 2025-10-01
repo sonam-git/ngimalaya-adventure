@@ -1,36 +1,20 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import { allTreks } from '../data/treks';
 import type { Region, Trek } from '../data/treks';
 import TrekCard from './TrekCard';
 
 interface RegionTreksProps {
   region: Region;
-  onBack: () => void;
+  treks: Trek[];
   onTrekSelect: (trek: Trek) => void;
 }
 
-const RegionTreks: React.FC<RegionTreksProps> = ({ region, onBack, onTrekSelect }) => {
+const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }) => {
   const { isDarkMode } = useTheme();
-  
-  // Filter treks by region
-  const regionTreks = allTreks.filter(trek => trek.region === region.name);
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-20 md:pt-28`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <button
-          onClick={onBack}
-          className={`flex items-center space-x-2 mb-8 text-blue-600 hover:text-blue-800 transition-colors ${
-            isDarkMode ? 'text-blue-400 hover:text-blue-300' : ''
-          }`}
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Regions</span>
-        </button>
-
         {/* Region Hero */}
         <div className="relative h-80 rounded-2xl overflow-hidden mb-8">
           <div 
@@ -51,13 +35,16 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, onBack, onTrekSelect 
               </p>
               <div className="mt-6 flex justify-center items-center space-x-6">
                 <div className="text-center">
-                  <div className="text-2xl font-bold">{regionTreks.length}</div>
+                  <div className="text-2xl font-bold">{treks.length}</div>
                   <div className="text-sm opacity-80">Available Treks</div>
                 </div>
                 <div className="w-px h-8 bg-white/30"></div>
                 <div className="text-center">
                   <div className="text-2xl font-bold">
-                    {Math.min(...regionTreks.map(t => parseInt(t.duration)))} - {Math.max(...regionTreks.map(t => parseInt(t.duration)))} Days
+                    {treks.length > 0 ? 
+                      `${Math.min(...treks.map(t => parseInt(t.duration)))} - ${Math.max(...treks.map(t => parseInt(t.duration)))} Days`
+                      : 'N/A'
+                    }
                   </div>
                   <div className="text-sm opacity-80">Duration Range</div>
                 </div>
@@ -77,9 +64,9 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, onBack, onTrekSelect 
             Available Treks in {region.name}
           </h2>
           
-          {regionTreks.length > 0 ? (
+          {treks.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regionTreks.map((trek) => (
+              {treks.map((trek) => (
                 <TrekCard 
                   key={trek.id} 
                   trek={trek} 

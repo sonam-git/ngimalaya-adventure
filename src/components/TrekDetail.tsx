@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  ArrowLeft, 
   Calendar, 
   Mountain, 
   Users, 
@@ -20,10 +19,9 @@ import BookingModal from './BookingModal';
 
 interface TrekDetailProps {
   trek: Trek;
-  onBack: () => void;
 }
 
-const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
+const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   const { isDarkMode } = useTheme();
   const [isItineraryOpen, setIsItineraryOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -41,17 +39,6 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek, onBack }) => {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-20 md:pt-28`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <button
-          onClick={onBack}
-          className={`flex items-center space-x-2 mb-6 text-blue-600 hover:text-blue-800 transition-colors ${
-            isDarkMode ? 'text-blue-400 hover:text-blue-300' : ''
-          }`}
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Treks</span>
-        </button>
-
         {/* Hero Image and Title */}
         <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
           <div 

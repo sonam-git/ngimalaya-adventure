@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Star, Users, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import threePassesImage from '../assets/images/threepasses.jpeg';
 
 export interface HeroProps {
   onExploreTreks?: () => void;
@@ -20,7 +21,7 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onWatchStory }) =>
             isDarkMode 
               ? 'rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)' 
               : 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)'
-          }), url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`
+          }), url("${threePassesImage}")`
         }}
       />
       
