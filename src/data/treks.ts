@@ -76,7 +76,9 @@ export const popularTreks: Trek[] = [
   // Feature Manaslu trek
   ...manasluRegionTreks.slice(0, 1),
   // Feature Kanchenjunga trek
-  ...kanchenjungaRegionTreks.slice(0, 1)
+  ...kanchenjungaRegionTreks.slice(0, 1),
+  // Feature Makalu trek
+  ...makaluRegionTreks.slice(0, 1)
 ];
 
 // Regions data with dynamic trek counts

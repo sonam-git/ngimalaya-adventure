@@ -57,9 +57,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className={`scroll-offset-mobile py-12 md:py-20 transition-colors duration-300 relative overflow-hidden ${
-      isDarkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-gray-50 via-white to-blue-50/30'
-    }`}>
+    <section id="about" className={`scroll-offset-mobile py-12 md:py-20 transition-colors duration-300 relative overflow-hidden`}>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute top-20 right-10 w-72 h-72 rounded-full blur-3xl opacity-10 ${

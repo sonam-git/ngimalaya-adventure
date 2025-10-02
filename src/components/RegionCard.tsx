@@ -3,6 +3,7 @@ import { ArrowRight, MapPin } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Region } from '../data/treks';
 
+
 interface RegionCardProps {
   region: Region;
   onSelect: (region: Region) => void;
@@ -44,7 +45,7 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
 
       {/* Content */}
       <div className="p-6">
-        <p className={`text-gray-600 mb-4 line-clamp-3 ${isDarkMode ? 'text-gray-300' : ''}`}>
+        <p className={`text-gray-600 mb-4 line-clamp-3 ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>
           {region.description}
         </p>
 
