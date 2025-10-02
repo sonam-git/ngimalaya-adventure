@@ -98,17 +98,17 @@ const ContactSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12 ">
             {/* Contact Form */}
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <div className={`bg-gray-50 p-8 rounded-2xl ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}>
+              <h3 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                 Send us a message
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className={`grid md:grid-cols-2 gap-6 `}>
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className={`block font-medium mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
                       Full Name *
                     </label>
                     <input
@@ -117,12 +117,12 @@ const ContactSection: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className={`block font-medium mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
                       Email Address *
                     </label>
                     <input
@@ -131,7 +131,7 @@ const ContactSection: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className={`w-full px-4 ${isDarkMode ? 'bg-gray-600' : 'bg-white'} py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
                       placeholder="your@email.com"
                     />
                   </div>
@@ -139,7 +139,7 @@ const ContactSection: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
                       Phone Number
                     </label>
                     <input
@@ -147,19 +147,19 @@ const ContactSection: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className={`w-full px-4 py-3 border ${isDarkMode ? 'bg-gray-600' : 'bg-white'} border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
                       Trek Interest
                     </label>
                     <select
                       name="trekType"
                       value={formData.trekType}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className={`w-full px-4 py-3 ${isDarkMode ? 'bg-gray-600' : 'bg-white'} border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
                     >
                       <option value="">Select a trek</option>
                       <option value="everest">Everest Region</option>
@@ -172,7 +172,7 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
                     Message *
                   </label>
                   <textarea
@@ -181,7 +181,7 @@ const ContactSection: React.FC = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    className={`w-full ${isDarkMode ? 'bg-gray-600' : 'bg-white'} px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none`}
                     placeholder="Tell us about your dream trek, preferred dates, group size, and any special requirements..."
                   ></textarea>
                 </div>
@@ -202,10 +202,10 @@ const ContactSection: React.FC = () => {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   Contact Information
                 </h3>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  Should you have any inquiries or require further information, we extend an open 
-                  invitation to discuss the range of services and packages we offer. Our team is 
-                  dedicated to assisting you in realizing your dream to explore the diverse tourist 
+                <p className={`mb-8 leading-relaxed ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>
+                  Should you have any inquiries or require further information, we extend an open
+                  invitation to discuss the range of services and packages we offer. Our team is
+                  dedicated to assisting you in realizing your dream to explore the diverse tourist
                   destinations in Nepal.
                 </p>
               </div>
@@ -215,22 +215,24 @@ const ContactSection: React.FC = () => {
                 {contactInfo.map((info, index) => (
                   <div 
                     key={index}
-                    className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                    className={`p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 ${
+                      isDarkMode ? 'bg-gray-600' : 'bg-white'
+                    }`}
                   >
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
                         {info.icon}
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-gray-900 mb-2">
+                        <h4 className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
                           {info.title}
                         </h4>
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-gray-600 mb-1">
+                          <p key={idx} className={`mb-1 ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>
                             {detail}
                           </p>
                         ))}
-                        <button className="text-blue-600 hover:text-blue-700 font-medium text-sm mt-2">
+                        <button className={`font-medium text-sm mt-2 ${isDarkMode ? 'text-blue-200' : 'text-blue-600'} hover:text-blue-500`}>
                           {info.action}
                         </button>
                       </div>

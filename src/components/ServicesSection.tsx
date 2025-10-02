@@ -1,67 +1,15 @@
 import React, { useState } from 'react';
-import { CheckCircle, MapPin, Shield, Users, Clock, Star, X, Calendar, Globe, User, Mail, MessageSquare, Mountain } from 'lucide-react';
+import { CheckCircle, MapPin, Shield, Users, Clock, Star } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { services } from '../data/treks';
+import CustomTrekModal from './CustomTrekModal';
+import lobucheImage from '../assets/images/peak.png';
+import IslandPeakImage from '../assets/images/islandpeak.png';
+import meraImage from '../assets/images/mera.jpg';
 
 const ServicesSection: React.FC = () => {
   const { isDarkMode } = useTheme();
-  const [isCustomPlanModalOpen, setIsCustomPlanModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    country: '',
-    availableDays: '',
-    preferredDate: '',
-    destination: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const countries = [
-    'Nepal', 'United States', 'United Kingdom', 'Canada', 'Australia', 'Germany', 
-    'France', 'Japan', 'South Korea', 'India', 'China', 'Netherlands', 'Switzerland',
-    'Sweden', 'Norway', 'Denmark', 'Belgium', 'Austria', 'Italy', 'Spain', 'Other'
-  ];
-
-  const trekDestinations = [
-    'Everest Base Camp', 'Annapurna Base Camp', 'Manaslu Circuit', 'Langtang Valley',
-    'Everest Three Passes', 'Annapurna Circuit', 'Upper Mustang', 'Kanchenjunga',
-    'Gokyo Lakes', 'Nar Phu Valley', 'Tsum Valley', 'Dolpo', 'Other/Custom Route'
-  ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
-  };
-
-  const resetForm = () => {
-    setFormData({
-      fullName: '',
-      country: '',
-      availableDays: '',
-      preferredDate: '',
-      destination: '',
-      email: '',
-      message: ''
-    });
-    setIsSubmitted(false);
-    setIsCustomPlanModalOpen(false);
-  };
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const features = [
     {
       icon: <Shield className="text-blue-600" size={24} />,
@@ -104,13 +52,13 @@ const ServicesSection: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-4 md:mb-6">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
+            <h2 className={`font-heading text-responsive-5xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               Our <span className="text-blue-600">Services</span>
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className={`text-xl max-w-3xl mx-auto transition-colors duration-300 ${
+            <p className={`font-body text-responsive-xl max-w-3xl mx-auto transition-colors duration-300 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
             }`}>
               Comprehensive adventure services designed to make your Himalayan dreams come true
@@ -127,10 +75,10 @@ const ServicesSection: React.FC = () => {
                 <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                <h3 className={`font-heading text-responsive-xl font-bold mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                   {service.title}
                 </h3>
-                <p className={`leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p className={`font-body text-responsive-base leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {service.description}
                 </p>
               </div>
@@ -210,6 +158,151 @@ const ServicesSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Mountaineering Section */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className={`text-3xl font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'} mb-4`}>
+                <span className="text-blue-600">Peak</span> Expeditions
+              </h3>
+              <p className={`text-lg max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Take your adventure to new heights with our 6,000m+ peak expeditions. 
+                Perfect for experienced trekkers ready for their next challenge.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Island Peak */}
+              <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
+                <div className="relative h-48">
+                  <img 
+                    src={IslandPeakImage}
+                    alt="Island Peak"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    6,189m
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                    Island Peak (Imja Tse)
+                  </h4>
+                  <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                    Nepal's most popular 6,000m peak, perfect for mountaineering beginners. 
+                    Combines Everest Base Camp trek with technical climbing.
+                  </p>
+                  <div className="space-y-2 text-sm">
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Clock size={16} className="mr-2 text-blue-600" />
+                      <span>18-22 days</span>
+                    </div>
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Star size={16} className="mr-2 text-yellow-500" />
+                      <span>Moderate to Challenging</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mera Peak */}
+              <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
+                <div className="relative h-48">
+                  <img 
+                    src={meraImage}
+                    alt="Mera Peak"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    6,476m
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                    Mera Peak
+                  </h4>
+                  <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                    Nepal's highest trekking peak with stunning panoramic views of 
+                    five 8,000m peaks including Everest, Lhotse, and Cho Oyu.
+                  </p>
+                  <div className="space-y-2 text-sm">
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Clock size={16} className="mr-2 text-blue-600" />
+                      <span>16-20 days</span>
+                    </div>
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Star size={16} className="mr-2 text-yellow-500" />
+                      <span>Moderate</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lobuche East */}
+              <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
+                <div className="relative h-48">
+                  <img 
+                    src={lobucheImage}
+                    alt="Lobuche East"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    6,119m
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                    Lobuche East
+                  </h4>
+                  <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                    Technical climbing peak in the Everest region offering spectacular 
+                    views and excellent preparation for higher peaks.
+                  </p>
+                  <div className="space-y-2 text-sm">
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Clock size={16} className="mr-2 text-blue-600" />
+                      <span>17-21 days</span>
+                    </div>
+                    <div className={`flex items-center ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <Star size={16} className="mr-2 text-yellow-500" />
+                      <span>Challenging</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mountaineering CTA */}
+            <div className={`text-center p-8 rounded-xl ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/20' : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200'}`}>
+              <h4 className={`text-2xl font-bold mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                Ready for Your <span className="text-blue-600">First 6,000m Peak?</span>
+              </h4>
+              <p className={`text-lg mb-6 max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Our experienced mountaineering guides will help you safely achieve your summit goals. 
+                All expeditions include technical training, quality equipment, and comprehensive safety protocols.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 mb-6">
+                <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${isDarkMode ? 'bg-green-900/40 text-green-300' : 'bg-green-100 text-green-700'}`}>
+                  <CheckCircle size={16} />
+                  <span>Technical Training Included</span>
+                </div>
+                <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${isDarkMode ? 'bg-blue-900/40 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
+                  <Shield size={16} />
+                  <span>Safety Equipment Provided</span>
+                </div>
+                <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${isDarkMode ? 'bg-purple-900/40 text-purple-300' : 'bg-purple-100 text-purple-700'}`}>
+                  <Star size={16} />
+                  <span>Expert Guides</span>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsCustomTrekModalOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                Plan Your Peak Expedition
+              </button>
+            </div>
+          </div>
+
           {/* Custom Planning CTA Section - Full Width */}
           <div className={`p-8 rounded-2xl border-2 border-dashed transition-all duration-300 ${
             isDarkMode 
@@ -269,7 +362,7 @@ const ServicesSection: React.FC = () => {
                   {/* CTA Button */}
                   <div className="pt-4">
                     <button 
-                      onClick={() => setIsCustomPlanModalOpen(true)}
+                      onClick={() => setIsCustomTrekModalOpen(true)}
                       className="group relative bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-700 text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 overflow-hidden"
                     >
                       {/* Animated background */}
@@ -293,271 +386,13 @@ const ServicesSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Custom Planning Modal */}
-      {isCustomPlanModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
-            isDarkMode ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            {/* Header */}
-            <div className={`sticky top-0 flex items-center justify-between p-6 border-b ${
-              isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-            }`}>
-              <div>
-                <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Custom Trek Planning
-                </h2>
-                <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Tell us about your schedule and we'll create the perfect itinerary
-                </p>
-              </div>
-              <button
-                onClick={() => setIsCustomPlanModalOpen(false)}
-                className={`p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            {/* Content */}
-            <div className="p-6">
-              {isSubmitted ? (
-                // Success Message
-                <div className="text-center py-12">
-                  <div className="mb-6">
-                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
-                    </div>
-                    <h3 className={`text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      Thank You for Your Interest!
-                    </h3>
-                    <p className={`text-lg mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      We have received your custom planning request.
-                    </p>
-                    <p className={`mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Our expert team will analyze your requirements and create a personalized itinerary. 
-                      You will receive a detailed proposal within 24 hours.
-                    </p>
-                    <div className={`p-4 rounded-lg mb-6 ${isDarkMode ? 'bg-blue-900/20 border border-blue-800' : 'bg-blue-50 border border-blue-200'}`}>
-                      <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-800'}`}>
-                        <strong>Next Steps:</strong><br />
-                        • Check your email for confirmation<br />
-                        • Our team will call you within 24 hours<br />
-                        • Receive your custom itinerary proposal<br />
-                        • Make adjustments as needed
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={resetForm}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
-                  >
-                    Close
-                  </button>
-                </div>
-              ) : (
-                // Custom Planning Form
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <User className="inline mr-2" size={16} />
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        required
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                        }`}
-                        placeholder="Enter your full name"
-                      />
-                    </div>
-
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <Globe className="inline mr-2" size={16} />
-                        Country *
-                      </label>
-                      <select
-                        name="country"
-                        value={formData.country}
-                        onChange={handleInputChange}
-                        required
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Select your country</option>
-                        {countries.map(country => (
-                          <option key={country} value={country}>{country}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <Clock className="inline mr-2" size={16} />
-                        Available Days *
-                      </label>
-                      <input
-                        type="number"
-                        name="availableDays"
-                        value={formData.availableDays}
-                        onChange={handleInputChange}
-                        required
-                        min="3"
-                        max="60"
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                        }`}
-                        placeholder="How many days can you trek?"
-                      />
-                    </div>
-
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <Calendar className="inline mr-2" size={16} />
-                        Preferred Start Date *
-                      </label>
-                      <input
-                        type="date"
-                        name="preferredDate"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        required
-                        min={new Date().toISOString().split('T')[0]}
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900'
-                        }`}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Trek Preferences */}
-                  <div className="space-y-6">
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <Mountain className="inline mr-2" size={16} />
-                        Preferred Destination *
-                      </label>
-                      <select
-                        name="destination"
-                        value={formData.destination}
-                        onChange={handleInputChange}
-                        required
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900'
-                        }`}
-                      >
-                        <option value="">Select your preferred destination</option>
-                        {trekDestinations.map(destination => (
-                          <option key={destination} value={destination}>{destination}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <Mail className="inline mr-2" size={16} />
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                        }`}
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <MessageSquare className="inline mr-2" size={16} />
-                        Additional Requirements / Message
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={4}
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          isDarkMode 
-                            ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
-                        }`}
-                        placeholder="Tell us about your fitness level, specific interests, budget preferences, or any other requirements..."
-                      />
-                    </div>
-                  </div>
-
-                  {/* Important Notice */}
-                  <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-yellow-900/20 border border-yellow-800' : 'bg-yellow-50 border border-yellow-200'}`}>
-                    <p className={`text-sm ${isDarkMode ? 'text-yellow-300' : 'text-yellow-800'}`}>
-                      <strong>Note:</strong> Our team will create a custom itinerary based on your requirements. 
-                      This is a free consultation service. Final booking and payment will be discussed after you approve the proposed itinerary.
-                    </p>
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                    <button
-                      type="button"
-                      onClick={() => setIsCustomPlanModalOpen(false)}
-                      className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-colors ${
-                        isDarkMode 
-                          ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 border border-gray-600' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
-                      }`}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                    >
-                      {isLoading ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Sending...
-                        </span>
-                      ) : (
-                        'Send Planning Request'
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Custom Trek Modal */}
+      <CustomTrekModal 
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
+        title="Your Schedule, We Plan"
+        subtitle="Tell us about your schedule and we'll create the perfect itinerary"
+      />
     </section>
   );
 };

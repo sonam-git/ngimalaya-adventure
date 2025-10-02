@@ -16,6 +16,8 @@ import {
 import type { Trek } from '../data/treks';
 import { useTheme } from '../contexts/ThemeContext';
 import BookingModal from './BookingModal';
+import CustomTrekModal from './CustomTrekModal';
+import ContactModal from './ContactModal';
 
 interface TrekDetailProps {
   trek: Trek;
@@ -25,6 +27,8 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   const { isDarkMode } = useTheme();
   const [isItineraryOpen, setIsItineraryOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
@@ -275,20 +279,29 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 Book Now
               </button>
 
-              <button className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
-                isDarkMode ? 'border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900' : ''
-              }`}>
+              <button 
+                onClick={() => setIsCustomTrekModalOpen(true)}
+                className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-heading font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                  isDarkMode ? 'border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900' : ''
+                }`}
+              >
                 Request Custom Quote
               </button>
 
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h4 className={`font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h4 className={`font-heading font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   Need Help?
                 </h4>
-                <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`font-body text-responsive-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                   Contact our trek specialists for personalized advice
                 </p>
-                <div className="space-y-2 text-sm">
+                <button
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-heading font-semibold py-2 px-4 rounded-lg transition-colors mb-3"
+                >
+                  Contact Specialist
+                </button>
+                <div className="space-y-2 text-responsive-sm">
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
                     📞 +977 980-3499156
                   </p>
@@ -334,6 +347,22 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         trek={trek}
+      />
+
+      {/* Custom Trek Modal */}
+      <CustomTrekModal 
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
+        title="Customize This Trek"
+        subtitle={`Create a personalized version of ${trek.name}`}
+      />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Contact Trek Specialist"
+        subtitle={`Get expert advice about ${trek.name}`}
       />
     </div>
   );

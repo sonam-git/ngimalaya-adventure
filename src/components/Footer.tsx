@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Instagram, MessageCircle, Code } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import logoImage from '../assets/images/logo-dark.png';
@@ -7,20 +8,20 @@ const Footer: React.FC = () => {
   const { isDarkMode } = useTheme();
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Treks', href: '#treks' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'All Treks', href: '/treks' },
+    { name: 'Services', href: '/services' },
+    { name: 'Contact', href: '/contact' }
   ];
 
   const popularDestinations = [
-    'Everest Base Camp',
-    'Annapurna Circuit',
-    'Manaslu Circuit',
-    'Gokyo Lakes',
-    'Kanchenjunga Base Camp',
-    'Upper Mustang'
+    { name: 'Everest Base Camp', href: '/treks/everest-base-camp' },
+    { name: 'Annapurna Circuit', href: '/treks/annapurna-circuit' },
+    { name: 'Manaslu Circuit', href: '/treks/manaslu-circuit' },
+    { name: 'Gokyo Lakes Trek', href: '/treks/ebc-gokyo' },
+    { name: 'Kanchenjunga Circuit', href: '/treks/kanchenjunga-circuit' },
+    { name: 'Annapurna Base Camp', href: '/treks/abc-trek' }
   ];
 
   const socialLinks = [
@@ -94,12 +95,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -111,12 +112,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {popularDestinations.map((destination, index) => (
                   <li key={index}>
-                    <a
-                      href="#treks"
+                    <Link
+                      to={destination.href}
                       className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm"
                     >
-                      {destination}
-                    </a>
+                      {destination.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -192,12 +193,15 @@ const Footer: React.FC = () => {
               </div>
               
               <div className="flex space-x-6 text-sm">
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Link to="/about" className="text-gray-400 hover:text-blue-400 transition-colors">
                   Privacy Policy
-                </a>
-                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                </Link>
+                <Link to="/services" className="text-gray-400 hover:text-blue-400 transition-colors">
                   Terms of Service
-                </a>
+                </Link>
+                <Link to="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">
+                  Support
+                </Link>
               </div>
             </div>
           </div>

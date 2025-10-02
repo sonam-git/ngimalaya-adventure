@@ -74,7 +74,7 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
           <div className="text-center mb-16">
-            <h2 className={`text-5xl md:text-6xl font-bold mb-6 transition-colors duration-300 ${
+            <h2 className={`font-heading text-responsive-5xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               About{' '}
@@ -89,7 +89,7 @@ const About: React.FC = () => {
               <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent w-24"></div>
             </div>
             
-            <p className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed transition-colors duration-300 ${
+            <p className={`font-body text-responsive-xl max-w-4xl mx-auto leading-relaxed transition-colors duration-300 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
             }`}>
               Where every trek tells a story and{' '}
@@ -107,7 +107,7 @@ const About: React.FC = () => {
                 <img 
                   src={aboutMeImage}
                   alt="Ngima Nuru Sherpa"
-                  className="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 
                 {/* Enhanced overlay */}
@@ -120,8 +120,8 @@ const About: React.FC = () => {
                       <Mountain className="text-white" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">Ngima Nuru Sherpa</h3>
-                      <p className="text-blue-200 font-medium">Founder & Expert Guide</p>
+                      <h3 className="font-heading text-responsive-2xl font-bold text-white">Ngima Nuru Sherpa</h3>
+                      <p className="text-blue-200 font-medium text-responsive-base">Founder & Expert Guide</p>
                     </div>
                   </div>
                   
@@ -130,7 +130,7 @@ const About: React.FC = () => {
                     {features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
                         {feature.icon}
-                        <span className="text-white text-sm font-medium">{feature.text}</span>
+                        <span className="text-white text-responsive-sm font-medium">{feature.text}</span>
                       </div>
                     ))}
                   </div>
@@ -156,28 +156,11 @@ const About: React.FC = () => {
                 
                 {/* Quote content */}
                 <div className="relative z-10">
-                  <blockquote className={`text-xl md:text-2xl font-semibold leading-relaxed mb-6 transition-colors duration-300 ${
+                  <blockquote className={`font-display text-responsive-xl font-semibold leading-relaxed  transition-colors duration-300 ${
                     isDarkMode ? 'text-blue-200' : 'text-blue-800'
                   }`}>
                     Ngimalaya Adventure Nepal – Where Culture Meets the Clouds, and Every Trek Tells a Story!
                   </blockquote>
-                  
-                  {/* Author section */}
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-px bg-gradient-to-r ${
-                      isDarkMode ? 'from-purple-400 to-blue-400' : 'from-purple-600 to-blue-600'
-                    }`}></div>
-                    <footer className={`text-lg font-bold transition-colors duration-300 ${
-                      isDarkMode ? 'text-purple-300' : 'text-purple-700'
-                    }`}>
-                      Ngima Nuru Sherpa
-                    </footer>
-                  </div>
-                  <p className={`text-sm mt-1 ml-16 transition-colors duration-300 ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    Founder & Chief Adventure Guide
-                  </p>
                 </div>
 
                 {/* Floating decorative elements */}
@@ -213,13 +196,13 @@ const About: React.FC = () => {
                     <Heart className="text-blue-600" size={32} />
                   </div>
                   
-                  <h4 className={`text-2xl font-bold ${
+                  <h4 className={`font-heading text-responsive-2xl font-bold ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Ready for Your Adventure?
                   </h4>
                   
-                  <p className={`text-lg ${
+                  <p className={`font-body text-responsive-md ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>
                     Join us for an unforgettable journey through the majestic Himalayas, 
@@ -231,19 +214,19 @@ const About: React.FC = () => {
                       isDarkMode ? 'bg-green-900/30 text-green-300' : 'bg-green-100 text-green-700'
                     }`}>
                       <Users2 size={16} />
-                      <span className="text-sm font-medium">Expert Guides</span>
+                      <span className="text-responsive-sm font-medium">Expert Guides</span>
                     </div>
                     <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${
                       isDarkMode ? 'bg-purple-900/30 text-purple-300' : 'bg-purple-100 text-purple-700'
                     }`}>
                       <Star size={16} />
-                      <span className="text-sm font-medium">Personalized Experience</span>
+                      <span className="text-responsive-sm font-medium">Personalized Experience</span>
                     </div>
                     <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${
                       isDarkMode ? 'bg-orange-900/30 text-orange-300' : 'bg-orange-100 text-orange-700'
                     }`}>
                       <Heart size={16} />
-                      <span className="text-sm font-medium">Cultural Immersion</span>
+                      <span className="text-responsive-sm font-medium">Cultural Immersion</span>
                     </div>
                   </div>
                 </div>
@@ -281,7 +264,7 @@ const About: React.FC = () => {
             {/* Enhanced Right side - Content */}
             <div className="space-y-8 order-2 lg:order-2">
               <div>
-                <h3 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
+                <h3 className={`font-heading text-responsive-4xl font-bold mb-6 transition-colors duration-300 ${
                   isDarkMode ? 'text-gray-100' : 'text-gray-900'
                 }`}>
                   A Journey Born from{' '}
@@ -306,12 +289,12 @@ const About: React.FC = () => {
                       <Mountain className="text-blue-600" size={20} />
                     </div>
                     <div>
-                      <h4 className={`text-lg font-bold mb-2 ${
+                      <h4 className={`font-heading text-responsive-lg font-bold mb-2 ${
                         isDarkMode ? 'text-gray-100' : 'text-gray-900'
                       }`}>
                         Born in the Himalayas
                       </h4>
-                      <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                      <p className={`font-body text-responsive-base leading-relaxed transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         Welcome to <strong className="text-blue-600">Ngimalaya Adventure Nepal</strong>, where the journey begins with a name rooted 
@@ -335,12 +318,12 @@ const About: React.FC = () => {
                       <Globe className="text-emerald-600" size={20} />
                     </div>
                     <div>
-                      <h4 className={`text-lg font-bold mb-2 ${
+                      <h4 className={`font-heading text-responsive-lg font-bold mb-2 ${
                         isDarkMode ? 'text-gray-100' : 'text-gray-900'
                       }`}>
                         Multilingual Guide
                       </h4>
-                      <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                      <p className={`font-body text-responsive-base leading-relaxed transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         My passion for exploration has connected me with diverse cultures and people 
@@ -365,12 +348,12 @@ const About: React.FC = () => {
                       <Heart className="text-orange-600" size={20} />
                     </div>
                     <div>
-                      <h4 className={`text-lg font-bold mb-2 ${
+                      <h4 className={`font-heading text-responsive-lg font-bold mb-2 ${
                         isDarkMode ? 'text-gray-100' : 'text-gray-900'
                       }`}>
                         Founded on Passion
                       </h4>
-                      <p className={`text-lg leading-relaxed transition-colors duration-300 ${
+                      <p className={`font-body text-responsive-base leading-relaxed transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                       }`}>
                         Fueled by the desire to share the mesmerizing views of the Himalayas and the 
@@ -504,7 +487,7 @@ const About: React.FC = () => {
           {/* Enhanced Achievements Grid */}
           <div className="relative">
             <div className="text-center mb-12">
-              <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 ${
+              <h3 className={`font-heading text-responsive-3xl font-bold mb-4 transition-colors duration-300 ${
                 isDarkMode ? 'text-gray-100' : 'text-gray-900'
               }`}>
                 Our{' '}
@@ -512,7 +495,7 @@ const About: React.FC = () => {
                   Achievements
                 </span>
               </h3>
-              <p className={`text-lg transition-colors duration-300 ${
+              <p className={`font-body text-responsive-lg transition-colors duration-300 ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-600'
               }`}>
                 Numbers that tell our story of excellence
@@ -546,19 +529,19 @@ const About: React.FC = () => {
                     </div>
                     
                     <div className="space-y-2 mb-4">
-                      <div className={`text-4xl md:text-5xl font-bold transition-colors duration-300 ${
+                      <div className={`font-heading text-responsive-4xl font-bold transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-100' : 'text-gray-900'
                       }`}>
                         {achievement.title}
                       </div>
-                      <div className={`text-lg font-semibold transition-colors duration-300 ${
+                      <div className={`font-body text-responsive-lg font-semibold transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-600'
                       }`}>
                         {achievement.subtitle}
                       </div>
                     </div>
                     
-                    <p className={`text-sm leading-relaxed transition-colors duration-300 ${
+                    <p className={`font-body text-responsive-sm leading-relaxed transition-colors duration-300 ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}>
                       {achievement.description}

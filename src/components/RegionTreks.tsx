@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Region, Trek } from '../data/treks';
 import TrekCard from './TrekCard';
+import CustomTrekModal from './CustomTrekModal';
+import ContactModal from './ContactModal';
 
 interface RegionTreksProps {
   region: Region;
@@ -11,6 +13,8 @@ interface RegionTreksProps {
 
 const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }) => {
   const { isDarkMode } = useTheme();
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-20 md:pt-28`}>
@@ -86,7 +90,10 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
                 We're working on adding more amazing treks in this region. 
                 Contact us for custom trek options.
               </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+              <button 
+                onClick={() => setIsCustomTrekModalOpen(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-heading font-semibold transition-colors"
+              >
                 Request Custom Trek
               </button>
             </div>
@@ -137,24 +144,45 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
               just for you. Every adventure is tailored to your experience and preferences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className={`px-8 py-3 rounded-full font-semibold transition-colors ${
-                isDarkMode 
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                  : 'bg-white text-blue-600 hover:bg-blue-50'
-              }`}>
+              <button 
+                onClick={() => setIsCustomTrekModalOpen(true)}
+                className={`px-8 py-3 rounded-full font-heading font-semibold transition-colors ${
+                  isDarkMode 
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                    : 'bg-white text-blue-600 hover:bg-blue-50'
+                }`}
+              >
                 Plan My Trek
               </button>
-              <button className={`px-8 py-3 rounded-full font-semibold border-2 transition-colors ${
-                isDarkMode 
-                  ? 'border-gray-400 text-gray-300 hover:bg-gray-700' 
-                  : 'border-white text-white hover:bg-white hover:text-blue-600'
-              }`}>
+              <button 
+                onClick={() => setIsContactModalOpen(true)}
+                className={`px-8 py-3 rounded-full font-heading font-semibold border-2 transition-colors ${
+                  isDarkMode 
+                    ? 'border-gray-400 text-gray-300 hover:bg-gray-700' 
+                    : 'border-white text-white hover:bg-white hover:text-blue-600'
+                }`}
+              >
                 Contact Specialist
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <CustomTrekModal 
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
+        title="Plan Your Custom Trek"
+        subtitle={`Create a personalized itinerary for ${region.name} region`}
+      />
+
+      <ContactModal 
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Contact Trek Specialist"
+        subtitle={`Get expert advice for trekking in ${region.name}`}
+      />
     </div>
   );
 };

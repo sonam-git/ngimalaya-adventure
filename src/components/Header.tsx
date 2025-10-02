@@ -199,7 +199,7 @@ const Header: React.FC = () => {
               
               {/* Brand Text with Enhanced Typography */}
               <div className="flex flex-col">
-                <h1 className={`text-xl md:text-xl font-bold tracking-tight leading-none transition-all duration-300 ${
+                <h1 className={`font-heading text-responsive-xl font-bold tracking-tight leading-none transition-all duration-300 ${
                   currentView === 'home'
                     ? isScrolled 
                       ? `${isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}` 
@@ -209,7 +209,7 @@ const Header: React.FC = () => {
                   Ngimalaya Adventure
                 </h1>
                 <div className="flex items-center space-x-2 mt-1">
-                  <p className={`text-sm md:text-base font-medium transition-colors duration-300 ${
+                  <p className={`font-body text-responsive-sm font-medium transition-colors duration-300 ${
                     currentView === 'home'
                       ? isScrolled ? `${isDarkMode ? 'text-gray-300' : 'text-gray-500'}` : 'text-gray-300'
                       : `${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`
@@ -221,7 +221,7 @@ const Header: React.FC = () => {
                       ? isScrolled ? 'bg-blue-400' : 'bg-blue-300'
                       : 'bg-blue-400'
                   }`}></div>
-                  <p className={`text-xs font-medium transition-colors duration-300 ${
+                  <p className={`font-body text-responsive-xs font-medium transition-colors duration-300 ${
                     currentView === 'home'
                       ? isScrolled ? 'text-gray-400' : 'text-gray-400'
                       : 'text-gray-400'
@@ -298,7 +298,7 @@ const Header: React.FC = () => {
                         window.scrollTo(0, 0);
                       }
                     }}
-                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
+                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-heading font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
                   >
                     <IconComponent 
                       size={18} 
@@ -342,7 +342,7 @@ const Header: React.FC = () => {
                         }
                       }
                     }}
-                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
+                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-heading font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
                   >
                     <IconComponent 
                       size={18} 

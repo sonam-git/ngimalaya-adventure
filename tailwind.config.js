@@ -7,6 +7,30 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        'display': ['Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
+        'heading': ['Poppins', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'body': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
+      fontSize: {
+        'responsive-xs': ['0.75rem', { lineHeight: '1.4' }],
+        'responsive-sm': ['0.875rem', { lineHeight: '1.5' }],
+        'responsive-base': ['0.875rem', { lineHeight: '1.5' }],
+        'responsive-lg': ['1rem', { lineHeight: '1.6' }],
+        'responsive-xl': ['1.125rem', { lineHeight: '1.6' }],
+        'responsive-2xl': ['1.25rem', { lineHeight: '1.5' }],
+        'responsive-3xl': ['1.5rem', { lineHeight: '1.4' }],
+        'responsive-4xl': ['1.875rem', { lineHeight: '1.3' }],
+        'responsive-5xl': ['2.25rem', { lineHeight: '1.2' }],
+      },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+      },
       animation: {
         'fade-in-up': 'fadeInUp 0.8s ease-out',
         'blob': 'blob 7s infinite',

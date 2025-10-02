@@ -5,6 +5,7 @@ import { popularTreks } from '../data/treks';
 import type { Trek } from '../data/treks';
 import TrekCard from './TrekCard';
 import TrekDetail from './TrekDetail';
+import CustomTrekModal from './CustomTrekModal';
 
 const TreksSection: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -12,6 +13,7 @@ const TreksSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTrek, setSelectedTrek] = useState<Trek | null>(null);
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
 
   const difficultyLevels = ['All', 'Easy', 'Moderate', 'Challenging', 'Strenuous'];
 
@@ -150,20 +152,31 @@ const TreksSection: React.FC = () => {
           {/* CTA Section */}
           <div className="text-center mt-16">
             <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="font-heading text-responsive-2xl font-bold mb-4">
                 Can't find your perfect trek?
               </h3>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+              <p className="font-body text-responsive-base text-blue-100 mb-6 max-w-2xl mx-auto">
                 We offer custom trekking packages tailored to your preferences, fitness level, 
                 and time constraints. Let us create your dream Himalayan adventure.
               </p>
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+              <button 
+                onClick={() => setIsCustomTrekModalOpen(true)}
+                className="bg-white text-blue-600 px-8 py-3 rounded-full font-heading font-semibold hover:bg-blue-50 transition-colors"
+              >
                 Design Custom Trek
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Custom Trek Modal */}
+      <CustomTrekModal 
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
+        title="Design Your Custom Trek"
+        subtitle="Create a personalized Himalayan adventure that matches your dreams"
+      />
     </section>
   );
 };
