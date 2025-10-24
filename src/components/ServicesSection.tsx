@@ -61,7 +61,7 @@ const ServicesSection: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-4 md:mb-6">
-            <h2 className={`font-heading text-responsive-5xl font-bold mb-6 transition-colors duration-300 ${
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               Our <span className="text-blue-600">Services</span>

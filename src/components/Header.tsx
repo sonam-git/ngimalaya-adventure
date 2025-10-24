@@ -114,66 +114,99 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Top bar with contact info and social icons - Enhanced UI */}
-      <div className="fixed top-0 w-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-3 px-4 text-sm z-50 shadow-lg border-b border-blue-700/30">
-        <div className="container mx-auto flex justify-between items-center">
-          {/* Contact Info */}
-          <div className="flex items-center space-x-3 md:space-x-6">
-            <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
-              <Phone size={14} className="text-blue-200" />
-              <span className="hidden sm:inline text-blue-100 font-medium">+977 980-3499156</span>
-              <span className="sm:hidden text-blue-100 font-medium">Call Us</span>
+      {/* Enhanced Top Bar with Premium UI */}
+      <div className="fixed top-0 w-full bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-2.5 px-4 text-sm z-50 shadow-2xl border-b border-blue-500/20 backdrop-blur-md">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute top-0 right-1/4 w-24 h-24 bg-cyan-400/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="container mx-auto flex justify-between items-center relative z-10">
+          {/* Contact Info - Enhanced Design */}
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <a 
+              href="tel:+9779803499156"
+              className="group flex items-center space-x-2 bg-gradient-to-r from-blue-800/60 to-blue-700/60 hover:from-blue-700/80 hover:to-blue-600/80 px-3 py-2 rounded-full backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:scale-105"
+            >
+              <div className="p-1 bg-blue-400/20 rounded-full group-hover:bg-blue-400/30 transition-colors duration-300">
+                <Phone size={12} className="text-blue-200 group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span className="hidden sm:inline text-blue-100 group-hover:text-white font-medium transition-colors duration-300 text-xs">+977 980-3499156</span>
+              <span className="sm:hidden text-blue-100 group-hover:text-white font-medium transition-colors duration-300 text-xs">Call</span>
+            </a>
+            
+            <a 
+              href="mailto:ngiman81@gmail.com"
+              className="group flex items-center space-x-2 bg-gradient-to-r from-blue-800/60 to-blue-700/60 hover:from-blue-700/80 hover:to-blue-600/80 px-3 py-2 rounded-full backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:scale-105"
+            >
+              <div className="p-1 bg-blue-400/20 rounded-full group-hover:bg-blue-400/30 transition-colors duration-300">
+                <Mail size={12} className="text-blue-200 group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span className="hidden md:inline text-blue-100 group-hover:text-white font-medium transition-colors duration-300 text-xs">ngiman81@gmail.com</span>
+              <span className="md:hidden hidden sm:inline text-blue-100 group-hover:text-white font-medium transition-colors duration-300 text-xs">Email</span>
+            </a>
+          </div>
+
+          {/* Center Content - Dual Language Taglines */}
+          <div className="hidden lg:flex flex-col items-center space-y-1">
+            <div className="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-blue-200 animate-pulse">
+              Trek Higher | Breathe Deeper | Live Fuller
             </div>
-            <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
-              <Mail size={14} className="text-blue-200" />
-              <span className="hidden md:inline text-blue-100 font-medium">ngiman81@gmail.com</span>
-              <span className="md:hidden hidden sm:inline text-blue-100 font-medium">Email</span>
+            <div className="text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-orange-200 to-yellow-200 tracking-wider">
+              ལྔི་མ་ལ་ཡ། བརྡ་དོན་ནེ་པཱལ།
+            </div>
+          </div>
+          
+          {/* Mobile Center Content */}
+          <div className="lg:hidden flex flex-col items-center">
+            <div className="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">
+              Ngimalaya Adventure
             </div>
           </div>
 
-          {/* Center Tagline */}
-          <div className="text-sm hidden lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-            Trek Higher | Breathe Deeper | Live Fuller.
-          </div>
-     <div className="text-sm  lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-          <div className="text-sm lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-            ལྔི་མ་ལ་ཡ། བརྡ་དོན་ནེ་པཱལ།
-          </div>
-          </div>
-          {/* Social Icons */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-blue-200 hidden md:inline mr-2 font-medium">Follow Us:</span>
-            <div className="flex items-center space-x-1 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
+          {/* Social Icons - Premium Design */}
+          <div className="flex items-center space-x-3">
+            <span className="text-xs text-blue-300/80 hidden md:inline font-medium tracking-wide">Connect:</span>
+            <div className="flex items-center space-x-1">
               <a 
                 href="https://facebook.com/ngimalayaadventure" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
+                className="group relative p-2 rounded-full bg-gradient-to-br from-blue-600/40 to-blue-800/40 hover:from-blue-500/60 hover:to-blue-700/60 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-110 transform"
                 aria-label="Follow us on Facebook"
               >
-                <Facebook size={16} />
+                <Facebook size={14} className="text-blue-200 group-hover:text-white transition-colors duration-300 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
+              
               <a 
                 href="https://instagram.com/ngimalayaadventure" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
+                className="group relative p-2 rounded-full bg-gradient-to-br from-pink-600/40 to-purple-800/40 hover:from-pink-500/60 hover:to-purple-700/60 backdrop-blur-sm border border-pink-500/30 hover:border-pink-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/25 hover:scale-110 transform"
                 aria-label="Follow us on Instagram"
               >
-                <Instagram size={16} />
+                <Instagram size={14} className="text-pink-200 group-hover:text-white transition-colors duration-300 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-400/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
+              
               <a 
-                href="https://wa.me/9779841234567" 
+                href="https://wa.me/9779803499156" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
+                className="group relative p-2 rounded-full bg-gradient-to-br from-green-600/40 to-green-800/40 hover:from-green-500/60 hover:to-green-700/60 backdrop-blur-sm border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25 hover:scale-110 transform"
                 aria-label="Contact us on WhatsApp"
               >
-                <MessageCircle size={16} />
+                <MessageCircle size={14} className="text-green-200 group-hover:text-white transition-colors duration-300 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </div>
           </div>
         </div>
+        
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
       </div>
 
       {/* Main header */}

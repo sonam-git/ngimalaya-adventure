@@ -192,7 +192,20 @@ const ContactSection: React.FC = () => {
                   <span>Send Message</span>
                 </button>
               </form>
+                       {/* Emergency Contact */}
+              <div className="bg-red-50 border border-red-200 p-6 rounded-xl mt-8">
+                <h4 className="font-bold text-red-800 mb-2">
+                  Emergency Contact
+                </h4>
+                <p className="text-red-700 text-sm">
+                  For urgent matters during your trek, contact our 24/7 emergency line:
+                </p>
+                <p className="text-red-800 font-bold mt-2">
+                  +977 980-3499156
+                </p>
+              </div>
             </div>
+            
 
             {/* Contact Information */}
             <div className="space-y-8">
@@ -241,7 +254,7 @@ const ContactSection: React.FC = () => {
 
               {/* Social Media */}
               <div>
-                <h4 className="font-bold text-gray-900 mb-4">
+                <h4 className="font-bold text-gray-900 mb-4 dark:text-white">
                   Follow Our Adventures
                 </h4>
                 <div className="flex space-x-4">
@@ -258,19 +271,6 @@ const ContactSection: React.FC = () => {
                     </a>
                   ))}
                 </div>
-              </div>
-
-              {/* Emergency Contact */}
-              <div className="bg-red-50 border border-red-200 p-6 rounded-xl">
-                <h4 className="font-bold text-red-800 mb-2">
-                  Emergency Contact
-                </h4>
-                <p className="text-red-700 text-sm">
-                  For urgent matters during your trek, contact our 24/7 emergency line:
-                </p>
-                <p className="text-red-800 font-bold mt-2">
-                  +977 980-3499156
-                </p>
               </div>
             </div>
           </div>
