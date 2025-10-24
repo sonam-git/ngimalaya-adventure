@@ -197,7 +197,7 @@ const ContactSection: React.FC = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                   Contact Information
                 </h3>
                 <p className={`mb-8 leading-relaxed ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>

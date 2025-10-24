@@ -174,6 +174,11 @@ export const services = [
     icon: '🏛️'
   },
   {
+    title: 'Safari Adventures',
+    description: 'Wildlife safaris in Nepal\'s national parks and conservation areas',
+    icon: '🦏'
+  },
+  {
     title: 'Custom Packages',
     description: 'Personalized itineraries tailored to your preferences and schedule',
     icon: '🎯'
