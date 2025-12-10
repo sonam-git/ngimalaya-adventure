@@ -3,8 +3,6 @@ import React from 'react';
 import { Mountain, Globe, Shield } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
-import aboutMeImage from '../assets/images/ngima.png';
-import { getImageSrc } from '../utils/imageHelpers';
 
 const About: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -62,18 +60,17 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6">
               <img 
-                src={getImageSrc(aboutMeImage)}
+                src={'/assets/images/ngima.png'}
                 alt="Ngima N Sherpa - Trekking Guide"
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              {/* Stats Badge - overlayed on image */}
+              <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-primary-500 text-white p-4 md:p-6 rounded-lg shadow-2xl z-10 flex flex-col items-center w-max">
+                <div className="text-3xl md:text-4xl font-display font-bold">20+</div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-center">Years Experience</div>
+              </div>
             </div>
-            {/* Stats Badge */}
-            <div className="absolute top-[250px] -right-8 bg-primary-500 text-white p-6 rounded-lg shadow-2xl z-10">
-              <div className="text-4xl font-display font-bold">20+</div>
-              <div className="text-sm uppercase tracking-wider">Years Experience</div>
-            </div>
-            
             {/* Quote Section */}
             <div className={`border-l-4 border-primary-500 pl-6 py-4 ${
               isDarkMode ? 'bg-gray-800' : 'bg-gray-50'

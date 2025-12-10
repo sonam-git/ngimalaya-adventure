@@ -3,6 +3,7 @@ import { Oswald, Lato } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import ScrollToTop from '@/components/ScrollToTop'
+import MobileBottomBarWrapper from '@/components/MobileBottomBarWrapper'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           <ScrollToTop />
+          <MobileBottomBarWrapper />
         </ThemeProvider>
       </body>
     </html>

@@ -4966,10 +4966,10 @@ const Header = ()=>{
                                     className: "flex items-center gap-3 group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: `relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${isDarkMode ? 'bg-white shadow-[0_0_20px_rgba(255,255,255,0.5),0_0_40px_rgba(255,255,255,0.3),0_0_60px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.6),0_0_50px_rgba(255,255,255,0.4),0_0_75px_rgba(255,255,255,0.3)]' : 'bg-yellow-700 shadow-[0_0_20px_rgba(161,98,7,0.3),0_0_40px_rgba(161,98,7,0.2),0_0_60px_rgba(161,98,7,0.1)] group-hover:shadow-[0_0_25px_rgba(161,98,7,0.4),0_0_50px_rgba(161,98,7,0.3),0_0_75px_rgba(161,98,7,0.2)]'}`,
+                                            className: `relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${isDarkMode ? 'bg-gray-900 border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.3),0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4),0_0_50px_rgba(255,255,255,0.3)]' : 'bg-white border-2 border-blue-800 shadow-[0_0_20px_rgba(30,64,175,0.3),0_0_40px_rgba(30,64,175,0.2)] group-hover:shadow-[0_0_25px_rgba(30,64,175,0.4),0_0_50px_rgba(30,64,175,0.3)]'}`,
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${isDarkMode ? 'bg-white' : 'bg-yellow-700'}`,
+                                                    className: `absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${isDarkMode ? 'border-2 border-white' : 'border-2 border-blue-800'}`,
                                                     style: {
                                                         animationDuration: '1s'
                                                     }
@@ -4979,7 +4979,7 @@ const Header = ()=>{
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getImageSrc"])(isDarkMode ? __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$ssr$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"] : __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$ssr$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"]),
+                                                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getImageSrc"])(isDarkMode ? __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$ssr$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"] : __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$ssr$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"]),
                                                     alt: "Ngimalaya Adventure Nepal",
                                                     className: "h-14 md:h-16 lg:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
                                                 }, void 0, false, {
@@ -5295,7 +5295,14 @@ const Header = ()=>{
                 lineNumber: 46,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PrayerFlagBorder$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "sticky top-[96px] md:top-[112px] z-40",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PrayerFlagBorder$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                    fileName: "[project]/components/Header.tsx",
+                    lineNumber: 256,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
                 fileName: "[project]/components/Header.tsx",
                 lineNumber: 255,
                 columnNumber: 7
@@ -5305,7 +5312,7 @@ const Header = ()=>{
                 onClose: ()=>setIsBookingModalOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/Header.tsx",
-                lineNumber: 258,
+                lineNumber: 260,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]

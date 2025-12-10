@@ -1,5 +1,4 @@
 import type { Trek } from '../treks';
-import kanchenjungaImage from '../../assets/images/kanchanjungabc.jpg';
 
 export const kanchenjungaRegionTreks: Trek[] = [
   {
@@ -21,7 +20,7 @@ export const kanchenjungaRegionTreks: Trek[] = [
       'Rhododendron forests and alpine meadows',
       'Traditional villages and ancient cultures'
     ],
-    image: kanchenjungaImage,
+    image: '/assets/kanchanjungabc.jpg',
     price: '$2,799',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-8 people',

@@ -3,7 +3,6 @@ import React from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Region } from '../data/treks';
-import { getImageSrc } from '../utils/imageHelpers';
 
 
 interface RegionCardProps {
@@ -24,7 +23,7 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
       {/* Background Image */}
       <div className="relative overflow-hidden h-64">
         <img 
-          src={getImageSrc(region.image)}
+          src={typeof region.image === 'string' ? region.image : ''}
           alt={region.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />

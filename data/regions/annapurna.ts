@@ -1,6 +1,4 @@
 import type { Trek } from '../treks';
-import abcImage from '../../assets/images/abc.jpeg';
-import thoranglaPassImage from '../../assets/images/thorangla-pass.jpeg';
 
 export const annapurnaRegionTreks: Trek[] = [
   {
@@ -20,7 +18,7 @@ export const annapurnaRegionTreks: Trek[] = [
       'Hot springs at Jhinu Danda',
       'Panoramic views of Annapurna massif'
     ],
-    image: abcImage,
+    image: '/assets/abc.jpeg',
     price: '$1,350',
     season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '1-12 people',
@@ -190,7 +188,7 @@ export const annapurnaRegionTreks: Trek[] = [
       'Tilicho Lake (optional) - Highest lake in the world',
       'Views of Annapurna, Dhaulagiri, and Manaslu ranges'
     ],
-    image: thoranglaPassImage,
+    image: '/assets/thorangla-pass.jpeg',
     price: '$1,299',
     season: 'Oct-Nov, Mar-Apr (Best: Oct-Nov)',
     groupSize: '2-10 people',

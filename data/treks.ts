@@ -1,5 +1,4 @@
-// Import trek images
-import abcImage from '../assets/images/abc.jpeg';
+// Import StaticImageData type for image typing
 import type { StaticImageData } from 'next/image';
 
 // Import regional trek data
@@ -68,10 +67,8 @@ export const allTreks: Trek[] = [
 // Select popular treks for the home page (from different regions)
 export const popularTreks: Trek[] = [
   // Feature the ABC trek with custom image
-  {
-    ...annapurnaRegionTreks.find(trek => trek.id === 'abc-trek')!,
-    image: abcImage
-  },
+
+    ...annapurnaRegionTreks.slice(0, 1),
   // Feature 2 Everest treks
   ...everestRegionTreks.slice(0, 2),
   // Feature Manaslu trek

@@ -3,7 +3,6 @@ import React from 'react';
 import { Calendar, Mountain, Users, ArrowRight } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Trek } from '../data/treks';
-import { getImageSrc } from '../utils/imageHelpers';
 
 interface TrekCardProps {
   trek: Trek;
@@ -20,7 +19,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
       {/* Image with overlay badges */}
       <div className="relative overflow-hidden h-72">
         <img 
-          src={getImageSrc(trek.image)}
+          src={typeof trek.image === 'string' ? trek.image.replace('/assets/', '/assets/images/') : ''}
           alt={trek.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />

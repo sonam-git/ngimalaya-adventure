@@ -13,7 +13,6 @@ import ServicesSection from '@/components/ServicesSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 import BookingModal from '@/components/BookingModal'
-import MobileBottomBar from '@/components/MobileBottomBar'
 
 export default function HomePage() {
   const router = useRouter()
@@ -42,9 +41,6 @@ export default function HomePage() {
       <ServicesSection onBookNow={handleBookNow} />
       <ContactSection />
       <Footer />
-      
-      {/* Mobile Bottom Bar - Fixed at bottom on mobile only */}
-      <MobileBottomBar onBookNow={handleBookNow} />
       
       {/* Booking Modal */}
       <BookingModal

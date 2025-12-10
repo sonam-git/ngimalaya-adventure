@@ -1,7 +1,4 @@
 import type { Trek } from '../treks';
-import ebcImage from '../../assets/images/ebc.jpeg';
-import gokyoImage from '../../assets/images/gokyo.jpeg';
-import threePassesImage from '../../assets/images/threepasses.jpeg';
 
 export const everestRegionTreks: Trek[] = [
   {
@@ -21,7 +18,7 @@ export const everestRegionTreks: Trek[] = [
       'Stunning mountain panoramas daily',
       'Hillary Suspension Bridge crossing'
     ],
-    image: ebcImage,
+    image: '/assets/ebc.jpeg',
     price: '$1,899',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-12 people',
@@ -207,7 +204,7 @@ export const everestRegionTreks: Trek[] = [
       'Remote and less crowded routes',
       'Ultimate Khumbu wilderness experience'
     ],
-    image: gokyoImage,
+    image: '/assets/gokyo.jpeg',
     price: '$2,299',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-8 people',
@@ -410,7 +407,7 @@ export const everestRegionTreks: Trek[] = [
       'Ultimate trekking achievement',
       'Comprehensive Sherpa cultural experience'
     ],
-    image: threePassesImage,
+    image: '/assets/threepasses.jpeg',
     price: '$2,899',
     season: 'Oct-Nov, Apr-May (Best: Oct-Nov)',
     groupSize: '2-8 people',

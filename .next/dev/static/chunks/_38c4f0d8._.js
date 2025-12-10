@@ -5039,10 +5039,10 @@ const Header = ()=>{
                                     className: "flex items-center gap-3 group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: `relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${isDarkMode ? 'bg-white shadow-[0_0_20px_rgba(255,255,255,0.5),0_0_40px_rgba(255,255,255,0.3),0_0_60px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.6),0_0_50px_rgba(255,255,255,0.4),0_0_75px_rgba(255,255,255,0.3)]' : 'bg-yellow-700 shadow-[0_0_20px_rgba(161,98,7,0.3),0_0_40px_rgba(161,98,7,0.2),0_0_60px_rgba(161,98,7,0.1)] group-hover:shadow-[0_0_25px_rgba(161,98,7,0.4),0_0_50px_rgba(161,98,7,0.3),0_0_75px_rgba(161,98,7,0.2)]'}`,
+                                            className: `relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${isDarkMode ? 'bg-gray-900 border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.3),0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4),0_0_50px_rgba(255,255,255,0.3)]' : 'bg-white border-2 border-blue-800 shadow-[0_0_20px_rgba(30,64,175,0.3),0_0_40px_rgba(30,64,175,0.2)] group-hover:shadow-[0_0_25px_rgba(30,64,175,0.4),0_0_50px_rgba(30,64,175,0.3)]'}`,
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${isDarkMode ? 'bg-white' : 'bg-yellow-700'}`,
+                                                    className: `absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${isDarkMode ? 'border-2 border-white' : 'border-2 border-blue-800'}`,
                                                     style: {
                                                         animationDuration: '1s'
                                                     }
@@ -5052,7 +5052,7 @@ const Header = ()=>{
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getImageSrc"])(isDarkMode ? __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"] : __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"]),
+                                                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getImageSrc"])(isDarkMode ? __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$dark$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"] : __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$logo$2d$light$2e$png__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"]),
                                                     alt: "Ngimalaya Adventure Nepal",
                                                     className: "h-14 md:h-16 lg:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
                                                 }, void 0, false, {
@@ -5729,6 +5729,7 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$binoculars$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Binoculars$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/binoculars.js [app-client] (ecmascript) <export default as Binoculars>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$footprints$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Footprints$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/footprints.js [app-client] (ecmascript) <export default as Footprints>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/camera.js [app-client] (ecmascript) <export default as Camera>");
@@ -5740,6 +5741,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/ThemeContext.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Header$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/Header.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/Footer.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$BookingModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/BookingModal.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -5747,9 +5749,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
+;
 const SafariPage = ()=>{
     _s();
     const { isDarkMode } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
+    const [isBookingModalOpen, setIsBookingModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const handleBookNow = ()=>{
+        setIsBookingModalOpen(true);
+    };
     const safariPackages = [
         {
             id: 1,
@@ -5839,7 +5847,7 @@ const SafariPage = ()=>{
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Header$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/safari/page.tsx",
-                lineNumber: 83,
+                lineNumber: 89,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5857,12 +5865,12 @@ const SafariPage = ()=>{
                                     className: "absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 93,
+                                    lineNumber: 99,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/safari/page.tsx",
-                                lineNumber: 87,
+                                lineNumber: 93,
                                 columnNumber: 9
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5878,7 +5886,7 @@ const SafariPage = ()=>{
                                                     size: 40
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 105,
                                                     columnNumber: 15
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -5886,13 +5894,13 @@ const SafariPage = ()=>{
                                                     children: "Safari Adventures"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 106,
                                                     columnNumber: 15
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 98,
+                                            lineNumber: 104,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5900,7 +5908,7 @@ const SafariPage = ()=>{
                                             children: "Discover Nepal's incredible wildlife in pristine national parks"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 104,
+                                            lineNumber: 110,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5908,7 +5916,7 @@ const SafariPage = ()=>{
                                             children: "Experience rare animals in their natural habitat with expert naturalist guides. Our safari adventures offer the perfect blend of wildlife encounters, cultural experiences, and conservation support."
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 107,
+                                            lineNumber: 113,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5922,20 +5930,20 @@ const SafariPage = ()=>{
                                                             size: 20
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 113,
+                                                            lineNumber: 119,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "Expert Naturalist Guides"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 114,
+                                                            lineNumber: 120,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 112,
+                                                    lineNumber: 118,
                                                     columnNumber: 15
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5946,20 +5954,20 @@ const SafariPage = ()=>{
                                                             size: 20
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 117,
+                                                            lineNumber: 123,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "Conservation Support"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 118,
+                                                            lineNumber: 124,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 116,
+                                                    lineNumber: 122,
                                                     columnNumber: 15
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5970,43 +5978,43 @@ const SafariPage = ()=>{
                                                             size: 20
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 121,
+                                                            lineNumber: 127,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "Wildlife Photography"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 122,
+                                                            lineNumber: 128,
                                                             columnNumber: 17
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 120,
+                                                    lineNumber: 126,
                                                     columnNumber: 15
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 117,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 97,
+                                    lineNumber: 103,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/safari/page.tsx",
-                                lineNumber: 96,
+                                lineNumber: 102,
                                 columnNumber: 9
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/safari/page.tsx",
-                        lineNumber: 86,
+                        lineNumber: 92,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6025,7 +6033,7 @@ const SafariPage = ()=>{
                                                 size: 32
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safari/page.tsx",
-                                                lineNumber: 144,
+                                                lineNumber: 150,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -6033,7 +6041,7 @@ const SafariPage = ()=>{
                                                 children: feature.title
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safari/page.tsx",
-                                                lineNumber: 145,
+                                                lineNumber: 151,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6041,29 +6049,29 @@ const SafariPage = ()=>{
                                                 children: feature.description
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safari/page.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 152,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/app/safari/page.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 142,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0));
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/safari/page.tsx",
-                                lineNumber: 132,
+                                lineNumber: 138,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/app/safari/page.tsx",
-                            lineNumber: 131,
+                            lineNumber: 137,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/safari/page.tsx",
-                        lineNumber: 130,
+                        lineNumber: 136,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6079,7 +6087,7 @@ const SafariPage = ()=>{
                                             children: "Our Safari Packages"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 160,
+                                            lineNumber: 166,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6087,13 +6095,13 @@ const SafariPage = ()=>{
                                             children: "Choose from our exciting safari packages designed to give you the best wildlife experience"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 169,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 165,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6110,7 +6118,7 @@ const SafariPage = ()=>{
                                                             className: "w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 177,
+                                                            lineNumber: 183,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6120,12 +6128,12 @@ const SafariPage = ()=>{
                                                                 children: safari.type
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/safari/page.tsx",
-                                                                lineNumber: 183,
+                                                                lineNumber: 189,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 182,
+                                                            lineNumber: 188,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6135,18 +6143,18 @@ const SafariPage = ()=>{
                                                                 children: safari.badge
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/safari/page.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 196,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 189,
+                                                            lineNumber: 195,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 182,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6157,7 +6165,7 @@ const SafariPage = ()=>{
                                                             children: safari.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 197,
+                                                            lineNumber: 203,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6165,7 +6173,7 @@ const SafariPage = ()=>{
                                                             children: safari.description
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 198,
+                                                            lineNumber: 204,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6179,37 +6187,12 @@ const SafariPage = ()=>{
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/safari/page.tsx",
-                                                                            lineNumber: 204,
-                                                                            columnNumber: 23
-                                                                        }, ("TURBOPACK compile-time value", void 0)),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: `text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`,
-                                                                            children: safari.location
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/app/safari/page.tsx",
-                                                                            lineNumber: 205,
-                                                                            columnNumber: 23
-                                                                        }, ("TURBOPACK compile-time value", void 0))
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/app/safari/page.tsx",
-                                                                    lineNumber: 203,
-                                                                    columnNumber: 21
-                                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "flex items-center gap-2",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
-                                                                            className: "text-primary-500",
-                                                                            size: 18
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/app/safari/page.tsx",
                                                                             lineNumber: 210,
                                                                             columnNumber: 23
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: `text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`,
-                                                                            children: safari.duration
+                                                                            children: safari.location
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/safari/page.tsx",
                                                                             lineNumber: 211,
@@ -6220,11 +6203,36 @@ const SafariPage = ()=>{
                                                                     fileName: "[project]/app/safari/page.tsx",
                                                                     lineNumber: 209,
                                                                     columnNumber: 21
+                                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex items-center gap-2",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
+                                                                            className: "text-primary-500",
+                                                                            size: 18
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/safari/page.tsx",
+                                                                            lineNumber: 216,
+                                                                            columnNumber: 23
+                                                                        }, ("TURBOPACK compile-time value", void 0)),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: `text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`,
+                                                                            children: safari.duration
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/safari/page.tsx",
+                                                                            lineNumber: 217,
+                                                                            columnNumber: 23
+                                                                        }, ("TURBOPACK compile-time value", void 0))
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/safari/page.tsx",
+                                                                    lineNumber: 215,
+                                                                    columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 202,
+                                                            lineNumber: 208,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6235,7 +6243,7 @@ const SafariPage = ()=>{
                                                                     children: "Highlights:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/safari/page.tsx",
-                                                                    lineNumber: 218,
+                                                                    lineNumber: 224,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6245,54 +6253,55 @@ const SafariPage = ()=>{
                                                                             children: highlight
                                                                         }, index, false, {
                                                                             fileName: "[project]/app/safari/page.tsx",
-                                                                            lineNumber: 221,
+                                                                            lineNumber: 227,
                                                                             columnNumber: 25
                                                                         }, ("TURBOPACK compile-time value", void 0)))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/safari/page.tsx",
-                                                                    lineNumber: 219,
+                                                                    lineNumber: 225,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 217,
+                                                            lineNumber: 223,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             className: "w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl",
+                                                            onClick: handleBookNow,
                                                             children: "Enquire Now"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safari/page.tsx",
-                                                            lineNumber: 235,
+                                                            lineNumber: 241,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/safari/page.tsx",
-                                                    lineNumber: 196,
+                                                    lineNumber: 202,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, safari.id, true, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 176,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 174,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/safari/page.tsx",
-                            lineNumber: 158,
+                            lineNumber: 164,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/safari/page.tsx",
-                        lineNumber: 157,
+                        lineNumber: 163,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6308,7 +6317,7 @@ const SafariPage = ()=>{
                                             size: 48
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 249,
+                                            lineNumber: 258,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -6316,7 +6325,7 @@ const SafariPage = ()=>{
                                             children: "Safari Activities"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 250,
+                                            lineNumber: 259,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6324,13 +6333,13 @@ const SafariPage = ()=>{
                                             children: "Experience a variety of thrilling activities during your safari adventure"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 253,
+                                            lineNumber: 262,
                                             columnNumber: 13
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 248,
+                                    lineNumber: 257,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6342,28 +6351,28 @@ const SafariPage = ()=>{
                                                 children: activity
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safari/page.tsx",
-                                                lineNumber: 268,
+                                                lineNumber: 277,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, index, false, {
                                             fileName: "[project]/app/safari/page.tsx",
-                                            lineNumber: 260,
+                                            lineNumber: 269,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 258,
+                                    lineNumber: 267,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/safari/page.tsx",
-                            lineNumber: 247,
+                            lineNumber: 256,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/safari/page.tsx",
-                        lineNumber: 246,
+                        lineNumber: 255,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6376,7 +6385,7 @@ const SafariPage = ()=>{
                                     size: 48
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 278,
+                                    lineNumber: 287,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -6384,7 +6393,7 @@ const SafariPage = ()=>{
                                     children: "Ready for a Wild Adventure?"
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 279,
+                                    lineNumber: 288,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6392,7 +6401,7 @@ const SafariPage = ()=>{
                                     children: "Book your safari today and experience the incredible wildlife and natural beauty of Nepal's national parks."
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 282,
+                                    lineNumber: 291,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6400,35 +6409,43 @@ const SafariPage = ()=>{
                                     children: "Contact Us Today"
                                 }, void 0, false, {
                                     fileName: "[project]/app/safari/page.tsx",
-                                    lineNumber: 285,
+                                    lineNumber: 294,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/safari/page.tsx",
-                            lineNumber: 277,
+                            lineNumber: 286,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/safari/page.tsx",
-                        lineNumber: 276,
+                        lineNumber: 285,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/safari/page.tsx",
-                lineNumber: 84,
+                lineNumber: 90,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/safari/page.tsx",
-                lineNumber: 291,
+                lineNumber: 300,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$BookingModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                isOpen: isBookingModalOpen,
+                onClose: ()=>setIsBookingModalOpen(false)
+            }, void 0, false, {
+                fileName: "[project]/app/safari/page.tsx",
+                lineNumber: 301,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true);
 };
-_s(SafariPage, "rqvHAxWK5bFT/4scWU48sLiYheY=", false, function() {
+_s(SafariPage, "t9EkeMyzQ/ZS+CjFDT9Xws5onV0=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"]
     ];

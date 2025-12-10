@@ -4,16 +4,12 @@ import { Flag, Mountain, Award, Shield, Camera } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import MobileBottomBar from '../../components/MobileBottomBar';
 import BookingModal from '../../components/BookingModal';
 
 const PeakExpeditionPage: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-  const handleBookNow = () => {
-    setIsBookingModalOpen(true);
-  };
 
   const expeditions = [
     {
@@ -23,8 +19,8 @@ const PeakExpeditionPage: React.FC = () => {
       duration: '19 Days',
       difficulty: 'Strenuous Plus',
       season: 'Feb-May, Oct-Dec',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/islandpeak-5e57c81d.png',
-      description: 'Nepal\'s most popular 6,000m peak, perfect for mountaineering beginners. Combines Everest Base Camp trek with technical climbing.',
+      image: '/assets/images/islandpeak.png',
+      description: "Nepal's most popular 6,000m peak, perfect for mountaineering beginners. Combines Everest Base Camp trek with technical climbing.",
       price: 'Contact for Price',
       accommodation: 'Teahouse',
       meals: 'B, L & D',
@@ -37,8 +33,8 @@ const PeakExpeditionPage: React.FC = () => {
       duration: '18 Days',
       difficulty: 'Strenuous Plus',
       season: 'Jan-May, Oct-Dec',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/mera-5c0548da.jpg',
-      description: 'Nepal\'s highest trekking peak with stunning panoramic views of five 8,000m peaks including Everest, Lhotse, and Cho Oyu.',
+      image: '/assets/images/mera.jpg',
+      description: "Nepal's highest trekking peak with stunning panoramic views of five 8,000m peaks including Everest, Lhotse, and Cho Oyu.",
       price: 'Contact for Price',
       accommodation: 'Teahouse',
       meals: 'B, L & D',
@@ -51,7 +47,7 @@ const PeakExpeditionPage: React.FC = () => {
       duration: '20 Days',
       difficulty: 'Strenuous Plus',
       season: 'Jan-May, Oct-Dec',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/peak-5fd6d372.png',
+      image: '/assets/images/peak.png',
       description: 'Technical climbing peak in the Everest region offering spectacular views and excellent preparation for higher peaks.',
       price: 'Contact for Price',
       accommodation: 'Teahouse',
@@ -261,7 +257,6 @@ const PeakExpeditionPage: React.FC = () => {
       </div>
     </div>
     <Footer />
-    <MobileBottomBar onBookNow={handleBookNow} />
     <BookingModal
       isOpen={isBookingModalOpen}
       onClose={() => setIsBookingModalOpen(false)}

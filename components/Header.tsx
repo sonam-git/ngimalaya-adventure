@@ -4,9 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import { getImageSrc } from '../utils/imageHelpers';
-import lightImage from '../assets/images/logo-light.png';
-import darkImage from '../assets/images/logo-dark.png';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
 import PrayerFlagBorder from './PrayerFlagBorder';
@@ -68,7 +65,7 @@ const Header: React.FC = () => {
                 }`} style={{ animationDuration: '1s' }}></div>
                 
                 <img
-                  src={getImageSrc(isDarkMode ? darkImage : lightImage)}
+                  src={isDarkMode ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
                   alt="Ngimalaya Adventure Nepal"
                   className="h-14 md:h-16 lg:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
                 />

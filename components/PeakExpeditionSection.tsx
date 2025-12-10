@@ -14,7 +14,7 @@ const PeakExpeditionSection: React.FC = () => {
       name: 'Island Peak (Imja Tse)',
       height: '6,165m',
       duration: '19 Days',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/islandpeak-5e57c81d.png',
+      image: '/assets/images/islandpeak.png',
       description: 'Nepal\'s most popular 6,000m peak, perfect for mountaineering beginners.',
     },
     {
@@ -22,7 +22,7 @@ const PeakExpeditionSection: React.FC = () => {
       name: 'Mera Peak',
       height: '6,476m',
       duration: '18 Days',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/mera-5c0548da.jpg',
+      image: '/assets/images/mera.jpg',
       description: 'Nepal\'s highest trekking peak with stunning panoramic views of five 8,000m peaks.',
     },
     {
@@ -30,7 +30,7 @@ const PeakExpeditionSection: React.FC = () => {
       name: 'Lobuche East',
       height: '6,119m',
       duration: '20 Days',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/peak-5fd6d372.png',
+      image: '/assets/images/peak.png',
       description: 'Technical climbing peak in the Everest region offering spectacular views.',
     },
   ];

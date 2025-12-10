@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -26,16 +27,25 @@ const Footer: React.FC = () => {
     }`}>
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* About Section */}
+          {/* Recognized By Section */}
           <div>
             <h3 className="text-2xl font-display font-bold text-white mb-4">
-              About Trekking
+              Recognized By
             </h3>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              Fusce at quam merutrum tempor tempor andy Suspe ndisse vestib ulujustod turps 
-              cursus quissating agittis lacustepu. In turpis nisecu rsus vel erout runner 
-              trum blandi.
-            </p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex justify-center items-center">
+                <Image src="/assets/images/logos/NMA-Logo-removebg-preview.png" alt="NMA" width={80} height={80} className="object-contain" />
+              </div>
+              <div className="flex justify-center items-center">
+                <Image src="/assets/images/logos/nepalgov.svg" alt="Nepal Government" width={80} height={80} className="object-contain" />
+              </div>
+              <div className="flex justify-center items-center">
+                <Image src="/assets/images/logos/ntb-removebg-preview.png" alt="NTB" width={80} height={80} className="object-contain" />
+              </div>
+              <div className="flex justify-center items-center">
+                <Image src="/assets/images/logos/taan-removebg-preview.png" alt="TAAN" width={80} height={80} className="object-contain" />
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}

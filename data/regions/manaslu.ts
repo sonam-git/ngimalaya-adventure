@@ -1,5 +1,4 @@
 import type { Trek } from '../treks';
-import bhimthangImage from '../../assets/images/bhimthang.jpeg';
 
 export const manasluRegionTreks: Trek[] = [
   {
@@ -21,7 +20,7 @@ export const manasluRegionTreks: Trek[] = [
       'Natural hot springs at Tatopani',
       'Connects with Annapurna Circuit at Dharapani'
     ],
-    image: bhimthangImage,
+    image: '/assets/bhimthang.jpeg',
     price: '$1,699',
     season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '2-10 people',

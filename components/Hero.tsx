@@ -1,13 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { getImageSrc } from '../utils/imageHelpers';
-import lightImage from '../assets/images/logo-light.png';
-import threePassesImage from '../assets/images/threepasses.jpeg';
-import abcImage from '../assets/images/abc.jpeg';
-import ebcImage from '../assets/images/ebc.jpeg';
-import gokyoImage from '../assets/images/gokyo.jpeg';
-import thoranglaImage from '../assets/images/thorangla-pass.jpeg';
 
 export interface HeroProps {
   onExploreTreks?: () => void;
@@ -19,11 +12,11 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
   
   // Hero slides - images only
   const heroSlides = [
-    threePassesImage,
-    ebcImage,
-    abcImage,
-    gokyoImage,
-    thoranglaImage
+    '/assets/images/threepasses.jpeg',
+    '/assets/images/ebc.jpeg',
+    '/assets/images/abc.jpeg',
+    '/assets/images/gokyo.jpeg',
+    '/assets/images/thorangla-pass.jpeg'
   ];
   
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,7 +33,7 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-screen flex items-center justify-center">
       {/* Background Images with Smooth Transitions */}
       {heroSlides.map((image, index) => (
         <div 
@@ -50,9 +43,9 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
           }`}
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:bg-cover"
             style={{
-              backgroundImage: `url("${typeof image === 'string' ? image : image.src}")`
+              backgroundImage: `url("${image}")`
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
@@ -76,7 +69,10 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
       </button>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto flex flex-col items-center justify-center
+        mt-[-10vh] md:mt-0
+        mb-0 min-h-[320px]
+        ">
         {/* Logo with Horizontal Lines */}
         <div className="mb-3 flex items-center justify-center gap-6 md:gap-8">
           {/* Left Line */}
@@ -84,7 +80,7 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
           
           {/* Logo */}
           <img
-            src={getImageSrc(lightImage)}
+            src={'/assets/images/logo-light.png'}
             alt="Ngimalaya Adventure Logo"
             className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 object-contain animate-pulse"
             style={{

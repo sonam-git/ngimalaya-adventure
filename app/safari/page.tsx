@@ -4,7 +4,6 @@ import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock } from 
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import MobileBottomBar from '../../components/MobileBottomBar';
 import BookingModal from '../../components/BookingModal';
 
 const SafariPage: React.FC = () => {
@@ -239,7 +238,10 @@ const SafariPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <button className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
+                  <button
+                    className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                    onClick={handleBookNow}
+                  >
                     Enquire Now
                   </button>
                 </div>
@@ -296,7 +298,6 @@ const SafariPage: React.FC = () => {
       </div>
     </div>
     <Footer />
-    <MobileBottomBar onBookNow={handleBookNow} />
     <BookingModal
       isOpen={isBookingModalOpen}
       onClose={() => setIsBookingModalOpen(false)}

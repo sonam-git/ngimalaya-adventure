@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Binoculars, Camera, Trees, ArrowRight } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
+import Image from 'next/image';
 
 const SafariSection: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -15,7 +16,7 @@ const SafariSection: React.FC = () => {
       type: 'UNESCO Site',
       duration: '2-4 Days',
       badge: 'Family Friendly',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/chitawan-6c447e1d.jpg',
+      image: '/assets/images/chitawan.jpg',
       description: 'Home to the rare one-horned rhinoceros and Bengal tigers.',
     },
     {
@@ -80,10 +81,13 @@ const SafariSection: React.FC = () => {
               }`}
             >
               <div className="relative h-64 overflow-hidden">
-                <img
+                <Image
                   src={safari.image}
                   alt={safari.name}
+                  fill
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  unoptimized={safari.image.startsWith('http')}
+                  priority={safari.id === 1}
                 />
                 <div className="absolute top-4 left-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-display font-semibold ${
