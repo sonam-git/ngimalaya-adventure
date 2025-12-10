@@ -13,7 +13,7 @@ const ThemeToggle: React.FC = () => {
         relative p-2 rounded-full border-2 transition-all duration-300 hover:scale-110
         ${isDarkMode 
           ? 'bg-gray-800 border-gray-600 text-yellow-400 hover:bg-gray-700' 
-          : 'bg-white border-gray-300 text-orange-500 hover:bg-gray-50'
+          : 'bg-white border-gray-300 text-blue-500 hover:bg-gray-50'
         }
         shadow-lg hover:shadow-xl
       `}

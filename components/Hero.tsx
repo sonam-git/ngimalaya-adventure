@@ -1,146 +1,146 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Star, Users, Calendar } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageSrc } from '../utils/imageHelpers';
+import lightImage from '../assets/images/logo-light.png';
 import threePassesImage from '../assets/images/threepasses.jpeg';
 import abcImage from '../assets/images/abc.jpeg';
 import ebcImage from '../assets/images/ebc.jpeg';
 import gokyoImage from '../assets/images/gokyo.jpeg';
 import thoranglaImage from '../assets/images/thorangla-pass.jpeg';
-import villageImage from '../assets/images/village.jpg';
-import kyangjinRiImage from '../assets/images/kyangjin-ri.jpg';
-import suspensionBridgeImage from '../assets/images/suspension-bridge.jpg';
-import ngimalayaImage from '../assets/images/ngimalaya.jpg';
 
 export interface HeroProps {
   onExploreTreks?: () => void;
   onWatchStory?: () => void;
+  onBookNow?: () => void;
 }
 
-const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onWatchStory }) => {
-  const { isDarkMode } = useTheme();
+const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
   
-  // Hero images array
-  const heroImages = [
+  // Hero slides - images only
+  const heroSlides = [
     threePassesImage,
-    abcImage,
     ebcImage,
+    abcImage,
     gokyoImage,
-    thoranglaImage,
-    villageImage,
-    kyangjinRiImage,
-    suspensionBridgeImage,
-    ngimalayaImage
+    thoranglaImage
   ];
   
-  // State for current image index
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Auto-rotate images every 5 seconds
+  // Auto-rotate slides every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % heroImages.length
-      );
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
-    
     return () => clearInterval(interval);
-  }, [heroImages.length]);
+  }, [heroSlides.length]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-28">
+    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Images with Smooth Transitions */}
-      {heroImages.map((image, index) => (
+      {heroSlides.map((image, index) => (
         <div 
           key={index}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{
-            backgroundImage: `linear-gradient(${
-              isDarkMode 
-                ? 'rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)' 
-                : 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)'
-            }), url("${typeof image === 'string' ? image : image.src}")`
-          }}
-        />
-      ))}
-      
-      {/* Image Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImageIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentImageIndex 
-                ? 'bg-white scale-110' 
-                : 'bg-white/50 hover:bg-white/75'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url("${typeof image === 'string' ? image : image.src}")`
+            }}
           />
-        ))}
-      </div>
-      
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-white/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-white/40 rounded-full animate-ping"></div>
-        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse"></div>
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+        </div>
+      ))}
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6 text-white" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6 text-white" />
+      </button>
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Where Culture Meets
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-            the Clouds
-          </span>
+        {/* Logo with Horizontal Lines */}
+        <div className="mb-3 flex items-center justify-center gap-6 md:gap-8">
+          {/* Left Line */}
+          <div className="hidden sm:block flex-1 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-white/60"></div>
+          
+          {/* Logo */}
+          <img
+            src={getImageSrc(lightImage)}
+            alt="Ngimalaya Adventure Logo"
+            className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 object-contain animate-pulse"
+            style={{
+              filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 1)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 120px rgba(255, 255, 255, 0.6)) brightness(1.3)',
+            }}
+          />
+          
+          {/* Right Line */}
+          <div className="hidden sm:block flex-1 h-0.5 bg-gradient-to-l from-transparent via-white/60 to-white/60"></div>
+        </div>
+        
+        {/* Static Title */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-4 tracking-wide uppercase animate-fade-in-up">
+          NGIMALAYA ADVENTURE
         </h1>
         
-        <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-          Discover the mesmerizing beauty of the Himalayas with 
-          <span className="font-semibold"> Ngima N Sherpa</span>, 
-          your experienced guide with over 20 years of trekking expertise.
+        {/* Static Subtitle/Slogan */}
+        <p className="text-xl md:text-2xl lg:text-3xl font-body mb-12 text-gray-200 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          Where Culture Meets the Clouds, and Every Trek Tells a Story
         </p>
 
-        {/* Stats */}
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
-          <div className="flex items-center space-x-2">
-            <Star className="text-yellow-400" size={20} />
-            <span className="text-lg">1000+ Happy Trekkers</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Users className="text-blue-400" size={20} />
-            <span className="text-lg">20+ Years Experience</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Calendar className="text-green-400" size={20} />
-            <span className="text-lg">Year Round Adventures</span>
-          </div>
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        {/* CTA Buttons - Blue and White */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
           <button 
             onClick={onExploreTreks}
-            className="group bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105"
+            className="group bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-3 shadow-2xl hover:shadow-blue-500/50 hover:scale-105 rounded-xl"
           >
-            <span>Explore Treks</span>
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <span>EXPLORE TREKS</span>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
           </button>
-          
           <button 
-            onClick={onWatchStory}
-            className="group border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl">
-            <span>Watch Our Story</span>
+            onClick={onBookNow}
+            className="group bg-white hover:bg-gray-100 text-blue-600 px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-3 shadow-2xl hover:shadow-white/50 hover:scale-105 rounded-xl"
+          >
+            <span>BOOK NOW</span>
           </button>
         </div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`transition-all duration-300 ${
+              index === currentSlide 
+                ? 'w-12 h-3 bg-blue-600' 
+                : 'w-3 h-3 bg-white/50 hover:bg-white/75'
+            } rounded-full`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
 };
 
-// Explicit default export with proper type
-const Hero = HeroComponent;
-export default Hero;
+export default HeroComponent;

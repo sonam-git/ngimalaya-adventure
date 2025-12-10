@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import { getImageSrc } from '../utils/imageHelpers';
 import type { Region, Trek } from '../data/treks';
 import TrekCard from './TrekCard';
 import CustomTrekModal from './CustomTrekModal';
@@ -29,7 +30,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
                 isDarkMode 
                   ? 'rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)' 
                   : 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)'
-              }), url("${region.image}")`
+              }), url("${getImageSrc(region.image)}")`
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center">

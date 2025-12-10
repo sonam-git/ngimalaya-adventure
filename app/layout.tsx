@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Oswald, Lato } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import ScrollToTop from '@/components/ScrollToTop'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -16,6 +17,7 @@ const lato = Lato({
   display: 'swap',
 })
 
+// Note: Fast Refresh warning below is expected and safe to ignore in Next.js App Router layouts
 export const metadata: Metadata = {
   title: 'Ngimalaya Adventure Nepal | Trek Higher, Breathe Deeper',
   description: 'Where Culture Meets the Clouds, and Every Trek Tells a Story! Experience the Himalayas with over 20 years of expertise and passion. Expert trekking and mountaineering services in Nepal.',
@@ -39,6 +41,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <ThemeProvider>
           {children}
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>

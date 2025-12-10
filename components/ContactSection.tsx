@@ -1,33 +1,77 @@
 'use client';
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Facebook, Instagram, MessageCircle, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Facebook, Instagram, MessageCircle,Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import SectionHeader from './SectionHeader';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  website?: string; // Honeypot field
+}
 
 const ContactSection: React.FC = () => {
   const { isDarkMode } = useTheme();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    subject: '',
-    website: '' // Honeypot field
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+    website: ''
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const contactInfo = [
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Phone",
+      content: "+977 98XXXXXXXX",
+      link: "tel:+977"
+    },
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Email",
+      content: "info@ngimalaya.com",
+      link: "mailto:info@ngimalaya.com"
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Location",
+      content: "Kathmandu, Nepal",
+      link: null
+    }
+  ];
+
+  const socialLinks = [
+    { icon: <Facebook className="w-5 h-5" />, url: "https://www.facebook.com/Ngimalaya", color: "hover:bg-blue-600" },
+    { icon: <Instagram className="w-5 h-5" />, url: "#", color: "hover:bg-pink-600" },
+    { icon: <MessageCircle className="w-5 h-5" />, url: "#", color: "hover:bg-green-600" },
+  ];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check honeypot
+    if (formData.website) {
+      return; // Bot detected, silently fail
+    }
+
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -37,14 +81,7 @@ const ContactSection: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject || 'General Inquiry',
-          message: formData.message,
-          website: formData.website // Honeypot
-        }),
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
@@ -63,315 +100,249 @@ const ContactSection: React.FC = () => {
         name: '',
         email: '',
         phone: '',
-        message: '',
         subject: '',
+        message: '',
         website: ''
       });
-
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus({ type: null, message: '' });
-      }, 5000);
 
     } catch (error) {
       setSubmitStatus({
         type: 'error',
-        message: error instanceof Error ? error.message : 'Failed to send message. Please try again or contact us directly.'
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <Phone className="text-blue-600" size={24} />,
-      title: "Phone",
-      details: ["+977 980-3499156"],
-      action: "Call Now"
-    },
-    {
-      icon: <Mail className="text-green-600" size={24} />,
-      title: "Email",
-      details: ["ngiman81@gmail.com"],
-      action: "Send Email"
-    },
-    {
-      icon: <MapPin className="text-red-600" size={24} />,
-      title: "Location",
-      details: ["Sarswatinagar Marg", "Kathmandu, Nepal"],
-      action: "Get Directions"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: <Facebook size={24} />,
-      name: "Facebook",
-      url: "https://www.facebook.com/Ngimalaya",
-      color: "bg-blue-600 hover:bg-blue-700"
-    },
-    {
-      icon: <Instagram size={24} />,
-      name: "Instagram", 
-      url: "#",
-      color: "bg-pink-600 hover:bg-pink-700"
-    },
-    {
-      icon: <MessageCircle size={24} />,
-      name: "WhatsApp",
-      url: "#",
-      color: "bg-green-600 hover:bg-green-700"
-    }
-  ];
-
   return (
-    <section id="contact" className={`scroll-offset-mobile py-12 md:py-20 transition-colors duration-300`}>
+    <section id="contact" className={`scroll-offset-mobile py-16 md:py-24 transition-colors duration-300 ${
+      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+    }`}>
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-4 md:mb-6">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
-              isDarkMode ? 'text-gray-100' : 'text-gray-900'
-            }`}>
-              Get In <span className="text-blue-600">Touch</span>
-            </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className={`text-xl max-w-3xl mx-auto transition-colors duration-300 ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Ready to start your Himalayan adventure? We're here to help you plan the perfect trek.
-              Reach out to us and let's make your dreams come true.
-            </p>
+        <div className="max-w-4xl mx-auto">
+          <SectionHeader
+            subtitle="Get In Touch"
+            title="Contact Us"
+          />
+
+          {/* Contact Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {contactInfo.map((info, index) => (
+              <div
+                key={index}
+                className={`text-center p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-white shadow-lg'
+                }`}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-500/10 text-primary-500 mb-4">
+                  {info.icon}
+                </div>
+                <h4 className={`font-display font-bold text-lg mb-2 ${
+                  isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                }`}>
+                  {info.title}
+                </h4>
+                {info.link ? (
+                  <a 
+                    href={info.link}
+                    className={`font-body hover:text-primary-500 transition-colors ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}
+                  >
+                    {info.content}
+                  </a>
+                ) : (
+                  <p className={`font-body ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
+                    {info.content}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 ">
-            {/* Contact Form */}
-            <div className={`bg-gray-50 p-8 rounded-2xl ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}>
-              <h3 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                Send us a message
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Status Messages */}
-                {submitStatus.type === 'success' && (
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex items-start space-x-3">
-                    <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={20} />
-                    <div>
-                      <h4 className="font-semibold text-green-800">Success!</h4>
-                      <p className="text-green-700 text-sm">{submitStatus.message}</p>
-                    </div>
-                  </div>
-                )}
-                
-                {submitStatus.type === 'error' && (
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-start space-x-3">
-                    <XCircle className="text-red-600 flex-shrink-0 mt-0.5" size={20} />
-                    <div>
-                      <h4 className="font-semibold text-red-800">Error</h4>
-                      <p className="text-red-700 text-sm">{submitStatus.message}</p>
-                    </div>
-                  </div>
-                )}
+          {/* Contact Form */}
+          <div className={`p-8 rounded-2xl ${
+            isDarkMode ? 'bg-gray-700' : 'bg-white shadow-xl'
+          }`}>
+            <h3 className={`text-2xl md:text-3xl font-display font-bold mb-6 text-center ${
+              isDarkMode ? 'text-gray-100' : 'text-gray-900'
+            }`}>
+              Send Us A Message
+            </h3>
 
-                <div className={`grid md:grid-cols-2 gap-6 `}>
-                  <div>
-                    <label className={`block font-medium mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className={`block font-medium mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 ${isDarkMode ? 'bg-gray-600' : 'bg-white'} py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
+            {submitStatus.type && (
+              <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                submitStatus.type === 'success' 
+                  ? 'bg-green-100 text-green-800 border border-green-200'
+                  : 'bg-red-100 text-red-800 border border-red-200'
+              }`}>
+                {submitStatus.type === 'success' ? (
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                ) : (
+                  <XCircle className="w-5 h-5 flex-shrink-0" />
+                )}
+                <p className="text-sm">{submitStatus.message}</p>
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleInputChange}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border ${isDarkMode ? 'bg-gray-600' : 'bg-white'} border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
-                  <div>
-                    <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
-                      Trek Interest
-                    </label>
-                    <select
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 ${isDarkMode ? 'bg-gray-600' : 'bg-white'} border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none`}
-                    >
-                      <option value="">Select a trek</option>
-                      <option value="Everest Region">Everest Region</option>
-                      <option value="Annapurna Region">Annapurna Region</option>
-                      <option value="Manaslu Circuit">Manaslu Circuit</option>
-                      <option value="Kanchenjunga">Kanchenjunga</option>
-                      <option value="Custom Trek">Custom Trek</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                    </select>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-primary-500 transition-colors ${
+                      isDarkMode 
+                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' 
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    }`}
+                    placeholder="John Doe"
+                  />
                 </div>
 
                 <div>
-                  <label className={`block ${isDarkMode ? 'text-gray-100' : 'text-gray-700'} font-medium mb-2`}>
-                    Message *
+                  <label className={`block text-sm font-semibold mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    Email Address *
                   </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full ${isDarkMode ? 'bg-gray-600' : 'bg-white'} px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none`}
-                    placeholder="Tell us about your dream trek, preferred dates, group size, and any special requirements..."
-                  ></textarea>
-                </div>
-
-                {/* Honeypot field - hidden from users */}
-                <input
-                  type="text"
-                  name="website"
-                  value={formData.website}
-                  onChange={handleInputChange}
-                  tabIndex={-1}
-                  autoComplete="off"
-                  style={{
-                    position: 'absolute',
-                    left: '-9999px',
-                    width: '1px',
-                    height: '1px',
-                    opacity: 0,
-                    pointerEvents: 'none'
-                  }}
-                  aria-hidden="true"
-                />
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition-colors duration-300 flex items-center justify-center space-x-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 size={20} className="animate-spin" />
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </button>
-              </form>
-                       {/* Emergency Contact */}
-              <div className="bg-red-50 border border-red-200 p-6 rounded-xl mt-8">
-                <h4 className="font-bold text-red-800 mb-2">
-                  Emergency Contact
-                </h4>
-                <p className="text-red-700 text-sm">
-                  For urgent matters during your trek, contact our 24/7 emergency line:
-                </p>
-                <p className="text-red-800 font-bold mt-2">
-                  +977 980-3499156
-                </p>
-              </div>
-            </div>
-            
-
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-                  Contact Information
-                </h3>
-                <p className={`mb-8 leading-relaxed ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>
-                  Should you have any inquiries or require further information, we extend an open
-                  invitation to discuss the range of services and packages we offer. Our team is
-                  dedicated to assisting you in realizing your dream to explore the diverse tourist
-                  destinations in Nepal.
-                </p>
-              </div>
-
-              {/* Contact Cards */}
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div 
-                    key={index}
-                    className={`p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 ${
-                      isDarkMode ? 'bg-gray-600' : 'bg-white'
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-primary-500 transition-colors ${
+                      isDarkMode 
+                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' 
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                     }`}
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0">
-                        {info.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-                          {info.title}
-                        </h4>
-                        {info.details.map((detail, idx) => (
-                          <p key={idx} className={`mb-1 ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>
-                            {detail}
-                          </p>
-                        ))}
-                        <button className={`font-medium text-sm mt-2 ${isDarkMode ? 'text-blue-200' : 'text-blue-600'} hover:text-blue-500`}>
-                          {info.action}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Social Media */}
-              <div>
-                <h4 className="font-bold text-gray-900 mb-4">
-                  Follow Our Adventures
-                </h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${social.color} text-white p-3 rounded-full transition-colors duration-300`}
-                      title={social.name}
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
+                    placeholder="john@example.com"
+                  />
                 </div>
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-primary-500 transition-colors ${
+                      isDarkMode 
+                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' 
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    }`}
+                    placeholder="+977 98XXXXXXXX"
+                  />
+                </div>
+
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-primary-500 transition-colors ${
+                      isDarkMode 
+                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' 
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    }`}
+                    placeholder="General Inquiry"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className={`block text-sm font-semibold mb-2 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Message *
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-primary-500 transition-colors resize-none ${
+                    isDarkMode 
+                      ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' 
+                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                  }`}
+                  placeholder="Tell us about your inquiry..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Social Links */}
+            <div className="flex justify-center gap-4 mt-8 pt-6 border-t border-gray-300 dark:border-gray-600">
+              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Or reach us on:
+              </p>
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 rounded-full bg-gray-600 text-white flex items-center justify-center transition-all duration-300 ${social.color} hover:scale-110`}
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>

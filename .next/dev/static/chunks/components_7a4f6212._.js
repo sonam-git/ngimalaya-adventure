@@ -2280,19 +2280,14 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-client] (ecmascript) <export default as Calendar>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/ThemeContext.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-left.js [app-client] (ecmascript) <export default as ChevronLeft>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-client] (ecmascript) <export default as ChevronRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mountain.js [app-client] (ecmascript) <export default as Mountain>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/threepasses.jpeg.mjs { IMAGE => "[project]/assets/images/threepasses.jpeg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
 var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/abc.jpeg.mjs { IMAGE => "[project]/assets/images/abc.jpeg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
 var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/ebc.jpeg.mjs { IMAGE => "[project]/assets/images/ebc.jpeg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
 var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/gokyo.jpeg.mjs { IMAGE => "[project]/assets/images/gokyo.jpeg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
 var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/thorangla-pass.jpeg.mjs { IMAGE => "[project]/assets/images/thorangla-pass.jpeg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
-var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$village$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$village$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/village.jpg.mjs { IMAGE => "[project]/assets/images/village.jpg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
-var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$kyangjin$2d$ri$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$kyangjin$2d$ri$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/kyangjin-ri.jpg.mjs { IMAGE => "[project]/assets/images/kyangjin-ri.jpg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
-var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$suspension$2d$bridge$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$suspension$2d$bridge$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/suspension-bridge.jpg.mjs { IMAGE => "[project]/assets/images/suspension-bridge.jpg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
-var __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$ngimalaya$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$ngimalaya$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__ = __turbopack_context__.i('[project]/assets/images/ngimalaya.jpg.mjs { IMAGE => "[project]/assets/images/ngimalaya.jpg (static in ecmascript, tag client)" } [app-client] (structured image object with data url, ecmascript)');
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -2303,35 +2298,44 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-;
-;
-;
-;
-;
-const HeroComponent = ({ onExploreTreks, onWatchStory })=>{
+const HeroComponent = ({ onExploreTreks })=>{
     _s();
-    const { isDarkMode } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
-    // Hero images array
-    const heroImages = [
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$village$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$village$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$kyangjin$2d$ri$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$kyangjin$2d$ri$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$suspension$2d$bridge$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$suspension$2d$bridge$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$ngimalaya$2e$jpg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$ngimalaya$2e$jpg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"]
+    // Hero slides with titles
+    const heroSlides = [
+        {
+            image: __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$threepasses$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
+            title: 'TREKKING TO THE MOUNTAINS',
+            subtitle: 'Discover the Beauty of Himalayas'
+        },
+        {
+            image: __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$ebc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
+            title: 'EVEREST BASE CAMP',
+            subtitle: 'Journey to the Roof of the World'
+        },
+        {
+            image: __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$abc$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
+            title: 'ANNAPURNA CIRCUIT',
+            subtitle: 'Experience the Ultimate Adventure'
+        },
+        {
+            image: __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$gokyo$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
+            title: 'GOKYO LAKES',
+            subtitle: 'Witness Nature\'s Masterpiece'
+        },
+        {
+            image: __TURBOPACK__imported__module__$5b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$assets$2f$images$2f$thorangla$2d$pass$2e$jpeg__$28$static__in__ecmascript$2c$__tag__client$2922$__$7d$__$5b$app$2d$client$5d$__$28$structured__image__object__with__data__url$2c$__ecmascript$29$__["default"],
+            title: 'THORONG LA PASS',
+            subtitle: 'Conquer the Mighty Peaks'
+        }
     ];
-    // State for current image index
-    const [currentImageIndex, setCurrentImageIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
-    // Auto-rotate images every 5 seconds
+    const [currentSlide, setCurrentSlide] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    // Auto-rotate slides every 5 seconds
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "HeroComponent.useEffect": ()=>{
             const interval = setInterval({
                 "HeroComponent.useEffect.interval": ()=>{
-                    setCurrentImageIndex({
-                        "HeroComponent.useEffect.interval": (prevIndex)=>(prevIndex + 1) % heroImages.length
+                    setCurrentSlide({
+                        "HeroComponent.useEffect.interval": (prev)=>(prev + 1) % heroSlides.length
                     }["HeroComponent.useEffect.interval"]);
                 }
             }["HeroComponent.useEffect.interval"], 5000);
@@ -2340,263 +2344,174 @@ const HeroComponent = ({ onExploreTreks, onWatchStory })=>{
             })["HeroComponent.useEffect"];
         }
     }["HeroComponent.useEffect"], [
-        heroImages.length
+        heroSlides.length
     ]);
+    const nextSlide = ()=>setCurrentSlide((prev)=>(prev + 1) % heroSlides.length);
+    const prevSlide = ()=>setCurrentSlide((prev)=>(prev - 1 + heroSlides.length) % heroSlides.length);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "home",
-        className: "relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-28",
+        className: "relative h-screen flex items-center justify-center overflow-hidden",
         children: [
-            heroImages.map((image, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`,
-                    style: {
-                        backgroundImage: `linear-gradient(${isDarkMode ? 'rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)'}), url("${typeof image === 'string' ? image : image.src}")`
-                    }
-                }, index, false, {
+            heroSlides.map((slide, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: `absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`,
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "absolute inset-0 bg-cover bg-center bg-no-repeat",
+                            style: {
+                                backgroundImage: `url("${typeof slide.image === 'string' ? slide.image : slide.image.src}")`
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/components/Hero.tsx",
+                            lineNumber: 49,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"
+                        }, void 0, false, {
+                            fileName: "[project]/components/Hero.tsx",
+                            lineNumber: 55,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    ]
+                }, index, true, {
                     fileName: "[project]/components/Hero.tsx",
-                    lineNumber: 54,
+                    lineNumber: 43,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20",
-                children: heroImages.map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>setCurrentImageIndex(index),
-                        className: `w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/75'}`,
-                        "aria-label": `Go to slide ${index + 1}`
-                    }, index, false, {
-                        fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 72,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)))
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                onClick: prevSlide,
+                className: "absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-primary-500 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group",
+                "aria-label": "Previous slide",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__["ChevronLeft"], {
+                    className: "w-6 h-6 text-white"
+                }, void 0, false, {
+                    fileName: "[project]/components/Hero.tsx",
+                    lineNumber: 65,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/components/Hero.tsx",
-                lineNumber: 70,
+                lineNumber: 60,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-20 left-10 w-2 h-2 bg-white/30 rounded-full animate-pulse"
-                    }, void 0, false, {
-                        fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 87,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-40 right-20 w-1 h-1 bg-white/40 rounded-full animate-ping"
-                    }, void 0, false, {
-                        fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 88,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse"
-                    }, void 0, false, {
-                        fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 89,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                onClick: nextSlide,
+                className: "absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-primary-500 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group",
+                "aria-label": "Next slide",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
+                    className: "w-6 h-6 text-white"
+                }, void 0, false, {
+                    fileName: "[project]/components/Hero.tsx",
+                    lineNumber: 72,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
                 fileName: "[project]/components/Hero.tsx",
-                lineNumber: 86,
+                lineNumber: 67,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative z-10 text-center text-white px-4 max-w-6xl mx-auto",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-4xl md:text-6xl font-bold mb-6 leading-tight",
-                        children: [
-                            "Where Culture Meets",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300",
-                                children: "the Clouds"
-                            }, void 0, false, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 96,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mb-6 flex justify-center",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__["Mountain"], {
+                            className: "w-16 h-16 text-primary-500 animate-pulse"
+                        }, void 0, false, {
+                            fileName: "[project]/components/Hero.tsx",
+                            lineNumber: 78,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    }, void 0, false, {
                         fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 94,
+                        lineNumber: 77,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-4 tracking-wide uppercase animate-fade-in-up",
+                        children: heroSlides[currentSlide].title
+                    }, void 0, false, {
+                        fileName: "[project]/components/Hero.tsx",
+                        lineNumber: 81,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed",
-                        children: [
-                            "Discover the mesmerizing beauty of the Himalayas with",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "font-semibold",
-                                children: " Ngima N Sherpa"
-                            }, void 0, false, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 103,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            ", your experienced guide with over 20 years of trekking expertise."
-                        ]
-                    }, void 0, true, {
+                        className: "text-xl md:text-2xl lg:text-3xl font-body mb-12 text-gray-200 animate-fade-in-up",
+                        style: {
+                            animationDelay: '0.2s'
+                        },
+                        children: heroSlides[currentSlide].subtitle
+                    }, void 0, false, {
                         fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 101,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-wrap justify-center gap-8 mb-12",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
-                                        className: "text-yellow-400",
-                                        size: 20
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 110,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-lg",
-                                        children: "1000+ Happy Trekkers"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 111,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 109,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                                        className: "text-blue-400",
-                                        size: 20
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 114,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-lg",
-                                        children: "20+ Years Experience"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 115,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 113,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
-                                        className: "text-green-400",
-                                        size: 20
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 118,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-lg",
-                                        children: "Year Round Adventures"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 119,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 117,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 108,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col sm:flex-row gap-4 justify-center items-center",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: onExploreTreks,
-                                className: "group bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Explore Treks"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 129,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                        size: 20,
-                                        className: "group-hover:translate-x-1 transition-transform"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Hero.tsx",
-                                        lineNumber: 130,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 125,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: onWatchStory,
-                                className: "group border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Watch Our Story"
+                        className: "flex justify-center animate-fade-in-up",
+                        style: {
+                            animationDelay: '0.4s'
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: onExploreTreks,
+                            className: "group bg-primary-500 hover:bg-primary-600 text-white px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center space-x-3 shadow-2xl hover:shadow-primary-500/50 hover:scale-105 border-4 border-white/20",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: "START JOURNEY"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Hero.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 95,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                    className: "w-6 h-6 group-hover:translate-x-2 transition-transform"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Hero.tsx",
+                                    lineNumber: 96,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/Hero.tsx",
-                                lineNumber: 133,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/Hero.tsx",
+                            lineNumber: 91,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    }, void 0, false, {
                         fileName: "[project]/components/Hero.tsx",
-                        lineNumber: 124,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Hero.tsx",
-                lineNumber: 93,
+                lineNumber: 76,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20",
+                children: heroSlides.map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>setCurrentSlide(index),
+                        className: `transition-all duration-300 ${index === currentSlide ? 'w-12 h-3 bg-primary-500' : 'w-3 h-3 bg-white/50 hover:bg-white/75'} rounded-full`,
+                        "aria-label": `Go to slide ${index + 1}`
+                    }, index, false, {
+                        fileName: "[project]/components/Hero.tsx",
+                        lineNumber: 104,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/components/Hero.tsx",
+                lineNumber: 102,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Hero.tsx",
-        lineNumber: 51,
+        lineNumber: 40,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(HeroComponent, "T6NhOYT2jcZZEVWTZEv/1EGKXYM=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"]
-    ];
-});
+_s(HeroComponent, "/jm+XmndjAYlDCFyCnfFEXJOloU=");
 _c = HeroComponent;
-// Explicit default export with proper type
-const Hero = HeroComponent;
-const __TURBOPACK__default__export__ = Hero;
+const __TURBOPACK__default__export__ = HeroComponent;
 var _c;
 __turbopack_context__.k.register(_c, "HeroComponent");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -2614,7 +2529,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-client] (ecmascript) <export default as Calendar>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mountain.js [app-client] (ecmascript) <export default as Mountain>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/ThemeContext.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/utils/imageHelpers.ts [app-client] (ecmascript)");
@@ -2627,285 +2541,233 @@ var _s = __turbopack_context__.k.signature();
 const TrekCard = ({ trek, onExplore })=>{
     _s();
     const { isDarkMode } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
-    const getDifficultyColor = (difficulty)=>{
-        switch(difficulty){
-            case 'Easy':
-                return 'bg-green-100 text-green-800';
-            case 'Moderate':
-                return 'bg-yellow-100 text-yellow-800';
-            case 'Challenging':
-                return 'bg-orange-100 text-orange-800';
-            case 'Strenuous':
-                return 'bg-red-100 text-red-800';
-            default:
-                return 'bg-gray-100 text-gray-800';
-        }
-    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `group rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`,
+        className: `group rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative overflow-hidden h-64",
+                className: "relative overflow-hidden h-72",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                         src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getImageSrc"])(trek.image),
                         alt: trek.name,
-                        className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     }, void 0, false, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 32,
+                        lineNumber: 22,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-4 left-4",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: `px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(trek.difficulty)}`,
-                            children: trek.difficulty
-                        }, void 0, false, {
-                            fileName: "[project]/components/TrekCard.tsx",
-                            lineNumber: 38,
-                            columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0))
-                    }, void 0, false, {
-                        fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 37,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center space-x-1",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
-                                    className: "text-yellow-500 fill-current",
-                                    size: 14
-                                }, void 0, false, {
+                        className: "absolute top-4 left-4 flex flex-col gap-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-white/95 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center space-x-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
+                                            className: "text-primary-500",
+                                            size: 18
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/TrekCard.tsx",
+                                            lineNumber: 32,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-2xl font-bold text-gray-900",
+                                                    children: "05"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/TrekCard.tsx",
+                                                    lineNumber: 34,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-xs text-gray-600 uppercase",
+                                                    children: "Guest"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/TrekCard.tsx",
+                                                    lineNumber: 35,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/TrekCard.tsx",
+                                            lineNumber: 33,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/components/TrekCard.tsx",
-                                    lineNumber: 44,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: `text-sm font-medium ${isDarkMode ? 'text-gray-800' : 'text-gray-600'}`,
-                                    children: "4.8"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/TrekCard.tsx",
-                                    lineNumber: 45,
+                                    lineNumber: 31,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
+                            }, void 0, false, {
+                                fileName: "[project]/components/TrekCard.tsx",
+                                lineNumber: 30,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-white/95 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center space-x-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
+                                            className: "text-primary-500",
+                                            size: 18
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/TrekCard.tsx",
+                                            lineNumber: 41,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-2xl font-bold text-gray-900",
+                                                    children: trek.duration.split(' ')[0]
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/TrekCard.tsx",
+                                                    lineNumber: 43,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-xs text-gray-600 uppercase",
+                                                    children: "Days"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/TrekCard.tsx",
+                                                    lineNumber: 44,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/TrekCard.tsx",
+                                            lineNumber: 42,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/TrekCard.tsx",
+                                    lineNumber: 40,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, void 0, false, {
+                                fileName: "[project]/components/TrekCard.tsx",
+                                lineNumber: 39,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/TrekCard.tsx",
+                        lineNumber: 29,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute top-4 right-4 bg-primary-500 text-white px-5 py-3 rounded-md shadow-lg",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-2xl font-bold",
+                            children: trek.price
+                        }, void 0, false, {
                             fileName: "[project]/components/TrekCard.tsx",
-                            lineNumber: 43,
+                            lineNumber: 52,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 42,
+                        lineNumber: 51,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 48,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/TrekCard.tsx",
-                lineNumber: 31,
+                lineNumber: 21,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "p-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        className: `text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`,
+                        className: `text-2xl font-display font-bold mb-3 group-hover:text-primary-500 transition-colors ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`,
                         children: trek.name
                     }, void 0, false, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 53,
+                        lineNumber: 61,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: ` mb-4 line-clamp-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                        children: trek.description
-                    }, void 0, false, {
-                        fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 59,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `grid grid-cols-2 gap-4 mb-4`,
+                        className: `mb-4 flex items-center gap-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`,
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2 text-sm text-gray-600",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
-                                        size: 16,
-                                        className: "text-blue-600"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 66,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                                        children: trek.duration
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 67,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__["Mountain"], {
+                                className: "text-primary-500",
+                                size: 18
+                            }, void 0, false, {
                                 fileName: "[project]/components/TrekCard.tsx",
-                                lineNumber: 65,
+                                lineNumber: 68,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2 text-sm text-gray-600",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__["Mountain"], {
-                                        size: 16,
-                                        className: "text-blue-600"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 70,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                                        children: trek.altitude
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 71,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "font-semibold",
+                                children: trek.region || 'Nepal'
+                            }, void 0, false, {
                                 fileName: "[project]/components/TrekCard.tsx",
                                 lineNumber: 69,
                                 columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center space-x-2 text-sm text-gray-600",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                                        size: 16,
-                                        className: "text-blue-600"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 74,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                                        children: trek.groupSize
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 75,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/TrekCard.tsx",
-                                lineNumber: 73,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `text-sm ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`,
-                                        children: "Season:"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 78,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    " ",
-                                    trek.season
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/TrekCard.tsx",
-                                lineNumber: 77,
-                                columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 64,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700 ",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: `mb-6 line-clamp-3 leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`,
+                        children: trek.description
+                    }, void 0, false, {
+                        fileName: "[project]/components/TrekCard.tsx",
+                        lineNumber: 72,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: onExplore,
+                        className: "w-full group/btn flex items-center justify-center space-x-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-2xl font-bold text-blue-600",
-                                        children: trek.price
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 85,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `text-sm ml-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`,
-                                        children: "per person"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 86,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: "Start Journey"
+                            }, void 0, false, {
                                 fileName: "[project]/components/TrekCard.tsx",
-                                lineNumber: 84,
+                                lineNumber: 81,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: onExplore,
-                                className: "group/btn flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition-colors duration-300",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Explore"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 92,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                        size: 16,
-                                        className: "group-hover/btn:translate-x-1 transition-transform"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/TrekCard.tsx",
-                                        lineNumber: 93,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                size: 18,
+                                className: "group-hover/btn:translate-x-1 transition-transform"
+                            }, void 0, false, {
                                 fileName: "[project]/components/TrekCard.tsx",
-                                lineNumber: 88,
+                                lineNumber: 82,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/TrekCard.tsx",
-                        lineNumber: 83,
+                        lineNumber: 77,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/TrekCard.tsx",
-                lineNumber: 52,
+                lineNumber: 60,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/TrekCard.tsx",
-        lineNumber: 27,
+        lineNumber: 17,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -4535,12 +4397,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-up.js [app-client] (ecmascript) <export default as ChevronUp>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/ThemeContext.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/utils/imageHelpers.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$BookingModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/BookingModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CustomTrekModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/CustomTrekModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ContactModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ContactModal.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -4580,11 +4444,11 @@ const TrekDetail = ({ trek })=>{
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 bg-cover bg-center",
                                 style: {
-                                    backgroundImage: `linear-gradient(${isDarkMode ? 'rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)'}), url("${trek.image}")`
+                                    backgroundImage: `linear-gradient(${isDarkMode ? 'rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)'}), url("${(0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$imageHelpers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getImageSrc"])(trek.image)}")`
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/TrekDetail.tsx",
-                                lineNumber: 49,
+                                lineNumber: 50,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4597,7 +4461,7 @@ const TrekDetail = ({ trek })=>{
                                             children: trek.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/TrekDetail.tsx",
-                                            lineNumber: 61,
+                                            lineNumber: 62,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4611,7 +4475,7 @@ const TrekDetail = ({ trek })=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                    lineNumber: 63,
+                                                    lineNumber: 64,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4619,7 +4483,7 @@ const TrekDetail = ({ trek })=>{
                                                     children: trek.duration
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                    lineNumber: 66,
+                                                    lineNumber: 67,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4627,30 +4491,30 @@ const TrekDetail = ({ trek })=>{
                                                     children: trek.price
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                    lineNumber: 69,
+                                                    lineNumber: 70,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/TrekDetail.tsx",
-                                            lineNumber: 62,
+                                            lineNumber: 63,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/TrekDetail.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/TrekDetail.tsx",
-                                lineNumber: 59,
+                                lineNumber: 60,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/TrekDetail.tsx",
-                        lineNumber: 48,
+                        lineNumber: 49,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4667,7 +4531,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "Trek Overview"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 82,
+                                                lineNumber: 83,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4681,7 +4545,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 87,
+                                                                lineNumber: 88,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4689,7 +4553,7 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "Duration"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 88,
+                                                                lineNumber: 89,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4697,13 +4561,13 @@ const TrekDetail = ({ trek })=>{
                                                                 children: trek.duration
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 89,
+                                                                lineNumber: 90,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 86,
+                                                        lineNumber: 87,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4714,7 +4578,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 92,
+                                                                lineNumber: 93,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4722,7 +4586,7 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "Max Altitude"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 93,
+                                                                lineNumber: 94,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4730,13 +4594,13 @@ const TrekDetail = ({ trek })=>{
                                                                 children: trek.altitude
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 94,
+                                                                lineNumber: 95,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 91,
+                                                        lineNumber: 92,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4747,7 +4611,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 97,
+                                                                lineNumber: 98,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4755,7 +4619,7 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "Group Size"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 98,
+                                                                lineNumber: 99,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4763,13 +4627,13 @@ const TrekDetail = ({ trek })=>{
                                                                 children: trek.groupSize
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 99,
+                                                                lineNumber: 100,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 96,
+                                                        lineNumber: 97,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4780,7 +4644,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 102,
+                                                                lineNumber: 103,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4788,7 +4652,7 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "Best Season"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 103,
+                                                                lineNumber: 104,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4796,25 +4660,25 @@ const TrekDetail = ({ trek })=>{
                                                                 children: trek.season
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 104,
+                                                                lineNumber: 105,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 101,
+                                                        lineNumber: 102,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 85,
+                                                lineNumber: 86,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 82,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4825,7 +4689,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "About This Trek"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 112,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4833,7 +4697,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: trek.description
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 114,
+                                                lineNumber: 115,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -4841,7 +4705,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "Trek Highlights"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 118,
+                                                lineNumber: 119,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -4854,7 +4718,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 16
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 124,
+                                                                lineNumber: 125,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4862,24 +4726,24 @@ const TrekDetail = ({ trek })=>{
                                                                 children: highlight
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 125,
+                                                                lineNumber: 126,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, index, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 123,
+                                                        lineNumber: 124,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 122,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4893,7 +4757,7 @@ const TrekDetail = ({ trek })=>{
                                                         children: "Detailed Itinerary"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 137,
+                                                        lineNumber: 138,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4907,7 +4771,7 @@ const TrekDetail = ({ trek })=>{
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 139,
+                                                                lineNumber: 140,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             isItineraryOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__["ChevronUp"], {
@@ -4915,26 +4779,26 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 143,
+                                                                lineNumber: 144,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                                 className: "text-blue-600 dark:text-blue-400",
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 145,
+                                                                lineNumber: 146,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 138,
+                                                        lineNumber: 139,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 133,
+                                                lineNumber: 134,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             isItineraryOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4959,7 +4823,7 @@ const TrekDetail = ({ trek })=>{
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/TrekDetail.tsx",
-                                                                            lineNumber: 164,
+                                                                            lineNumber: 165,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         day.walkingHours && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4970,20 +4834,20 @@ const TrekDetail = ({ trek })=>{
                                                                                     className: "inline mr-1"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                                    lineNumber: 169,
+                                                                                    lineNumber: 170,
                                                                                     columnNumber: 31
                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                 day.walkingHours
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/TrekDetail.tsx",
-                                                                            lineNumber: 168,
+                                                                            lineNumber: 169,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                    lineNumber: 163,
+                                                                    lineNumber: 164,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -4991,7 +4855,7 @@ const TrekDetail = ({ trek })=>{
                                                                     children: day.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                    lineNumber: 174,
+                                                                    lineNumber: 175,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4999,7 +4863,7 @@ const TrekDetail = ({ trek })=>{
                                                                     children: day.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                    lineNumber: 177,
+                                                                    lineNumber: 178,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5012,7 +4876,7 @@ const TrekDetail = ({ trek })=>{
                                                                                     children: "Accommodation:"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                                    lineNumber: 182,
+                                                                                    lineNumber: 183,
                                                                                     columnNumber: 29
                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                 " ",
@@ -5020,7 +4884,7 @@ const TrekDetail = ({ trek })=>{
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/TrekDetail.tsx",
-                                                                            lineNumber: 181,
+                                                                            lineNumber: 182,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5030,7 +4894,7 @@ const TrekDetail = ({ trek })=>{
                                                                                     children: "Meals:"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                                    lineNumber: 185,
+                                                                                    lineNumber: 186,
                                                                                     columnNumber: 29
                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                 " ",
@@ -5038,29 +4902,29 @@ const TrekDetail = ({ trek })=>{
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/TrekDetail.tsx",
-                                                                            lineNumber: 184,
+                                                                            lineNumber: 185,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                                    lineNumber: 180,
+                                                                    lineNumber: 181,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, index, true, {
                                                             fileName: "[project]/components/TrekDetail.tsx",
-                                                            lineNumber: 160,
+                                                            lineNumber: 161,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/TrekDetail.tsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 153,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 151,
+                                                lineNumber: 152,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             !isItineraryOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5077,7 +4941,7 @@ const TrekDetail = ({ trek })=>{
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 197,
+                                                        lineNumber: 198,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5091,7 +4955,7 @@ const TrekDetail = ({ trek })=>{
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 201,
+                                                                lineNumber: 202,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5102,7 +4966,7 @@ const TrekDetail = ({ trek })=>{
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 204,
+                                                                lineNumber: 205,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5113,25 +4977,25 @@ const TrekDetail = ({ trek })=>{
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 207,
+                                                                lineNumber: 208,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 200,
+                                                        lineNumber: 201,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 196,
+                                                lineNumber: 197,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 133,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5148,14 +5012,14 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 219,
+                                                                lineNumber: 220,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             "What's Included"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 218,
+                                                        lineNumber: 219,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -5168,7 +5032,7 @@ const TrekDetail = ({ trek })=>{
                                                                         size: 16
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                                        lineNumber: 225,
+                                                                        lineNumber: 226,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5176,24 +5040,24 @@ const TrekDetail = ({ trek })=>{
                                                                         children: item
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                                        lineNumber: 226,
+                                                                        lineNumber: 227,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, index, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 224,
+                                                                lineNumber: 225,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)))
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 222,
+                                                        lineNumber: 223,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 217,
+                                                lineNumber: 218,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5207,14 +5071,14 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 24
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 234,
+                                                                lineNumber: 235,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             "What's Not Included"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 233,
+                                                        lineNumber: 234,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -5227,7 +5091,7 @@ const TrekDetail = ({ trek })=>{
                                                                         size: 16
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                                        lineNumber: 240,
+                                                                        lineNumber: 241,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5235,30 +5099,30 @@ const TrekDetail = ({ trek })=>{
                                                                         children: item
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                                        lineNumber: 241,
+                                                                        lineNumber: 242,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, index, true, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 239,
+                                                                lineNumber: 240,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)))
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 237,
+                                                        lineNumber: 238,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 232,
+                                                lineNumber: 233,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 217,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5272,14 +5136,14 @@ const TrekDetail = ({ trek })=>{
                                                         size: 24
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 251,
+                                                        lineNumber: 252,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Requirements & Prerequisites"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 251,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -5292,7 +5156,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 16
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 257,
+                                                                lineNumber: 258,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5300,30 +5164,30 @@ const TrekDetail = ({ trek })=>{
                                                                 children: requirement
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 258,
+                                                                lineNumber: 259,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, index, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 256,
+                                                        lineNumber: 257,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 254,
+                                                lineNumber: 255,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 250,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/TrekDetail.tsx",
-                                lineNumber: 79,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5340,7 +5204,7 @@ const TrekDetail = ({ trek })=>{
                                                         children: trek.price
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 270,
+                                                        lineNumber: 271,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5348,13 +5212,13 @@ const TrekDetail = ({ trek })=>{
                                                         children: "per person"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 273,
+                                                        lineNumber: 274,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 269,
+                                                lineNumber: 270,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5363,7 +5227,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "Book Now"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 276,
+                                                lineNumber: 277,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5372,7 +5236,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "Request Custom Quote"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 283,
+                                                lineNumber: 284,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5383,7 +5247,7 @@ const TrekDetail = ({ trek })=>{
                                                         children: "Need Help?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 293,
+                                                        lineNumber: 294,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5391,7 +5255,7 @@ const TrekDetail = ({ trek })=>{
                                                         children: "Contact our trek specialists for personalized advice"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 296,
+                                                        lineNumber: 297,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5400,7 +5264,7 @@ const TrekDetail = ({ trek })=>{
                                                         children: "Contact Specialist"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 299,
+                                                        lineNumber: 300,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5411,7 +5275,7 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "📞 +977 980-3499156"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 306,
+                                                                lineNumber: 307,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5419,25 +5283,25 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "✉️ ngiman81@gmail.com"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 309,
+                                                                lineNumber: 310,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 305,
+                                                        lineNumber: 306,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 292,
+                                                lineNumber: 293,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 269,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5448,7 +5312,7 @@ const TrekDetail = ({ trek })=>{
                                                 children: "Why Choose Us?"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 319,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5462,7 +5326,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 323,
+                                                                lineNumber: 324,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5470,13 +5334,13 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "20+ Years Experience"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 324,
+                                                                lineNumber: 325,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 322,
+                                                        lineNumber: 323,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5487,7 +5351,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 329,
+                                                                lineNumber: 330,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5495,13 +5359,13 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "500+ Happy Trekkers"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 330,
+                                                                lineNumber: 331,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 328,
+                                                        lineNumber: 329,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5512,7 +5376,7 @@ const TrekDetail = ({ trek })=>{
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 335,
+                                                                lineNumber: 336,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5520,43 +5384,43 @@ const TrekDetail = ({ trek })=>{
                                                                 children: "100% Safety Record"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                                lineNumber: 336,
+                                                                lineNumber: 337,
                                                                 columnNumber: 19
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/TrekDetail.tsx",
-                                                        lineNumber: 334,
+                                                        lineNumber: 335,
                                                         columnNumber: 17
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/TrekDetail.tsx",
-                                                lineNumber: 321,
+                                                lineNumber: 322,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/TrekDetail.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 318,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/TrekDetail.tsx",
-                                lineNumber: 266,
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/TrekDetail.tsx",
-                        lineNumber: 77,
+                        lineNumber: 78,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/TrekDetail.tsx",
-                lineNumber: 46,
+                lineNumber: 47,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$BookingModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -5565,7 +5429,7 @@ const TrekDetail = ({ trek })=>{
                 trek: trek
             }, void 0, false, {
                 fileName: "[project]/components/TrekDetail.tsx",
-                lineNumber: 347,
+                lineNumber: 348,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CustomTrekModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -5575,7 +5439,7 @@ const TrekDetail = ({ trek })=>{
                 subtitle: `Create a personalized version of ${trek.name}`
             }, void 0, false, {
                 fileName: "[project]/components/TrekDetail.tsx",
-                lineNumber: 354,
+                lineNumber: 355,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ContactModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -5585,13 +5449,13 @@ const TrekDetail = ({ trek })=>{
                 subtitle: `Get expert advice about ${trek.name}`
             }, void 0, false, {
                 fileName: "[project]/components/TrekDetail.tsx",
-                lineNumber: 362,
+                lineNumber: 363,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/TrekDetail.tsx",
-        lineNumber: 45,
+        lineNumber: 46,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

@@ -3692,6 +3692,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/phone.js [app-ssr] (ecmascript) <export default as Phone>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-ssr] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mountain.js [app-ssr] (ecmascript) <export default as Mountain>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-ssr] (ecmascript) <export default as Loader2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/ThemeContext.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$data$2f$treks$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/data/treks.ts [app-ssr] (ecmascript)");
 'use client';
@@ -3704,6 +3705,10 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
     const { isDarkMode } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$ThemeContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTheme"])();
     const [isSubmitted, setIsSubmitted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [submitStatus, setSubmitStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        type: null,
+        message: ''
+    });
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         fullName: '',
         email: '',
@@ -3778,10 +3783,39 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
     const handleSubmit = async (e)=>{
         e.preventDefault();
         setIsLoading(true);
-        // Simulate API call
-        await new Promise((resolve)=>setTimeout(resolve, 2000));
-        setIsLoading(false);
-        setIsSubmitted(true);
+        setSubmitStatus({
+            type: null,
+            message: ''
+        });
+        try {
+            const response = await fetch('/api/booking', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to submit booking');
+            }
+            setSubmitStatus({
+                type: 'success',
+                message: 'Thank you for your booking! We will contact you within 24 hours to confirm your trek.'
+            });
+            setIsSubmitted(true);
+            // Auto-hide success message and close modal after 5 seconds
+            setTimeout(()=>{
+                resetForm();
+            }, 5000);
+        } catch (error) {
+            setSubmitStatus({
+                type: 'error',
+                message: error instanceof Error ? error.message : 'Failed to submit booking. Please try again or contact us directly.'
+            });
+        } finally{
+            setIsLoading(false);
+        }
     };
     const resetForm = ()=>{
         setFormData({
@@ -3797,9 +3831,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
             specialRequests: '',
             dietaryRestrictions: '',
             emergencyContact: '',
-            emergencyPhone: ''
+            emergencyPhone: '',
+            website: ''
         });
         setIsSubmitted(false);
+        setSubmitStatus({
+            type: null,
+            message: ''
+        });
         onClose();
     };
     // Get selected trek for display
@@ -3821,7 +3860,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                     children: "Book Your Trek"
                                 }, void 0, false, {
                                     fileName: "[project]/components/BookingModal.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 157,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3829,13 +3868,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                     children: selectedTrek ? `${selectedTrek.name} - ${selectedTrek.duration} - ${selectedTrek.price}` : 'Choose your adventure and book your trekking experience'
                                 }, void 0, false, {
                                     fileName: "[project]/components/BookingModal.tsx",
-                                    lineNumber: 123,
+                                    lineNumber: 160,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/BookingModal.tsx",
-                            lineNumber: 119,
+                            lineNumber: 156,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3845,18 +3884,18 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 137,
+                                lineNumber: 174,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/BookingModal.tsx",
-                            lineNumber: 131,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/BookingModal.tsx",
-                    lineNumber: 116,
+                    lineNumber: 153,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3882,17 +3921,17 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 d: "M5 13l4 4L19 7"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 186,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/BookingModal.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 185,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 147,
+                                        lineNumber: 184,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3900,7 +3939,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                         children: "Thank You for Your Booking!"
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 189,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3911,14 +3950,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: selectedTrek?.name || 'your selected trek'
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 193,
                                                 columnNumber: 61
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             "."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 155,
+                                        lineNumber: 192,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3926,7 +3965,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                         children: "Our team will contact you within 24 hours to confirm your booking and provide detailed pre-trek information. You will receive a confirmation email shortly."
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 158,
+                                        lineNumber: 195,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3938,48 +3977,48 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                     children: "Next Steps:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 201,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 201,
                                                     columnNumber: 49
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "• Check your email for booking confirmation",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 165,
+                                                    lineNumber: 202,
                                                     columnNumber: 64
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "• Our team will call you to discuss trek details",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 203,
                                                     columnNumber: 69
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "• We'll send you a comprehensive pre-trek guide",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 167,
+                                                    lineNumber: 204,
                                                     columnNumber: 68
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "• Payment instructions will be provided"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/BookingModal.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 200,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 162,
+                                        lineNumber: 199,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 146,
+                                lineNumber: 183,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3988,19 +4027,129 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                 children: "Close"
                             }, void 0, false, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 172,
+                                lineNumber: 209,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/BookingModal.tsx",
-                        lineNumber: 145,
+                        lineNumber: 182,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0)) : // Booking Form
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                         onSubmit: handleSubmit,
                         className: "space-y-6",
                         children: [
+                            submitStatus.type === 'success' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4 flex items-start space-x-3",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        className: "text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5",
+                                        width: "20",
+                                        height: "20",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        viewBox: "0 0 24 24",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            strokeWidth: 2,
+                                            d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/BookingModal.tsx",
+                                            lineNumber: 223,
+                                            columnNumber: 21
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/BookingModal.tsx",
+                                        lineNumber: 222,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                className: "font-semibold text-green-800 dark:text-green-300",
+                                                children: "Success!"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/BookingModal.tsx",
+                                                lineNumber: 226,
+                                                columnNumber: 21
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-green-700 dark:text-green-400 text-sm",
+                                                children: submitStatus.message
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/BookingModal.tsx",
+                                                lineNumber: 227,
+                                                columnNumber: 21
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/BookingModal.tsx",
+                                        lineNumber: 225,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/BookingModal.tsx",
+                                lineNumber: 221,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            submitStatus.type === 'error' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 flex items-start space-x-3",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        className: "text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5",
+                                        width: "20",
+                                        height: "20",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        viewBox: "0 0 24 24",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            strokeWidth: 2,
+                                            d: "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/BookingModal.tsx",
+                                            lineNumber: 235,
+                                            columnNumber: 21
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/BookingModal.tsx",
+                                        lineNumber: 234,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                className: "font-semibold text-red-800 dark:text-red-300",
+                                                children: "Error"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/BookingModal.tsx",
+                                                lineNumber: 238,
+                                                columnNumber: 21
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-red-700 dark:text-red-400 text-sm",
+                                                children: submitStatus.message
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/BookingModal.tsx",
+                                                lineNumber: 239,
+                                                columnNumber: 21
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/BookingModal.tsx",
+                                        lineNumber: 237,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/BookingModal.tsx",
+                                lineNumber: 233,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-1 md:grid-cols-2 gap-6",
                                 children: [
@@ -4014,14 +4163,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 186,
+                                                        lineNumber: 248,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Full Name *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 185,
+                                                lineNumber: 247,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4034,13 +4183,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "Enter your full name"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 189,
+                                                lineNumber: 251,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 184,
+                                        lineNumber: 246,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4053,14 +4202,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 206,
+                                                        lineNumber: 268,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Email Address *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 205,
+                                                lineNumber: 267,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4073,13 +4222,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "your.email@example.com"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 209,
+                                                lineNumber: 271,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 204,
+                                        lineNumber: 266,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4092,14 +4241,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 226,
+                                                        lineNumber: 288,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Phone Number *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 225,
+                                                lineNumber: 287,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4112,13 +4261,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "+1 (555) 123-4567"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 229,
+                                                lineNumber: 291,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 224,
+                                        lineNumber: 286,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4131,14 +4280,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 246,
+                                                        lineNumber: 308,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Country *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 245,
+                                                lineNumber: 307,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -4153,7 +4302,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         children: "Select your country"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 322,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     countries.map((country)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -4161,19 +4310,19 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                             children: country
                                                         }, country, false, {
                                                             fileName: "[project]/components/BookingModal.tsx",
-                                                            lineNumber: 262,
+                                                            lineNumber: 324,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 249,
+                                                lineNumber: 311,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 306,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4183,7 +4332,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Age *"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 268,
+                                                lineNumber: 330,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4198,13 +4347,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "25"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 271,
+                                                lineNumber: 333,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 267,
+                                        lineNumber: 329,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4217,14 +4366,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 290,
+                                                        lineNumber: 352,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Fitness Level *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 289,
+                                                lineNumber: 351,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -4239,7 +4388,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         children: "Select your fitness level"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 304,
+                                                        lineNumber: 366,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     fitnessLevels.map((level)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -4247,25 +4396,25 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                             children: level.label
                                                         }, level.value, false, {
                                                             fileName: "[project]/components/BookingModal.tsx",
-                                                            lineNumber: 306,
+                                                            lineNumber: 368,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 293,
+                                                lineNumber: 355,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 288,
+                                        lineNumber: 350,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 183,
+                                lineNumber: 245,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             isGeneralBooking && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4278,14 +4427,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 378,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             "Choose Your Destination *"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 315,
+                                        lineNumber: 377,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -4300,7 +4449,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Select your trekking destination"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 330,
+                                                lineNumber: 392,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             __TURBOPACK__imported__module__$5b$project$5d2f$data$2f$treks$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["allTreks"].map((trekOption)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -4314,19 +4463,19 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                     ]
                                                 }, trekOption.id, true, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 332,
+                                                    lineNumber: 394,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0)))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 319,
+                                        lineNumber: 381,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 314,
+                                lineNumber: 376,
                                 columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4342,14 +4491,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 344,
+                                                        lineNumber: 406,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Preferred Trek Start Date *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 343,
+                                                lineNumber: 405,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4362,13 +4511,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 className: `w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300 text-gray-900'}`
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 347,
+                                                lineNumber: 409,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 342,
+                                        lineNumber: 404,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4381,14 +4530,14 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 364,
+                                                        lineNumber: 426,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Group Size *"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 425,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -4408,24 +4557,24 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                         ]
                                                     }, i + 1, true, {
                                                         fileName: "[project]/components/BookingModal.tsx",
-                                                        lineNumber: 379,
+                                                        lineNumber: 441,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0)))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 367,
+                                                lineNumber: 429,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 424,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 341,
+                                lineNumber: 403,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4438,7 +4587,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Emergency Contact Name *"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 388,
+                                                lineNumber: 450,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4451,13 +4600,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "Emergency contact full name"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 391,
+                                                lineNumber: 453,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 387,
+                                        lineNumber: 449,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4467,7 +4616,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Emergency Contact Phone *"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 407,
+                                                lineNumber: 469,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4480,19 +4629,19 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "Emergency contact phone"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 410,
+                                                lineNumber: 472,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 406,
+                                        lineNumber: 468,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 386,
+                                lineNumber: 448,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4505,7 +4654,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Dietary Restrictions / Allergies"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 429,
+                                                lineNumber: 491,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -4517,13 +4666,13 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "Please mention any dietary restrictions, food allergies, or special meal requirements..."
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 432,
+                                                lineNumber: 494,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 428,
+                                        lineNumber: 490,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4533,7 +4682,7 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 children: "Special Requests / Additional Information"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 447,
+                                                lineNumber: 509,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -4545,19 +4694,40 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                                 placeholder: "Any special requests, medical conditions we should know about, accommodation preferences, or additional questions..."
                                             }, void 0, false, {
                                                 fileName: "[project]/components/BookingModal.tsx",
-                                                lineNumber: 450,
+                                                lineNumber: 512,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 446,
+                                        lineNumber: 508,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 427,
+                                lineNumber: 489,
+                                columnNumber: 15
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "text",
+                                name: "website",
+                                value: formData.website || '',
+                                onChange: handleInputChange,
+                                tabIndex: -1,
+                                autoComplete: "off",
+                                style: {
+                                    position: 'absolute',
+                                    left: '-9999px',
+                                    width: '1px',
+                                    height: '1px',
+                                    opacity: 0,
+                                    pointerEvents: 'none'
+                                },
+                                "aria-hidden": "true"
+                            }, void 0, false, {
+                                fileName: "[project]/components/BookingModal.tsx",
+                                lineNumber: 528,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4569,19 +4739,19 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                             children: "Important:"
                                         }, void 0, false, {
                                             fileName: "[project]/components/BookingModal.tsx",
-                                            lineNumber: 468,
+                                            lineNumber: 549,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         " This is a booking inquiry. Final confirmation and payment will be processed after our team contacts you. Travel insurance is mandatory for all treks. Minimum 50% advance payment required to confirm booking."
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/BookingModal.tsx",
-                                    lineNumber: 467,
+                                    lineNumber: 548,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 466,
+                                lineNumber: 547,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4594,87 +4764,62 @@ const BookingModal = ({ isOpen, onClose, trek })=>{
                                         children: "Cancel"
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 475,
+                                        lineNumber: 556,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "submit",
                                         disabled: isLoading,
-                                        className: "flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none",
+                                        className: "flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-blue-400 disabled:to-blue-400 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none",
                                         children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "flex items-center justify-center",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                    className: "animate-spin -ml-1 mr-3 h-5 w-5 text-white",
-                                                    xmlns: "http://www.w3.org/2000/svg",
-                                                    fill: "none",
-                                                    viewBox: "0 0 24 24",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                                            className: "opacity-25",
-                                                            cx: "12",
-                                                            cy: "12",
-                                                            r: "10",
-                                                            stroke: "currentColor",
-                                                            strokeWidth: "4"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/BookingModal.tsx",
-                                                            lineNumber: 494,
-                                                            columnNumber: 25
-                                                        }, ("TURBOPACK compile-time value", void 0)),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                            className: "opacity-75",
-                                                            fill: "currentColor",
-                                                            d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/BookingModal.tsx",
-                                                            lineNumber: 495,
-                                                            columnNumber: 25
-                                                        }, ("TURBOPACK compile-time value", void 0))
-                                                    ]
-                                                }, void 0, true, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                                    className: "animate-spin mr-2",
+                                                    size: 20
+                                                }, void 0, false, {
                                                     fileName: "[project]/components/BookingModal.tsx",
-                                                    lineNumber: 493,
+                                                    lineNumber: 574,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "Processing..."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/BookingModal.tsx",
-                                            lineNumber: 492,
+                                            lineNumber: 573,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0)) : 'Book Now'
                                     }, void 0, false, {
                                         fileName: "[project]/components/BookingModal.tsx",
-                                        lineNumber: 486,
+                                        lineNumber: 567,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/BookingModal.tsx",
-                                lineNumber: 474,
+                                lineNumber: 555,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/BookingModal.tsx",
-                        lineNumber: 181,
+                        lineNumber: 218,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/components/BookingModal.tsx",
-                    lineNumber: 142,
+                    lineNumber: 179,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/BookingModal.tsx",
-            lineNumber: 112,
+            lineNumber: 149,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/BookingModal.tsx",
-        lineNumber: 111,
+        lineNumber: 148,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

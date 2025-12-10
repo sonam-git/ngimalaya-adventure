@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import type { Trek } from '../data/treks';
 import { useTheme } from '../contexts/ThemeContext';
+import { getImageSrc } from '../utils/imageHelpers';
 import BookingModal from './BookingModal';
 import CustomTrekModal from './CustomTrekModal';
 import ContactModal from './ContactModal';
@@ -35,7 +36,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
     switch (difficulty.toLowerCase()) {
       case 'easy': return 'text-green-600 bg-green-100 dark:bg-green-900/20 dark:text-green-400';
       case 'moderate': return 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/20 dark:text-yellow-400';
-      case 'challenging': return 'text-orange-600 bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400';
+      case 'challenging': return 'text-blue-600 bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400';
       case 'strenuous': return 'text-red-600 bg-red-100 dark:bg-red-900/20 dark:text-red-400';
       default: return 'text-gray-600 bg-gray-100 dark:bg-gray-800 dark:text-gray-400';
     }
@@ -53,7 +54,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 isDarkMode 
                   ? 'rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)' 
                   : 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)'
-              }), url("${trek.image}")`
+              }), url("${getImageSrc(trek.image)}")`
             }}
           />
           <div className="absolute inset-0 flex items-end">
@@ -99,7 +100,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   <p className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.groupSize}</p>
                 </div>
                 <div className="text-center">
-                  <Thermometer className={`mx-auto mb-2 ${isDarkMode ? 'text-orange-400' : 'text-orange-600'}`} size={24} />
+                  <Thermometer className={`mx-auto mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
                   <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best Season</p>
                   <p className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.season}</p>
                 </div>
@@ -204,7 +205,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                     <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs">
                       Max Altitude: {trek.altitude}
                     </span>
-                    <span className="bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-400 px-2 py-1 rounded text-xs">
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
                       {trek.difficulty} Level
                     </span>
                   </div>

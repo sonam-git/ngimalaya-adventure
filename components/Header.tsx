@@ -2,586 +2,262 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, Mail, Facebook, Instagram, MessageCircle, Home, User, Mountain, Settings, MessageSquare, ArrowLeft } from 'lucide-react';
+import { Menu, X, Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { getImageSrc } from '../utils/imageHelpers';
 import lightImage from '../assets/images/logo-light.png';
 import darkImage from '../assets/images/logo-dark.png';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
+import PrayerFlagBorder from './PrayerFlagBorder';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
 
-  // Get current view based on pathname
-  const getCurrentView = () => {
-    const path = pathname;
-    if (path === '/') return 'home';
-    if (path === '/treks') return 'treks';
-    if (path === '/regions') return 'treks';
-    if (path.startsWith('/treks/regions/')) return 'region-treks';
-    if (path.startsWith('/regions/')) return 'region-treks';
-    if (path.startsWith('/treks/')) return 'trek-detail';
-    if (path === '/about') return 'about';
-    if (path === '/services') return 'services';
-    if (path === '/contact') return 'contact';
-    return 'home';
-  };
-
-  const currentView = getCurrentView();
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position only for home view
-      if (currentView === 'home') {
-        const sections = ['home', 'about', 'treks', 'services', 'contact'];
-        const scrollPosition = window.scrollY + 200;
-        
-        for (const section of sections) {
-          const element = document.getElementById(section);
-          if (element) {
-            const offsetTop = element.offsetTop;
-            const offsetHeight = element.offsetHeight;
-            
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-              setActiveSection(section);
-              break;
-            }
-          }
-        }
-      } else {
-        // For non-home pages, set active section based on current view
-        setActiveSection(currentView);
-      }
     };
-    
-    // Set initial active section based on current view
-    if (currentView !== 'home') {
-      setActiveSection(currentView);
-    }
-    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentView]);
+  }, []);
 
-  // Define navigation items based on current view
-  const getNavItems = () => {
-    switch (currentView) {
-      case 'treks':
-        return [
-          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
-          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
-          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
-          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
-          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
-        ];
-      case 'region-treks':
-        return [
-          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
-          { name: 'Back to Regions', href: '/treks', icon: ArrowLeft, id: 'back-regions', isRouterLink: true }
-        ];
-      case 'trek-detail':
-        return [
-          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
-          { name: 'Back to Regions', href: '/treks', icon: ArrowLeft, id: 'back-regions', isRouterLink: true }
-        ];
-      case 'about':
-      case 'services':
-      case 'contact':
-        return [
-          { name: 'Home', href: '/', icon: Home, id: 'home', isRouterLink: true },
-          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
-          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
-          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
-          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
-        ];
-      default: // 'home'
-        return [
-          { name: 'Home', href: '#home', icon: Home, id: 'home', isRouterLink: false },
-          { name: 'About', href: '/about', icon: User, id: 'about', isRouterLink: true },
-          { name: 'Treks', href: '/treks', icon: Mountain, id: 'treks', isRouterLink: true },
-          { name: 'Services', href: '/services', icon: Settings, id: 'services', isRouterLink: true },
-          { name: 'Contact', href: '/contact', icon: MessageSquare, id: 'contact', isRouterLink: true }
-        ];
-    }
+  const navItems = [
+    { name: 'Home', href: '/', icon: Home },
+    { name: 'About', href: '/about', icon: User },
+    { name: 'Trekking', href: '/treks', icon: Mountain },
+    { name: 'Peak', href: '/peak-expedition', icon: Flag },
+    { name: 'Safari', href: '/safari', icon: Binoculars },
+    { name: 'Contact', href: '/contact', icon: Mail },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
   };
-
-  const navItems = getNavItems();
 
   return (
     <>
-      {/* Top bar with contact info and social icons - Enhanced UI */}
-      <div className="fixed top-0 w-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-3 px-4 text-sm z-50 shadow-lg border-b border-blue-700/30">
-        <div className="container mx-auto flex justify-between items-center">
-          {/* Contact Info */}
-          <div className="flex items-center space-x-3 md:space-x-6">
-            <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
-              <Phone size={14} className="text-blue-200" />
-              <span className="hidden sm:inline text-blue-100 font-medium">+977 980-3499156</span>
-              <span className="sm:hidden text-blue-100 font-medium">Call Us</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
-              <Mail size={14} className="text-blue-200" />
-              <span className="hidden md:inline text-blue-100 font-medium">ngiman81@gmail.com</span>
-              <span className="md:hidden hidden sm:inline text-blue-100 font-medium">Email</span>
-            </div>
-          </div>
-
-          {/* Center Tagline */}
-          <div className="text-sm hidden lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-            Trek Higher | Breathe Deeper | Live Fuller.
-          </div>
-     <div className="text-sm  lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-          <div className="text-sm lg:block font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-cyan-200">
-            ལྔི་མ་ལ་ཡ། བརྡ་དོན་ནེ་པཱལ།
-          </div>
-          </div>
-          {/* Social Icons */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-blue-200 hidden md:inline mr-2 font-medium">Follow Us:</span>
-            <div className="flex items-center space-x-1 bg-blue-800/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-blue-700/30">
-              <a 
-                href="https://facebook.com/ngimalayaadventure" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
-                aria-label="Follow us on Facebook"
-              >
-                <Facebook size={16} />
-              </a>
-              <a 
-                href="https://instagram.com/ngimalayaadventure" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
-                aria-label="Follow us on Instagram"
-              >
-                <Instagram size={16} />
-              </a>
-              <a 
-                href="https://wa.me/9779841234567" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-all duration-200 hover:scale-110 transform p-1 rounded-full hover:bg-blue-700/50"
-                aria-label="Contact us on WhatsApp"
-              >
-                <MessageCircle size={16} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main header */}
-      <header className={`fixed top-[52px] w-full z-40 transition-all duration-300 ${
-        currentView === 'home'
-          ? isScrolled 
-            ? `${isDarkMode ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm shadow-lg` 
-            : 'bg-transparent'
-          : `${isDarkMode ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm shadow-lg`
+      {/* Main Header */}
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? isDarkMode 
+            ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
+            : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
+          : isDarkMode 
+            ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900' 
+            : 'bg-gradient-to-r from-white via-blue-50 to-white'
       }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-6">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 md:space-x-4 group relative">
-              {/* Logo Container with Enhanced Styling */}
-              <div className="relative">
-                <img 
-                  src={getImageSrc(isDarkMode ? darkImage : lightImage)} 
-                  alt="Ngimalaya Adventure Logo" 
-                  className="h-20 w-25 md:h-25 md:w-25 object-contain group-hover:scale-110 transition-all duration-300 drop-shadow-lg"
+        <nav className="container mx-auto px-4 relative">
+          <div className="flex items-center justify-between h-24 md:h-28">
+            {/* Logo and Title */}
+            <Link href="/" className="flex items-center gap-3 group">
+              {/* Logo Column with Sun-like Circle Background */}
+              <div className={`relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${
+                isDarkMode 
+                  ? 'bg-gray-900 border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.3),0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4),0_0_50px_rgba(255,255,255,0.3)]' 
+                  : 'bg-white border-2 border-blue-800 shadow-[0_0_20px_rgba(30,64,175,0.3),0_0_40px_rgba(30,64,175,0.2)] group-hover:shadow-[0_0_25px_rgba(30,64,175,0.4),0_0_50px_rgba(30,64,175,0.3)]'
+              }`}>
+                {/* Ringing Circle Animation on Hover */}
+                <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${
+                  isDarkMode ? 'border-2 border-white' : 'border-2 border-blue-800'
+                }`} style={{ animationDuration: '1s' }}></div>
+                
+                <img
+                  src={getImageSrc(isDarkMode ? darkImage : lightImage)}
+                  alt="Ngimalaya Adventure Nepal"
+                  className="h-14 md:h-16 lg:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
                 />
               </div>
               
-              {/* Brand Text with Enhanced Typography */}
-              <div className="flex flex-col">
-                <h1 className={`font-heading text-responsive-xl font-bold tracking-tight leading-none transition-all duration-300 ${
-                  currentView === 'home'
-                    ? isScrolled 
-                      ? `${isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}` 
-                      : 'text-white group-hover:text-blue-200'
-                    : `${isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`
+              {/* Title Column - Visible on all screens */}
+              <div className="flex flex-col justify-center gap-1 min-w-[160px] sm:min-w-[220px]">
+                {/* English */}
+                <div className={`font-display font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
+                  isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
                 }`}>
                   Ngimalaya Adventure
-                </h1>
-                <div className="flex items-center space-x-2 mt-1">
-                  <p className={`font-body text-responsive-sm font-medium transition-colors duration-300 ${
-                    currentView === 'home'
-                      ? isScrolled ? `${isDarkMode ? 'text-gray-300' : 'text-gray-500'}` : 'text-gray-300'
-                      : `${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`
-                  }`}>
-                    Nepal
-                  </p>
-                  <div className={`w-1 h-1 rounded-full transition-colors duration-300 ${
-                    currentView === 'home'
-                      ? isScrolled ? 'bg-blue-400' : 'bg-blue-300'
-                      : 'bg-blue-400'
+                </div>
+                {/* Nepali Script */}
+                <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
+                  isDarkMode ? 'text-gray-300 group-hover:text-primary-300' : 'text-blue-800 group-hover:text-primary-500'
+                }`} style={{ letterSpacing: '0.25em' }}>
+                  ङिमालय एडभेन्चर
+                </div>
+                {/* Tibetan Script with Sliding Line */}
+                <div className="relative">
+                  <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
+                    isDarkMode ? 'text-gray-400 group-hover:text-primary-300' : 'text-blue-700 group-hover:text-primary-500'
+                  }`} style={{ letterSpacing: '0.4em' }}>
+                    སྤོ་ལོ་ཧི་མ་ལ་ཡ
+                  </div>
+                  {/* Sliding Horizontal Line */}
+                  <div className={`absolute -bottom-1 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out ${
+                    isDarkMode ? 'bg-primary-400' : 'bg-yellow-600'
                   }`}></div>
-                  <p className={`font-body text-responsive-xs font-medium transition-colors duration-300 ${
-                    currentView === 'home'
-                      ? isScrolled ? 'text-gray-400' : 'text-gray-400'
-                      : 'text-gray-400'
-                  }`}>
-                    Since 2016
-                  </p>
                 </div>
               </div>
-              
-              {/* Animated underline */}
-              <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-300 ${
-                'w-0 group-hover:w-full'
-              }`}></div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => {
-                const IconComponent = item.icon;
-                // Updated active logic to handle both home scroll sections and route-based pages
-                const isActive = currentView === 'home' 
-                  ? activeSection === item.id 
-                  : currentView === item.id;
-                const isBackButton = item.name.startsWith('Back');
-                const isHomeButton = item.name === 'Home' && currentView !== 'home';
-                
-                // Define different button styles based on type
-                const getButtonStyles = () => {
-                  if (isActive) {
-                    return 'bg-blue-600 text-white shadow-lg shadow-blue-600/25 border-2 border-blue-500';
-                  }
-                  
-                  if (isBackButton) {
-                    return isScrolled 
-                      ? `${isDarkMode 
-                          ? 'bg-orange-600/90 text-white hover:bg-orange-500 border-2 border-orange-500/50 shadow-lg shadow-orange-600/20' 
-                          : 'bg-orange-600 text-white hover:bg-orange-700 border-2 border-orange-500 shadow-lg shadow-orange-600/20'
-                        }` 
-                      : 'bg-orange-600/90 text-white hover:bg-orange-500 border-2 border-orange-400/50 backdrop-blur-sm shadow-lg shadow-orange-600/25';
-                  }
-                  
-                  if (isHomeButton) {
-                    return isScrolled 
-                      ? `${isDarkMode 
-                          ? 'bg-green-600/90 text-white hover:bg-green-500 border-2 border-green-500/50 shadow-lg shadow-green-600/20' 
-                          : 'bg-green-600 text-white hover:bg-green-700 border-2 border-green-500 shadow-lg shadow-green-600/20'
-                        }` 
-                      : 'bg-green-600/90 text-white hover:bg-green-500 border-2 border-green-400/50 backdrop-blur-sm shadow-lg shadow-green-600/25';
-                  }
-                  
-                  // Regular menu items
-                  if (currentView === 'home') {
-                    return isScrolled 
-                      ? `${isDarkMode 
-                          ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-lg border-2 border-transparent hover:border-blue-500/30' 
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200'
-                        }` 
-                      : 'text-white hover:text-blue-200 hover:bg-white/10 backdrop-blur-sm hover:shadow-lg border-2 border-transparent hover:border-white/20';
-                  } else {
-                    // For non-home pages (about, services, contact)
-                    return isDarkMode 
-                      ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-lg border-2 border-transparent hover:border-blue-500/30' 
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200';
-                  }
-                };
-                
-                return item.isRouterLink ? (
+                const Icon = item.icon;
+                const active = isActive(item.href);
+                return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={() => {
-                      // Ensure clean navigation by preventing any scroll behavior
-                      if (item.href.startsWith('/')) {
-                        window.scrollTo(0, 0);
-                      }
-                    }}
-                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-heading font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
+                    className={`group flex flex-col items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ${
+                      active
+                        ? isDarkMode
+                          ? 'bg-primary-600/20 text-primary-400'
+                          : 'bg-primary-50 text-primary-600'
+                        : isDarkMode
+                          ? 'text-gray-300 hover:bg-gray-800 hover:text-primary-400'
+                          : 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
+                    }`}
                   >
-                    <IconComponent 
-                      size={18} 
-                      className={`transition-all duration-300 ${
-                        isActive || isBackButton || isHomeButton
-                          ? 'text-white' 
-                          : 'group-hover:scale-110'
-                      }`} 
-                    />
-                    <span className="hidden lg:inline">{item.name}</span>
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                    )}
-                    
-                    {/* Enhanced glow effect for special buttons */}
-                    {(isBackButton || isHomeButton) && (
-                      <div className="absolute inset-0 rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"
-                           style={{
-                             background: isBackButton 
-                               ? 'linear-gradient(45deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
-                               : 'linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
-                           }}>
-                      </div>
-                    )}
+                    <Icon size={22} className={`mb-1 transition-transform duration-300 group-hover:scale-110 ${
+                      active ? 'text-primary-500' : ''
+                    }`} />
+                    <span className="font-display font-semibold uppercase tracking-wider text-sm">
+                      {item.name}
+                    </span>
                   </Link>
-                ) : (
-                  <button
-                    key={item.name}
-                    onClick={() => {
-                      setActiveSection(item.id);
-                      // For home view, scroll to section
-                      if (currentView === 'home') {
-                        const element = document.getElementById(item.id);
-                        if (element) {
-                          element.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                          });
-                        }
-                      }
-                    }}
-                    className={`group relative flex items-center space-x-2 px-4 py-2.5 rounded-xl font-heading font-semibold transition-all duration-300 transform hover:scale-105 ${getButtonStyles()}`}
-                  >
-                    <IconComponent 
-                      size={18} 
-                      className={`transition-all duration-300 ${
-                        isActive || isBackButton || isHomeButton
-                          ? 'text-white' 
-                          : 'group-hover:scale-110'
-                      }`} 
-                    />
-                    <span className="hidden lg:inline">{item.name}</span>
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                    )}
-                    
-                    {/* Enhanced glow effect for special buttons */}
-                    {(isBackButton || isHomeButton) && (
-                      <div className="absolute inset-0 rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"
-                           style={{
-                             background: isBackButton 
-                               ? 'linear-gradient(45deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
-                               : 'linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
-                           }}>
-                      </div>
-                    )}
-                  </button>
                 );
               })}
               
-              <div className="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-2"></div>
-              
-              <ThemeToggle />
-              
+              {/* Book Now Button */}
               <button 
                 onClick={() => setIsBookingModalOpen(true)}
-                className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25 group overflow-hidden"
+                className="group flex flex-col items-center justify-center px-5 py-2 ml-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                <span className="relative z-10">Book Now</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <Calendar size={22} className="mb-1 transition-transform duration-300 group-hover:scale-110" />
+                <span className="font-display font-bold uppercase tracking-wider text-sm">
+                  Book Now
+                </span>
               </button>
-            </nav>
 
-            {/* Mobile menu button */}
-            <button
-              className={`md:hidden mr-3 p-2 rounded-lg transition-all duration-300 hover:bg-white/10 ${
-                currentView === 'home'
-                  ? isScrolled 
-                    ? `${isDarkMode ? 'text-white' : 'text-gray-900'}` 
-                    : 'text-white'
-                  : `${isDarkMode ? 'text-white' : 'text-gray-900'}`
-              }`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
-            </button>
-          </div>
-        </div>
+              {/* Theme Toggle */}
+              <div className="ml-3">
+                <ThemeToggle />
+              </div>
+            </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className={`md:hidden border-t backdrop-blur-md ${
-            isDarkMode 
-              ? 'bg-gray-800/95 border-gray-700' 
-              : 'bg-white/95 border-gray-200'
-          }`}>
-            <div className="px-4 py-4 space-y-2">
-              {navItems.map((item) => {
-                const IconComponent = item.icon;
-                // Updated active logic to handle both home scroll sections and route-based pages
-                const isActive = currentView === 'home' 
-                  ? activeSection === item.id 
-                  : currentView === item.id;
-                const isBackButton = item.name.startsWith('Back');
-                const isHomeButton = item.name === 'Home' && currentView !== 'home';
-                
-                // Define different mobile button styles based on type
-                const getMobileButtonStyles = () => {
-                  if (isActive) {
-                    return 'bg-blue-600 text-white shadow-lg border-2 border-blue-500';
-                  }
-                  
-                  if (isBackButton) {
-                    return isDarkMode 
-                      ? 'bg-orange-600/90 text-white hover:bg-orange-500 border-2 border-orange-500/50 shadow-lg shadow-orange-600/20' 
-                      : 'bg-orange-600 text-white hover:bg-orange-700 border-2 border-orange-500 shadow-lg shadow-orange-600/20';
-                  }
-                  
-                  if (isHomeButton) {
-                    return isDarkMode 
-                      ? 'bg-green-600/90 text-white hover:bg-green-500 border-2 border-green-500/50 shadow-lg shadow-green-600/20' 
-                      : 'bg-green-600 text-white hover:bg-green-700 border-2 border-green-500 shadow-lg shadow-green-600/20';
-                  }
-                  
-                  // Regular menu items
-                  return isDarkMode 
-                    ? 'text-gray-200 hover:text-white hover:bg-blue-600/20 hover:shadow-md border-2 border-transparent hover:border-blue-500/30' 
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-200';
-                };
-                
-                return item.isRouterLink ? (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      // Ensure clean navigation by preventing any scroll behavior
-                      if (item.href.startsWith('/')) {
-                        window.scrollTo(0, 0);
-                      }
-                    }}
-                    className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden ${getMobileButtonStyles()}`}
-                  >
-                    <IconComponent 
-                      size={20} 
-                      className={`transition-all duration-300 z-10 ${
-                        isActive || isBackButton || isHomeButton
-                          ? 'text-white' 
-                          : 'group-hover:scale-110'
-                      }`} 
-                    />
-                    <span className="font-semibold z-10">{item.name}</span>
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse z-10"></div>
-                    )}
-                    
-                    {/* Enhanced mobile button effects */}
-                    {(isBackButton || isHomeButton) && (
-                      <>
-                        <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                             style={{
-                               background: isBackButton 
-                                 ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
-                                 : 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
-                             }}>
-                        </div>
-                        <div className="absolute top-0 right-0 w-8 h-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300 transform rotate-12">
-                          <div className="w-full h-full rounded-full"
-                               style={{
-                                 background: isBackButton 
-                                   ? 'radial-gradient(circle, rgba(251, 146, 60, 0.6), transparent)' 
-                                   : 'radial-gradient(circle, rgba(74, 222, 128, 0.6), transparent)'
-                               }}>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.name}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      setActiveSection(item.id);
-                      // For home view, scroll to section
-                      if (currentView === 'home') {
-                        const element = document.getElementById(item.id);
-                        if (element) {
-                          element.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                          });
-                        }
-                      }
-                    }}
-                    className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden ${getMobileButtonStyles()}`}
-                  >
-                    <IconComponent 
-                      size={20} 
-                      className={`transition-all duration-300 z-10 ${
-                        isActive || isBackButton || isHomeButton
-                          ? 'text-white' 
-                          : 'group-hover:scale-110'
-                      }`} 
-                    />
-                    <span className="font-semibold z-10">{item.name}</span>
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse z-10"></div>
-                    )}
-                    
-                    {/* Enhanced mobile button effects */}
-                    {(isBackButton || isHomeButton) && (
-                      <>
-                        <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                             style={{
-                               background: isBackButton 
-                                 ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.3), rgba(251, 146, 60, 0.3))' 
-                                 : 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(74, 222, 128, 0.3))'
-                             }}>
-                        </div>
-                        <div className="absolute top-0 right-0 w-8 h-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300 transform rotate-12">
-                          <div className="w-full h-full rounded-full"
-                               style={{
-                                 background: isBackButton 
-                                   ? 'radial-gradient(circle, rgba(251, 146, 60, 0.6), transparent)' 
-                                   : 'radial-gradient(circle, rgba(74, 222, 128, 0.6), transparent)'
-                               }}>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </button>
-                );
-              })}
+            {/* Mobile Controls */}
+            <div className="lg:hidden flex items-center gap-3">
+              {/* Theme Toggle for Mobile */}
+              <ThemeToggle />
               
-              <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center justify-between space-x-3">
-                  {/* Book Now button - 75% width */}
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`relative p-2 rounded-lg transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? 'bg-primary-500 text-white'
+                    : isDarkMode 
+                      ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {isMobileMenuOpen ? (
+                  <X size={24} className="transition-transform duration-300 rotate-90" />
+                ) : (
+                  <Menu size={24} className="transition-transform duration-300" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className={`lg:hidden absolute top-full left-0 right-0 animate-slideDown shadow-2xl ${
+              isDarkMode ? 'bg-gray-900' : 'bg-white'
+            }`}>
+              <div className={`py-4 border-t ${
+                isDarkMode ? 'border-gray-700' : 'border-gray-200'
+              }`}>
+                {navItems.map((item, index) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center gap-4 py-4 px-4 mx-2 mb-2 rounded-xl transition-all duration-300 transform hover:scale-[1.02] ${
+                        active
+                          ? isDarkMode
+                            ? 'bg-gradient-to-r from-primary-600/30 to-primary-500/20 text-primary-200 shadow-lg'
+                            : 'bg-gradient-to-r from-primary-100 to-primary-50 text-primary-700 shadow-md'
+                          : isDarkMode
+                            ? 'text-gray-100 hover:bg-gray-800 hover:text-primary-200'
+                            : 'text-gray-900 hover:bg-gray-50 hover:text-primary-700'
+                      }`}
+                      style={{ 
+                        animationDelay: `${index * 50}ms`,
+                        animation: 'fadeInUp 0.3s ease-out forwards',
+                        opacity: 0
+                      }}
+                    >
+                      <div className={`p-2 rounded-lg ${
+                        active 
+                          ? 'bg-primary-500 text-white' 
+                          : isDarkMode 
+                            ? 'bg-gray-700' 
+                            : 'bg-gray-200'
+                      }`}>
+                        <Icon size={22} />
+                      </div>
+                      <div className="flex-1">
+                        <span className="font-display font-bold uppercase tracking-wider text-base block">
+                          {item.name}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+                
+                <div className="px-4 pt-4 mt-2 border-t border-gray-200 dark:border-gray-700">
                   <button 
                     onClick={() => {
                       setIsBookingModalOpen(true);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="flex-1 relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group overflow-hidden"
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 font-display font-bold uppercase tracking-wider text-base transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl flex items-center justify-center gap-3 transform hover:scale-[1.02]"
+                    style={{ 
+                      animationDelay: `${navItems.length * 50}ms`,
+                      animation: 'fadeInUp 0.3s ease-out forwards',
+                      opacity: 0
+                    }}
                   >
-                    <span className="relative z-10">Book Now</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom"></div>
+                    <Calendar size={22} />
+                    Book Now
                   </button>
-                  
-                  {/* Theme toggle - 25% width */}
-                  <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-700 px-3 py-3 rounded-xl">
-                    <ThemeToggle />
-                  </div>
+                </div>
+                
+                {/* Prayer Flag Border at Bottom of Mobile Menu */}
+                <div className="mt-2">
+                  <PrayerFlagBorder />
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </nav>
       </header>
 
+      {/* Prayer Flag Border - Sticky under header */}
+      <div className="sticky top-[96px] md:top-[112px] z-40">
+        <PrayerFlagBorder />
+      </div>
+
       {/* Booking Modal */}
-      <BookingModal 
+      <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
       />
