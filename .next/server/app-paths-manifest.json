@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/api/booking/route": "app/api/booking/route.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/customtrek/route": "app/api/customtrek/route.js",
+  "/api/inquiry/route": "app/api/inquiry/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/services/page": "app/services/page.js",
+  "/test/page": "app/test/page.js",
+  "/treks/[trekId]/page": "app/treks/[trekId]/page.js",
+  "/treks/page": "app/treks/page.js",
+  "/treks/regions/[regionId]/page": "app/treks/regions/[regionId]/page.js"
+}
