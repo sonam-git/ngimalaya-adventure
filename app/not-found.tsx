@@ -1,13 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function NotFound() {
   return (
     <main className="min-h-screen">
-      <Header />
       <div className="min-h-screen pt-32 pb-16 flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-900 dark:to-gray-800">
         <div className="text-center px-4">
           <h1 className="text-9xl font-bold text-blue-600 mb-4">404</h1>
@@ -33,7 +30,6 @@ export default function NotFound() {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

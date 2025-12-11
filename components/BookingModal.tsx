@@ -146,9 +146,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white'
-      }`}>
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-gray-800">
         {/* Header */}
         <div className={`sticky top-0 flex items-center justify-between p-6 border-b ${
           isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'

@@ -1,9 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation'
-import Header from '@/components/Header'
 import RegionsExplorer from '@/components/RegionsExplorer'
-import Footer from '@/components/Footer'
 import type { Region } from '@/data/treks'
 
 export default function TreksPage() {
@@ -15,9 +13,7 @@ export default function TreksPage() {
 
   return (
     <main className="min-h-screen">
-      <Header />
       <RegionsExplorer onRegionSelect={handleRegionSelect} />
-      <Footer />
     </main>
   )
 }

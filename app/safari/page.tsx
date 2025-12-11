@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import BookingModal from '../../components/BookingModal';
 
 const SafariPage: React.FC = () => {
@@ -86,7 +84,6 @@ const SafariPage: React.FC = () => {
 
   return (
     <>
-      <Header />
       <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
         {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
@@ -297,7 +294,6 @@ const SafariPage: React.FC = () => {
         </div>
       </div>
     </div>
-    <Footer />
     <BookingModal
       isOpen={isBookingModalOpen}
       onClose={() => setIsBookingModalOpen(false)}

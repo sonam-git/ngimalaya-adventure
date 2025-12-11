@@ -1,10 +1,9 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import Header from '@/components/Header';
 import TrekDetail from '@/components/TrekDetail';
-import Footer from '@/components/Footer';
-import { allTreks } from '@/data/treks';
+import RegionMenu from '@/components/RegionMenu';
+import { allTreks, trekRegions } from '@/data/treks';
 
 export default function TrekDetailPage() {
   const params = useParams();
@@ -20,7 +19,6 @@ export default function TrekDetailPage() {
   if (!trek) {
     return (
       <main className="min-h-screen">
-        <Header />
         <div className="min-h-screen pt-32 pb-16 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -37,16 +35,23 @@ export default function TrekDetailPage() {
             </button>
           </div>
         </div>
-        <Footer />
       </main>
     );
   }
 
+  const currentRegion = trekRegions.find(r => r.name === trek.region);
+
   return (
     <main className="min-h-screen">
-      <Header />
+      <RegionMenu
+        regions={trekRegions.map(r => r.name)}
+        selectedRegion={currentRegion ? currentRegion.name : ''}
+        onSelect={regionName => {
+          const found = trekRegions.find(r => r.name === regionName);
+          if (found) router.push(`/treks/regions/${found.id}`);
+        }}
+      />
       <TrekDetail trek={trek} />
-      <Footer />
     </main>
   );
 }

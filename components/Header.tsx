@@ -40,7 +40,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Main Header */}
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         isScrolled 
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
@@ -171,11 +171,14 @@ const Header: React.FC = () => {
             </div>
           </div>
 
+          {/* Prayer flag border: always visible below header, both mobile and desktop */}
+          <div className="w-full">
+            <PrayerFlagBorder />
+          </div>
+
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className={`lg:hidden absolute top-full left-0 right-0 animate-slideDown shadow-2xl ${
-              isDarkMode ? 'bg-gray-900' : 'bg-white'
-            }`}>
+            <div className="md:hidden absolute left-0 right-0 top-full z-50 bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 animate-slideDown">
               <div className={`py-4 border-t ${
                 isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
@@ -237,21 +240,16 @@ const Header: React.FC = () => {
                     Book Now
                   </button>
                 </div>
-                
-                {/* Prayer Flag Border at Bottom of Mobile Menu */}
-                <div className="mt-2">
-                  <PrayerFlagBorder />
-                </div>
+              </div>
+
+              {/* Prayer flag border at the bottom of mobile menu */}
+              <div className="relative w-full z-20">
+                <PrayerFlagBorder />
               </div>
             </div>
           )}
         </nav>
       </header>
-
-      {/* Prayer Flag Border - Sticky under header */}
-      <div className="sticky top-[96px] md:top-[112px] z-40">
-        <PrayerFlagBorder />
-      </div>
 
       {/* Booking Modal */}
       <BookingModal

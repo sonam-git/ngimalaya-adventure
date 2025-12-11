@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import TreksSection from '@/components/TreksSection'
@@ -11,7 +10,6 @@ import SafariSection from '@/components/SafariSection'
 import ReviewsSection from '@/components/ReviewsSection'
 import ServicesSection from '@/components/ServicesSection'
 import ContactSection from '@/components/ContactSection'
-import Footer from '@/components/Footer'
 import BookingModal from '@/components/BookingModal'
 
 export default function HomePage() {
@@ -28,7 +26,6 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen">
-      <Header />
       <Hero 
         onExploreTreks={handleExploreTreks}
         onBookNow={handleBookNow}
@@ -40,7 +37,6 @@ export default function HomePage() {
       <ReviewsSection />
       <ServicesSection onBookNow={handleBookNow} />
       <ContactSection />
-      <Footer />
       
       {/* Booking Modal */}
       <BookingModal
