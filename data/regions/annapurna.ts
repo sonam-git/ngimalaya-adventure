@@ -18,7 +18,7 @@ export const annapurnaRegionTreks: Trek[] = [
       'Hot springs at Jhinu Danda',
       'Panoramic views of Annapurna massif'
     ],
-    image: '/assets/abc.jpeg',
+    image: '/assets/images/abc.jpeg',
     price: '$1,350',
     season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '1-12 people',
@@ -169,7 +169,8 @@ export const annapurnaRegionTreks: Trek[] = [
       'Appropriate trekking gear and clothing',
       'Positive attitude and flexibility for mountain conditions',
       'No severe medical conditions (heart, lung problems)'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'annapurna-circuit',
@@ -188,9 +189,9 @@ export const annapurnaRegionTreks: Trek[] = [
       'Tilicho Lake (optional) - Highest lake in the world',
       'Views of Annapurna, Dhaulagiri, and Manaslu ranges'
     ],
-    image: '/assets/thorangla-pass.jpeg',
+    image: '/assets/images/thorangla-pass.jpeg',
     price: '$1,299',
-    season: 'Oct-Nov, Mar-Apr (Best: Oct-Nov)',
+    season: 'Oct-Nov | Mar-Apr  [Best: Oct-Nov]',
     groupSize: '2-10 people',
     region: 'Annapurna Region',
     itinerary: [
@@ -361,7 +362,8 @@ export const annapurnaRegionTreks: Trek[] = [
       'Appropriate high-altitude trekking gear',
       'Mental preparedness for pass crossing',
       'No severe medical conditions'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'khopra-ridge',
@@ -384,7 +386,7 @@ export const annapurnaRegionTreks: Trek[] = [
       'Rhododendron forests and wildlife spotting opportunities',
       'Authentic teahouse accommodation experience'
     ],
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/assets/images/khopra-ridge.jpg',
     price: '$1,299',
     season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '2-12 people',
@@ -523,7 +525,8 @@ export const annapurnaRegionTreks: Trek[] = [
       'Mental preparedness for community-based tourism',
       'Respect for local culture and traditions',
       'Flexibility for weather conditions'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'mardi-himal',
@@ -667,6 +670,133 @@ export const annapurnaRegionTreks: Trek[] = [
       'Mental preparedness for teahouse accommodation',
       'Respect for local culture and environment',
       'Flexibility for weather and trail conditions'
-    ]
+    ],
+    adventureType: 'trekking'
+  },
+
+  {
+      //create for GorePani Poon Hill Trek  
+    id: 'poon-hill-trek',
+    name: 'Ghorepani Poon Hill Trek',
+    duration: '7 Days',
+    altitude: '3,210m (10,531ft)',
+    difficulty: 'Moderate',
+    description: 'The Ghorepani Poon Hill Trek is a popular and accessible trek in the Annapurna region, known for its stunning sunrise views over the Himalayas from Poon Hill. This trek takes you through charming villages, lush rhododendron forests, and offers panoramic vistas of some of the highest peaks in the world.',
+    highlights: [
+      'Poon Hill (3,210m) - Spectacular sunrise viewpoint',
+      'Views of Annapurna South, Hiunchuli, Machapuchare (Fishtail), Dhaulagiri, and Nilgiri',
+      'Charming Gurung villages like Ghorepani and Tadapani',
+      'Lush rhododendron forests (especially beautiful in spring)',
+      'Diverse flora and fauna',
+      'Traditional teahouse accommodation',
+      'Cultural experiences with local communities',
+      'Short and manageable trekking days',
+      'Suitable for beginners and families',
+      'Scenic landscapes with terraced fields and rivers'
+    ],
+    image: '/assets/images/poonhill.webp',
+    price: '$799',              
+    season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
+    groupSize: '2-10 people',
+    region: 'Annapurna Region',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Kathmandu (1,350m)',
+        description: 'Arrival at Tribhuvan International Airport, transfer to hotel. Evening welcome dinner with trek briefing.',
+        accommodation: 'Hotel',
+        meals: 'Welcome Dinner'
+      },
+      {
+        day: 2,
+        title: 'Drive to Pokhara (823m)',
+        description: 'Scenic drive to Pokhara, the gateway to the Annapurna region. Rest and prepare for the trek.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast',
+        walkingHours: '6-7 hours drive'
+      },
+      {
+        day: 3,
+        title: 'Drive to Nayapul, Trek to Ghorepani (2,874m)',
+        description: 'Drive to Nayapul and begin trekking through beautiful landscapes to reach Ghorepani.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '5-6 hours'       
+      },
+      {
+        day: 4,
+        title: 'Ghorepani to Poon Hill (3,210m) and Trek to Tadapani (2,700m)',
+        description: 'Early morning hike to Poon Hill for breathtaking sunrise views. Descend back to Ghorepani for breakfast, then trek to Tadapani.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '6-7 hours'
+      },
+      {
+        day: 5,
+        title: 'Tadapani to Ghandruk (1,940m)',
+        description: 'Trek through rhododendron forests and traditional villages to reach Ghandruk, a major Gurkha recruitment center.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 6,
+        title: 'Ghandruk to Nayapul, Drive to Pokhara',
+        description: 'Descend to Nayapul and drive back to Pokhara for rest and exploration of the city.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast, Farewell Dinner',
+        walkingHours: '5-6 hours trek + 1.5 hours drive'
+      },
+      {
+        day: 7,
+        title: 'Drive to Kathmandu',
+        description: 'Drive back to Kathmandu. Free time for shopping or sightseeing.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast',
+        walkingHours: '6-7 hours drive'
+      },
+      {
+        day: 8,
+        title: 'Departure',
+        description: 'Transfer to airport for international departure.',
+        accommodation: 'Airport',
+        meals: 'Breakfast'
+      }
+    ],
+    included: [
+      'Airport transfers in Kathmandu and Pokhara',
+      'Accommodation in Kathmandu and Pokhara (twin sharing basis)',
+      'Teahouse accommodation during trek (twin sharing basis)',
+      'All meals during trekking days (breakfast, lunch, dinner)',
+      'Professional English-speaking licensed trekking guide',
+      'Porter service (1 porter for 2 trekkers)',
+      'All necessary permits (ACAP, TIMS)',
+      'Transportation as per itinerary',
+      'First aid kit and emergency arrangements',
+      'Welcome and farewell dinners',
+      'Government taxes and service charges'
+    ],
+    excluded: [
+      'International flights to/from Nepal',
+      'Nepal visa fees',
+      'Travel and rescue insurance (mandatory)',
+      'Personal expenses (laundry, phone calls, internet, etc.)',
+      'Tips for guide and porter (customary but optional)',
+      'Extra meals in Kathmandu and Pokhara',
+      'Alcoholic beverages and bottled drinks',
+      'Personal trekking equipment',
+      'Emergency evacuation costs'
+    ],
+    requirements: [
+      'Good physical fitness and stamina',
+      'Ability to walk 4-6 hours daily for multiple days',
+      'No previous trekking experience required',
+      'Comprehensive travel and medical insurance',
+      'Valid passport with at least 6 months validity',
+      'Appropriate trekking gear and clothing',
+      'Positive attitude and flexibility for mountain conditions',
+      'No severe medical conditions (heart, lung problems)'
+    ],
+    adventureType: 'trekking'
   }
 ];

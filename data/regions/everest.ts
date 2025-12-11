@@ -18,7 +18,7 @@ export const everestRegionTreks: Trek[] = [
       'Stunning mountain panoramas daily',
       'Hillary Suspension Bridge crossing'
     ],
-    image: '/assets/ebc.jpeg',
+    image: '/assets/images/ebc.jpeg',
     price: '$1,899',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-12 people',
@@ -185,7 +185,8 @@ export const everestRegionTreks: Trek[] = [
       'Appropriate trekking gear and clothing',
       'Positive attitude and flexibility for mountain conditions',
       'No severe medical conditions (heart, lung, or blood pressure issues)'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'ebc-gokyo',
@@ -204,7 +205,7 @@ export const everestRegionTreks: Trek[] = [
       'Remote and less crowded routes',
       'Ultimate Khumbu wilderness experience'
     ],
-    image: '/assets/gokyo.jpeg',
+    image: '/assets/images/gokyo-ri.jpg',
     price: '$2,299',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-8 people',
@@ -388,7 +389,8 @@ export const everestRegionTreks: Trek[] = [
       'Complete high-altitude trekking gear',
       'Mental preparedness for challenging conditions',
       'No severe medical conditions'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'everest-three-passes',
@@ -407,7 +409,7 @@ export const everestRegionTreks: Trek[] = [
       'Ultimate trekking achievement',
       'Comprehensive Sherpa cultural experience'
     ],
-    image: '/assets/threepasses.jpeg',
+    image: '/assets/images/threepasses.jpeg',
     price: '$2,899',
     season: 'Oct-Nov, Apr-May (Best: Oct-Nov)',
     groupSize: '2-8 people',
@@ -616,6 +618,7 @@ export const everestRegionTreks: Trek[] = [
       'Mental preparedness for extreme challenges',
       'No severe medical conditions',
       'Experience with basic mountaineering techniques preferred'
-    ]
+    ],
+    adventureType: 'trekking'
   }
 ];

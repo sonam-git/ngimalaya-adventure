@@ -1,0 +1,61 @@
+import type { Trek } from './treks';
+
+export const safariTreks: Trek[] = [
+  {
+    id: 'safari-chitwan',
+    name: 'Chitwan National Park',
+    region: 'Chitwan',
+    duration: '3 Days',
+    difficulty: 'Easy',
+    adventureType: 'safari',
+    altitude: '',
+    description: 'Home to the rare one-horned rhinoceros and Bengal tigers.',
+    highlights: [],
+    image: '/assets/images/chitawan.jpg',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  },
+  {
+    id: 'safari-bardia',
+    name: 'Bardia National Park',
+    region: 'Bardia',
+    duration: '4 Days',
+    difficulty: 'Easy',
+    adventureType: 'safari',
+    altitude: '',
+    description: "Nepal's largest and most pristine wilderness area with best tiger spotting.",
+    highlights: [],
+    image: '/assets/images/bardia.jpg',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  },
+  {
+    id: 'safari-koshi',
+    name: 'Koshi Tappu Reserve',
+    region: 'Koshi',
+    duration: '2 Days',
+    difficulty: 'Easy',
+    adventureType: 'safari',
+    altitude: '',
+    description: 'Premier bird watching destination with over 500 species.',
+    highlights: [],
+    image: '/assets/images/koshi.webp',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  }
+];

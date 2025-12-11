@@ -208,7 +208,8 @@ export const dolpoRegionTreks: Trek[] = [
       'Previous high-altitude experience',
       'Restricted area permit (minimum 2 people)',
       'Comprehensive insurance'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'lower-dolpo',
@@ -375,9 +376,10 @@ export const dolpoRegionTreks: Trek[] = [
     ],
     included: ['Permits', 'Guide', 'Accommodation', 'Meals'],
     excluded: ['Flights', 'Insurance', 'Personal gear'],
-    requirements: ['Good fitness', 'Insurance', 'Appropriate gear']
+    requirements: ['Good fitness', 'Insurance', 'Appropriate gear'],
+    adventureType: 'trekking'
   }
-];
+].map(trek => ({ ...trek, adventureType: 'trekking', difficulty: trek.difficulty as ('Strenuous' | 'Challenging' | 'Easy' | 'Moderate' | 'Hard' | 'Moderate to Hard' | 'Extreme') }));
 
 // Mustang Region Treks
 export const mustangRegionTreks: Trek[] = [
@@ -529,9 +531,10 @@ export const mustangRegionTreks: Trek[] = [
       'Moderate fitness level',
       'Travel insurance',
       'Restricted area permit requirements'
-    ]
+    ],
+    adventureType: 'trekking'
   }
-];
+].map(trek => ({ ...trek, adventureType: 'trekking', difficulty: trek.difficulty as ('Strenuous' | 'Challenging' | 'Easy' | 'Moderate' | 'Hard' | 'Moderate to Hard' | 'Extreme') }));
 
 // Dhaulagiri Region Treks
 export const dhaulagiriRegionTreks: Trek[] = [
@@ -722,9 +725,10 @@ export const dhaulagiriRegionTreks: Trek[] = [
       'Previous mountaineering experience',
       'Excellent fitness',
       'Technical gear knowledge'
-    ]
+    ],
+    adventureType: 'trekking'
   }
-];
+].map(trek => ({ ...trek, adventureType: 'trekking', difficulty: trek.difficulty as ('Strenuous' | 'Challenging' | 'Easy' | 'Moderate' | 'Hard' | 'Moderate to Hard' | 'Extreme') }));
 
 // Makalu Region Treks
 export const makaluRegionTreks: Trek[] = [
@@ -923,6 +927,7 @@ export const makaluRegionTreks: Trek[] = [
       'Excellent fitness',
       'Wilderness experience',
       'Self-sufficiency skills'
-    ]
+    ],
+    adventureType: 'trekking'
   }
-];
+].map(trek => ({ ...trek, adventureType: 'trekking', difficulty: trek.difficulty as ('Strenuous' | 'Challenging' | 'Easy' | 'Moderate' | 'Hard' | 'Moderate to Hard' | 'Extreme') }));

@@ -55,24 +55,21 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
+        className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
+        className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-3 rounded-full transition-all duration-300 group"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto flex flex-col items-center justify-center
-        mt-[-10vh] md:mt-0
-        mb-0 min-h-[320px]
-        ">
+      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto flex flex-col items-center justify-center mt-[-18vh] md:mt-[-8vh] mb-0 min-h-[320px]">
         {/* Logo with Horizontal Lines */}
         <div className="mb-3 flex items-center justify-center gap-6 md:gap-8">
           {/* Left Line */}
@@ -103,7 +100,7 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
         </p>
 
         {/* CTA Buttons - Blue and White */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up mb-10" style={{ animationDelay: '0.4s' }}>
           <button 
             onClick={onExploreTreks}
             className="group bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-3 shadow-2xl hover:shadow-blue-500/50 hover:scale-105 rounded-xl"

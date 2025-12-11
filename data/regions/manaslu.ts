@@ -20,7 +20,7 @@ export const manasluRegionTreks: Trek[] = [
       'Natural hot springs at Tatopani',
       'Connects with Annapurna Circuit at Dharapani'
     ],
-    image: '/assets/bhimthang.jpeg',
+    image: '/assets/images/bhimthang.jpeg',
     price: '$1,699',
     season: 'Sep-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '2-10 people',
@@ -205,7 +205,8 @@ export const manasluRegionTreks: Trek[] = [
       'Mental preparedness for remote and challenging conditions',
       'No severe medical conditions (heart, lung, or blood pressure issues)',
       'Positive attitude and flexibility for extreme mountain conditions'
-    ]
+    ],
+    adventureType: 'trekking'
   },
   {
     id: 'tsum-valley',
@@ -422,6 +423,7 @@ export const manasluRegionTreks: Trek[] = [
       'Mental preparedness for remote cultural immersion',
       'Respect for local Buddhist culture and traditions',
       'Flexibility for weather conditions and cultural experiences'
-    ]
+    ],
+    adventureType: 'trekking'
   }
 ];

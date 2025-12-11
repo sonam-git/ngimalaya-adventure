@@ -20,7 +20,7 @@ export const kanchenjungaRegionTreks: Trek[] = [
       'Rhododendron forests and alpine meadows',
       'Traditional villages and ancient cultures'
     ],
-    image: '/assets/kanchanjungabc.jpg',
+    image: '/assets/images/kanchanjungabc.jpg',
     price: '$2,799',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-8 people',
@@ -243,6 +243,7 @@ export const kanchenjungaRegionTreks: Trek[] = [
       'Mental preparedness for remote wilderness conditions',
       'No severe medical conditions (heart, lung, or blood pressure issues)',
       'Positive attitude and flexibility for challenging mountain environment'
-    ]
+    ],
+    adventureType: 'trekking'
   }
 ];

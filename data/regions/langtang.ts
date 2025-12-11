@@ -20,11 +20,12 @@ export const langtangRegionTreks: Trek[] = [
       'Views of Ganesh Himal and Langtang ranges',
       'Traditional stone houses and culture'
     ],
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/assets/images/kyangjin.jpg',
     price: '$799',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov, Mar-Apr)',
     groupSize: '2-15 people',
     region: 'Langtang Region',
+    adventureType: 'trekking',
     itinerary: [
       {
         day: 1,
@@ -156,11 +157,12 @@ export const langtangRegionTreks: Trek[] = [
       'Hindu and Buddhist pilgrimage sites',
       'Views of Langtang Lirung and Ganesh Himal'
     ],
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/assets/images/gosaikunda.jpg',
     price: '$999',
     season: 'Oct-Nov, Mar-May',
     groupSize: '2-12 people',
     region: 'Langtang Region',
+    adventureType: 'trekking',
     itinerary: [
       {
         day: 1,

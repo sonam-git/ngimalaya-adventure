@@ -12,7 +12,8 @@ import {
   Award,
   Thermometer,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Check
 } from 'lucide-react';
 import type { Trek } from '../data/treks';
 import { useTheme } from '../contexts/ThemeContext';
@@ -43,7 +44,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-20 md:pt-28`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-4 md:pt-8`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image and Title */}
         <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
@@ -128,139 +129,6 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 ))}
               </ul>
             </div>
-
-            {/* Itinerary */}
-            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <button
-                onClick={() => setIsItineraryOpen(!isItineraryOpen)}
-                className={`w-full flex items-center justify-between text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}
-              >
-                <span>Detailed Itinerary</span>
-                <div className="flex items-center space-x-2">
-                  <span className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {isItineraryOpen ? 'Hide' : 'Show'} Details
-                  </span>
-                  {isItineraryOpen ? (
-                    <ChevronUp className="text-blue-600 dark:text-blue-400" size={24} />
-                  ) : (
-                    <ChevronDown className="text-blue-600 dark:text-blue-400" size={24} />
-                  )}
-                </div>
-              </button>
-              
-              {isItineraryOpen && (
-                <div className="pt-2">
-                  <div 
-                    className="scrollable-itinerary max-h-[500px] overflow-y-auto pr-2 space-y-4"
-                    style={{
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: '#3B82F6 #E5E7EB'
-                    }}
-                  >
-                    {trek.itinerary.map((day, index) => (
-                      <div key={index} className={`border-l-4 border-blue-500 pl-6 pb-4 ${
-                        index !== trek.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
-                      }`}>
-                        <div className="flex items-center space-x-2 mb-2">
-                          <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-                            Day {day.day}
-                          </span>
-                          {day.walkingHours && (
-                            <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                              <Clock size={14} className="inline mr-1" />
-                              {day.walkingHours}
-                            </span>
-                          )}
-                        </div>
-                        <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                          {day.title}
-                        </h4>
-                        <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          {day.description}
-                        </p>
-                        <div className="flex space-x-4 text-sm">
-                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
-                            <strong>Accommodation:</strong> {day.accommodation}
-                          </span>
-                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
-                            <strong>Meals:</strong> {day.meals}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {/* Itinerary Summary when collapsed */}
-              {!isItineraryOpen && (
-                <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
-                  <p className="mb-2">
-                    This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
-                      {trek.itinerary.length} Days Total
-                    </span>
-                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs">
-                      Max Altitude: {trek.altitude}
-                    </span>
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
-                      {trek.difficulty} Level
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Included/Excluded */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-                <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  <CheckCircle className="mr-2 text-green-500" size={24} />
-                  What's Included
-                </h3>
-                <ul className="space-y-2">
-                  {trek.included.map((item, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="mt-0.5 text-green-500 flex-shrink-0" size={16} />
-                      <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-                <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  <XCircle className="mr-2 text-red-500" size={24} />
-                  What's Not Included
-                </h3>
-                <ul className="space-y-2">
-                  {trek.excluded.map((item, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <XCircle className="mt-0.5 text-red-500 flex-shrink-0" size={16} />
-                      <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Requirements */}
-            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                <AlertTriangle className="mr-2 text-yellow-500" size={24} />
-                Requirements & Prerequisites
-              </h3>
-              <ul className="space-y-2">
-                {trek.requirements.map((requirement, index) => (
-                  <li key={index} className="flex items-start space-x-2">
-                    <AlertTriangle className="mt-0.5 text-yellow-500 flex-shrink-0" size={16} />
-                    <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{requirement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           {/* Sidebar */}
@@ -276,7 +144,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
 
               <button 
                 onClick={() => setIsBookingModalOpen(true)}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-gray-100 hover:to-blue-400 hover:text-blue-950 hover:border border-blue-950 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
               >
                 Book Now
               </button>
@@ -284,10 +152,10 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
               <button 
                 onClick={() => setIsCustomTrekModalOpen(true)}
                 className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-heading font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
-                  isDarkMode ? 'border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900' : ''
+                  isDarkMode ? 'border-blue-400 text-blue-800 dark:text-white hover:bg-blue-400 hover:text-gray-100' : ''
                 }`}
               >
-                Request Custom Quote
+                Request Custom Trek
               </button>
 
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
@@ -338,7 +206,119 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                     100% Safety Record
                   </span>
                 </div>
+                  <div className="flex items-center space-x-3">
+                  <Check className="text-green-500" size={20} />
+                  <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                   knowledgeable Guides
+                  </span>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Detailed Itinerary - now full width */}
+        <div className="w-full mt-12">
+          <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+            <button
+              onClick={() => setIsItineraryOpen(!isItineraryOpen)}
+              className={`w-full flex items-center justify-between text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}
+            >
+              <span className='font-serif'>Detailed Itinerary</span>
+              <div className="flex items-center space-x-2">
+                <span className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{isItineraryOpen ? 'Hide' : 'Show'} Details</span>
+                {isItineraryOpen ? (
+                  <ChevronUp className="text-blue-600 dark:text-blue-400" size={24} />
+                ) : (
+                  <ChevronDown className="text-blue-600 dark:text-blue-400" size={24} />
+                )}
+              </div>
+            </button>
+            {isItineraryOpen && (
+              <div className="pt-2">
+                <div 
+                  className="scrollable-itinerary max-h-[500px] overflow-y-auto pr-2 space-y-4"
+                  style={{ scrollbarWidth: 'thin', scrollbarColor: '#3B82F6 #E5E7EB' }}
+                >
+                  {trek.itinerary.map((day, index) => (
+                    <div key={index} className={`border-l-4 border-blue-500 pl-6 pb-4 ${index !== trek.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''}`}> 
+                      <div className="flex items-center space-x-2 mb-2">
+                        <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">Day {day.day}</span>
+                        {day.walkingHours && (
+                          <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}> <Clock size={14} className="inline mr-1" />{day.walkingHours}</span>
+                        )}
+                      </div>
+                      <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{day.title}</h4>
+                      <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{day.description}</p>
+                      <div className="flex space-x-4 text-sm">
+                        <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}><strong>Accommodation:</strong> {day.accommodation}</span>
+                        <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}><strong>Meals:</strong> {day.meals}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* Itinerary Summary when collapsed */}
+            {!isItineraryOpen && (
+              <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
+                <p className="mb-2">This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">{trek.itinerary.length} Days Total</span>
+                  <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs">Max Altitude: {trek.altitude}</span>
+                  <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">{trek.difficulty} Level</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Included/Excluded/Requirements as 3 columns - now full width */}
+        <div className="w-full mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <CheckCircle className="mr-2 text-green-500" size={24} />
+                What's Included
+              </h3>
+              <ul className="space-y-2">
+                {trek.included.map((item, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <CheckCircle className="mt-0.5 text-green-500 flex-shrink-0" size={16} />
+                    <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <XCircle className="mr-2 text-red-500" size={24} />
+                What's Not Included
+              </h3>
+              <ul className="space-y-2">
+                {trek.excluded.map((item, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <XCircle className="mt-0.5 text-red-500 flex-shrink-0" size={16} />
+                    <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <AlertTriangle className="mr-2 text-yellow-500" size={24} />
+                Requirements & Prerequisites
+              </h3>
+              <ul className="space-y-2">
+                {trek.requirements.map((requirement, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <AlertTriangle className="mt-0.5 text-yellow-500 flex-shrink-0" size={16} />
+                    <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{requirement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

@@ -9,12 +9,12 @@ interface RegionMenuProps {
 const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSelect }) => {
   return (
     <nav
-      className="sticky top-[calc(6rem+0.5rem)] md:top-[calc(7rem+0.5rem)] z-30 bg-white dark:bg-gray-900 shadow-lg border-b border-blue-300"
+      className="sticky top-[112px] z-30 bg-white dark:bg-gray-900 shadow-lg border-b border-blue-300"
       aria-label="Region menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide justify-center gap-2 py-2 px-4">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
         {regions.map(region => (
-          <li key={region} className="flex-shrink-0">
+          <li key={region} className="flex-shrink-0 w-max">
             <button
               type="button"
               onClick={() => onSelect(region)}

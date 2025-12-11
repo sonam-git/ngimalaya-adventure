@@ -1,0 +1,61 @@
+import type { Trek } from './treks';
+
+export const peakTreks: Trek[] = [
+  {
+    id: 'peak-island',
+    name: 'Island Peak (Imja Tse)',
+    region: 'Everest Region',
+    duration: '19 Days',
+    difficulty: 'Strenuous',
+    adventureType: 'peak',
+    altitude: '',
+    description: "Nepal's most popular 6,000m peak, perfect for mountaineering beginners.",
+    highlights: [],
+    image: '/assets/images/islandpeak.png',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  },
+  {
+    id: 'peak-mera',
+    name: 'Mera Peak',
+    region: 'Everest Region',
+    duration: '18 Days',
+    difficulty: 'Strenuous',
+    adventureType: 'peak',
+    altitude: '',
+    description: "Nepal's highest trekking peak with stunning panoramic views of five 8,000m peaks.",
+    highlights: [],
+    image: '/assets/images/mera.jpg',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  },
+  {
+    id: 'peak-lobuche',
+    name: 'Lobuche East',
+    region: 'Everest Region',
+    duration: '20 Days',
+    difficulty: 'Challenging',
+    adventureType: 'peak',
+    altitude: '',
+    description: 'Technical climbing peak in the Everest region offering spectacular views.',
+    highlights: [],
+    image: '/assets/images/peak.png',
+    price: '',
+    season: '',
+    groupSize: '',
+    itinerary: [],
+    included: [],
+    excluded: [],
+    requirements: []
+  }
+];

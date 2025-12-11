@@ -7,6 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
 import PrayerFlagBorder from './PrayerFlagBorder';
+import GoogleTranslateClient from './GoogleTranslateClient';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -150,9 +151,10 @@ const Header: React.FC = () => {
                 </span>
               </button>
 
-              {/* Theme Toggle */}
-              <div className="ml-3">
+              {/* Theme Toggle and Translate Button */}
+              <div className="ml-3 flex items-center gap-2">
                 <ThemeToggle />
+                <GoogleTranslateClient />
               </div>
             </div>
 
@@ -160,7 +162,7 @@ const Header: React.FC = () => {
             <div className="lg:hidden flex items-center gap-3">
               {/* Theme Toggle for Mobile */}
               <ThemeToggle />
-              
+              <GoogleTranslateClient />
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

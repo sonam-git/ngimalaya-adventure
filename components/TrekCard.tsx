@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Calendar, Mountain, Users, ArrowRight } from 'lucide-react';
+import { Calendar, Mountain, ArrowRight } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Trek } from '../data/treks';
 
@@ -19,22 +19,14 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
       {/* Image with overlay badges */}
       <div className="relative overflow-hidden h-72">
         <img 
-          src={typeof trek.image === 'string' ? trek.image.replace('/assets/', '/assets/images/') : ''}
+          src={typeof trek.image === 'string' ? trek.image : ''}
           alt={trek.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
         
         {/* Top Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
-          <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg">
-            <div className="flex items-center space-x-2">
-              <Users className="text-primary-500" size={18} />
-              <div>
-                <div className="text-2xl font-bold text-gray-900">05</div>
-                <div className="text-xs text-gray-600 uppercase">Guest</div>
-              </div>
-            </div>
-          </div>
+          {/* Only show days badge */}
           <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg">
             <div className="flex items-center space-x-2">
               <Calendar className="text-primary-500" size={18} />
@@ -46,10 +38,12 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
           </div>
         </div>
 
-        {/* Price Badge */}
-        <div className="absolute top-4 right-4 bg-primary-500 text-white px-5 py-3 rounded-md shadow-lg">
-          <div className="text-2xl font-bold">{trek.price}</div>
-        </div>
+        {/* Price Badge - only if price exists */}
+        {trek.price && trek.price.trim() !== '' && (
+          <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-5 py-3 rounded-md shadow-lg">
+            <div className="text-2xl font-bold">{trek.price}</div>
+          </div>
+        )}
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

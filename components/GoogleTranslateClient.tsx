@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const LANGUAGES = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -21,6 +21,10 @@ declare global {
 }
 
 const GoogleTranslateClient = () => {
+  const [open, setOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!window.googleTranslateElementInit) {
       window.googleTranslateElementInit = function() {
@@ -54,8 +58,9 @@ const GoogleTranslateClient = () => {
     };
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const lang = e.target.value;
+  const handleChange = (lang: string) => {
+    setCurrentLang(lang);
+    setOpen(false);
     const select = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
     if (select) {
       select.value = lang;
@@ -63,39 +68,75 @@ const GoogleTranslateClient = () => {
     }
   };
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
+
+  const currentFlag = LANGUAGES.find(l => l.code === currentLang)?.flag || '🌐';
+
   return (
-    <>
-      {/* Small screens: top left below PrayerFlagBorder */}
-      <div className="fixed left-2 top-[calc(6rem+0.5rem)] z-50 md:hidden" style={{ minWidth: '120px' }}>
-        <div id="google_translate_element" style={{ display: 'none' }} />
-        <select
-          className="px-3 py-2 rounded-md border border-gray-300 bg-white dark:bg-gray-800 text-sm font-medium shadow focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
-          onChange={handleChange}
-          defaultValue="en"
-        >
-          {LANGUAGES.map(lang => (
-            <option key={lang.code} value={lang.code}>
-              {lang.flag} {lang.label}
-            </option>
-          ))}
-        </select>
-      </div>
-      {/* Large screens: top right below PrayerFlagBorder */}
-      <div className="fixed right-6 top-[calc(8rem+0.5rem)] z-50 hidden md:flex flex-col items-end" style={{ minWidth: '120px' }}>
-        <div id="google_translate_element" style={{ display: 'none' }} />
-        <select
-          className="px-3 py-2 rounded-md border border-gray-300 bg-white dark:bg-gray-800 text-sm font-medium shadow focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
-          onChange={handleChange}
-          defaultValue="en"
-        >
-          {LANGUAGES.map(lang => (
-            <option key={lang.code} value={lang.code}>
-              {lang.flag} {lang.label}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+    <div className="relative flex items-center ml-2">
+      <button
+        className="px-2 py-2 rounded-md focus:outline-none text-xl transition-all duration-200 shadow-lg bg-white dark:bg-gray-700"
+        style={{
+          border: 'none',
+          boxShadow: '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)',
+        }}
+        onClick={() => setOpen(!open)}
+        aria-label="Change language"
+        onMouseEnter={e => {
+          if (document.body.classList.contains('dark')) {
+            e.currentTarget.style.boxShadow = '0 0 12px 2px #fff, 0 4px 16px rgba(255,255,255,0.10)';
+            e.currentTarget.style.backgroundColor = '#374151'; // Tailwind gray-700
+          } else {
+            e.currentTarget.style.boxShadow = '0 0 12px 2px #eab308, 0 4px 16px rgba(234,179,8,0.18)'; // yellow-500
+            e.currentTarget.style.backgroundColor = '';
+          }
+        }}
+        onMouseLeave={e => {
+          if (document.body.classList.contains('dark')) {
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
+            e.currentTarget.style.backgroundColor = '#374151'; // Tailwind gray-700
+          } else {
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
+            e.currentTarget.style.backgroundColor = '';
+          }
+        }}
+      >
+        {currentFlag}
+      </button>
+      {open && (
+        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50" style={{ marginTop: '25rem' }}>
+          <ul className="py-1">
+            {LANGUAGES.map(lang => (
+              <li key={lang.code}>
+                <button
+                  className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-blue-50 dark:hover:bg-gray-800 rounded-md ${currentLang === lang.code ? 'bg-blue-100 dark:bg-gray-800 font-bold' : ''}`}
+                  onClick={() => handleChange(lang.code)}
+                >
+                  <span className="text-lg">{lang.flag}</span>
+                  <span className="text-sm">{lang.label}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div id="google_translate_element" style={{ display: 'none' }} />
+    </div>
   );
 };
 

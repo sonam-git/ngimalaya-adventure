@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center pb-24 md:pb-8">
           <p className="text-gray-500 text-sm">
             Copyright © {new Date().getFullYear()} Ngimalaya Adventure Nepal. All Rights Reserved.
           </p>
