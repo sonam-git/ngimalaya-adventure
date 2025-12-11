@@ -1,0 +1,16 @@
+/* Hide Google Translate top bar and iframe */
+body .goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body .goog-te-banner-frame {
+  display: none !important;
+}
+body .goog-te-gadget-icon {
+  display: none !important;
+}
+body .goog-te-menu-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
