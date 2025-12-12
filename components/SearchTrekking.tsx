@@ -80,7 +80,7 @@ const SearchTrekking = () => {
 
   return (
     <section className="w-full max-w-7xl mx-auto mt-0 mb-12 relative z-50">
-      <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-2 mt-0 text-primary-50 dark:text-primary-100">Browse the trek based on your availability and desire</h2>
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-2 mt-0 text-blue-900 md:text-primary-50 dark:text-primary-100">Browse the trek based on your availability and desire</h2>
       {/* Mobile Search Toggle Button */}
       <div className="flex justify-center mb-4 md:hidden">
         <button

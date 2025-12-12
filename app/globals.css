@@ -606,4 +606,121 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+
+  /* ============================================
+     GOOGLE TRANSLATE - COMPLETE UI HIDING
+     ============================================ */
+  
+  /* Hide the banner frame completely */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Hide menu frame */
+  .goog-te-menu-frame,
+  iframe.goog-te-menu-frame {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Hide all skiptranslate elements except the select */
+  .skiptranslate:not(.goog-te-combo) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Hide gadget and balloon */
+  .goog-te-gadget,
+  .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Hide all translate iframes */
+  iframe[src*="translate.googleapis.com"],
+  iframe[src*="translate.google.com"] {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+  }
+
+  /* Prevent body from being pushed down */
+  body {
+    top: 0 !important;
+    position: static !important;
+  }
+
+  /* Hide the translate element container */
+  #google_translate_element {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Keep the select minimally visible but functional */
+  .goog-te-combo {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0.01 !important; /* NOT 0, so it stays functional */
+    pointer-events: auto !important;
+    z-index: -1 !important;
+  }
+
+  /* Hide Google Translate's top bar notification */
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  }
+
+  /* Override any inline styles that Google adds */
+  body.translated-ltr,
+  body.translated-rtl {
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Hide the "Show original" button and toolbar */
+  #goog-gt-tt,
+  .goog-gt-tt,
+  .goog-te-spinner,
+  .goog-te-spinner-animation,
+  #goog-gt-tt .goog-gt-tt-close {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Additional aggressive hiding */
+  body > .skiptranslate,
+  body > iframe.goog-te-banner-frame,
+  body > .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Ensure header stays at top without interference */
+  header {
+    top: 0 !important;
+  }
+
+  /* Fix for any residual spacing issues */
+  html {
+    margin-top: 0 !important;
+  }
 }

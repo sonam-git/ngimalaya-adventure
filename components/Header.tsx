@@ -13,7 +13,6 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isGoogleBarVisible, setIsGoogleBarVisible] = useState(false);
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
 
@@ -23,15 +22,6 @@ const Header: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Listen for Google Translate bar
-    const interval = setInterval(() => {
-      const frame = document.querySelector('iframe.goog-te-banner-frame') as HTMLIFrameElement | null;
-      setIsGoogleBarVisible(!!frame && frame.style.display !== 'none');
-    }, 500);
-    return () => clearInterval(interval);
   }, []);
 
   const navItems = [
@@ -51,7 +41,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Main Header */}
-      <header className={`fixed left-0 w-full z-40 transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         isScrolled 
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
@@ -59,7 +49,7 @@ const Header: React.FC = () => {
           : isDarkMode 
             ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900' 
             : 'bg-gradient-to-r from-white via-blue-50 to-white'
-      }`} style={isGoogleBarVisible ? { marginTop: '48px' } : {}}>
+      }`}>
         <nav className="container mx-auto px-4 relative">
           <div className="flex items-center justify-between h-24 md:h-28">
             {/* Logo and Title */}
