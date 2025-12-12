@@ -180,7 +180,7 @@ const SearchTrekking = () => {
         {/* Results Dropdown Overlay (positioned below form) */}
         {searched && (
           <div className="absolute left-0 right-0 top-full mt-4 z-40 flex items-start justify-center px-2 md:px-0">
-            <div className="w-full max-w-5xl bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-10 overflow-y-auto max-h-[80vh]">
+            <div className="w-full max-w-5xl bg-gray-200 dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-10 overflow-y-auto max-h-[80vh]">
               {results.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-lg font-semibold text-red-500 mb-2">
@@ -190,7 +190,7 @@ const SearchTrekking = () => {
                       ? 'No available peak expedition found.'
                       : 'No available trek found.'}
                   </p>
-                  <p className="text-gray-500 mb-4">It seems we can't find what you are looking for. We are here to help you. Please contact us or fill out the custom trek form below.</p>
+                  <p className="text-gray-700 dark:text-gray-200 mb-4">It seems we can't find what you are looking for. We are here to help you. Please contact us or fill out the custom trek form below.</p>
                   <div className="mt-6">
                     <a href="#" onClick={e => { e.preventDefault(); setShowCustomTrekModal(true); }} className="inline-block px-6 py-3 rounded-lg bg-yellow-400 text-gray-900 font-bold shadow hover:bg-yellow-500 transition mb-4">Custom Trek Form</a>
                     <div className="mt-2 grid grid-cols-3 gap-4 items-center justify-center text-gray-600 dark:text-gray-300">
@@ -212,7 +212,7 @@ const SearchTrekking = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {results.map((trek: Trek) => (
-                    <div key={trek.id} className="bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-5 flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    <div key={trek.id} className="bg-white dark:bg-gray-800/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-5 flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                       <img src={typeof trek.image === 'string' ? `/assets/images/${trek.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} alt={trek.name} className="w-full h-40 object-cover rounded-lg mb-3" />
                       <h3 className="font-bold text-lg mb-1 text-primary-700 dark:text-primary-300">{trek.name}</h3>
                       <div className="text-xs text-gray-500 mb-2 flex flex-wrap gap-2">

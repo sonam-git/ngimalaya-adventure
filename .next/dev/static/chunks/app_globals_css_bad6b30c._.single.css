@@ -690,8 +690,8 @@ button {
   z-index: 50;
 }
 
-.-z-10 {
-  z-index: -10;
+.z-\[120\] {
+  z-index: 120;
 }
 
 .mx-0 {
@@ -707,11 +707,6 @@ button {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.my-2 {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
 }
 
 .mb-0 {
@@ -798,6 +793,10 @@ button {
   margin-top: 5rem;
 }
 
+.mt-3 {
+  margin-top: .75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -816,10 +815,6 @@ button {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-3 {
-  margin-top: .75rem;
 }
 
 .line-clamp-4 {
@@ -897,6 +892,10 @@ button {
   height: .75rem;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .h-40 {
   height: 10rem;
 }
@@ -947,10 +946,6 @@ button {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-4 {
-  height: 1rem;
 }
 
 .max-h-\[500px\] {
@@ -1009,6 +1004,10 @@ button {
   width: 9rem;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
 .w-40 {
   width: 10rem;
 }
@@ -1019,6 +1018,10 @@ button {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-72 {
+  width: 18rem;
 }
 
 .w-8 {
@@ -1043,14 +1046,6 @@ button {
 
 .w-px {
   width: 1px;
-}
-
-.w-4 {
-  width: 1rem;
-}
-
-.w-72 {
-  width: 18rem;
 }
 
 .min-w-\[150px\] {
@@ -1302,14 +1297,6 @@ button {
   gap: 2rem;
 }
 
-.gap-16 {
-  gap: 4rem;
-}
-
-.gap-24 {
-  gap: 6rem;
-}
-
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(.5rem * var(--tw-space-x-reverse));
@@ -1523,6 +1510,11 @@ button {
   border-color: rgb(191 219 254 / var(--tw-border-opacity, 1));
 }
 
+.border-primary-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(147 197 253 / var(--tw-border-opacity, 1));
+}
+
 .border-primary-500 {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
@@ -1551,11 +1543,6 @@ button {
 .border-yellow-800 {
   --tw-border-opacity: 1;
   border-color: rgb(133 77 14 / var(--tw-border-opacity, 1));
-}
-
-.border-primary-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(147 197 253 / var(--tw-border-opacity, 1));
 }
 
 .bg-black {
@@ -1786,6 +1773,14 @@ button {
 
 .bg-yellow-900\/20 {
   background-color: #713f1233;
+}
+
+.bg-white\/40 {
+  background-color: #fff6;
+}
+
+.bg-white\/0 {
+  background-color: #fff0;
 }
 
 .bg-opacity-50 {
@@ -2043,11 +2038,6 @@ button {
   object-fit: cover;
 }
 
-.object-center {
-  -o-object-position: center;
-  object-position: center;
-}
-
 .p-1 {
   padding: .25rem;
 }
@@ -2165,6 +2155,10 @@ button {
   padding-bottom: 2rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -2209,10 +2203,6 @@ button {
   padding-top: .5rem;
 }
 
-.pt-3 {
-  padding-top: .75rem;
-}
-
 .pt-32 {
   padding-top: 8rem;
 }
@@ -2227,10 +2217,6 @@ button {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 
 .text-left {
@@ -2291,6 +2277,10 @@ button {
   line-height: 1;
 }
 
+.text-\[10px\] {
+  font-size: 10px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2334,10 +2324,6 @@ button {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
-}
-
-.text-\[10px\] {
-  font-size: 10px;
 }
 
 .font-bold {
@@ -3212,10 +3198,6 @@ button {
   opacity: .5;
 }
 
-.disabled\:opacity-30:disabled {
-  opacity: .3;
-}
-
 .group:hover .group-hover\:w-full {
   width: 100%;
 }
@@ -3327,11 +3309,6 @@ button {
   border-color: rgb(219 234 254 / var(--tw-border-opacity, 1));
 }
 
-.dark\:border-red-800:is(.dark *) {
-  --tw-border-opacity: 1;
-  border-color: rgb(153 27 27 / var(--tw-border-opacity, 1));
-}
-
 .dark\:border-primary-700:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity, 1));
@@ -3340,6 +3317,11 @@ button {
 .dark\:border-primary-800:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(30 64 175 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-red-800:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(153 27 27 / var(--tw-border-opacity, 1));
 }
 
 .dark\:bg-blue-900:is(.dark *) {
@@ -3596,14 +3578,6 @@ button {
     right: 2rem;
   }
 
-  .md\:mt-0 {
-    margin-top: 0;
-  }
-
-  .md\:mt-\[-8vh\] {
-    margin-top: -8vh;
-  }
-
   .md\:mb-3 {
     margin-bottom: .75rem;
   }
@@ -3612,12 +3586,20 @@ button {
     margin-bottom: 1rem;
   }
 
+  .md\:mt-0 {
+    margin-top: 0;
+  }
+
   .md\:mt-4 {
     margin-top: 1rem;
   }
 
   .md\:mt-8 {
     margin-top: 2rem;
+  }
+
+  .md\:mt-\[-8vh\] {
+    margin-top: -8vh;
   }
 
   .md\:block {
@@ -3636,6 +3618,10 @@ button {
     display: none;
   }
 
+  .md\:h-12 {
+    height: 3rem;
+  }
+
   .md\:h-16 {
     height: 4rem;
   }
@@ -3644,24 +3630,32 @@ button {
     height: 7rem;
   }
 
-  .md\:h-56 {
-    height: 14rem;
-  }
-
-  .md\:h-12 {
-    height: 3rem;
-  }
-
   .md\:h-5 {
     height: 1.25rem;
+  }
+
+  .md\:h-56 {
+    height: 14rem;
   }
 
   .md\:h-6 {
     height: 1.5rem;
   }
 
+  .md\:w-12 {
+    width: 3rem;
+  }
+
+  .md\:w-5 {
+    width: 1.25rem;
+  }
+
   .md\:w-56 {
     width: 14rem;
+  }
+
+  .md\:w-6 {
+    width: 1.5rem;
   }
 
   .md\:w-96 {
@@ -3674,18 +3668,6 @@ button {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-12 {
-    width: 3rem;
-  }
-
-  .md\:w-5 {
-    width: 1.25rem;
-  }
-
-  .md\:w-6 {
-    width: 1.5rem;
   }
 
   .md\:translate-y-0 {
@@ -3723,10 +3705,6 @@ button {
     justify-content: center;
   }
 
-  .md\:gap-8 {
-    gap: 2rem;
-  }
-
   .md\:gap-2 {
     gap: .5rem;
   }
@@ -3737,6 +3715,10 @@ button {
 
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
   }
 
   .md\:bg-green-200 {
@@ -3762,16 +3744,6 @@ button {
     padding-right: 2.5rem;
   }
 
-  .md\:py-24 {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  .md\:py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
   .md\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -3787,6 +3759,11 @@ button {
     padding-right: 2rem;
   }
 
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
   .md\:py-3 {
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -3797,16 +3774,21 @@ button {
     padding-bottom: 1rem;
   }
 
+  .md\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
   .md\:pb-8 {
     padding-bottom: 2rem;
   }
 
-  .md\:pt-8 {
-    padding-top: 2rem;
-  }
-
   .md\:pt-3 {
     padding-top: .75rem;
+  }
+
+  .md\:pt-8 {
+    padding-top: 2rem;
   }
 
   .md\:text-2xl {
@@ -3839,16 +3821,6 @@ button {
     line-height: 1;
   }
 
-  .md\:text-sm {
-    font-size: .875rem;
-    line-height: 1.25rem;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -3856,6 +3828,16 @@ button {
 
   .md\:text-lg {
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 

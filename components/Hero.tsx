@@ -16,7 +16,11 @@ const HeroComponent: React.FC<HeroProps> = ({ onExploreTreks, onBookNow }) => {
     '/assets/images/ebc.jpeg',
     '/assets/images/abc.jpeg',
     '/assets/images/gokyo.jpeg',
-    '/assets/images/thorangla-pass.jpeg'
+    '/assets/images/thorangla-pass.jpeg',
+    '/assets/images/chitawan.jpg',  
+    '/assets/images/mustang.jpg',
+    '/assets/images/mountain.jpg',
+    '/assets/images/suspension-bridge.jpg'
   ];
   
   const [currentSlide, setCurrentSlide] = useState(0);

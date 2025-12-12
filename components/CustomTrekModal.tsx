@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { X, User, Globe, Clock, Calendar, Mountain, Mail, MessageSquare, CheckCircle, Loader2, XCircle } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -113,8 +114,8 @@ const CustomTrekModal: React.FC<CustomTrekModalProps> = ({
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+  const modalContent = (
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
         isDarkMode ? 'bg-gray-800' : 'bg-white'
       }`}>
@@ -414,6 +415,11 @@ const CustomTrekModal: React.FC<CustomTrekModalProps> = ({
       </div>
     </div>
   );
+
+  if (typeof window !== 'undefined' && document.body) {
+    return ReactDOM.createPortal(modalContent, document.body);
+  }
+  return null;
 };
 
 export default CustomTrekModal;
