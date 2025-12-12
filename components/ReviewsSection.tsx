@@ -144,35 +144,35 @@ const ReviewsSection: React.FC = () => {
           {/* Reviews Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-12 py-4"
+            className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 md:px-12 py-2 md:py-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {reviews.map((review) => (
               <div
                 key={review.id}
                 onClick={() => setSelectedReview(review)}
-                className={`flex-shrink-0 w-80 md:w-96 p-6 rounded-xl cursor-pointer transition-all duration-300 snap-start transform hover:scale-105 ${
+                className={`flex-shrink-0 w-72 sm:w-80 md:w-96 p-4 md:p-6 rounded-xl cursor-pointer transition-all duration-300 snap-start transform hover:scale-105 ${
                   isDarkMode
                     ? 'bg-gray-800 hover:bg-gray-750 shadow-xl'
                     : 'bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl'
                 }`}
               >
                 {/* User Info */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ${
                     isDarkMode ? 'bg-primary-600' : 'bg-primary-100'
                   }`}>
-                    <User className={`w-6 h-6 ${
+                    <User className={`w-5 h-5 md:w-6 md:h-6 ${
                       isDarkMode ? 'text-white' : 'text-primary-600'
                     }`} />
                   </div>
                   <div>
-                    <h3 className={`font-display font-bold text-lg ${
+                    <h3 className={`font-display font-bold text-base md:text-lg ${
                       isDarkMode ? 'text-gray-100' : 'text-gray-900'
                     }`}>
                       {review.name}
                     </h3>
-                    <p className={`text-sm ${
+                    <p className={`text-xs md:text-sm ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}>
                       {review.country}
@@ -181,30 +181,30 @@ const ReviewsSection: React.FC = () => {
                 </div>
 
                 {/* Stars */}
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 mb-2 md:mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                      className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400"
                     />
                   ))}
                 </div>
 
                 {/* Review Text (Truncated) */}
-                <p className={`line-clamp-4 mb-3 ${
+                <p className={`line-clamp-4 mb-2 md:mb-3 ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>
+                } text-sm md:text-base`}>
                   {review.text}
                 </p>
 
                 {/* Date & Language */}
-                <div className="flex justify-between items-center pt-3 border-t border-gray-600 dark:border-gray-700">
-                  <span className={`text-sm ${
+                <div className="flex justify-between items-center pt-2 md:pt-3 border-t border-gray-600 dark:border-gray-700">
+                  <span className={`text-xs md:text-sm ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-500'
                   }`}>
                     {review.date}
                   </span>
-                  <span className={`text-xs px-2 py-1 rounded ${
+                  <span className={`text-[10px] md:text-xs px-2 py-1 rounded ${
                     isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'
                   }`}>
                     {review.language}
@@ -212,8 +212,8 @@ const ReviewsSection: React.FC = () => {
                 </div>
 
                 {/* Click to Read More */}
-                <div className="mt-4 text-center">
-                  <span className="text-primary-500 hover:text-primary-600 text-sm font-semibold">
+                <div className="mt-3 md:mt-4 text-center">
+                  <span className="text-primary-500 hover:text-primary-600 text-xs md:text-sm font-semibold">
                     Click to read full review →
                   </span>
                 </div>
@@ -222,11 +222,11 @@ const ReviewsSection: React.FC = () => {
           </div>
 
           {/* Navigation Buttons at Bottom */}
-          <div className="flex justify-between items-center mt-8 px-4">
+          <div className="flex flex-row justify-between items-center mt-6 md:mt-8 px-2 md:px-4 gap-2">
             {/* Previous Button - Left */}
             <button
               onClick={() => scroll('left')}
-              className={`py-3 px-8 rounded-lg font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl ${
+              className={`w-auto py-2 md:py-3 px-6 md:px-8 rounded-lg font-display font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl text-sm md:text-base ${
                 isDarkMode
                   ? 'bg-gray-800 hover:bg-gray-700 text-gray-200'
                   : 'bg-white hover:bg-gray-100 text-gray-800'
@@ -236,15 +236,15 @@ const ReviewsSection: React.FC = () => {
               Previous
             </button>
 
-            {/* Scroll Indicators in Center */}
-            <div className="flex gap-2">
+            {/* Scroll Indicators in Center (hide on small screens) */}
+            <div className="hidden sm:flex gap-1 md:gap-2 mx-2 flex-1 justify-center">
               {reviews.map((_, index) => (
                 <div
                   key={index}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     isDarkMode ? 'bg-gray-700' : 'bg-gray-300'
                   }`}
-                  style={{ width: '32px' }}
+                  style={{ width: '18px' }}
                 />
               ))}
             </div>
@@ -252,7 +252,7 @@ const ReviewsSection: React.FC = () => {
             {/* Next Button - Right */}
             <button
               onClick={() => scroll('right')}
-              className="py-3 px-8 rounded-lg font-display font-bold uppercase tracking-wider transition-all duration-300 bg-primary-600 hover:bg-primary-700 text-white flex items-center gap-2 shadow-lg hover:shadow-xl"
+              className="w-auto py-2 md:py-3 px-6 md:px-8 rounded-lg font-display font-bold uppercase tracking-wider transition-all duration-300 bg-primary-600 hover:bg-primary-700 text-white flex items-center gap-2 shadow-lg hover:shadow-xl text-sm md:text-base"
             >
               Next
               <ChevronRight className="w-5 h-5" />

@@ -4,7 +4,7 @@ import { Mountain, Globe, Shield } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
 
-const About: React.FC = () => {
+const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
   const { isDarkMode } = useTheme();
   
   const features = [
@@ -55,7 +55,7 @@ const About: React.FC = () => {
           title="Where every trek tells a story and culture meets the clouds"
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
+        <div className={`grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto ${showFull ? 'mb-16' : 'mb-0'}`}>
           {/* Image Side */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6">
@@ -125,109 +125,113 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Feature Boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`group text-center p-8 rounded-lg transition-all duration-300 hover:-translate-y-2 ${
-                isDarkMode 
-                  ? 'bg-gray-800 hover:bg-gray-700' 
-                  : 'bg-gray-50 hover:bg-white shadow-lg hover:shadow-2xl'
-              }`}
-            >
-              <div className="inline-flex items-center justify-center mb-4 text-primary-500 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
+        {showFull && (
+          <>
+            {/* Feature Boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className={`group text-center p-8 rounded-lg transition-all duration-300 hover:-translate-y-2 ${
+                    isDarkMode 
+                      ? 'bg-gray-800 hover:bg-gray-700' 
+                      : 'bg-gray-50 hover:bg-white shadow-lg hover:shadow-2xl'
+                  }`}
+                >
+                  <div className="inline-flex items-center justify-center mb-4 text-primary-500 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h4 className={`text-xl font-display font-bold mb-3 ${
+                    isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                  }`}>
+                    {feature.title}
+                  </h4>
+                  <p className={`font-body ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Achievements Section */}
+            <div className={`mt-20 py-16 rounded-2xl ${
+              isDarkMode ? 'bg-gray-800' : 'bg-primary-50'
+            }`}>
+              <div className="text-center mb-12">
+                <h3 className={`text-3xl md:text-4xl font-display font-bold mb-4 ${
+                  isDarkMode ? 'text-gray-100' : 'text-gray-900'
+                }`}>
+                  Our Achievements
+                </h3>
+                <p className={`font-body text-lg ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  Numbers that tell our story of excellence
+                </p>
               </div>
-              <h4 className={`text-xl font-display font-bold mb-3 ${
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+                {achievements.map((achievement, index) => (
+                  <div
+                    key={index}
+                    className={`text-center p-6 rounded-lg ${
+                      isDarkMode ? 'bg-gray-700' : 'bg-white'
+                    } shadow-lg`}
+                  >
+                    <div className="text-5xl font-display font-bold text-primary-500 mb-2">
+                      {achievement.number}
+                    </div>
+                    <div className={`font-display font-semibold text-lg mb-1 ${
+                      isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                    }`}>
+                      {achievement.label}
+                    </div>
+                    {achievement.subtitle && (
+                      <div className={`text-sm ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
+                        {achievement.subtitle}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <h3 className={`text-2xl md:text-3xl font-display font-bold mb-4 ${
                 isDarkMode ? 'text-gray-100' : 'text-gray-900'
               }`}>
-                {feature.title}
-              </h4>
-              <p className={`font-body ${
+                Ready for Your Adventure?
+              </h3>
+              <p className={`font-body text-lg mb-6 max-w-2xl mx-auto ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-600'
               }`}>
-                {feature.description}
+                Join us for an unforgettable journey through the majestic Himalayas, where every step tells a story and every view takes your breath away.
               </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Achievements Section */}
-        <div className={`mt-20 py-16 rounded-2xl ${
-          isDarkMode ? 'bg-gray-800' : 'bg-primary-50'
-        }`}>
-          <div className="text-center mb-12">
-            <h3 className={`text-3xl md:text-4xl font-display font-bold mb-4 ${
-              isDarkMode ? 'text-gray-100' : 'text-gray-900'
-            }`}>
-              Our Achievements
-            </h3>
-            <p className={`font-body text-lg ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Numbers that tell our story of excellence
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
-            {achievements.map((achievement, index) => (
-              <div
-                key={index}
-                className={`text-center p-6 rounded-lg ${
-                  isDarkMode ? 'bg-gray-700' : 'bg-white'
-                } shadow-lg`}
-              >
-                <div className="text-5xl font-display font-bold text-primary-500 mb-2">
-                  {achievement.number}
-                </div>
-                <div className={`font-display font-semibold text-lg mb-1 ${
-                  isDarkMode ? 'text-gray-200' : 'text-gray-800'
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className={`px-6 py-3 rounded-lg ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
                 }`}>
-                  {achievement.label}
+                  <span className="font-display font-semibold">Expert Guides</span>
                 </div>
-                {achievement.subtitle && (
-                  <div className={`text-sm ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                  }`}>
-                    {achievement.subtitle}
-                  </div>
-                )}
+                <div className={`px-6 py-3 rounded-lg ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
+                }`}>
+                  <span className="font-display font-semibold">Personalized Experience</span>
+                </div>
+                <div className={`px-6 py-3 rounded-lg ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
+                }`}>
+                  <span className="font-display font-semibold">Cultural Immersion</span>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <h3 className={`text-2xl md:text-3xl font-display font-bold mb-4 ${
-            isDarkMode ? 'text-gray-100' : 'text-gray-900'
-          }`}>
-            Ready for Your Adventure?
-          </h3>
-          <p className={`font-body text-lg mb-6 max-w-2xl mx-auto ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>
-            Join us for an unforgettable journey through the majestic Himalayas, where every step tells a story and every view takes your breath away.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className={`px-6 py-3 rounded-lg ${
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
-            }`}>
-              <span className="font-display font-semibold">Expert Guides</span>
             </div>
-            <div className={`px-6 py-3 rounded-lg ${
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
-            }`}>
-              <span className="font-display font-semibold">Personalized Experience</span>
-            </div>
-            <div className={`px-6 py-3 rounded-lg ${
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
-            }`}>
-              <span className="font-display font-semibold">Cultural Immersion</span>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </section>
   );
