@@ -11,7 +11,7 @@ const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onBookNow }) => {
     <nav
       aria-label="Mobile navigation"
       role="navigation"
-      className="fixed bottom-0 left-0 right-0 w-full max-w-full mx-0 bg-white/70 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 z-50 md:hidden mobile-bottom-shadow transition-colors duration-300"
+      className="fixed bottom-0 left-0 right-0 w-full max-w-full mx-0 bg-white/70 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 z-0 md:hidden mobile-bottom-shadow transition-colors duration-300"
     >
       {/* Grid container - shows 3 items evenly */}
       <div className="grid grid-cols-3 gap-2 py-3 px-4 w-full">
