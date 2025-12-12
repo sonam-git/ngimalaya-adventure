@@ -79,8 +79,8 @@ const SearchTrekking = () => {
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto mt-0 mb-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 mt-0 text-primary-100 dark:text-primary-100">Browse the trek based on your availability and desire</h2>
+    <section className="w-full max-w-7xl mx-auto mt-0 mb-12 relative z-50">
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-2 mt-0 text-primary-50 dark:text-primary-100">Browse the trek based on your availability and desire</h2>
       {/* Mobile Search Toggle Button */}
       <div className="flex justify-center mb-4 md:hidden">
         <button
@@ -179,7 +179,7 @@ const SearchTrekking = () => {
         </div>
         {/* Results Dropdown Overlay (positioned below form) */}
         {searched && (
-          <div className="absolute left-0 right-0 top-full mt-4 z-40 flex items-start justify-center px-2 md:px-0">
+          <div className="absolute left-0 right-0 top-full mt-4 z-[9999] flex items-start justify-center px-2 md:px-0">
             <div className="w-full max-w-5xl bg-gray-200 dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-10 overflow-y-auto max-h-[80vh]">
               {results.length === 0 ? (
                 <div className="text-center py-8">

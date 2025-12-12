@@ -122,7 +122,7 @@ const ReviewsSection: React.FC = () => {
 
   return (
     <section className={`py-20 transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+      isDarkMode ? 'dark:bg-gradient-to-b dark:from-gray-600 dark:to-gray-900' : 'bg-gray-50'
     }`}>
       <div className="container mx-auto px-4">
         {/* Section Header */}

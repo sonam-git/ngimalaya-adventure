@@ -31,10 +31,11 @@ export default function HomePage() {
         <Hero 
           onExploreTreks={handleExploreTreks}
           onBookNow={handleBookNow}
+          searchComponent={<SearchTrekking />}
         />
-        {/* Overlay SearchTrekking below Hero buttons with more gap */}
-        <div className="absolute left-0 right-0 w-full flex justify-center z-30" style={{ top: 'calc(60vh + 200px)' }}>
-          <div className="w-full max-w-4xl px-2">
+        {/* Overlay SearchTrekking - visible only on desktop, aligned with bottom of slideshow */}
+        <div className="hidden md:flex absolute left-0 right-0 w-full z-30 items-end justify-center md:top-28 md:bottom-[200px] lg:bottom-[240px]">
+          <div className="w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 pb-6">
             <SearchTrekking />
           </div>
         </div>

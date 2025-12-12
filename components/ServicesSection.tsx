@@ -89,7 +89,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
     <section
       id="services"
       className={`scroll-offset-mobile py-16 md:py-24 transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-800" : "bg-white"
+        isDarkMode ? "bg-gray-800" : "bg-gradient-to-b from-blue-200 to-green-200"
       }`}
     >
       <div className="container mx-auto px-4">
