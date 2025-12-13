@@ -102,7 +102,7 @@ const SearchTrekking = () => {
         showHeading ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none'
       } opacity-100 translate-y-0 md:opacity-100 md:translate-y-0`}>
         <div className="backdrop-blur-md bg-white/70 dark:bg-gray-900/70 rounded-2xl px-6 py-4 md:px-8 md:py-6 shadow-lg border border-white/20 dark:border-gray-700/30">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-center mb-2 text-gray-900 dark:text-gray-100">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-center mb-2 text-gray-900 dark:text-white">
             Find Your Perfect Trek
           </h2>
           <p className="text-sm sm:text-base md:text-lg font-body text-center text-gray-700 dark:text-gray-300 max-w-2xl">

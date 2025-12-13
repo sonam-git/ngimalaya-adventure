@@ -526,6 +526,10 @@ p, span, div, a, li, td, th, .font-body, body * {
   font-family: Jaini Purva, system-ui !important;
 }
 
+.dark .jaini-purva-regular {
+  color: #fff !important;
+}
+
 .jaini-purva-light {
   font-style: normal;
   font-weight: 300;
@@ -4124,6 +4128,11 @@ html {
     padding-bottom: 4rem;
   }
 
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .lg\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -4147,11 +4156,6 @@ html {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .lg\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .lg\:opacity-0 {

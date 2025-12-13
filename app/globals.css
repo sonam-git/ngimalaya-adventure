@@ -572,6 +572,11 @@
     font-style: normal;
   }
 
+  /* Ensure white text in dark mode for Jaini Purva headings */
+  .dark .jaini-purva-regular {
+    color: white !important;
+  }
+
   /* Jaini Purva font with lighter weight for contact info */
   .jaini-purva-light {
     font-family: "Jaini Purva", system-ui !important;
