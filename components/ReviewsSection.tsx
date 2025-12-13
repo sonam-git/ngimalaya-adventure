@@ -127,7 +127,7 @@ const ReviewsSection: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className={`text-4xl md:text-5xl font-display font-bold mb-4 ${
+          <h2 className={`text-3xl md:text-4xl lg:text-5xl jaini-purva-regular mb-4 ${
             isDarkMode ? 'text-gray-100' : 'text-gray-900'
           }`}>
             What Our Adventurers Say

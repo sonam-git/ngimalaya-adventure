@@ -66,9 +66,14 @@ const HeroComponent: React.FC<HeroProps> = ({
         <div className="absolute inset-0 bg-white/40 dark:bg-gray-900/70 backdrop-blur-sm" />
 
         <div className="relative max-w-6xl mx-auto text-center">
+          {/* Welcome Text */}
+          <p className="satisfy-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-3 text-blue-700 dark:text-blue-300 animate-fade-in-up">
+            Welcome to
+          </p>
+          
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 md:mb-6 tracking-tight text-blue-900 dark:text-blue-200 animate-fade-in-up">
-            Discover Your Himalayan Escape
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl jaini-purva-regular mb-4 md:mb-6 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            Ngimalaya Adventure
           </h1>
 
           {/* Subtitle */}
@@ -76,7 +81,7 @@ const HeroComponent: React.FC<HeroProps> = ({
             className="text-lg sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Where Culture Meets the Clouds
+            Discover Your Himalayan Escape, Where Culture Meets the Clouds
           </p>
         </div>
       </div>
@@ -164,7 +169,7 @@ const HeroComponent: React.FC<HeroProps> = ({
 
           {/* Tagline */}
           <h2
-            className="text-xl sm:text-2xl md:text-3xl font-body font-semibold mb-6 md:mb-8 text-gray-800 dark:text-gray-200 animate-fade-in-up"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl lugrasimo-regular mb-6 md:mb-8 text-gray-800 dark:text-gray-200 animate-fade-in-up"
             style={{ animationDelay: "0.3s" }}
           >
             Expert-Guided Treks Through Nepal's Majestic Landscapes

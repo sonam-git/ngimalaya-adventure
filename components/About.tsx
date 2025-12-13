@@ -75,7 +75,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
             <div className={`border-l-4 border-primary-500 pl-6 py-4 ${
               isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
             }`}>
-              <p className={`font-body italic text-lg mb-2 ${
+              <p className={`satisfy-regular text-xl md:text-2xl mb-3 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}>
                 "Ngimalaya Adventure Nepal – Where Culture Meets the Clouds, and Every Trek Tells a Story!"
@@ -90,7 +90,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
 
           {/* Content Side */}
           <div>
-            <h3 className={`text-3xl md:text-4xl font-display font-bold mb-6 ${
+            <h3 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-6 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               A Journey Born From Passion
@@ -160,7 +160,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
               isDarkMode ? 'bg-gray-800' : 'bg-primary-50'
             }`}>
               <div className="text-center mb-12">
-                <h3 className={`text-3xl md:text-4xl font-display font-bold mb-4 ${
+                <h3 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-4 ${
                   isDarkMode ? 'text-gray-100' : 'text-gray-900'
                 }`}>
                   Our Achievements
@@ -202,7 +202,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
 
             {/* Call to Action */}
             <div className="text-center mt-16">
-              <h3 className={`text-2xl md:text-3xl font-display font-bold mb-4 ${
+              <h3 className={`text-xl md:text-2xl lg:text-3xl jaini-purva-regular mb-4 ${
                 isDarkMode ? 'text-gray-100' : 'text-gray-900'
               }`}>
                 Ready for Your Adventure?

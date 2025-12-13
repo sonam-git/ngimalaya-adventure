@@ -1,6 +1,5 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&family=Bebas+Neue&display=swap');
-
+/* Import Google Fonts - Poppins for Headings, Roboto for Body, Satisfy for Quotes, Jaini Purva for Hero Title, Lugrasimo for Tagline */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Satisfy&family=Jaini+Purva&family=Lugrasimo&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,8 +40,8 @@
   }
 
   body {
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    color: rgb(17 24 39); /* text-gray-900 */
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+    color: rgb(30 58 138) !important; /* dark blue-900 instead of gray-900 */
     background-color: rgb(249 250 251); /* bg-gray-50 */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -73,17 +72,23 @@
     background-color: rgb(17 24 39); /* bg-gray-900 */
   }
 
-  /* Enhanced typography classes */
+  /* Enhanced typography classes - Poppins & Roboto */
   .font-display {
-    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
   }
   
   .font-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.7;
   }
   
   .font-heading {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
   }
 
   /* Responsive text sizing utilities */
@@ -198,8 +203,10 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 600; /* font-semibold */
-    line-height: 1.25; /* leading-tight */
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important; /* Bold for all headings */
+    line-height: 1.2; /* leading-tight */
+    letter-spacing: -0.01em;
   }
   
   h1 {
@@ -244,6 +251,15 @@
   #root {
     min-height: 100vh;
     width: 100%;
+  }
+
+  /* Global color override: Change black/dark gray text to dark blue */
+  .text-gray-900 {
+    color: rgb(30 58 138) !important; /* dark blue-900 */
+  }
+  
+  body {
+    color: rgb(30 58 138) !important; /* dark blue-900 instead of gray-900 */
   }
 }
 
@@ -488,67 +504,86 @@
 
 /* Custom Typography Enhancements */
 @layer components {
-  /* Enhanced Oswald heading styles */
-  .font-heading {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
+  /* Global typography application - Roboto (Like Thamserku) */
+  * {
+    font-family: 'Roboto', sans-serif !important;
   }
   
-  .font-display {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    text-transform: uppercase;
-  }
-  
-  /* Enhanced Lato body text */
-  .font-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.7;
-  }
-  
-  /* Heading size variants with vintage styling */
-  h1, .text-responsive-5xl {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    text-transform: uppercase;
-  }
-  
-  h2, .text-responsive-4xl {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-  }
-  
-  h3, .text-responsive-3xl {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-  
-  h4, h5, h6 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
+  /* Heading size variants - All use Poppins Bold */
+  h1, h2, h3, h4, h5, h6,
+  .text-responsive-5xl,
+  .text-responsive-4xl,
+  .text-responsive-3xl,
+  .text-responsive-2xl {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
     letter-spacing: -0.01em;
   }
   
-  /* Body text refinements */
-  p, span, div {
-    font-family: 'Lato', sans-serif;
+  /* Navigation and button text - Use Poppins Semi-Bold */
+  nav, nav a, nav button,
+  button, .btn,
+  [role="button"] {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
   
-  /* Button text styling */
-  button {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.025em;
-    text-transform: uppercase;
+  /* Body text, paragraphs, spans - Use Roboto Regular */
+  p, span, div, a, li, td, th,
+  .font-body,
+  body * {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  /* Override for display/heading classes */
+  .font-display {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+  }
+  
+  .font-heading {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+  }
+  
+  .font-body {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* Satisfy font for quotes */
+  .satisfy-regular {
+    font-family: "Satisfy", cursive !important;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Jaini Purva font for hero title */
+  .jaini-purva-regular {
+    font-family: "Jaini Purva", system-ui !important;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Jaini Purva font with lighter weight for contact info */
+  .jaini-purva-light {
+    font-family: "Jaini Purva", system-ui !important;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  /* Lugrasimo font for tagline */
+  .lugrasimo-regular {
+    font-family: "Lugrasimo", cursive !important;
+    font-weight: 400;
+    font-style: normal;
   }
 
   /* Hide scrollbar for horizontal scrolling galleries */

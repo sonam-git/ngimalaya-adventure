@@ -95,7 +95,7 @@ const PeakExpeditionPage: React.FC = () => {
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <Flag className="text-primary-500" size={40} />
-              <h1 className="text-5xl md:text-6xl font-display font-bold text-white uppercase tracking-wider">
+              <h1 className="text-5xl md:text-6xl jaini-purva-regular font-bold text-white uppercase tracking-wider">
                 Peak Expedition
               </h1>
             </div>
@@ -155,7 +155,7 @@ const PeakExpeditionPage: React.FC = () => {
       <div className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold uppercase tracking-wider mb-4">
+            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
               Our Expeditions
             </h2>
             <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -185,7 +185,7 @@ const PeakExpeditionPage: React.FC = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-2xl font-display font-bold mb-3">{expedition.name}</h3>
+                  <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{expedition.name}</h3>
                   <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     {expedition.description}
                   </p>
@@ -241,7 +241,7 @@ const PeakExpeditionPage: React.FC = () => {
       <div className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-primary-50'}`}>
         <div className="container mx-auto px-4 text-center">
           <Flag className="mx-auto text-primary-500 mb-6" size={48} />
-          <h2 className="text-4xl font-display font-bold uppercase tracking-wider mb-4">
+          <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
             Ready for the Ultimate Challenge?
           </h2>
           <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>

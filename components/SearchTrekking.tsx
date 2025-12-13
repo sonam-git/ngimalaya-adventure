@@ -43,6 +43,23 @@ const SearchTrekking = () => {
   const [searched, setSearched] = useState(false);
   const [showCustomTrekModal, setShowCustomTrekModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [showHeading, setShowHeading] = useState(false);
+
+  // Show heading after 2 seconds, then hide after 3 more seconds (only on large screens)
+  React.useEffect(() => {
+    const showTimer = setTimeout(() => {
+      setShowHeading(true);
+    }, 2000);
+
+    const hideTimer = setTimeout(() => {
+      setShowHeading(false);
+    }, 7000); // 2s + 5s = 7s total
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +97,19 @@ const SearchTrekking = () => {
 
   return (
     <section className="w-full max-w-7xl mx-auto mt-0 mb-12 relative z-50">
-      <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-2 mt-0 text-blue-900 md:text-primary-50 dark:text-primary-100">Browse the trek based on your availability and desire</h2>
+      {/* Heading section - always visible on mobile, timed on large screens */}
+      <div className={`flex flex-col items-center justify-center mb-6 px-4 transition-all duration-500 ${
+        showHeading ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none'
+      } opacity-100 translate-y-0 md:opacity-100 md:translate-y-0`}>
+        <div className="backdrop-blur-md bg-white/70 dark:bg-gray-900/70 rounded-2xl px-6 py-4 md:px-8 md:py-6 shadow-lg border border-white/20 dark:border-gray-700/30">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-center mb-2 text-gray-900 dark:text-gray-100">
+            Find Your Perfect Trek
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg font-body text-center text-gray-700 dark:text-gray-300 max-w-2xl">
+            Search by trek type, region, difficulty, and duration to discover your ideal Himalayan adventure
+          </p>
+        </div>
+      </div>
       {/* Mobile Search Toggle Button */}
       <div className="flex justify-center mb-4 md:hidden">
         <button
@@ -196,15 +225,15 @@ const SearchTrekking = () => {
                     <div className="mt-2 grid grid-cols-3 gap-4 items-center justify-center text-gray-600 dark:text-gray-300">
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaEnvelope /></span>
-                        <span className="font-semibold">ngiman81@gmail.com</span>
+                        <span className="jaini-purva-light text-sm md:text-base">ngiman81@gmail.com</span>
                       </div>
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaPhoneAlt /></span>
-                        <span className="font-semibold">9803499156</span>
+                        <span className="jaini-purva-light text-sm md:text-base">9803499156</span>
                       </div>
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaWhatsapp /></span>
-                        <span className="font-semibold">9803499156</span>
+                        <span className="jaini-purva-light text-sm md:text-base">9803499156</span>
                       </div>
                     </div>
                   </div>

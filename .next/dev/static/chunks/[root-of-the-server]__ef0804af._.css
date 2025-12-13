@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&family=Bebas+Neue&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Satisfy&family=Jaini+Purva&family=Lugrasimo&display=swap";
 /* [next]/internal/font/google/oswald_f85f80dc.module.css [app-client] (css) */
 @font-face {
   font-family: Oswald;
@@ -429,16 +429,16 @@ html.dark {
 }
 
 body {
-  color: #111827;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9fafb;
   margin: 0;
   padding: 0;
-  font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   transition: background-color .3s, color .3s;
+  color: #1e3a8a !important;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif !important;
 }
 
 @media (max-width: 640px) {
@@ -523,8 +523,10 @@ section[id] {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.25;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  font-family: Poppins, sans-serif !important;
+  font-weight: 700 !important;
 }
 
 h1 {
@@ -571,6 +573,10 @@ a {
   min-height: 100vh;
 }
 
+.text-gray-900, body {
+  color: #1e3a8a !important;
+}
+
 .container {
   width: 100%;
 }
@@ -605,62 +611,69 @@ a {
   }
 }
 
-.font-heading {
-  letter-spacing: -.025em;
+* {
+  font-family: Roboto, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .text-responsive-5xl, .text-responsive-4xl, .text-responsive-3xl, .text-responsive-2xl {
+  letter-spacing: -.01em;
+  font-family: Poppins, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+nav, nav a, nav button, button, .btn, [role="button"] {
+  letter-spacing: .02em;
   text-transform: uppercase;
-  font-family: Oswald, sans-serif;
   font-weight: 600;
+  font-family: Poppins, sans-serif !important;
+}
+
+p, span, div, a, li, td, th, .font-body, body * {
+  font-weight: 400;
+  line-height: 1.6;
+  font-family: Roboto, sans-serif !important;
 }
 
 .font-display {
-  letter-spacing: -.05em;
-  text-transform: uppercase;
-  font-family: Oswald, sans-serif;
-  font-weight: 700;
+  letter-spacing: -.01em;
+  font-family: Poppins, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.font-heading {
+  letter-spacing: -.01em;
+  font-family: Poppins, sans-serif !important;
+  font-weight: 600 !important;
 }
 
 .font-body {
-  letter-spacing: .01em;
-  font-family: Lato, sans-serif;
   font-weight: 400;
   line-height: 1.7;
+  font-family: Roboto, sans-serif !important;
 }
 
-h1, .text-responsive-5xl {
-  letter-spacing: -.05em;
-  text-transform: uppercase;
-  font-family: Oswald, sans-serif;
-  font-weight: 700;
+.satisfy-regular {
+  font-style: normal;
+  font-weight: 400;
+  font-family: Satisfy, cursive !important;
 }
 
-h2, .text-responsive-4xl {
-  letter-spacing: -.025em;
-  text-transform: uppercase;
-  font-family: Oswald, sans-serif;
-  font-weight: 600;
+.jaini-purva-regular {
+  font-style: normal;
+  font-weight: 400;
+  font-family: Jaini Purva, system-ui !important;
 }
 
-h3, .text-responsive-3xl {
-  letter-spacing: -.02em;
-  font-family: Oswald, sans-serif;
-  font-weight: 600;
+.jaini-purva-light {
+  font-style: normal;
+  font-weight: 300;
+  font-family: Jaini Purva, system-ui !important;
 }
 
-h4, h5, h6 {
-  letter-spacing: -.01em;
-  font-family: Oswald, sans-serif;
-  font-weight: 500;
-}
-
-p, span, div {
-  font-family: Lato, sans-serif;
-}
-
-button {
-  letter-spacing: .025em;
-  text-transform: uppercase;
-  font-family: Oswald, sans-serif;
-  font-weight: 500;
+.lugrasimo-regular {
+  font-style: normal;
+  font-weight: 400;
+  font-family: Lugrasimo, cursive !important;
 }
 
 @keyframes slideDown {
@@ -1727,6 +1740,10 @@ html {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
+.border-white\/20 {
+  border-color: #fff3;
+}
+
 .border-yellow-200 {
   --tw-border-opacity: 1;
   border-color: rgb(254 240 138 / var(--tw-border-opacity, 1));
@@ -2530,20 +2547,12 @@ html {
   text-transform: uppercase;
 }
 
-.italic {
-  font-style: italic;
-}
-
 .leading-relaxed {
   line-height: 1.625;
 }
 
 .leading-tight {
   line-height: 1.25;
-}
-
-.tracking-tight {
-  letter-spacing: -.025em;
 }
 
 .tracking-wide {
@@ -3481,6 +3490,10 @@ html {
   border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
 }
 
+.dark\:border-gray-700\/30:is(.dark *) {
+  border-color: #3741514d;
+}
+
 .dark\:border-green-800:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(22 101 52 / var(--tw-border-opacity, 1));
@@ -3640,6 +3653,11 @@ html {
   color: rgb(191 219 254 / var(--tw-text-opacity, 1));
 }
 
+.dark\:text-blue-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(147 197 253 / var(--tw-text-opacity, 1));
+}
+
 .dark\:text-blue-400:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity, 1));
@@ -3673,11 +3691,6 @@ html {
 .dark\:text-green-400:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(74 222 128 / var(--tw-text-opacity, 1));
-}
-
-.dark\:text-primary-100:is(.dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(219 234 254 / var(--tw-text-opacity, 1));
 }
 
 .dark\:text-primary-300:is(.dark *) {
@@ -3803,9 +3816,19 @@ html {
     line-height: 2rem;
   }
 
-  .sm\:text-5xl {
-    font-size: 3rem;
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:text-6xl {
+    font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .sm\:text-lg {
@@ -4095,13 +4118,13 @@ html {
     line-height: 2.5rem;
   }
 
-  .md\:text-5xl {
-    font-size: 3rem;
+  .md\:text-6xl {
+    font-size: 3.75rem;
     line-height: 1;
   }
 
-  .md\:text-6xl {
-    font-size: 3.75rem;
+  .md\:text-7xl {
+    font-size: 4.5rem;
     line-height: 1;
   }
 
@@ -4130,17 +4153,16 @@ html {
     line-height: 1rem;
   }
 
-  .md\:text-primary-50 {
-    --tw-text-opacity: 1;
-    color: rgb(239 246 255 / var(--tw-text-opacity, 1));
-  }
-
   .md\:opacity-100 {
     opacity: 1;
   }
 }
 
 @media (min-width: 1024px) {
+  .lg\:pointer-events-none {
+    pointer-events: none;
+  }
+
   .lg\:bottom-\[240px\] {
     bottom: 240px;
   }
@@ -4175,6 +4197,16 @@ html {
 
   .lg\:w-auto {
     width: auto;
+  }
+
+  .lg\:-translate-y-4 {
+    --tw-translate-y: -1rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:translate-y-0 {
+    --tw-translate-y: 0px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .lg\:grid-cols-2 {
@@ -4235,19 +4267,37 @@ html {
     line-height: 2.25rem;
   }
 
-  .lg\:text-6xl {
-    font-size: 3.75rem;
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
     line-height: 1;
   }
 
-  .lg\:text-7xl {
-    font-size: 4.5rem;
+  .lg\:text-8xl {
+    font-size: 6rem;
     line-height: 1;
   }
 
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .lg\:opacity-0 {
+    opacity: 0;
+  }
+
+  .lg\:opacity-100 {
+    opacity: 1;
   }
 }
 
@@ -4259,6 +4309,11 @@ html {
   .xl\:px-24 {
     padding-left: 6rem;
     padding-right: 6rem;
+  }
+
+  .xl\:text-9xl {
+    font-size: 8rem;
+    line-height: 1;
   }
 }
 

@@ -30,7 +30,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           <div className="h-px w-12 bg-primary-500"></div>
         </div>
       )}
-      <h2 className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-wide ${
+      <h2 className={`text-3xl md:text-4xl lg:text-5xl jaini-purva-regular tracking-wide ${
         isDark ? 'text-white' : isDarkMode ? 'text-gray-100' : 'text-gray-900'
       }`}>
         {title}

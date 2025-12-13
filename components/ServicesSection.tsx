@@ -203,7 +203,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
             isDarkMode ? "bg-gray-700" : "bg-gradient-to-r from-primary-500 to-primary-600"
           }`}
         >
-          <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-white mb-4">
             Get Ready for Next Trekking Adventure
           </h3>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">

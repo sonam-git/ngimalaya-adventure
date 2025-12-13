@@ -35,7 +35,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">{region.name}</h1>
+              <h1 className="text-4xl md:text-6xl jaini-purva-regular font-bold mb-4">{region.name}</h1>
               <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed px-4">
                 {region.description}
               </p>
@@ -66,7 +66,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
 
         {/* Treks Section */}
         <div className="mb-8">
-          <h2 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-3xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             Available Treks in {region.name}
           </h2>
           
@@ -104,7 +104,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
 
         {/* Region Features */}
         <div className={`rounded-2xl p-8 mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
-          <h3 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             What Makes {region.name} Special
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -138,7 +138,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
         {/* CTA */}
         <div className="text-center">
           <div className={`p-8 rounded-2xl ${isDarkMode ? 'bg-gray-800' : 'bg-gradient-to-r from-blue-600 to-cyan-600'} text-white`}>
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl jaini-purva-regular font-bold mb-4">
               Ready to Explore {region.name}?
             </h3>
             <p className={`mb-6 max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-blue-100'}`}>

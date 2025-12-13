@@ -19,7 +19,7 @@ const SafariPage: React.FC = () => {
       location: 'Chitwan, Nepal',
       duration: '2-4 Days',
       type: 'UNESCO Site',
-      image: 'https://ngimalaya-adventure.vercel.app/assets/chitawan-6c447e1d.jpg',
+      image: './assets/images/chitawan.jpg',
       description: 'Home to the rare one-horned rhinoceros and Bengal tigers. Experience jungle safaris, canoe rides, and cultural programs.',
       highlights: ['Jungle Safari', 'Canoe Ride', 'Elephant Ride', 'Cultural Programs', 'Bird Watching'],
       badge: 'Family Friendly',
@@ -30,7 +30,7 @@ const SafariPage: React.FC = () => {
       location: 'Bardia, Nepal',
       duration: '3-5 Days',
       type: 'Wild Tiger',
-      image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: './assets/images/bardia.jpg',
       description: 'Nepal\'s largest and most pristine wilderness area. Best chances to spot wild tigers, elephants, and dolphins.',
       highlights: ['Tiger Tracking', 'Jungle Safari', 'Dolphin Watching', 'Nature Walks', 'Wildlife Photography'],
       badge: 'Adventure',
@@ -41,7 +41,7 @@ const SafariPage: React.FC = () => {
       location: 'Koshi, Nepal',
       duration: '2-3 Days',
       type: 'Bird Paradise',
-      image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: './assets/images/koshi.webp',
       description: 'Premier bird watching destination with over 500 species. Perfect for wildlife photography and nature enthusiasts.',
       highlights: ['Bird Watching', 'Wildlife Photography', 'Wetland Safari', 'Nature Walks', 'Buffalo Herds'],
       badge: 'Bird Watching',
@@ -100,7 +100,7 @@ const SafariPage: React.FC = () => {
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <Binoculars className="text-primary-500" size={40} />
-              <h1 className="text-5xl md:text-6xl font-display font-bold text-white uppercase tracking-wider">
+              <h1 className="text-5xl md:text-6xl jaini-purva-regular font-bold text-white uppercase tracking-wider">
                 Safari Adventures
               </h1>
             </div>
@@ -160,7 +160,7 @@ const SafariPage: React.FC = () => {
       <div className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold uppercase tracking-wider mb-4">
+            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
               Our Safari Packages
             </h2>
             <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -197,7 +197,7 @@ const SafariPage: React.FC = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-2xl font-display font-bold mb-3">{safari.name}</h3>
+                  <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{safari.name}</h3>
                   <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     {safari.description}
                   </p>
@@ -253,7 +253,7 @@ const SafariPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Footprints className="mx-auto text-primary-500 mb-4" size={48} />
-            <h2 className="text-4xl font-display font-bold uppercase tracking-wider mb-4">
+            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
               Safari Activities
             </h2>
             <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -282,7 +282,7 @@ const SafariPage: React.FC = () => {
       <div className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-primary-50'}`}>
         <div className="container mx-auto px-4 text-center">
           <Sun className="mx-auto text-primary-500 mb-6" size={48} />
-          <h2 className="text-4xl font-display font-bold uppercase tracking-wider mb-4">
+          <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
             Ready for a Wild Adventure?
           </h2>
           <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>

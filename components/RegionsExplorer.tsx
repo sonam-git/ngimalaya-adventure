@@ -79,7 +79,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <Mountain className="text-primary-500" size={40} />
-              <h1 className="text-5xl md:text-6xl font-display font-bold text-white uppercase tracking-wider">
+              <h1 className="text-5xl md:text-6xl jaini-purva-regular font-bold text-white uppercase tracking-wider">
                 Trek Regions
               </h1>
             </div>
@@ -107,7 +107,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className={`text-3xl md:text-4xl font-display font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             Choose Your Adventure
           </h2>
           <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -174,7 +174,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
         {filteredRegions.length > 0 && (
           <div className="mb-16">
             {searchQuery && (
-              <h3 className={`text-2xl font-display font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 Regions ({filteredRegions.length})
               </h3>
             )}
@@ -194,7 +194,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
         {filteredTreks.length > 0 && (
           <div className="mb-16">
             {searchQuery && (
-              <h3 className={`text-2xl font-display font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 Treks ({filteredTreks.length})
               </h3>
             )}
@@ -214,7 +214,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
         {filteredRegions.length === 0 && filteredTreks.length === 0 && searchQuery && (
           <div className="text-center py-16">
             <Mountain className={`mx-auto mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} size={64} />
-            <h3 className={`text-2xl font-display font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-2xl jaini-purva-regular font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               No Results Found
             </h3>
             <p className={`text-lg mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -240,7 +240,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
         {/* CTA Section */}
         <div className="text-center mt-16">
           <div className={`p-8 rounded-2xl ${isDarkMode ? 'bg-gray-800' : 'bg-gradient-to-r from-primary-500 to-primary-600'} text-white`}>
-            <h3 className="text-2xl md:text-3xl font-display font-bold mb-4">
+            <h3 className="text-xl md:text-2xl lg:text-3xl jaini-purva-regular mb-4">
               Need Help Choosing?
             </h3>
             <p className={`mb-6 max-w-2xl mx-auto font-body ${isDarkMode ? 'text-gray-300' : 'text-white/90'}`}>

@@ -167,7 +167,7 @@ const ContactSection: React.FC = () => {
           <div className={`p-8 rounded-2xl ${
             isDarkMode ? 'bg-gray-700' : 'bg-white shadow-xl'
           }`}>
-            <h3 className={`text-2xl md:text-3xl font-display font-bold mb-6 text-center ${
+            <h3 className={`text-xl md:text-2xl lg:text-3xl jaini-purva-regular mb-6 text-center ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               Send Us A Message
