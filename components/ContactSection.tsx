@@ -116,9 +116,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className={`scroll-offset-mobile py-16 md:py-24 transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
-    }`}>
+    <section id="contact" className="scroll-offset-mobile py-16 md:py-24 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <SectionHeader

@@ -1,13 +1,18 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
 import PrayerFlagBorder from './PrayerFlagBorder';
 import GoogleTranslateClient from './GoogleTranslateClient';
+import { trekRegions, allTreks } from '../data/treks';
+import { peakExpeditions } from '../data/peakExpeditions';
+import { safariPackages } from '../data/safariPackages';
+import PeakMenu from './PeakMenu';
+import SafariMenu from './SafariMenu';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +20,7 @@ const Header: React.FC = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +29,65 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Check if we should show the RegionMenu (for single region or single trek pages)
+  const shouldShowRegionMenu = pathname.startsWith('/treks/regions/') || 
+                                (pathname.startsWith('/treks/') && pathname !== '/treks');
+  
+  // Check if we should show the PeakMenu
+  const shouldShowPeakMenu = pathname === '/peak-expedition' || 
+                              pathname.startsWith('/peak-expedition/');
+  
+  // Check if we should show the SafariMenu
+  const shouldShowSafariMenu = pathname === '/safari' || 
+                                pathname.startsWith('/safari/');
+  
+  // Get current region from pathname
+  const getCurrentRegion = () => {
+    if (pathname.startsWith('/treks/regions/')) {
+      const regionId = pathname.split('/').pop();
+      const region = trekRegions.find(r => r.id === regionId);
+      return region?.name || '';
+    }
+    // For individual trek pages, get region from trek data
+    if (pathname.startsWith('/treks/') && pathname !== '/treks') {
+      const trekId = pathname.split('/').pop();
+      const trek = allTreks.find(t => t.id === trekId);
+      return trek?.region || '';
+    }
+    return '';
+  };
+
+  // Get current peak ID from pathname
+  const getCurrentPeakId = () => {
+    if (pathname.startsWith('/peak-expedition/') && pathname !== '/peak-expedition') {
+      return pathname.split('/').pop() || '';
+    }
+    return '';
+  };
+
+  // Get current safari ID from pathname
+  const getCurrentSafariId = () => {
+    if (pathname.startsWith('/safari/') && pathname !== '/safari') {
+      return pathname.split('/').pop() || '';
+    }
+    return '';
+  };
+
+  const handleRegionSelect = (regionName: string) => {
+    const region = trekRegions.find(r => r.name === regionName);
+    if (region) {
+      router.push(`/treks/regions/${region.id}`);
+    }
+  };
+
+  const handlePeakSelect = (peakId: string) => {
+    router.push(`/peak-expedition/${peakId}`);
+  };
+
+  const handleSafariSelect = (safariId: string) => {
+    router.push(`/safari/${safariId}`);
+  };
 
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
@@ -177,6 +242,51 @@ const Header: React.FC = () => {
           <div className="w-full">
             <PrayerFlagBorder />
           </div>
+
+          {/* Region Menu - shown only on region and trek detail pages */}
+          {shouldShowRegionMenu && (
+            <div className="w-full bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
+              <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+                {trekRegions.map(region => {
+                  const isSelected = getCurrentRegion() === region.name;
+                  return (
+                    <li key={region.id} className="flex-shrink-0 w-max">
+                      <button
+                        type="button"
+                        onClick={() => handleRegionSelect(region.name)}
+                        className={`transition-colors duration-200 px-4 py-2 rounded-md font-semibold text-blue-900 dark:text-white whitespace-nowrap
+                          ${isSelected
+                            ? 'bg-blue-100 dark:bg-blue-900 shadow-md scale-105'
+                            : 'bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-800 hover:scale-105'}
+                          focus:outline-none focus:ring-2 focus:ring-blue-300`
+                        }
+                      >
+                        {region.name.replace(/ Region$/i, '')}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+
+          {/* Peak Menu - shown only on peak expedition and peak detail pages */}
+          {shouldShowPeakMenu && (
+            <PeakMenu
+              peaks={peakExpeditions.map(peak => ({ id: peak.id, name: peak.name }))}
+              selectedPeak={getCurrentPeakId()}
+              onSelect={handlePeakSelect}
+            />
+          )}
+
+          {/* Safari Menu - shown only on safari and safari detail pages */}
+          {shouldShowSafariMenu && (
+            <SafariMenu
+              safaris={safariPackages.map(safari => ({ id: safari.id, name: safari.name }))}
+              selectedSafari={getCurrentSafariId()}
+              onSelect={handleSafariSelect}
+            />
+          )}
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (

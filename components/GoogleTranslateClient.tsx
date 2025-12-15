@@ -186,41 +186,44 @@ const GoogleTranslateClient = () => {
     };
   }, [open]);
 
-  const currentFlag = LANGUAGES.find(l => l.code === currentLang)?.flag || '🌐';
-
   return (
     <div className="relative flex items-center ml-2">
       <button
-        className="px-2 py-2 rounded-md focus:outline-none text-xl transition-all duration-200 shadow-lg bg-white dark:bg-gray-700"
+        className="p-2 rounded-full focus:outline-none transition-all duration-200 shadow-lg bg-yellow-100 dark:bg-blue-100 border-2 border-gray-300 dark:border-white"
         style={{
-          border: 'none',
           boxShadow: '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)',
+          width: '44px',
+          height: '44px',
         }}
         onClick={() => setOpen(!open)}
         aria-label="Change language"
         onMouseEnter={e => {
           if (document.body.classList.contains('dark')) {
             e.currentTarget.style.boxShadow = '0 0 12px 2px #fff, 0 4px 16px rgba(255,255,255,0.10)';
-            e.currentTarget.style.backgroundColor = '#374151'; // Tailwind gray-700
+            e.currentTarget.style.backgroundColor = '#dbeafe'; // Tailwind blue-100
           } else {
             e.currentTarget.style.boxShadow = '0 0 12px 2px #eab308, 0 4px 16px rgba(234,179,8,0.18)'; // yellow-500
-            e.currentTarget.style.backgroundColor = '';
+            e.currentTarget.style.backgroundColor = '#fef9c3'; // Tailwind yellow-100
           }
         }}
         onMouseLeave={e => {
           if (document.body.classList.contains('dark')) {
             e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
-            e.currentTarget.style.backgroundColor = '#374151'; // Tailwind gray-700
+            e.currentTarget.style.backgroundColor = '#dbeafe'; // Tailwind blue-100
           } else {
             e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
-            e.currentTarget.style.backgroundColor = '';
+            e.currentTarget.style.backgroundColor = '#fef9c3'; // Tailwind yellow-100
           }
         }}
       >
-        {currentFlag}
+        <img 
+          src="/assets/images/logos/translation.png" 
+          alt="Translate" 
+          className="w-full h-full object-contain"
+        />
       </button>
       {open && (
-        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50" style={{ marginTop: '25rem' }}>
+        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:text-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50" style={{ marginTop: '25rem' }}>
           <ul className="py-1">
             {LANGUAGES.map(lang => (
               <li key={lang.code}>

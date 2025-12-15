@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, User, Mail, Phone, MessageSquare, CheckCircle, Loader2, XCircle } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -35,6 +36,10 @@ const ContactModal: React.FC<ContactModalProps> = ({
   const subjects = [
     'General Inquiry',
     'Trek Information',
+    'Peak Climbing',
+    'Cultural Tours',
+    'Wildlife Safari',
+    'Cycling Tours',
     'Booking Assistance',
     'Group Trek Planning',
     'Equipment Rental',
@@ -107,15 +112,19 @@ const ContactModal: React.FC<ContactModalProps> = ({
     onClose();
   };
 
-  if (!isOpen) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className={`relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white'
-      }`}>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  const modalContent = (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+      <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-gray-800">
         {/* Header */}
-        <div className={`sticky top-0 flex items-center justify-between p-6 border-b ${
+        <div className={`sticky top-0 z-10 flex items-center justify-between p-6 border-b ${
           isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
         }`}>
           <div>
@@ -366,6 +375,8 @@ const ContactModal: React.FC<ContactModalProps> = ({
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default ContactModal;

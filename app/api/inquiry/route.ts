@@ -132,6 +132,10 @@ export async function POST(request: NextRequest) {
     const subjectCategories = {
       'General Inquiry': '📋',
       'Trek Information': '🏔️',
+      'Peak Climbing': '🗻',
+      'Cultural Tours': '🏯',
+      'Wildlife Safari': '🦁',
+      'Cycling Tours': '🚴‍♂️',
       'Booking Assistance': '📅',
       'Group Trek Planning': '👥',
       'Equipment Rental': '🎒',

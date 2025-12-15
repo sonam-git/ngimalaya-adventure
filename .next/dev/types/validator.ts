@@ -74,10 +74,28 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/peak-expedition/[peakId]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/peak-expedition/[peakId]">> = Specific
+  const handler = {} as typeof import("../../../app/peak-expedition/[peakId]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/peak-expedition/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/peak-expedition">> = Specific
   const handler = {} as typeof import("../../../app/peak-expedition/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/safari/[safariId]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/safari/[safariId]">> = Specific
+  const handler = {} as typeof import("../../../app/safari/[safariId]/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

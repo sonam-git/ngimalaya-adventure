@@ -4,16 +4,20 @@ import Link from 'next/link';
 import { Flag, Mountain, ArrowRight } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
+import ContactModal from './ContactModal';
+import { useRouter } from 'next/navigation';
 
 const PeakExpeditionSection: React.FC = () => {
   const { isDarkMode } = useTheme();
+  const router = useRouter();
   const [selectedPeak, setSelectedPeak] = useState<typeof peaks[0] | null>(null);
   const [showDetail, setShowDetail] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const peaks = [
     {
-      id: 'peak-island',
+      id: 'island-peak',
       name: 'Island Peak (Imja Tse)',
       region: 'Everest',
       duration: '19 Days',
@@ -21,10 +25,10 @@ const PeakExpeditionSection: React.FC = () => {
       adventureType: 'peak',
       image: '/assets/images/islandpeak.png',
       description: "Nepal's most popular 6,000m peak, perfect for mountaineering beginners.",
-      height: '6,189m',
+      height: '6,165m',
     },
     {
-      id: 'peak-mera',
+      id: 'mera-peak',
       name: 'Mera Peak',
       region: 'Everest',
       duration: '18 Days',
@@ -35,7 +39,7 @@ const PeakExpeditionSection: React.FC = () => {
       height: '6,476m',
     },
     {
-      id: 'peak-lobuche',
+      id: 'lobuche-east',
       name: 'Lobuche East',
       region: 'Everest',
       duration: '20 Days',
@@ -54,9 +58,7 @@ const PeakExpeditionSection: React.FC = () => {
   };
 
   return (
-    <section className={`py-16 md:py-24 transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
-    }`}>
+    <section className="py-16 md:py-24 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="Peak Expeditions"
@@ -197,7 +199,7 @@ const PeakExpeditionSection: React.FC = () => {
 
         {/* Detail Modal */}
         {showDetail && selectedPeak && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
             <div className="relative w-full max-w-2xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]">
               <button onClick={() => setShowDetail(false)} className="absolute top-4 right-4 z-10 bg-gray-200 dark:bg-gray-800 rounded-full p-2 hover:bg-primary-500 hover:text-white transition" aria-label="Close">
                 <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
@@ -210,12 +212,42 @@ const PeakExpeditionSection: React.FC = () => {
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-display font-semibold text-sm">{selectedPeak.difficulty}</span>
                   <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-display font-semibold text-sm">{selectedPeak.duration}</span>
                 </div>
-                <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">{selectedPeak.description}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Region: {selectedPeak.region}</p>
+                <p className="mb-6 text-lg text-gray-700 dark:text-gray-300">{selectedPeak.description}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Region: {selectedPeak.region}</p>
+                
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-4">
+                  <button 
+                    onClick={() => {
+                      setShowDetail(false);
+                      router.push(`/peak-expedition/${selectedPeak.id}`);
+                    }}
+                    className="w-full bg-gray-100 dark:bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 py-3 rounded-lg font-display font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-gray-900 dark:text-white"
+                  >
+                    View Details
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setShowDetail(false);
+                      setIsContactModalOpen(true);
+                    }}
+                    className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    Enquire Now
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         )}
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={isContactModalOpen}
+          onClose={() => setIsContactModalOpen(false)}
+          title="Enquire About Peak Expedition"
+          subtitle="Get detailed information about our peak climbing expeditions"
+        />
 
         <div className="text-center">
           <Link

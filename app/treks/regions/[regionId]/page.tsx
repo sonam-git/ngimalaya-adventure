@@ -2,7 +2,6 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import RegionTreks from '@/components/RegionTreks';
-import RegionMenu from '@/components/RegionMenu';
 import { trekRegions, allTreks } from '@/data/treks';
 import type { Trek } from '@/data/treks';
 
@@ -45,14 +44,6 @@ export default function RegionTreksPage() {
 
   return (
     <main className="min-h-screen">
-      <RegionMenu
-        regions={trekRegions.map(r => r.name)}
-        selectedRegion={region.name}
-        onSelect={regionName => {
-          const found = trekRegions.find(r => r.name === regionName);
-          if (found) router.push(`/treks/regions/${found.id}`);
-        }}
-      />
       <RegionTreks 
         region={region}
         treks={regionTreks}

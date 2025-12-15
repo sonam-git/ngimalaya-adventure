@@ -19,7 +19,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-4 md:pt-8`}>
+    <div className="min-h-screen pt-[80px] md:pt-[100px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Region Hero */}
         <div className="relative h-80 rounded-2xl overflow-hidden mb-8">

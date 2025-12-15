@@ -2,51 +2,17 @@
 import React, { useState } from 'react';
 import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import BookingModal from '../../components/BookingModal';
+import ContactModal from '../../components/ContactModal';
+import { safariPackages } from '../../data/safariPackages';
+import Link from 'next/link';
 
 const SafariPage: React.FC = () => {
   const { isDarkMode } = useTheme();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleBookNow = () => {
-    setIsBookingModalOpen(true);
+    setIsContactModalOpen(true);
   };
-
-  const safariPackages = [
-    {
-      id: 1,
-      name: 'Chitwan National Park',
-      location: 'Chitwan, Nepal',
-      duration: '2-4 Days',
-      type: 'UNESCO Site',
-      image: './assets/images/chitawan.jpg',
-      description: 'Home to the rare one-horned rhinoceros and Bengal tigers. Experience jungle safaris, canoe rides, and cultural programs.',
-      highlights: ['Jungle Safari', 'Canoe Ride', 'Elephant Ride', 'Cultural Programs', 'Bird Watching'],
-      badge: 'Family Friendly',
-    },
-    {
-      id: 2,
-      name: 'Bardia National Park',
-      location: 'Bardia, Nepal',
-      duration: '3-5 Days',
-      type: 'Wild Tiger',
-      image: './assets/images/bardia.jpg',
-      description: 'Nepal\'s largest and most pristine wilderness area. Best chances to spot wild tigers, elephants, and dolphins.',
-      highlights: ['Tiger Tracking', 'Jungle Safari', 'Dolphin Watching', 'Nature Walks', 'Wildlife Photography'],
-      badge: 'Adventure',
-    },
-    {
-      id: 3,
-      name: 'Koshi Tappu Reserve',
-      location: 'Koshi, Nepal',
-      duration: '2-3 Days',
-      type: 'Bird Paradise',
-      image: './assets/images/koshi.webp',
-      description: 'Premier bird watching destination with over 500 species. Perfect for wildlife photography and nature enthusiasts.',
-      highlights: ['Bird Watching', 'Wildlife Photography', 'Wetland Safari', 'Nature Walks', 'Buffalo Herds'],
-      badge: 'Bird Watching',
-    },
-  ];
 
   const features = [
     {
@@ -84,7 +50,7 @@ const SafariPage: React.FC = () => {
 
   return (
     <>
-      <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+      <div className={`min-h-screen ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <div 
@@ -235,12 +201,21 @@ const SafariPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <button
-                    className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                    onClick={handleBookNow}
-                  >
-                    Enquire Now
-                  </button>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Link href={`/safari/${safari.id}`}>
+                      <button 
+                        className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        View Details
+                      </button>
+                    </Link>
+                    <button
+                      className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                      onClick={handleBookNow}
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -249,7 +224,7 @@ const SafariPage: React.FC = () => {
       </div>
 
       {/* Activities Section */}
-      <div className={`py-16 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      <div className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Footprints className="mx-auto text-primary-500 mb-4" size={48} />
@@ -279,7 +254,7 @@ const SafariPage: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-primary-50'}`}>
+      <div className="py-20">
         <div className="container mx-auto px-4 text-center">
           <Sun className="mx-auto text-primary-500 mb-6" size={48} />
           <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
@@ -294,9 +269,11 @@ const SafariPage: React.FC = () => {
         </div>
       </div>
     </div>
-    <BookingModal
-      isOpen={isBookingModalOpen}
-      onClose={() => setIsBookingModalOpen(false)}
+    <ContactModal
+      isOpen={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Enquire About Safari Adventure"
+      subtitle="Get detailed information about our wildlife safari packages"
     />
     </>
   );

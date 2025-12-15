@@ -2,57 +2,13 @@
 import React, { useState } from 'react';
 import { Flag, Mountain, Award, Shield, Camera } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import BookingModal from '../../components/BookingModal';
+import ContactModal from '../../components/ContactModal';
+import { peakExpeditions } from '../../data/peakExpeditions';
+import Link from 'next/link';
 
 const PeakExpeditionPage: React.FC = () => {
   const { isDarkMode } = useTheme();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-
-
-  const expeditions = [
-    {
-      id: 1,
-      name: 'Island Peak (Imja Tse)',
-      height: '6,165m',
-      duration: '19 Days',
-      difficulty: 'Strenuous Plus',
-      season: 'Feb-May, Oct-Dec',
-      image: '/assets/images/islandpeak.png',
-      description: "Nepal's most popular 6,000m peak, perfect for mountaineering beginners. Combines Everest Base Camp trek with technical climbing.",
-      price: 'Contact for Price',
-      accommodation: 'Teahouse',
-      meals: 'B, L & D',
-      hiking: '5-7 hours',
-    },
-    {
-      id: 2,
-      name: 'Mera Peak',
-      height: '6,476m',
-      duration: '18 Days',
-      difficulty: 'Strenuous Plus',
-      season: 'Jan-May, Oct-Dec',
-      image: '/assets/images/mera.jpg',
-      description: "Nepal's highest trekking peak with stunning panoramic views of five 8,000m peaks including Everest, Lhotse, and Cho Oyu.",
-      price: 'Contact for Price',
-      accommodation: 'Teahouse',
-      meals: 'B, L & D',
-      hiking: '5-7 hours',
-    },
-    {
-      id: 3,
-      name: 'Lobuche East',
-      height: '6,119m',
-      duration: '20 Days',
-      difficulty: 'Strenuous Plus',
-      season: 'Jan-May, Oct-Dec',
-      image: '/assets/images/peak.png',
-      description: 'Technical climbing peak in the Everest region offering spectacular views and excellent preparation for higher peaks.',
-      price: 'Contact for Price',
-      accommodation: 'Teahouse',
-      meals: 'B, L & D',
-      hiking: '5-7 hours',
-    },
-  ];
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const features = [
     {
@@ -79,7 +35,7 @@ const PeakExpeditionPage: React.FC = () => {
 
   return (
     <>
-      <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+      <div className={`min-h-screen ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <div 
@@ -164,7 +120,7 @@ const PeakExpeditionPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {expeditions.map((expedition) => (
+            {peakExpeditions.map((expedition) => (
               <div
                 key={expedition.id}
                 className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
@@ -227,9 +183,21 @@ const PeakExpeditionPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <button className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
-                    Enquire Now
-                  </button>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Link href={`/peak-expedition/${expedition.id}`}>
+                      <button 
+                        className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        View Details
+                      </button>
+                    </Link>
+                    <button 
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -253,9 +221,11 @@ const PeakExpeditionPage: React.FC = () => {
         </div>
       </div>
     </div>
-    <BookingModal
-      isOpen={isBookingModalOpen}
-      onClose={() => setIsBookingModalOpen(false)}
+    <ContactModal
+      isOpen={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Enquire About Peak Expedition"
+      subtitle="Get detailed information about our peak climbing expeditions"
     />
     </>
   );

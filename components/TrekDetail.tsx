@@ -44,7 +44,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-4 md:pt-8`}>
+    <div className="min-h-screen pt-[80px] md:pt-[100px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image and Title */}
         <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
@@ -167,9 +167,9 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 </p>
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-heading font-semibold py-2 px-4 rounded-lg transition-colors mb-3"
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-heading font-bold py-3 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl mb-3 uppercase tracking-wider"
                 >
-                  Contact Specialist
+                  Enquire Now
                 </button>
                 <div className="space-y-2 text-responsive-sm">
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
@@ -343,8 +343,8 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
       <ContactModal 
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
-        title="Contact Trek Specialist"
-        subtitle={`Get expert advice about ${trek.name}`}
+        title="Enquire About This Trek"
+        subtitle={`Get enquiries and advice about ${trek.name}`}
       />
     </div>
   );

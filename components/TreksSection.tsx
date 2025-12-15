@@ -1,14 +1,12 @@
 'use client';
 import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTheme } from '../contexts/ThemeContext';
 import { popularTreks } from '../data/treks';
 import TrekCard from './TrekCard';
 import SectionHeader from './SectionHeader';
 import TrekDetail from './TrekDetail';
 
 const TreksSection: React.FC = () => {
-  const { isDarkMode } = useTheme();
   const router = useRouter();
   const [selectedTrek, setSelectedTrek] = useState<import('../data/treks').Trek | null>(null);
   const [showDetail, setShowDetail] = useState(false);
@@ -23,9 +21,7 @@ const TreksSection: React.FC = () => {
   };
 
   return (
-    <section id="treks" className={`scroll-offset-mobile py-16 md:py-24 transition-colors duration-300 ${
-      isDarkMode ? 'dark:bg-gradient-to-b dark:from-gray-600 dark:to-gray-900' : 'bg-gradient-to-b from-blue-200 to-green-200'
-    }`}>
+    <section id="treks" className="scroll-offset-mobile py-16 md:py-24 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="Discover"

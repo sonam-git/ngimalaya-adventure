@@ -46,9 +46,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
   ];
 
   return (
-    <section id="about" className={`scroll-offset-mobile py-16 md:py-24 transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-900' : 'bg-white'
-    }`}>
+    <section id="about" className="scroll-offset-mobile py-16 md:py-24 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="About Ngimalaya Adventure"

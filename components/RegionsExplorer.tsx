@@ -63,7 +63,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+    <div className={`min-h-screen ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <div 

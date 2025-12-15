@@ -5,6 +5,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 import MobileBottomBarWrapper from '@/components/MobileBottomBarWrapper'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BackgroundImage from '@/components/BackgroundImage'
 
 
 const oswald = Oswald({
@@ -30,8 +31,9 @@ export default function RootLayout({
     <html lang="en" className={`${oswald.variable} ${lato.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased">
         <ThemeProvider>
+          <BackgroundImage />
           <Header />
-          <main className="mt-20 md:mt-30">
+          <main className="mt-20 md:mt-30 relative z-0">
             {children}
           </main>
           <Footer />

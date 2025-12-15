@@ -50,21 +50,10 @@ const HeroComponent: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-gradient-to-b from-blue-200 to-green-200 dark:bg-gradient-to-b dark:from-gray-600 dark:to-gray-900 flex flex-col"
+      className="relative min-h-screen flex flex-col"
     >
       {/* Top Text Section */}
       <div className="relative z-10 pt-20 pb-8 md:pt-28 md:pb-12 px-4">
-        {/* Background Image */}
-        <div
-          className="absolute  inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/assets/images/threepasses.jpeg')`,
-            backgroundPosition: "center 40%",
-          }}
-        />
-        {/* Overlay for readability - theme aware */}
-        <div className="absolute inset-0 bg-white/40 dark:bg-gray-900/70 backdrop-blur-sm" />
-
         <div className="relative max-w-6xl mx-auto text-center">
           {/* Welcome Text */}
           <p className="satisfy-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-3 text-blue-700 dark:text-blue-300 animate-fade-in-up">
@@ -145,17 +134,6 @@ const HeroComponent: React.FC<HeroProps> = ({
 
       {/* Bottom Text & CTA Section */}
       <div className="relative py-8 md:py-12 lg:py-16 px-4 z-0">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{
-            backgroundImage: `url('/assets/images/koshi.webp')`,
-            backgroundPosition: "center 70%",
-          }}
-        />
-        {/* Overlay for readability - theme aware */}
-        <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm -z-10" />
-
         <div className="relative max-w-5xl mx-auto text-center">
           {/* Search Component - visible only on small screens */}
           {searchComponent && (
