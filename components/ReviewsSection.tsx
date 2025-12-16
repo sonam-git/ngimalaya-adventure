@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Star, ChevronLeft, ChevronRight, X, User } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import SectionHeader from './SectionHeader';
 
 interface Review {
   id: number;
@@ -123,17 +124,17 @@ const ReviewsSection: React.FC = () => {
   return (
     <section className="py-20 transition-colors duration-300">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+    
         <div className="text-center mb-12">
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl jaini-purva-regular mb-4 ${
-            isDarkMode ? 'text-gray-100' : 'text-gray-900'
-          }`}>
-            What Our Adventurers Say
-          </h2>
+          {/* Section Header */}
+            <SectionHeader
+          subtitle="Client Reviews"
+          title="What Our Adventurers Say"
+        />
           <p className={`text-lg md:text-xl max-w-2xl mx-auto ${
             isDarkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Real stories from travelers who experienced the magic of the Himalayas with us
+            Real stories from travelers around the world who experienced the magic of the Himalayas with us. 
           </p>
         </div>
 

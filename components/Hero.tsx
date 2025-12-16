@@ -55,20 +55,32 @@ const HeroComponent: React.FC<HeroProps> = ({
       {/* Top Text Section */}
       <div className="relative z-10 pt-20 pb-8 md:pt-28 md:pb-12 px-4">
         <div className="relative max-w-6xl mx-auto text-center">
-          {/* Welcome Text */}
-          <p className="satisfy-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-3 text-blue-700 dark:text-blue-300 animate-fade-in-up">
-            Welcome to
-          </p>
+          {/* Welcome Text with Mountain Sketch Background */}
+          <div className="relative inline-block mb-2 md:mb-3">
+            {/* Mountain Sketch Image as Background - positioned slightly above text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -top-16 sm:-top-20 md:-top-24 lg:-top-28">
+              <img 
+                src="/assets/images/mountain-sketch.png" 
+                alt="Mountain sketch" 
+                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain opacity-20 dark:opacity-15 animate-fade-in-up"
+              />
+            </div>
+            
+            {/* Welcome Text */}
+            <p className="satisfy-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-700 dark:text-blue-300 animate-fade-in-up relative z-10 px-4" style={{ animationDelay: "0.1s" }}>
+              Welcome to
+            </p>
+          </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl jaini-purva-regular mb-4 md:mb-6 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl jaini-purva-regular mt-0 mb-4 md:mb-6 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             Ngimalaya Adventure
           </h1>
 
           {/* Subtitle */}
           <p
             className="text-lg sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up"
-            style={{ animationDelay: "0.2s" }}
+            style={{ animationDelay: "0.3s" }}
           >
             Discover Your Himalayan Escape, Where Culture Meets the Clouds
           </p>
@@ -139,7 +151,7 @@ const HeroComponent: React.FC<HeroProps> = ({
           {searchComponent && (
             <div
               className="block md:hidden mb-6 animate-fade-in-up relative z-[100]"
-              style={{ animationDelay: "0.2s" }}
+              style={{ animationDelay: "0.3s" }}
             >
               {searchComponent}
             </div>
@@ -148,7 +160,7 @@ const HeroComponent: React.FC<HeroProps> = ({
           {/* Tagline */}
           <h2
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl lugrasimo-regular mb-6 md:mb-8 text-gray-800 dark:text-gray-200 animate-fade-in-up"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.4s" }}
           >
             Expert-Guided Treks Through Nepal's Majestic Landscapes
           </h2>
@@ -156,7 +168,7 @@ const HeroComponent: React.FC<HeroProps> = ({
           {/* CTA Buttons */}
           <div
             className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up"
-            style={{ animationDelay: "0.5s" }}
+            style={{ animationDelay: "0.6s" }}
           >
             <button
               onClick={onExploreTreks}

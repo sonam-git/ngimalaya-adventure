@@ -1,5 +1,5 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/peak-expedition/[peakId]/page": "app/peak-expedition/[peakId]/page.js",
-  "/peak-expedition/page": "app/peak-expedition/page.js"
+  "/treks/[trekId]/page": "app/treks/[trekId]/page.js"
 }

@@ -58,15 +58,15 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6">
               <img 
-                src={'/assets/images/ngima.png'}
+                src={'/assets/images/ngima-image.jpg'}
                 alt="Ngima N Sherpa - Trekking Guide"
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               {/* Stats Badge - overlayed on image */}
-              <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-primary-500 text-white p-4 md:p-6 rounded-lg shadow-2xl z-10 flex flex-col items-center w-max">
+              <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-gray-500/60 text-white p-4 md:p-6 rounded-lg shadow-2xl z-10 flex flex-col items-center w-max">
                 <div className="text-3xl md:text-4xl font-display font-bold">20+</div>
-                <div className="text-xs md:text-sm uppercase tracking-wider text-center">Years Experience</div>
+                <div className="text-xs md:text-sm  tracking-wider text-center italic">Years Experience</div>
               </div>
             </div>
             {/* Quote Section */}
@@ -94,7 +94,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
               A Journey Born From Passion
             </h3>
             
-            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-500`}>
+            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
               Born in the Himalayas
             </h4>
             <p className={`font-body text-lg leading-relaxed mb-6 ${
@@ -102,8 +102,8 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
             }`}>
               Welcome to Ngimalaya Adventure Nepal, where the journey begins with a name rooted in the rich cultural heritage of the Sherpa community. I am Ngima Nuru Sherpa, born into the heart of the Himalayas and having spent two decades as a seasoned trekking guide.
             </p>
-            
-            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-500`}>
+
+            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
               Multilingual Guide
             </h4>
             <p className={`font-body text-lg leading-relaxed mb-6 ${
@@ -111,8 +111,8 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
             }`}>
               My passion for exploration has connected me with diverse cultures and people across the globe. Proficient in 6 languages including English, German, Japanese, Hindi, Nepali, and Sherpa, my extensive career has allowed me to traverse not only the stunning landscapes of Nepal but also venture into the vibrant tapestries of Japan and Germany.
             </p>
-            
-            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-500`}>
+
+            <h4 className={`text-xl font-display font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
               Founded on Passion
             </h4>
             <p className={`font-body text-lg leading-relaxed mb-6 ${

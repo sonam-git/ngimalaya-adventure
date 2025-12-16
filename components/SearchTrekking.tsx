@@ -1,5 +1,6 @@
 'use client '
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { allTreks, Trek } from '../data/treks';
 import { FaHiking, FaMountain, FaBinoculars, FaMapMarkerAlt, FaChartLine, FaClock, FaEnvelope, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import CustomTrekModal from './CustomTrekModal';
@@ -46,7 +47,7 @@ const SearchTrekking = () => {
   const [showHeading, setShowHeading] = useState(false);
 
   // Show heading after 2 seconds, then hide after 3 more seconds (only on large screens)
-  React.useEffect(() => {
+  useEffect(() => {
     const showTimer = setTimeout(() => {
       setShowHeading(true);
     }, 2000);
@@ -60,6 +61,19 @@ const SearchTrekking = () => {
       clearTimeout(hideTimer);
     };
   }, []);
+
+  // Prevent body scroll when mobile modal is open
+  useEffect(() => {
+    if (showMobileSearch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showMobileSearch]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,10 +139,212 @@ const SearchTrekking = () => {
           )}
         </button>
       </div>
-      {/* Search Form - hidden on mobile unless toggled */}
+
+      {/* Mobile Full-Screen Modal Overlay with Portal and Blur */}
+      {showMobileSearch && typeof window !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm md:hidden">
+          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-gray-800">
+            {/* Header */}
+            <div className={`sticky top-0 z-10 flex items-center justify-between p-6 border-b ${
+              isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+            }`}>
+              <div>
+                <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Search Treks
+                </h2>
+                <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Find your perfect adventure
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowMobileSearch(false);
+                  setSearched(false);
+                }}
+                className={`p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+            {/* Search Form */}
+            <form onSubmit={handleSearch} className="space-y-4">
+              {/* Trek Type */}
+              <div>
+                <label className={`flex text-sm font-semibold mb-2 items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  <FaHiking className={isDarkMode ? 'text-primary-400' : 'text-primary-600'} />
+                  Trek Type
+                </label>
+                <select 
+                  className={`w-full rounded-lg border py-3 px-4 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  value={adventureType} 
+                  onChange={e => { setAdventureType(e.target.value); setRegion(''); setDifficulty(''); setSearched(false); }}
+                >
+                  {TREK_TYPES.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                </select>
+              </div>
+
+              {/* Region */}
+              <div>
+                <label className={`flex text-sm font-semibold mb-2 items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  <FaMapMarkerAlt className={isDarkMode ? 'text-primary-400' : 'text-primary-600'} />
+                  Region
+                </label>
+                <select 
+                  className={`w-full rounded-lg border py-3 px-4 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  value={region} 
+                  onChange={e => { setRegion(e.target.value); setSearched(false); }}
+                >
+                  <option value="">All Regions</option>
+                  {getRegions().map((r: string) => <option key={r} value={r}>{r}</option>)}
+                </select>
+              </div>
+
+              {/* Difficulty */}
+              <div>
+                <label className={`flex text-sm font-semibold mb-2 items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  <FaChartLine className={isDarkMode ? 'text-primary-400' : 'text-primary-600'} />
+                  Difficulty
+                </label>
+                <select 
+                  className={`w-full rounded-lg border py-3 px-4 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  value={difficulty} 
+                  onChange={e => { setDifficulty(e.target.value); setSearched(false); }}
+                >
+                  <option value="">Any</option>
+                  {DIFFICULTIES.map(d => <option key={d} value={d}>{d}</option>)}
+                </select>
+              </div>
+
+              {/* Duration */}
+              <div>
+                <label className={`flex text-sm font-semibold mb-2 items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                  <FaClock className={isDarkMode ? 'text-primary-400' : 'text-primary-600'} />
+                  Duration
+                </label>
+                <select 
+                  className={`w-full rounded-lg border py-3 px-4 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  value={duration} 
+                  onChange={e => { setDuration(e.target.value); setSearched(false); }}
+                >
+                  <option value="">Any</option>
+                  {DURATIONS.map(d => <option key={d} value={String(d)}>{d}</option>)}
+                </select>
+              </div>
+
+              {/* Search Button */}
+              <button 
+                type="submit" 
+                className="w-full py-4 rounded-lg bg-primary-600 text-white font-bold shadow-lg hover:bg-primary-700 transition text-lg"
+              >
+                {searched ? 'Reset Search' : 'Search'}
+              </button>
+            </form>
+
+            {/* Results Section */}
+            {searched && (
+              <div className="mt-6">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                  {results.length} {results.length === 1 ? 'Result' : 'Results'} Found
+                </h3>
+                {results.length === 0 ? (
+                  <div className={`rounded-2xl p-6 border ${isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                    <p className="text-lg font-semibold text-red-500 mb-2">
+                      {adventureType === 'safari'
+                        ? 'No available safari found.'
+                        : adventureType === 'peak'
+                        ? 'No available peak expedition found.'
+                        : 'No available trek found.'}
+                    </p>
+                    <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>It seems we can't find what you are looking for. We are here to help you. Please contact us or fill out the custom trek form below.</p>
+                    <a 
+                      href="#" 
+                      onClick={e => { 
+                        e.preventDefault(); 
+                        setShowCustomTrekModal(true); 
+                      }} 
+                      className="block w-full text-center px-6 py-3 rounded-lg bg-yellow-400 text-gray-900 font-bold shadow hover:bg-yellow-500 transition mb-4"
+                    >
+                      Custom Trek Form
+                    </a>
+                    <div className="mt-4 space-y-3">
+                      <div className={`flex items-center gap-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <FaEnvelope className="text-xl" />
+                        <span className="text-sm">ngiman81@gmail.com</span>
+                      </div>
+                      <div className={`flex items-center gap-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <FaPhoneAlt className="text-xl" />
+                        <span className="text-sm">9803499156</span>
+                      </div>
+                      <div className={`flex items-center gap-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <FaWhatsapp className="text-xl" />
+                        <span className="text-sm">9803499156</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {results.map((trek: Trek) => (
+                      <div key={trek.id} className={`rounded-2xl shadow-lg p-4 border ${isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                        <img 
+                          src={typeof trek.image === 'string' ? `/assets/images/${trek.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} 
+                          alt={trek.name} 
+                          className="w-full h-48 object-cover rounded-lg mb-3" 
+                        />
+                        <h3 className="font-bold text-lg mb-2 text-primary-700 dark:text-primary-300">{trek.name}</h3>
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 space-y-1">
+                          <div className="flex items-center gap-2">
+                            <FaMapMarkerAlt /> <span>{trek.region}</span>
+                          </div>
+                          {adventureType === 'trekking' && trek.difficulty && (
+                            <div className="flex items-center gap-2">
+                              <FaChartLine /> <span>{trek.difficulty}</span>
+                            </div>
+                          )}
+                          <div className="flex items-center gap-2">
+                            <FaClock /> <span>{trek.duration}</span>
+                          </div>
+                        </div>
+                        <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm">
+                          {trek.description?.slice(0, 100)}...
+                        </p>
+                        <a 
+                          href={`/treks/${trek.id}`} 
+                          className="block w-full text-center px-4 py-3 rounded-lg bg-primary-600 text-white font-semibold hover:bg-primary-700 transition"
+                        >
+                          View Details
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Desktop Search Form - hidden on mobile */}
       <form
         onSubmit={handleSearch}
-        className={`relative z-20 rounded-3xl border-2 border-primary-700 dark:border-primary-100 bg-white/95 dark:bg-gray-900/95 px-4 py-4 md:py-6 md:px-10 flex flex-col gap-4 md:gap-8 shadow-2xl md:shadow-3xl backdrop-blur-xl transition-transform duration-300 ${showMobileSearch ? 'scale-100 translate-y-0 opacity-100' : 'scale-95 md:scale-100 md:translate-y-0 md:opacity-100'} ${showMobileSearch ? '' : 'hidden'} md:flex`}
+        className="hidden md:flex relative z-20 rounded-3xl border-2 border-primary-700 dark:border-primary-100 bg-white/95 dark:bg-gray-900/95 px-4 py-4 md:py-6 md:px-10 flex-col gap-4 md:gap-8 shadow-2xl md:shadow-3xl backdrop-blur-xl"
         style={{ boxShadow: '0 8px 40px 0 rgba(0,0,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)' }}
       >
         {/* Inputs Row + Search Button Row for desktop */}
@@ -206,7 +422,7 @@ const SearchTrekking = () => {
             </button>
           </div>
         </div>
-        {/* Results Dropdown Overlay (positioned below form) */}
+        {/* Desktop Results Dropdown Overlay (positioned below form) */}
         {searched && (
           <div className="absolute left-0 right-0 top-full mt-4 z-[9999] flex items-start justify-center px-2 md:px-0">
             <div className="w-full max-w-5xl bg-gray-200 dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-10 overflow-y-auto max-h-[80vh]">
@@ -259,6 +475,7 @@ const SearchTrekking = () => {
           </div>
         )}
       </form>
+      
       {/* Custom Trek Modal */}
       {showCustomTrekModal && (
         <CustomTrekModal isOpen={showCustomTrekModal} onClose={() => setShowCustomTrekModal(false)} />
