@@ -1,0 +1,244 @@
+'use client';
+import React, { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
+
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+const AIAssistant: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      content: "Namaste! 🙏 I'm your Ngimalaya Adventure AI assistant. I can help you find the perfect trek, answer questions about Nepal, or assist with planning your adventure. How can I help you today?",
+      timestamp: new Date(),
+    }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: input.trim(),
+      timestamp: new Date(),
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/ai-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [...messages, userMessage],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const data = await response.json();
+
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content: data.message,
+        timestamp: new Date(),
+      };
+
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage: Message = {
+        role: 'assistant',
+        content: "I apologize, but I'm having trouble connecting right now. Please try again or contact us directly at +977 980-3499156 or ngiman81@gmail.com.",
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const quickQuestions = [
+    "What treks are best for beginners?",
+    "When is the best time to trek in Nepal?",
+    "How do I prepare for high altitude?",
+    "What's included in your packages?",
+  ];
+
+  const handleQuickQuestion = (question: string) => {
+    setInput(question);
+    inputRef.current?.focus();
+  };
+
+  return (
+    <>
+      {/* Floating Chat Button */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-32 right-4 md:bottom-6 md:right-6 z-50 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center gap-2 group"
+          aria-label="Open AI Assistant"
+        >
+          <Sparkles className="w-6 h-6 animate-pulse" />
+          <MessageCircle className="w-6 h-6" />
+          <span className="hidden md:group-hover:inline-block text-sm font-semibold whitespace-nowrap pr-2">
+            Ask AI Assistant
+          </span>
+        </button>
+      )}
+
+      {/* Chat Window */}
+      {isOpen && (
+        <div className={`fixed bottom-32 right-4 md:bottom-6 md:right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col ${
+          isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
+        }`}>
+          {/* Header */}
+          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-t-2xl flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-5 h-5 animate-pulse" />
+              <div>
+                <h3 className="font-bold text-lg">AI Trek Assistant</h3>
+                <p className="text-xs text-green-100">Powered by Google Gemini</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="hover:bg-white/20 rounded-full p-1 transition-colors"
+              aria-label="Close chat"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+          }`}>
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                    message.role === 'user'
+                      ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white'
+                      : isDarkMode
+                      ? 'bg-gray-800 text-gray-100'
+                      : 'bg-white text-gray-900 shadow-sm'
+                  }`}
+                >
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p className={`text-xs mt-1 ${
+                    message.role === 'user' ? 'text-green-100' : isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                  }`}>
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                </div>
+              </div>
+            ))}
+
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className={`rounded-2xl px-4 py-3 ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-white shadow-sm'
+                }`}>
+                  <Loader2 className="w-5 h-5 animate-spin text-blue-500" />
+                </div>
+              </div>
+            )}
+
+            {/* Quick Questions (show when chat is empty) */}
+            {messages.length === 1 && !isLoading && (
+              <div className="space-y-2 pt-4">
+                <p className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Quick questions:
+                </p>
+                {quickQuestions.map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleQuickQuestion(question)}
+                    className={`w-full text-left text-xs px-3 py-2 rounded-lg transition-colors ${
+                      isDarkMode
+                        ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                        : 'bg-white hover:bg-gray-100 text-gray-700 shadow-sm'
+                    }`}
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input */}
+          <form onSubmit={handleSubmit} className={`p-4 border-t ${
+            isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+          } rounded-b-2xl`}>
+            <div className="flex gap-2">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask me anything about trekking..."
+                disabled={isLoading}
+                className={`flex-1 px-4 py-2 rounded-full border transition-colors ${
+                  isDarkMode
+                    ? 'bg-gray-900 border-gray-700 text-white placeholder-gray-500 focus:border-blue-500'
+                    : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400 focus:border-blue-500'
+                } focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50`}
+              />
+              <button
+                type="submit"
+                disabled={!input.trim() || isLoading}
+                className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-full p-2 transition-all duration-200 disabled:cursor-not-allowed"
+                aria-label="Send message"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+            <p className={`text-xs mt-2 text-center ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+              Powered by AI • May occasionally make mistakes
+            </p>
+          </form>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default AIAssistant;

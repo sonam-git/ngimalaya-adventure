@@ -59,7 +59,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         
         {/* Trek Name Overlay on Image */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+        <div className="absolute bottom-0 left-0 right-0 p-2 z-20">
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl times group-hover:text-blue-300 transition-colors duration-300">
             {trek.name}
           </h3>
@@ -71,9 +71,9 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
       </div>
 
       {/* Content Section */}
-      <div className="relative p-6 space-y-4">
+      <div className="relative p-2 space-y-4">
         {/* Decorative top border */}
-        <div className="absolute top-0 left-6 right-6 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50" />
+        <div className="absolute top-0 left-2 right-2 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50" />
 
         {/* Description with icon */}
         <div className={`min-h-[80px] leading-relaxed text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>

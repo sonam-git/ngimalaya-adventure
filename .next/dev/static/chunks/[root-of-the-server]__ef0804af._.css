@@ -963,6 +963,10 @@ html {
   top: 100%;
 }
 
+.right-2 {
+  right: .5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1187,6 +1191,10 @@ html {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .hidden {
   display: none;
 }
@@ -1283,6 +1291,10 @@ html {
   height: 500px;
 }
 
+.h-\[600px\] {
+  height: 600px;
+}
+
 .h-\[60vh\] {
   height: 60vh;
 }
@@ -1309,6 +1321,10 @@ html {
 
 .max-h-\[90vh\] {
   max-height: 90vh;
+}
+
+.max-h-\[calc\(100vh-2rem\)\] {
+  max-height: calc(100vh - 2rem);
 }
 
 .min-h-\[400px\] {
@@ -1399,6 +1415,10 @@ html {
   width: 24rem;
 }
 
+.w-\[380px\] {
+  width: 380px;
+}
+
 .w-\[85vw\] {
   width: 85vw;
 }
@@ -1457,6 +1477,14 @@ html {
 
 .max-w-\[1600px\] {
   max-width: 1600px;
+}
+
+.max-w-\[80\%\] {
+  max-width: 80%;
+}
+
+.max-w-\[calc\(100vw-2rem\)\] {
+  max-width: calc(100vw - 2rem);
 }
 
 .max-w-full {
@@ -1555,6 +1583,16 @@ html {
   animation: 1s cubic-bezier(0, 0, .2, 1) infinite ping;
 }
 
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1635,6 +1673,10 @@ html {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1763,6 +1805,10 @@ html {
   white-space: nowrap;
 }
 
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
 .rounded {
   border-radius: .25rem;
 }
@@ -1799,6 +1845,11 @@ html {
 .rounded-b-full {
   border-bottom-right-radius: 9999px;
   border-bottom-left-radius: 9999px;
+}
+
+.rounded-t-2xl {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .rounded-tl-full {
@@ -2694,6 +2745,10 @@ html {
   object-fit: cover;
 }
 
+.p-1 {
+  padding: .25rem;
+}
+
 .p-1\.5 {
   padding: .375rem;
 }
@@ -3150,6 +3205,11 @@ html {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.text-green-100 {
+  --tw-text-opacity: 1;
+  color: rgb(220 252 231 / var(--tw-text-opacity, 1));
 }
 
 .text-green-300 {
@@ -3867,6 +3927,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-white\/20:hover {
+  background-color: #fff3;
+}
+
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
@@ -3918,6 +3982,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
 
 .hover\:to-blue-400:hover {
   --tw-gradient-to: #60a5fa var(--tw-gradient-to-position);
+}
+
+.hover\:to-blue-600:hover {
+  --tw-gradient-to: #2563eb var(--tw-gradient-to-position);
 }
 
 .hover\:to-blue-800:hover {
@@ -4036,7 +4104,7 @@ body:not(.dark) .hover\:text-gray-900:hover {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.focus\:border-primary-500:focus {
+.focus\:border-blue-500:focus, .focus\:border-primary-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
 }
@@ -4064,6 +4132,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
 .focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-blue-500\/20:focus {
+  --tw-ring-color: #3b82f633;
 }
 
 .focus\:ring-green-300:focus {
@@ -4125,8 +4197,18 @@ body:not(.dark) .hover\:text-gray-900:hover {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.disabled\:from-gray-400:disabled {
+  --tw-gradient-from: #9ca3af var(--tw-gradient-from-position);
+  --tw-gradient-to: #9ca3af00 var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .disabled\:to-blue-400:disabled {
   --tw-gradient-to: #60a5fa var(--tw-gradient-to-position);
+}
+
+.disabled\:to-gray-500:disabled {
+  --tw-gradient-to: #6b7280 var(--tw-gradient-to-position);
 }
 
 .disabled\:opacity-50:disabled {
@@ -4776,12 +4858,20 @@ body:not(.dark) .hover\:text-gray-900:hover {
     top: -6rem;
   }
 
+  .md\:bottom-6 {
+    bottom: 1.5rem;
+  }
+
   .md\:bottom-8 {
     bottom: 2rem;
   }
 
   .md\:bottom-\[200px\] {
     bottom: 200px;
+  }
+
+  .md\:right-6 {
+    right: 1.5rem;
   }
 
   .md\:right-8 {
@@ -5166,6 +5256,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
 
   .md\:opacity-100 {
     opacity: 1;
+  }
+
+  .group:hover .md\:group-hover\:inline-block {
+    display: inline-block;
   }
 }
 

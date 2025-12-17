@@ -115,8 +115,8 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
         <button className="relative w-full group/btn overflow-hidden flex items-center justify-center space-x-2 bg-gradient-to-r from-green-600 via-emerald-500 to-teal-500 hover:from-green-700 hover:via-emerald-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-2xl mt-2">
           {/* Animated shine effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000" />
-          
-          <span className="relative z-10">Explore {region.name}</span>
+
+          <span className="relative z-10">Explore {region.name.split(' ')[0]}</span>
           <ArrowRight size={20} className="relative z-10 group-hover/btn:translate-x-2 transition-transform duration-300" />
         </button>
       </div>

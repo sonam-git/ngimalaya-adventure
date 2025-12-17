@@ -6,6 +6,7 @@ import MobileBottomBarWrapper from '@/components/MobileBottomBarWrapper'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackgroundImage from '@/components/BackgroundImage'
+import AIAssistant from '@/components/AIAssistant'
 
 
 const oswald = Oswald({
@@ -39,6 +40,7 @@ export default function RootLayout({
           <Footer />
           <ScrollToTop />
           <MobileBottomBarWrapper />
+          <AIAssistant />
         </ThemeProvider>
       </body>
     </html>
