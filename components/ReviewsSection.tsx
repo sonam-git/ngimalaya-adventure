@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Star, ChevronLeft, ChevronRight, X, User } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
@@ -17,7 +18,12 @@ interface Review {
 const ReviewsSection: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [mounted, setMounted] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const reviews: Review[] = [
     {
@@ -122,6 +128,7 @@ const ReviewsSection: React.FC = () => {
   };
 
   return (
+    <>
     <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
@@ -265,10 +272,11 @@ const ReviewsSection: React.FC = () => {
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Modal */}
-      {selectedReview && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    {/* Modal - Portal to document body */}
+    {mounted && selectedReview && createPortal(
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
           <div className={`relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
             isDarkMode ? 'bg-gray-800' : 'bg-white'
           }`}>
@@ -364,9 +372,10 @@ const ReviewsSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
-    </section>
+    </>
   );
 };
 

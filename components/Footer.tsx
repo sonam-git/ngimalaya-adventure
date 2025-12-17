@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-gray-900/90 pointer-events-none" />
       
-      <div className="container relative z-10 mx-auto px-4 py-12 max-w-7xl">
+      <div className="container relative z-[1] mx-auto px-4 py-12 max-w-7xl">
         {/* LARGE SCREEN LAYOUT */}
         <div className="hidden lg:block">
           {/* First Row: 3 Columns */}

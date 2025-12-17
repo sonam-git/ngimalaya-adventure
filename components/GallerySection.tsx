@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import GalleryImageCard from './GalleryImageCard';
 import SectionHeader from './SectionHeader';
@@ -10,6 +11,11 @@ const GallerySection = () => {
   const galleryScrollRef = useRef<HTMLDivElement>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Image modal text overlay state (delayed show, auto-hide)
   const [showModalText, setShowModalText] = useState(false);
@@ -253,6 +259,7 @@ const GallerySection = () => {
   }, []);
 
   return (
+    <>
     <section 
       ref={sectionRef}
       id="gallery" 
@@ -376,17 +383,18 @@ const GallerySection = () => {
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Modal for zoomed image */}
-      {modalOpen && selectedIndex !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="gallery-modal-title"
-          tabIndex={-1}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 backdrop-blur-lg focus:outline-none"
-          onClick={closeModal}
-        >
+    {/* Modal for zoomed image - Portal to document body */}
+    {mounted && modalOpen && selectedIndex !== null && createPortal(
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gallery-modal-title"
+        tabIndex={-1}
+        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/70 backdrop-blur-lg focus:outline-none"
+        onClick={closeModal}
+      >
           <h2 id="gallery-modal-title" className="sr-only">Gallery Image Details</h2>
           <div 
             className="relative max-w-4xl w-full mx-4 rounded-3xl overflow-visible shadow-2xl flex flex-col items-center"
@@ -465,9 +473,10 @@ const GallerySection = () => {
               </svg>
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
-    </section>
+    </>
   );
 };
 

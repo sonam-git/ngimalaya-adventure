@@ -11,10 +11,9 @@ const BackgroundImage = () => {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat md:bg-fixed"
         style={{
           backgroundImage: 'url(/assets/images/threepasses.jpeg)',
-          backgroundAttachment: 'fixed',
         }}
       />
       {/* Theme-aware Overlay */}
