@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import SafariDetail from '@/components/SafariDetail';
+import { SafariTabProvider } from '@/contexts/SafariTabContext';
 import { safariPackages } from '@/data/safariPackages';
 
 export default function SafariDetailPage() {
@@ -34,8 +35,10 @@ export default function SafariDetailPage() {
   }
 
   return (
-    <main className="min-h-screen">
-      <SafariDetail safari={safari} />
-    </main>
+    <SafariTabProvider>
+      <main className="min-h-screen">
+        <SafariDetail safari={safari} />
+      </main>
+    </SafariTabProvider>
   );
 }

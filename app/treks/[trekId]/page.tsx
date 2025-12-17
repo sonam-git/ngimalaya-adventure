@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import TrekDetail from '@/components/TrekDetail';
+import { TrekTabProvider } from '@/contexts/TrekTabContext';
 import { allTreks } from '@/data/treks';
 
 export default function TrekDetailPage() {
@@ -34,8 +35,10 @@ export default function TrekDetailPage() {
   }
 
   return (
-    <main className="min-h-screen">
-      <TrekDetail trek={trek} />
-    </main>
+    <TrekTabProvider>
+      <main className="min-h-screen">
+        <TrekDetail trek={trek} />
+      </main>
+    </TrekTabProvider>
   );
 }

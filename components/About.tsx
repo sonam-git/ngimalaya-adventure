@@ -46,8 +46,14 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
   ];
 
   return (
-    <section id="about" className="scroll-offset-mobile py-16 md:py-24 transition-colors duration-300">
-      <div className="container mx-auto px-4">
+    <section id="about" className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
+        <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -left-48 w-96 h-96 bg-green-500/10 dark:bg-green-500/20 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
         <SectionHeader
           subtitle="About Ngimalaya Adventure"
           title="Where every trek tells a story and culture meets the clouds"

@@ -13,6 +13,7 @@ import { peakExpeditions } from '../data/peakExpeditions';
 import { safariPackages } from '../data/safariPackages';
 import PeakMenu from './PeakMenu';
 import SafariMenu from './SafariMenu';
+import TrekMenu from './TrekMenu';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,6 +42,11 @@ const Header: React.FC = () => {
   // Check if we should show the SafariMenu
   const shouldShowSafariMenu = pathname === '/safari' || 
                                 pathname.startsWith('/safari/');
+  
+  // Check if we should show the TrekMenu (only on individual trek pages, not region pages)
+  const shouldShowTrekMenu = pathname.startsWith('/treks/') && 
+                             pathname !== '/treks' && 
+                             !pathname.startsWith('/treks/regions/');
   
   // Get current region from pathname
   const getCurrentRegion = () => {
@@ -87,6 +93,24 @@ const Header: React.FC = () => {
 
   const handleSafariSelect = (safariId: string) => {
     router.push(`/safari/${safariId}`);
+  };
+
+  // Get current trek ID from pathname
+  const getCurrentTrekId = () => {
+    if (pathname.startsWith('/treks/') && pathname !== '/treks' && !pathname.startsWith('/treks/regions/')) {
+      return pathname.split('/').pop() || '';
+    }
+    return '';
+  };
+
+  // Get treks from the same region as the current trek
+  const getTreksFromCurrentRegion = () => {
+    const currentRegion = getCurrentRegion();
+    if (!currentRegion) return [];
+    return allTreks.filter(trek => 
+      trek.region === currentRegion && 
+      trek.adventureType === 'trekking'
+    );
   };
 
   const navItems = [
@@ -268,6 +292,15 @@ const Header: React.FC = () => {
                 })}
               </ul>
             </div>
+          )}
+
+          {/* Trek Menu - shown only on individual trek detail pages (below Region Menu) */}
+          {shouldShowTrekMenu && (
+            <TrekMenu
+              treks={getTreksFromCurrentRegion()}
+              selectedTrekId={getCurrentTrekId()}
+              regionName={getCurrentRegion()}
+            />
           )}
 
           {/* Peak Menu - shown only on peak expedition and peak detail pages */}
