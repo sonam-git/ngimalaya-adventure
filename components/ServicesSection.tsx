@@ -1,6 +1,6 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import { Mountain, Compass, Backpack, Camera, Shield, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useRef } from "react";
+import { Mountain, Compass, Backpack, Camera, Shield, Users } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import SectionHeader from "./SectionHeader";
 
@@ -11,8 +11,6 @@ interface ServicesSectionProps {
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
   const { isDarkMode } = useTheme();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const services = [
     {
@@ -53,30 +51,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
     },
   ];
 
-  const checkScrollPosition = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  useEffect(() => {
-    checkScrollPosition();
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', checkScrollPosition);
-      window.addEventListener('resize', checkScrollPosition);
-      return () => {
-        container.removeEventListener('scroll', checkScrollPosition);
-        window.removeEventListener('resize', checkScrollPosition);
-      };
-    }
-  }, []);
-
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 400;
+      const scrollAmount = scrollContainerRef.current.clientWidth;
       const newScrollLeft = scrollContainerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
       scrollContainerRef.current.scrollTo({
         left: newScrollLeft,
@@ -96,108 +73,104 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
         <div className="absolute bottom-1/4 -left-48 w-96 h-96 bg-green-500/10 dark:bg-green-500/20 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto px-2 sm:px-4">
         <SectionHeader subtitle="What We Offer" title="Our Services" />
 
-        {/* Horizontal Scrolling Gallery */}
-        <div className="relative max-w-7xl mx-auto">
-          {/* Gallery Container with Border and Shadow */}
-          <div className={`relative rounded-2xl p-6 ${
-            isDarkMode 
-              ? "bg-gray-900 border-2 border-gray-700 shadow-2xl" 
-              : "bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 shadow-2xl"
-          }`}>
-            {/* Services Scroll Container */}
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`text-center p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border-2 ${
+                isDarkMode
+                  ? "bg-gray-800/70 border-gray-700 hover:bg-gray-700/70"
+                  : "bg-white/70 border-gray-200 hover:bg-white shadow-lg"
+              }`}
+            >
+              <div className="inline-flex items-center justify-center mb-6 text-primary-500 transition-transform duration-300 hover:scale-110">
+                {service.icon}
+              </div>
+              <h3
+                className={`text-2xl font-display font-bold mb-4 ${
+                  isDarkMode ? "text-gray-100" : "text-gray-900"
+                }`}
+              >
+                {service.title}
+              </h3>
+              <p
+                className={`font-body leading-relaxed ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Slider */}
+        <div className="relative block md:hidden">
+          <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
             <div
               ref={scrollContainerRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-6 py-4"
+              className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
               }}
             >
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`flex-shrink-0 w-80 text-center p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 border ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 border-gray-600"
-                    : "bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-2xl border-gray-200"
-                }`}
-              >
+              {services.map((service, index) => (
                 <div
-                  className={`inline-flex items-center justify-center mb-6 text-primary-500 group-hover:scale-110 transition-transform duration-300`}
+                  key={index}
+                  className="flex-shrink-0 w-[85vw] snap-center"
                 >
-                  {service.icon}
-                </div>
-                <h3
-                  className={`text-2xl font-display font-bold mb-4 ${
-                    isDarkMode ? "text-gray-100" : "text-gray-900"
-                  }`}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  className={`font-body leading-relaxed ${
-                    isDarkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  {service.description}
-                </p>
-              </div>
-            ))}
-            </div>
-
-            {/* Navigation Buttons - Bottom Left and Right */}
-            <div className="flex justify-between items-center mt-6 px-2">
-              {/* Left Arrow - Bottom Left */}
-              {canScrollLeft ? (
-                <button
-                  onClick={() => scroll('left')}
-                  className={`p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${
-                    isDarkMode 
-                      ? "bg-gray-700 text-white hover:bg-gray-600" 
-                      : "bg-white text-primary-600 hover:bg-primary-50 border-2 border-primary-200"
-                  }`}
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-              ) : (
-                <div className="w-14"></div>
-              )}
-
-              {/* Scroll Indicator - Center */}
-              <div className="flex gap-2">
-                {services.map((_, index) => (
                   <div
-                    key={index}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === 0 ? 'w-8' : 'w-2'
-                    } ${
-                      isDarkMode ? 'bg-gray-600' : 'bg-primary-300'
+                    className={`text-center p-8 rounded-xl transition-all duration-300 border-2 h-full ${
+                      isDarkMode
+                        ? "bg-gray-800 border-gray-700"
+                        : "bg-white border-gray-200 shadow-lg"
                     }`}
-                  />
-                ))}
-              </div>
-
-              {/* Right Arrow - Bottom Right */}
-              {canScrollRight ? (
-                <button
-                  onClick={() => scroll('right')}
-                  className={`p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${
-                    isDarkMode 
-                      ? "bg-gray-700 text-white hover:bg-gray-600" 
-                      : "bg-white text-primary-600 hover:bg-primary-50 border-2 border-primary-200"
-                  }`}
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              ) : (
-                <div className="w-14"></div>
-              )}
+                  >
+                    <div className="inline-flex items-center justify-center mb-6 text-primary-500">
+                      {service.icon}
+                    </div>
+                    <h3
+                      className={`text-2xl font-display font-bold mb-4 ${
+                        isDarkMode ? "text-gray-100" : "text-gray-900"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      className={`font-body leading-relaxed ${
+                        isDarkMode ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+          {/* Navigation Buttons */}
+          <div className="flex justify-center items-center gap-12 mt-6">
+            <button
+              onClick={() => scroll('left')}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full px-5 py-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              aria-label="Previous"
+            >
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              <span className="font-display font-semibold">Prev</span>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full px-5 py-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              aria-label="Next"
+            >
+              <span className="font-display font-semibold">Next</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
 

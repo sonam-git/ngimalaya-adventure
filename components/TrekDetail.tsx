@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Calendar, 
   Mountain, 
@@ -33,6 +33,24 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    // Small delay to ensure content is rendered before scrolling
+    setTimeout(() => {
+      if (contentRef.current) {
+        const headerOffset = 350; // Offset for sticky headers and tabs
+        const elementPosition = contentRef.current.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: Mountain },
@@ -187,7 +205,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`flex-shrink-0 px-4 md:px-6 py-3 md:py-4 font-semibold text-xs md:text-sm transition-all duration-200 whitespace-nowrap flex items-center gap-2 border-b-2 ${
                       activeTab === tab.id
                         ? `${isDarkMode ? 'text-blue-400 border-blue-400 bg-blue-900/20' : 'text-blue-600 border-blue-600 bg-blue-50'}`
@@ -205,7 +223,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
         </div>
 
         {/* Tab Content */}
-        <div className="w-full">
+        <div ref={contentRef} className="w-full">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
@@ -247,7 +265,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 </div>
               </div>
 
-              <h2 className={`text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 About This Trek
               </h2>
               <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -259,7 +277,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Highlights Tab */}
           {activeTab === 'highlights' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 Trek Highlights
               </h2>
               <ul className="space-y-3">
@@ -280,7 +298,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 onClick={() => setIsItineraryOpen(!isItineraryOpen)}
                 className="w-full flex items-center justify-between mb-4"
               >
-                <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h2 className={`text-2xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   Detailed Itinerary
                 </h2>
                 <div className="flex items-center space-x-2">
@@ -355,7 +373,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Map Tab */}
           {activeTab === 'map' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <MapPin className="mr-3 text-blue-500" size={28} />
                 Trek Route Map
               </h2>
@@ -448,7 +466,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Cost Includes Tab */}
           {activeTab === 'includes' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <CheckCircle className="mr-3 text-green-500" size={28} />
                 What's Included
               </h2>
@@ -466,7 +484,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Cost Excludes Tab */}
           {activeTab === 'excludes' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <XCircle className="mr-3 text-red-500" size={28} />
                 What's Not Included
               </h2>
@@ -484,7 +502,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Requirements Tab */}
           {activeTab === 'requirements' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <AlertTriangle className="mr-3 text-yellow-500" size={28} />
                 Requirements & Prerequisites
               </h2>

@@ -9,7 +9,7 @@ interface RegionMenuProps {
 const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSelect }) => {
   return (
     <div
-      className="sticky top-[104px] md:top-[120px] z-[35] bg-white dark:bg-gray-900 shadow-lg border-b border-blue-300 w-full"
+      className="sticky top-[104px] md:top-[120px] z-[35] bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 shadow-lg border-b border-green-300 dark:border-blue-700 w-full"
       aria-label="Region menu"
     >
       <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
@@ -18,11 +18,11 @@ const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSele
             <button
               type="button"
               onClick={() => onSelect(region)}
-              className={`transition-colors duration-200 px-4 py-2 rounded-md font-semibold text-blue-900 dark:text-white whitespace-nowrap
+              className={`transition-all duration-200 px-4 py-2 rounded-md font-semibold whitespace-nowrap
                 ${selectedRegion === region
-                  ? 'bg-blue-100 dark:bg-blue-900 shadow-md scale-105'
-                  : 'bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-800 hover:scale-105'}
-                focus:outline-none focus:ring-2 focus:ring-blue-300`
+                  ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg scale-105'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-blue-400 hover:text-white hover:scale-105'}
+                focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-blue-400`
               }
             >
               {region.replace(/ Region$/i, '')}

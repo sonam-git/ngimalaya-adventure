@@ -59,13 +59,6 @@
     }
   }
 
-  /* Add padding to bottom on mobile to prevent content from being hidden behind mobile bottom bar */
-  @media (max-width: 767px) {
-    main {
-      padding-bottom: 80px; /* Height of mobile bottom bar + some spacing */
-    }
-  }
-
   .dark body {
     color: rgb(243 244 246) !important; /* text-gray-100 - force white text in dark mode */
     background-color: transparent; /* transparent to show layout background */

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Calendar, 
   Mountain, 
@@ -25,6 +25,24 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   const { isDarkMode } = useTheme();
   const { activeTab, setActiveTab } = usePeakTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    // Small delay to ensure content is rendered before scrolling
+    setTimeout(() => {
+      if (contentRef.current) {
+        const headerOffset = 350; // Offset for sticky headers and tabs
+        const elementPosition = contentRef.current.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: Mountain },
@@ -145,7 +163,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`flex-shrink-0 px-4 md:px-6 py-3 md:py-4 font-semibold text-xs md:text-sm transition-all duration-200 whitespace-nowrap flex items-center gap-2 border-b-2 ${
                       activeTab === tab.id
                         ? `${isDarkMode ? 'text-blue-400 border-blue-400 bg-blue-900/20' : 'text-blue-600 border-blue-600 bg-blue-50'}`
@@ -163,7 +181,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
         </div>
 
         {/* Tab Content */}
-        <div className="w-full">
+        <div ref={contentRef} className="w-full">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
