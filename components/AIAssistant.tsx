@@ -160,21 +160,21 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           />
           
           {/* Chat Window - Full screen on mobile, floating on desktop */}
-          <div className={`ai-chat-mobile-modal fixed inset-0 md:inset-auto md:bottom-6 md:right-6 z-[101] md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-2rem)] md:rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out ${
+          <div className={`ai-chat-mobile-modal fixed inset-0 md:inset-auto md:bottom-6 md:right-6 z-[101] w-full md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-2rem)] md:rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out overflow-hidden ${
             isDarkMode ? 'bg-gray-800 border-0 md:border md:border-gray-700' : 'bg-white border-0 md:border md:border-gray-200'
           }`}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 md:rounded-t-2xl flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 animate-pulse" />
-              <div>
-                <h3 className="font-bold text-lg">AI Trek Assistant</h3>
+          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-3 md:p-4 md:rounded-t-2xl flex items-center justify-between flex-shrink-0 min-w-0">
+            <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 animate-pulse flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <h3 className="font-bold text-base md:text-lg truncate">AI Trek Assistant</h3>
                 <p className="text-xs text-green-100">Powered by Google Gemini</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-1 transition-colors"
+              className="hover:bg-white/20 rounded-full p-1.5 md:p-2 transition-colors flex-shrink-0 ml-2"
               aria-label="Close chat"
             >
               <X className="w-5 h-5" />
@@ -182,7 +182,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           </div>
 
           {/* Messages */}
-          <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${
+          <div className={`flex-1 overflow-y-auto overflow-x-hidden p-3 md:p-4 space-y-4 ${
             isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
           }`}>
             {messages.map((message, index) => (
@@ -245,10 +245,10 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className={`p-4 border-t ${
+          <form onSubmit={handleSubmit} className={`p-3 md:p-4 border-t flex-shrink-0 ${
             isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
           } md:rounded-b-2xl`}>
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full min-w-0">
               <input
                 ref={inputRef}
                 type="text"
@@ -256,7 +256,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything about trekking..."
                 disabled={isLoading}
-                className={`flex-1 px-4 py-2 rounded-full border transition-colors ${
+                className={`flex-1 min-w-0 px-3 md:px-4 py-2 rounded-full border transition-colors text-sm md:text-base ${
                   isDarkMode
                     ? 'bg-gray-900 border-gray-700 text-white placeholder-gray-500 focus:border-blue-500'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400 focus:border-blue-500'
@@ -265,10 +265,10 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-full p-2 transition-all duration-200 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-full p-2 md:p-2.5 transition-all duration-200 disabled:cursor-not-allowed flex-shrink-0"
                 aria-label="Send message"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
             <p className={`text-xs mt-2 text-center ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>

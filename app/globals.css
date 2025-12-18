@@ -771,6 +771,13 @@
 }
 
 /* Mobile AI Chat Modal - Safe Areas for iPhone */
+@media (max-width: 767px) {
+  .ai-chat-mobile-modal {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
 @supports (padding: env(safe-area-inset-top)) {
   /* Full screen modal on mobile should respect safe areas */
   @media (max-width: 767px) {
