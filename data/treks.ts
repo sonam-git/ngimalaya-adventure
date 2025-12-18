@@ -43,6 +43,7 @@ export interface Trek {
   included: string[];
   excluded: string[];
   requirements: string[];
+  mapUrl?: string; // Optional Google My Maps embed URL
 }
 
 export interface Region {

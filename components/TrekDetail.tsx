@@ -62,19 +62,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
     { id: 'requirements', label: 'Prerequisites', icon: AlertTriangle },
   ];
 
-  // Generate Google Maps embed URL based on region and trek name
-  // TODO: Replace 'YOUR_GOOGLE_MAPS_API_KEY' with your actual Google Maps API key
-  // Get it from: https://console.cloud.google.com/google/maps-apis/
-  // Enable "Maps Embed API" in your Google Cloud Console
+  // Get Google Maps URL - use custom mapUrl if available, otherwise generate generic map
   const getGoogleMapsUrl = () => {
-    // Option 1: Using Embed API (requires API key)
-    const query = encodeURIComponent(`${trek.name}, ${trek.region}, Nepal`);
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY';
-    return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${query}&zoom=9`;
+    // If trek has a custom Google My Maps URL, use it
+    if (trek.mapUrl) {
+      return trek.mapUrl;
+    }
     
-    // Option 2: Using standard iframe (no API key needed, but less customization)
-    // const query = encodeURIComponent(`${trek.name}, ${trek.region}, Nepal`);
-    // return `https://maps.google.com/maps?q=${query}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
+    // Fallback: Generate a generic Google Maps search URL
+    const query = encodeURIComponent(`${trek.name}, ${trek.region}, Nepal`);
+    return `https://maps.google.com/maps?q=${query}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
   };
 
   return (
@@ -378,6 +375,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 Trek Route Map
               </h2>
               <div className="space-y-4">
+                {/* Custom Map Notice */}
+                {trek.mapUrl && (
+                  <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-3 mb-2`}>
+                    <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-800'} flex items-center`}>
+                      <MapPin className="mr-2 flex-shrink-0" size={16} />
+                      <span>This is a custom route map showing the detailed trekking path and key locations.</span>
+                    </p>
+                  </div>
+                )}
+                
                 {/* Google Maps Embed */}
                 <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl overflow-hidden`}>
                   <iframe

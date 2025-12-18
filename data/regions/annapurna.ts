@@ -194,6 +194,7 @@ export const annapurnaRegionTreks: Trek[] = [
     season: 'Oct-Nov | Mar-Apr  [Best: Oct-Nov]',
     groupSize: '2-10 people',
     region: 'Annapurna Region',
+    mapUrl: 'https://www.google.com/maps/d/u/0/embed?mid=11yAkzlppPtxQR960lUk40lE-G-bkaxs8&ehbc=2E312F',
     itinerary: [
       {
         day: 1,
@@ -673,7 +674,6 @@ export const annapurnaRegionTreks: Trek[] = [
     ],
     adventureType: 'trekking'
   },
-
   {
       //create for GorePani Poon Hill Trek  
     id: 'poon-hill-trek',
