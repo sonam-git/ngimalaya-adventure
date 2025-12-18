@@ -79,15 +79,15 @@ const SafariSection: React.FC = () => {
             Our safari adventures offer the perfect blend of wildlife encounters and cultural experiences.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mb-12">
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-green-300">
               <Binoculars size={20} />
               <span className="font-display font-semibold">Expert Naturalist Guides</span>
             </div>
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-green-300">
               <Trees size={20} />
               <span className="font-display font-semibold">Conservation Support</span>
             </div>
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-green-300">
               <Camera size={20} />
               <span className="font-display font-semibold">Wildlife Photography</span>
             </div>

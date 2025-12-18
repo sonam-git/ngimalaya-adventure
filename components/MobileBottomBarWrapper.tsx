@@ -4,16 +4,26 @@ import React, { useState } from 'react';
 import MobileBottomBar from './MobileBottomBar';
 import BookingModal from './BookingModal';
 
-const MobileBottomBarWrapper: React.FC = () => {
+interface MobileBottomBarWrapperProps {
+  onAIChatToggle?: () => void;
+}
+
+const MobileBottomBarWrapper: React.FC<MobileBottomBarWrapperProps> = ({ onAIChatToggle }) => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const handleBookNow = () => {
     setIsBookingModalOpen(true);
   };
 
+  const handleAIChat = () => {
+    if (onAIChatToggle) {
+      onAIChatToggle();
+    }
+  };
+
   return (
     <>
-      <MobileBottomBar onBookNow={handleBookNow} />
+      <MobileBottomBar onBookNow={handleBookNow} onAIChat={handleAIChat} />
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}

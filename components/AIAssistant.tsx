@@ -9,9 +9,24 @@ interface Message {
   timestamp: Date;
 }
 
-const AIAssistant: React.FC = () => {
+interface AIAssistantProps {
+  isOpen?: boolean;
+  onToggle?: (open: boolean) => void;
+}
+
+const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onToggle }) => {
   const { isDarkMode } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  
+  // Use external control if provided, otherwise use internal state
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const setIsOpen = (open: boolean) => {
+    if (onToggle) {
+      onToggle(open);
+    } else {
+      setInternalIsOpen(open);
+    }
+  };
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -103,16 +118,16 @@ const AIAssistant: React.FC = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
+      {/* Floating Chat Button - Hidden on mobile, shown on desktop */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-32 right-4 md:bottom-6 md:right-6 z-50 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center gap-2 group"
+          className="hidden md:flex fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110 items-center gap-2 group"
           aria-label="Open AI Assistant"
         >
           <Sparkles className="w-6 h-6 animate-pulse" />
           <MessageCircle className="w-6 h-6" />
-          <span className="hidden md:group-hover:inline-block text-sm font-semibold whitespace-nowrap pr-2">
+          <span className="hidden group-hover:inline-block text-sm font-semibold whitespace-nowrap pr-2">
             Ask AI Assistant
           </span>
         </button>
@@ -120,7 +135,7 @@ const AIAssistant: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className={`fixed bottom-32 right-4 md:bottom-6 md:right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col ${
+        <div className={`fixed bottom-20 left-4 right-4 md:bottom-6 md:right-6 md:left-auto z-50 w-auto md:w-[380px] max-w-[calc(100vw-2rem)] h-[calc(100vh-10rem)] md:h-[600px] max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col ${
           isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
         }`}>
           {/* Header */}

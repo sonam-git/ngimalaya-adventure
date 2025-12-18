@@ -1,20 +1,21 @@
 'use client';
 import React from 'react';
-import { MessageCircle, Mail, Calendar } from 'lucide-react';
+import { MessageCircle, Mail, Calendar, Sparkles } from 'lucide-react';
 
 interface MobileBottomBarProps {
   onBookNow?: () => void;
+  onAIChat?: () => void;
 }
 
-const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onBookNow }) => {
+const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onBookNow, onAIChat }) => {
   return (
     <nav
       aria-label="Mobile navigation"
       role="navigation"
       className="fixed bottom-0 left-0 right-0 w-full max-w-full mx-0 bg-white/30 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 z-30 md:hidden mobile-bottom-shadow transition-colors duration-300"
     >
-      {/* Grid container - shows 3 items evenly */}
-      <div className="grid grid-cols-3 gap-2 py-3 px-4 w-full">
+      {/* Grid container - shows 4 items evenly */}
+      <div className="grid grid-cols-4 gap-1 py-3 px-2 w-full">
         {/* Book Now - Featured */}
         <button
           onClick={onBookNow}
@@ -54,6 +55,18 @@ const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onBookNow }) => {
           </div>
           <span className="text-xs font-semibold text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors whitespace-nowrap">Email</span>
         </a>
+
+        {/* AI Chat */}
+        <button
+          onClick={onAIChat}
+          className="flex flex-col items-center justify-center p-3 rounded-lg transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 group"
+          aria-label="Chat with AI Assistant"
+        >
+          <div className="w-10 h-10 mb-1 flex items-center justify-center rounded-lg bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 group-hover:scale-110 transition-transform duration-200" aria-hidden="true">
+            <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 animate-pulse" />
+          </div>
+          <span className="text-xs font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors whitespace-nowrap">AI Chat</span>
+        </button>
       </div>
       
       {/* Subtle indicator line at top */}

@@ -1,12 +1,11 @@
 import { Oswald, Lato } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-import ScrollToTop from '@/components/ScrollToTop'
-import MobileBottomBarWrapper from '@/components/MobileBottomBarWrapper'
+// import ScrollToTop from '@/components/ScrollToTop'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackgroundImage from '@/components/BackgroundImage'
-import AIAssistant from '@/components/AIAssistant'
+import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 
 
 const oswald = Oswald({
@@ -38,9 +37,8 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <ScrollToTop />
-          <MobileBottomBarWrapper />
-          <AIAssistant />
+          {/* <ScrollToTop /> */}
+          <LayoutClientWrapper />
         </ThemeProvider>
       </body>
     </html>

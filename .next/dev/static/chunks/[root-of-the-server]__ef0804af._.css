@@ -907,6 +907,10 @@ html {
   right: 0;
 }
 
+.right-2 {
+  right: .5rem;
+}
+
 .right-4 {
   right: 1rem;
 }
@@ -963,8 +967,8 @@ html {
   top: 100%;
 }
 
-.right-2 {
-  right: .5rem;
+.bottom-20 {
+  bottom: 5rem;
 }
 
 .z-0 {
@@ -1311,6 +1315,10 @@ html {
   height: 1px;
 }
 
+.h-\[calc\(100vh-10rem\)\] {
+  height: calc(100vh - 10rem);
+}
+
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -1641,6 +1649,10 @@ html {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -2990,6 +3002,10 @@ html {
   font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
 }
 
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -4215,6 +4231,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
   opacity: .5;
 }
 
+.group:hover .group-hover\:inline-block {
+  display: inline-block;
+}
+
 .group:hover .group-hover\:w-full {
   width: 100%;
 }
@@ -4898,6 +4918,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
     top: 265px;
   }
 
+  .md\:left-auto {
+    left: auto;
+  }
+
   .md\:mb-3 {
     margin-bottom: .75rem;
   }
@@ -4986,6 +5010,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
     height: 450px;
   }
 
+  .md\:h-\[600px\] {
+    height: 600px;
+  }
+
   .md\:min-h-\[500px\] {
     min-height: 500px;
   }
@@ -5028,6 +5056,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-\[380px\] {
+    width: 380px;
   }
 
   .md\:translate-y-0 {

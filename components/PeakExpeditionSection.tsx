@@ -85,15 +85,15 @@ const PeakExpeditionSection: React.FC = () => {
             combine the thrill of mountaineering with comprehensive training and expert guidance.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mb-12">
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-blue-300">
               <Mountain size={20} />
               <span className="font-display font-semibold">Technical Training Included</span>
             </div>
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-blue-300">
               <Flag size={20} />
               <span className="font-display font-semibold">Safety Equipment Provided</span>
             </div>
-            <div className="flex items-center gap-2 text-primary-500">
+            <div className="flex items-center gap-2 text-primary-500 dark:text-blue-300">
               <Mountain size={20} />
               <span className="font-display font-semibold">Expert Guides</span>
             </div>

@@ -159,7 +159,7 @@ const HeroComponent: React.FC<HeroProps> = ({
 
           {/* Tagline */}
           <h2
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl lugrasimo-regular mb-6 md:mb-8 text-gray-800 dark:text-gray-200 animate-fade-in-up"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl lugrasimo-regular mb-6 md:mb-8 text-blue-800 dark:text-gray-200 animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
             Expert-Guided Treks Through Nepal's Majestic Landscapes
