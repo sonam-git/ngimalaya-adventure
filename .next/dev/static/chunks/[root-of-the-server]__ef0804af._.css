@@ -867,6 +867,10 @@ html {
   bottom: 25%;
 }
 
+.bottom-20 {
+  bottom: 5rem;
+}
+
 .bottom-32 {
   bottom: 8rem;
 }
@@ -965,10 +969,6 @@ html {
 
 .top-full {
   top: 100%;
-}
-
-.bottom-20 {
-  bottom: 5rem;
 }
 
 .z-0 {
@@ -1295,12 +1295,12 @@ html {
   height: 500px;
 }
 
-.h-\[600px\] {
-  height: 600px;
-}
-
 .h-\[60vh\] {
   height: 60vh;
+}
+
+.h-\[calc\(100vh-10rem\)\] {
+  height: calc(100vh - 10rem);
 }
 
 .h-auto {
@@ -1313,10 +1313,6 @@ html {
 
 .h-px {
   height: 1px;
-}
-
-.h-\[calc\(100vh-10rem\)\] {
-  height: calc(100vh - 10rem);
 }
 
 .max-h-\[500px\] {
@@ -1421,10 +1417,6 @@ html {
 
 .w-96 {
   width: 24rem;
-}
-
-.w-\[380px\] {
-  width: 380px;
 }
 
 .w-\[85vw\] {
@@ -3000,10 +2992,6 @@ html {
 
 .font-sans {
   font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
-}
-
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
 .text-2xl {
@@ -4890,6 +4878,10 @@ body:not(.dark) .hover\:text-gray-900:hover {
     bottom: 200px;
   }
 
+  .md\:left-auto {
+    left: auto;
+  }
+
   .md\:right-6 {
     right: 1.5rem;
   }
@@ -4916,10 +4908,6 @@ body:not(.dark) .hover\:text-gray-900:hover {
 
   .md\:top-\[265px\] {
     top: 265px;
-  }
-
-  .md\:left-auto {
-    left: auto;
   }
 
   .md\:mb-3 {
@@ -5050,16 +5038,16 @@ body:not(.dark) .hover\:text-gray-900:hover {
     width: 24rem;
   }
 
+  .md\:w-\[380px\] {
+    width: 380px;
+  }
+
   .md\:w-auto {
     width: auto;
   }
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-\[380px\] {
-    width: 380px;
   }
 
   .md\:translate-y-0 {
@@ -5288,10 +5276,6 @@ body:not(.dark) .hover\:text-gray-900:hover {
 
   .md\:opacity-100 {
     opacity: 1;
-  }
-
-  .group:hover .md\:group-hover\:inline-block {
-    display: inline-block;
   }
 }
 
