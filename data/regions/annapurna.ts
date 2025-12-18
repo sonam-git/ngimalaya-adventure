@@ -674,8 +674,7 @@ export const annapurnaRegionTreks: Trek[] = [
     ],
     adventureType: 'trekking'
   },
-  {
-      //create for GorePani Poon Hill Trek  
+  {  
     id: 'poon-hill-trek',
     name: 'Ghorepani Poon Hill Trek',
     duration: '7 Days',
@@ -796,6 +795,157 @@ export const annapurnaRegionTreks: Trek[] = [
       'Appropriate trekking gear and clothing',
       'Positive attitude and flexibility for mountain conditions',
       'No severe medical conditions (heart, lung problems)'
+    ],
+    adventureType: 'trekking'
+  },
+  {
+    id: 'upper-mustang',
+    name: 'Upper Mustang Trek',
+    duration: '14 Days',
+    altitude: '3,840m (12,598ft)',
+    difficulty: 'Moderate',
+    description: 'Journey to the ancient forbidden kingdom of Mustang, featuring unique Tibetan culture, dramatic desert landscapes, and the walled city of Lo Manthang.',
+    highlights: [
+      'Lo Manthang - Walled capital city',
+      'Ancient Tibetan Buddhist monasteries',
+      'Dramatic desert landscapes',
+      'Traditional Tibetan culture',
+      'Ancient cave dwellings',
+      'Trans-Himalayan scenery',
+      'Unique geology and landscape',
+      'Historical trade routes'
+    ],
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    price: '$1,899',
+    season: 'Mar-Nov (Best: Apr-Oct)',
+    groupSize: '2-12 people',
+    region: 'Annapurna Region',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Kathmandu',
+        description: 'Transfer to hotel, trek briefing.',
+        accommodation: 'Hotel',
+        meals: 'Welcome Dinner'
+      },
+      {
+        day: 2,
+        title: 'Fly to Pokhara',
+        description: 'Scenic flight to lake city.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast'
+      },
+      {
+        day: 3,
+        title: 'Fly to Jomsom, Trek to Charang',
+        description: 'Mountain flight and begin trekking in Mustang.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '3-4 hours'
+      },
+      {
+        day: 4,
+        title: 'Charang to Lo Manthang',
+        description: 'Trek to the walled capital city of Upper Mustang.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '4-5 hours'
+      },
+      {
+        day: 5,
+        title: 'Exploration Day in Lo Manthang',
+        description: 'Explore the ancient walled city, visit monasteries and palaces.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '3-4 hours'
+      },
+      {
+        day: 6,
+        title: 'Lo Manthang to Drakmar',
+        description: 'Trek through dramatic red cliff landscapes.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 7,
+        title: 'Drakmar to Ghar Gompa',
+        description: 'Visit ancient monastery and cave dwellings.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '4-5 hours'
+      },
+      {
+        day: 8,
+        title: 'Ghar Gompa to Charang',
+        description: 'Return trek through desert landscapes.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 9,
+        title: 'Charang to Ghemi',
+        description: 'Trek to traditional Mustang village.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '4-5 hours'
+      },
+      {
+        day: 10,
+        title: 'Ghemi to Tsarang',
+        description: 'Continue through ancient villages and monasteries.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '4-5 hours'
+      },
+      {
+        day: 11,
+        title: 'Tsarang to Ghaymi',
+        description: 'Trek through traditional Tibetan settlements.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '3-4 hours'
+      },
+      {
+        day: 12,
+        title: 'Ghaymi to Jomsom',
+        description: 'Final trekking day back to airstrip.',
+        accommodation: 'Teahouse',
+        meals: 'All meals',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 13,
+        title: 'Fly to Pokhara, then Kathmandu',
+        description: 'Return flights to Kathmandu.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast, Farewell Dinner'
+      },
+      {
+        day: 14,
+        title: 'Departure',
+        description: 'Airport transfer for international departure.',
+        accommodation: 'Airport',
+        meals: 'Breakfast'
+      }
+    ],
+    included: [
+      'All domestic flights',
+      'Accommodation and meals',
+      'Professional guide',
+      'Restricted area permits',
+      'Transportation'
+    ],
+    excluded: [
+      'International flights',
+      'Travel insurance',
+      'Personal expenses'
+    ],
+    requirements: [
+      'Moderate fitness level',
+      'Travel insurance',
+      'Restricted area permit requirements'
     ],
     adventureType: 'trekking'
   }

@@ -1,6 +1,13 @@
 import type { Trek } from '../treks';
 
-// Dolpo Region Treks
+// This file is kept for backwards compatibility
+// All regions have been moved to their own files:
+// - Dolpo: see dolpo.ts
+// - Mustang: moved to annapurna.ts (Mustang is part of Annapurna Conservation Area)
+// - Dhaulagiri: see dhaulagiri.ts
+// - Makalu: see makalu.ts
+
+// Legacy exports for backwards compatibility
 export const dolpoRegionTreks: Trek[] = [
   {
     id: 'upper-dolpo',

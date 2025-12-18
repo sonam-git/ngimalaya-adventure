@@ -7,12 +7,10 @@ import { annapurnaRegionTreks } from './regions/annapurna';
 import { manasluRegionTreks } from './regions/manaslu';
 import { kanchenjungaRegionTreks } from './regions/kanchenjunga';
 import { langtangRegionTreks } from './regions/langtang';
-import { 
-  dolpoRegionTreks, 
-  mustangRegionTreks, 
-  dhaulagiriRegionTreks, 
-  makaluRegionTreks 
-} from './regions/other-regions';
+import { dolpoRegionTreks } from './regions/dolpo';
+import { dhaulagiriRegionTreks } from './regions/dhaulagiri';
+import { makaluRegionTreks } from './regions/makalu';
+import { rolwalingRegionTreks } from './regions/rolwaling';
 import { peakTreks } from './peak';
 import { safariTreks } from './safari';
 
@@ -58,14 +56,14 @@ export interface Region {
 // Aggregate all treks from different regions
 export const allTreks: Trek[] = [
   ...everestRegionTreks,
-  ...annapurnaRegionTreks,
+  ...annapurnaRegionTreks, // Includes Mustang treks
   ...manasluRegionTreks,
   ...kanchenjungaRegionTreks,
   ...langtangRegionTreks,
   ...dolpoRegionTreks,
-  ...mustangRegionTreks,
   ...dhaulagiriRegionTreks,
   ...makaluRegionTreks,
+  ...rolwalingRegionTreks,
   ...peakTreks,
   ...safariTreks
 ];
@@ -136,20 +134,12 @@ export const trekRegions: Region[] = [
     popularTreks: dolpoRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'mustang-region',
-    name: 'Mustang Region',
-    description: 'Ancient kingdom with unique culture, dramatic landscapes, and fascinating Buddhist monasteries.',
-    image: '/assets/images/mustang.jpg',
-    trekCount: mustangRegionTreks.length,
-    popularTreks: mustangRegionTreks.map(trek => trek.name)
-  },
-  {
     id: 'dhaulagiri-region',
     name: 'Dhaulagiri Region',
     description: 'Challenging treks around the seventh highest mountain with dramatic landscapes and remote villages.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     trekCount: dhaulagiriRegionTreks.length,
-    popularTreks: dhaulagiriRegionTreks.map(trek => trek.name)
+    popularTreks: dhaulagiriRegionTreks.map((trek: Trek) => trek.name)
   },
   {
     id: 'makalu-region',
