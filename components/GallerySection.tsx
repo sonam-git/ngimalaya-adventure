@@ -73,7 +73,7 @@ const GallerySection = () => {
     {
       title: 'Manaslu Circuit',
       description: 'A remote and challenging trek around the eighth highest mountain in the world.',
-      image: '/assets/images/manaslu.jpg',
+      image: '/assets/images/bhimthang.jpeg',
       region: 'Manaslu',
       trek: 'Manaslu Circuit',
     },

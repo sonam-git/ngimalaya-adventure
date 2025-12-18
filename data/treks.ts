@@ -11,6 +11,7 @@ import { dolpoRegionTreks } from './regions/dolpo';
 import { dhaulagiriRegionTreks } from './regions/dhaulagiri';
 import { makaluRegionTreks } from './regions/makalu';
 import { rolwalingRegionTreks } from './regions/rolwaling';
+import { otherRegionTreks } from './regions/other-regions';
 import { peakTreks } from './peak';
 import { safariTreks } from './safari';
 
@@ -24,6 +25,7 @@ export interface ItineraryDay {
 }
 
 export interface Trek {
+
   id: string;
   name: string;
   duration: string;
@@ -64,6 +66,7 @@ export const allTreks: Trek[] = [
   ...dhaulagiriRegionTreks,
   ...makaluRegionTreks,
   ...rolwalingRegionTreks,
+  ...otherRegionTreks,
   ...peakTreks,
   ...safariTreks
 ];
@@ -148,7 +151,24 @@ export const trekRegions: Region[] = [
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     trekCount: makaluRegionTreks.length,
     popularTreks: makaluRegionTreks.map(trek => trek.name)
-  }
+  },
+  {
+    id: 'rolwaling-region',
+    name: 'Rolwaling Region',
+    description: 'Hidden valley between Everest and Langtang with challenging high passes and pristine mountain scenery.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    trekCount: rolwalingRegionTreks.length,
+    popularTreks: rolwalingRegionTreks.map(trek => trek.name)
+  },
+
+  // {
+  //   id: 'other-regions',
+  //   name: 'Other Regions',
+  //   description: 'Explore treks from various other regions of Nepal, each offering unique landscapes and cultural experiences.',
+  //   image: '/assets/images/other-regions.jpg',
+  //   trekCount: otherRegionTreks.length,
+  //   popularTreks: otherRegionTreks.map((trek: Trek) => trek.name)
+  // }
 ];
 
 export const services = [

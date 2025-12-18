@@ -144,7 +144,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           <Sparkles className="w-6 h-6 animate-pulse" />
           <MessageCircle className="w-6 h-6" />
           <span className="hidden group-hover:inline-block text-sm font-semibold whitespace-nowrap pr-2">
-            Ask AI Assistant
+          Ngimalaya AI Assistant
           </span>
         </button>
       )}
@@ -160,7 +160,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           />
           
           {/* Chat Window - Full screen on mobile, floating on desktop */}
-          <div className={`ai-chat-mobile-modal fixed inset-0 md:inset-auto md:bottom-6 md:right-6 z-[101] w-full md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-2rem)] md:rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out overflow-hidden ${
+          <div className={`ai-chat-mobile-modal fixed inset-x-4 inset-y-4 md:inset-auto md:bottom-6 md:right-6 z-[101] w-auto md:w-[380px] h-auto md:h-[600px] md:max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out overflow-hidden ${
             isDarkMode ? 'bg-gray-800 border-0 md:border md:border-gray-700' : 'bg-white border-0 md:border md:border-gray-200'
           }`}>
           {/* Header */}

@@ -190,7 +190,7 @@ export const everestRegionTreks: Trek[] = [
   },
   {
     id: 'ebc-gokyo',
-    name: 'EBC Trek via Gokyo/Cho-La',
+    name: 'EBC Trek via Gokyo | Cho-La',
     duration: '18 Days',
     altitude: '5,545m (18,193ft)',
     difficulty: 'Strenuous',
@@ -618,6 +618,140 @@ export const everestRegionTreks: Trek[] = [
       'Mental preparedness for extreme challenges',
       'No severe medical conditions',
       'Experience with basic mountaineering techniques preferred'
+    ],
+    adventureType: 'trekking'
+  },
+  {
+    id: 'khumbu-panorama-trek',
+    name: 'Khumbu Panorama Trek',
+    duration: '7 Days',
+    altitude: '4,000m (14,370ft)',  
+    difficulty: 'Moderate',
+    description: 'A shorter trek offering stunning panoramic views of the Everest region. Perfect for those with limited time who still want to experience the beauty of the Khumbu Valley and its majestic peaks.',
+    highlights: [
+      'Panoramic views of Everest, Lhotse, Ama Dablam, and more',
+      'Visit Namche Bazaar, Khumjung, and Tengboche Monastery',
+    ],
+    image: '/assets/images/khumbu-panorama.jpeg',
+    price: '$999',
+    season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
+    groupSize: '2-10 people',
+    region: 'Everest Region',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Kathmandu (1,350m/4,429ft)',
+        description: 'Airport transfer, hotel check-in, welcome dinner with trek briefing.',
+        accommodation: 'Hotel',
+        meals: 'Welcome Dinner'
+      },
+      {
+        day: 2,
+        title: 'Fly to Lukla, Trek to Monjo (3,440m/11,286ft)',
+        description: 'Mountain flight to Lukla, trek through Sherpa villages to Monjo.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '6-7 hours'
+      },
+      {
+        day: 3,
+        title: 'Trek to Namche Bazaar (3,440m/11,286ft)',
+        description: 'Continue trekking to Namche Bazaar, the gateway to the Everest region.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 4,
+        title: 'Namche Bazaar to Khumjung Valley (3,790m/12,434ft)',
+        description: 'Hike up to Hotel Everest View for stunning panoramic views, and descend down to Khumjung Valley.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '2-3 hours'
+      },
+      {
+        day: 5,
+        title: 'Khumjung to Tengboche (3,867m/12,687ft)',
+        description: 'Trek to Tengboche Monastery with stunning views of Ama Dablam and Everest.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 6,
+        title: 'Tengboche to Phakding',
+        description: 'Trek back to Phakding, enjoying the scenic views along the way.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '5-6 hours'
+      },
+      {
+        day: 7,
+        title: 'Phakding to Lukla',
+        description: 'Final trekking day, farewell with the team.',
+        accommodation: 'Tea House',
+        meals: 'Breakfast, Lunch, Dinner',
+        walkingHours: '3-4 hours'
+      },
+      {
+        day: 8,
+        title: 'Fly to Kathmandu',
+        description: 'Return flight to Kathmandu, rest and optional activities.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast',
+        walkingHours: 'N/A'
+      },
+      { 
+        day: 9,
+        title: 'Sightseeing around Kathmandu',
+        description: 'Visit UNESCO World Heritage sites: Pashupatinath, Boudhanath, Swayambhunath, and Kathmandu Durbar Square.',
+        accommodation: 'Hotel',
+        meals: 'Breakfast',
+        walkingHours: 'Sightseeing'
+      },
+      {
+        day: 10,
+        title: 'Departure',
+        description: 'Transfer to airport for international departure.',
+        accommodation: 'Airport',
+        meals: 'Breakfast'
+      }
+    ],
+    included: [
+      'All domestic flights (Kathmandu-Lukla-Kathmandu)',
+      'Airport transfers in Kathmandu',
+      'All accommodation during trek (tea houses/lodges)',
+      'All meals during trek (breakfast, lunch, dinner)',
+      'Professional English-speaking trekking guide',
+      'Experienced porter service (1 porter for 2 trekkers)',
+      'All required permits (Sagarmatha National Park, TIMS)',
+      'Welcome and farewell dinners',
+      'Comprehensive pre-trek briefing',
+      'Trekking equipment (duffel bag, sleeping bag, down jacket)',
+      'First aid kit and emergency arrangements',
+      'Government taxes and service charges'  
+    ],
+    excluded: [
+      'International flights to/from Nepal',
+      'Nepal visa fees',
+      'Travel and rescue insurance (mandatory)',
+      'Personal expenses (laundry, phone calls, internet)',
+      'Tips for guide and porter',
+      'Extra meals in Kathmandu',
+      'Alcoholic beverages and bottled drinks',
+      'Personal trekking equipment',
+      'Emergency evacuation costs',
+      'Single supplement charges'
+    ],
+    requirements: [
+      'Good physical fitness',
+      'Ability to walk 4-6 hours daily',
+      'Previous hiking experience recommended',
+      'Comprehensive travel and medical insurance including helicopter evacuation',
+      'Valid passport with at least 6 months validity',
+      'Appropriate trekking gear and clothing',
+      'Positive attitude for mountain conditions',
+      'No severe medical conditions'
     ],
     adventureType: 'trekking'
   }
