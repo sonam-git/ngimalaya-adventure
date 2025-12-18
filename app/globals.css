@@ -769,3 +769,51 @@
     margin-top: 0 !important;
   }
 }
+
+/* Mobile AI Chat Modal - Safe Areas for iPhone */
+@supports (padding: env(safe-area-inset-top)) {
+  /* Full screen modal on mobile should respect safe areas */
+  @media (max-width: 767px) {
+    .ai-chat-mobile-modal {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
+
+/* Prevent iOS Safari scroll bounce when modal is open */
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Smooth backdrop animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.backdrop-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Slide up animation for mobile modal */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .ai-chat-mobile-modal {
+    animation: slideUp 0.3s ease-out;
+  }
+}

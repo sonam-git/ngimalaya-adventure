@@ -53,6 +53,22 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
     }
   }, [isOpen]);
 
+  // Prevent body scroll on mobile when chat is open
+  useEffect(() => {
+    if (isOpen) {
+      // Only apply on mobile screens
+      if (window.innerWidth < 768) {
+        document.body.classList.add('modal-open');
+      }
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -133,13 +149,22 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
         </button>
       )}
 
-      {/* Chat Window */}
+      {/* Full Screen Overlay for Mobile */}
       {isOpen && (
-        <div className={`fixed bottom-20 left-4 right-4 md:bottom-6 md:right-6 md:left-auto z-50 w-auto md:w-[380px] max-w-[calc(100vw-2rem)] h-[calc(100vh-10rem)] md:h-[600px] max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col ${
-          isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
-        }`}>
+        <>
+          {/* Backdrop - only visible on mobile */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-[100] md:hidden backdrop-fade-in"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          
+          {/* Chat Window - Full screen on mobile, floating on desktop */}
+          <div className={`ai-chat-mobile-modal fixed inset-0 md:inset-auto md:bottom-6 md:right-6 z-[101] md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-2rem)] md:rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out ${
+            isDarkMode ? 'bg-gray-800 border-0 md:border md:border-gray-700' : 'bg-white border-0 md:border md:border-gray-200'
+          }`}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 md:rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Sparkles className="w-5 h-5 animate-pulse" />
               <div>
@@ -222,7 +247,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           {/* Input */}
           <form onSubmit={handleSubmit} className={`p-4 border-t ${
             isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-          } rounded-b-2xl`}>
+          } md:rounded-b-2xl`}>
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -251,6 +276,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
             </p>
           </form>
         </div>
+        </>
       )}
     </>
   );
