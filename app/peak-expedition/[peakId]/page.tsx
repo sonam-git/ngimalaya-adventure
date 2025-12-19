@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import PeakDetail from '@/components/PeakDetail';
-import { PeakTabProvider } from '@/contexts/PeakTabContext';
 import { peakExpeditions } from '@/data/peakExpeditions';
 
 // Note: Peaks use a different data structure (PeakExpedition) than Trek
@@ -41,10 +40,8 @@ export default function PeakDetailPage() {
   }
 
   return (
-    <PeakTabProvider>
-      <main className="min-h-screen">
-        <PeakDetail peak={peak} />
-      </main>
-    </PeakTabProvider>
+    <main className="min-h-screen">
+      <PeakDetail peak={peak} />
+    </main>
   );
 }

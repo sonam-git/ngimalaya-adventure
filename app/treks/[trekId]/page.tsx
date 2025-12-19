@@ -1,5 +1,4 @@
 import TrekDetail from '@/components/TrekDetail';
-import { TrekTabProvider } from '@/contexts/TrekTabContext';
 import { fetchTrekBySlugWithFallback } from '@/lib/storyblok-fetch-with-fallback';
 
 // Enable ISR - revalidate every hour
@@ -42,10 +41,8 @@ export default async function TrekDetailPage({ params }: TrekDetailPageProps) {
   }
 
   return (
-    <TrekTabProvider>
-      <main className="min-h-screen">
-        <TrekDetail trek={trek} />
-      </main>
-    </TrekTabProvider>
+    <main className="min-h-screen">
+      <TrekDetail trek={trek} />
+    </main>
   );
 }

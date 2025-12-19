@@ -1,6 +1,9 @@
 import { Oswald, Lato } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import { TrekTabProvider } from '@/contexts/TrekTabContext'
+import { PeakTabProvider } from '@/contexts/PeakTabContext'
+import { SafariTabProvider } from '@/contexts/SafariTabContext'
 // import ScrollToTop from '@/components/ScrollToTop'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -31,14 +34,20 @@ export default function RootLayout({
     <html lang="en" className={`${oswald.variable} ${lato.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased">
         <ThemeProvider>
-          <BackgroundImage />
-          <Header />
-          <main className="mt-20 md:mt-30 relative z-0">
-            {children}
-          </main>
-          <Footer />
-          {/* <ScrollToTop /> */}
-          <LayoutClientWrapper />
+          <TrekTabProvider>
+            <PeakTabProvider>
+              <SafariTabProvider>
+                <BackgroundImage />
+                <Header />
+                <main className="mt-20 md:mt-30 relative z-0">
+                  {children}
+                </main>
+                <Footer />
+                {/* <ScrollToTop /> */}
+                <LayoutClientWrapper />
+              </SafariTabProvider>
+            </PeakTabProvider>
+          </TrekTabProvider>
         </ThemeProvider>
       </body>
     </html>

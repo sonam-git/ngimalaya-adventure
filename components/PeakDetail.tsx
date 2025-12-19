@@ -9,8 +9,7 @@ import {
   AlertTriangle,
   Star,
   Thermometer,
-  Flag,
-  MapPin
+  Flag
 } from 'lucide-react';
 import type { PeakExpedition } from '../data/peakExpeditions';
 import { useTheme } from '../contexts/ThemeContext';
@@ -23,36 +22,9 @@ interface PeakDetailProps {
 
 const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   const { isDarkMode } = useTheme();
-  const { activeTab, setActiveTab } = usePeakTab();
+  const { activeTab } = usePeakTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
-    // Small delay to ensure content is rendered before scrolling
-    setTimeout(() => {
-      if (contentRef.current) {
-        const headerOffset = 350; // Offset for sticky headers and tabs
-        const elementPosition = contentRef.current.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
-  };
-
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: Mountain },
-    { id: 'highlights', label: 'Highlights', icon: Star },
-    { id: 'itinerary', label: 'Itinerary', icon: Calendar },
-    { id: 'map', label: 'Map', icon: MapPin },
-    { id: 'includes', label: 'Cost Includes', icon: CheckCircle },
-    { id: 'excludes', label: 'Cost Excludes', icon: XCircle },
-    { id: 'requirements', label: 'Prerequisites', icon: AlertTriangle },
-  ];
 
   // Generate Google Maps embed URL for the peak
   const getGoogleMapsUrl = () => {
@@ -62,10 +34,15 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   };
 
   return (
-    <div className="min-h-screen pt-[80px] md:pt-[100px]">
+    <div className="min-h-screen pt-[100px] md:pt-[130px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* First Row: Image (75%) + Booking Card (25%) */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+        {/* Tab Content */}
+        <div ref={contentRef} className="w-full">
+          {/* Overview Tab */}
+          {activeTab === 'overview' && (
+            <div className="space-y-8">
+              {/* Hero Section: Image (75%) + Contact Card (25%) */}
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Image Column - 75% width */}
           <div className="lg:col-span-3">
             <div className="relative h-[500px] rounded-2xl overflow-hidden">
@@ -152,91 +129,16 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Tab Navigation - Sticky */}
-        <div className="sticky top-[170px] md:top-[180px] z-40 mt-8 mb-6">
-          <div className={`${isDarkMode ? 'bg-gray-800/95 border border-gray-700' : 'bg-white/95 border border-gray-200'} rounded-xl shadow-lg overflow-x-auto backdrop-blur-md`}>
-            <div className="flex border-b border-gray-200 dark:border-gray-700">
-              {tabs.map((tab) => {
-                const IconComponent = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => handleTabChange(tab.id)}
-                    className={`flex-shrink-0 px-4 md:px-6 py-3 md:py-4 font-semibold text-xs md:text-sm transition-all duration-200 whitespace-nowrap flex items-center gap-2 border-b-2 ${
-                      activeTab === tab.id
-                        ? `${isDarkMode ? 'text-blue-400 border-blue-400 bg-blue-900/20' : 'text-blue-600 border-blue-600 bg-blue-50'}`
-                        : `${isDarkMode ? 'text-gray-400 hover:text-gray-200 border-transparent hover:bg-gray-700' : 'text-gray-600 hover:text-gray-900 border-transparent hover:bg-gray-100'}`
-                    }`}
-                  >
-                    <IconComponent size={18} />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Tab Content */}
-        <div ref={contentRef} className="w-full">
-          {/* Overview Tab */}
-          {activeTab === 'overview' && (
-            <div className="space-y-6">
-              {/* Peak Quick Info - Shown on small screens only */}
-              <div className="md:hidden mb-6">
-                <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl p-4`}>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center">
-                      <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={20} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Duration</p>
-                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{peak.duration}</p>
-                    </div>
-                    <div className="text-center">
-                      <Mountain className={`mx-auto mb-1 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={20} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Peak Height</p>
-                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{peak.height}</p>
-                    </div>
-                    <div className="text-center">
-                      <Flag className={`mx-auto mb-1 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`} size={20} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Difficulty</p>
-                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{peak.difficulty}</p>
-                    </div>
-                    <div className="text-center">
-                      <Thermometer className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={20} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best Season</p>
-                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{peak.season}</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              {/* Overview Content */}
+              {/* About This Peak */}
               <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
                 <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  About This Expedition
+                  About This Peak
                 </h2>
-                <div className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {peak.overview.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4">{paragraph}</p>
-                  ))}
-                </div>
-                
-                {/* Technical Requirements */}
-                <h3 className={`text-xl jaini-purva-regular font-semibold mb-4 mt-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  <AlertTriangle className="inline mr-2 text-orange-500" size={24} />
-                  Technical Requirements
-                </h3>
-                <ul className="space-y-2">
-                  {peak.technicalRequirements.map((req, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <Mountain className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`} size={16} />
-                      <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{req}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {peak.overview}
+                </p>
               </div>
             </div>
           )}

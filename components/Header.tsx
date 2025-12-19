@@ -14,8 +14,17 @@ import { safariPackages } from '../data/safariPackages';
 import PeakMenu from './PeakMenu';
 import SafariMenu from './SafariMenu';
 import TrekMenu from './TrekMenu';
+import TrekDetailTabs from './TrekDetailTabs';
+import SafariDetailTabs from './SafariDetailTabs';
+import PeakDetailTabs from './PeakDetailTabs';
+import { useTrekTab } from '../contexts/TrekTabContext';
+import { useSafariTab } from '../contexts/SafariTabContext';
+import { usePeakTab } from '../contexts/PeakTabContext';
 
 const Header: React.FC = () => {
+  const { activeTab, setActiveTab } = useTrekTab();
+  const { activeTab: safariActiveTab, setActiveTab: setSafariActiveTab } = useSafariTab();
+  const { activeTab: peakActiveTab, setActiveTab: setPeakActiveTab } = usePeakTab();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -139,7 +148,7 @@ const Header: React.FC = () => {
             ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900' 
             : 'bg-gradient-to-r from-white via-blue-50 to-white'
       }`}>
-        <nav className="container mx-auto px-4 relative">
+        <nav className="w-full px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 relative">
           <div className="flex items-center justify-between h-24 md:h-28">
             {/* Logo and Title */}
             <Link href="/" className="flex items-center gap-3 group">
@@ -190,8 +199,8 @@ const Header: React.FC = () => {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop Navigation - Only show above 1024px */}
+            <div className="hidden min-[1024px]:flex items-center gap-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.href);
@@ -237,8 +246,8 @@ const Header: React.FC = () => {
               </div>
             </div>
 
-            {/* Mobile Controls */}
-            <div className="lg:hidden flex items-center gap-3">
+            {/* Mobile Controls - Show below 1024px */}
+            <div className="min-[1024px]:hidden flex items-center gap-3">
               {/* Theme Toggle for Mobile */}
               <ThemeToggle />
               <GoogleTranslateClient />
@@ -262,13 +271,13 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Prayer flag border: always visible below header, both mobile and desktop */}
-          <div className="w-full">
+          {/* Prayer flag border: always visible below header, full width across screen */}
+          <div className="w-full relative">
             <PrayerFlagBorder />
           </div>
 
-          {/* Region Menu - shown only on region and trek detail pages */}
-          {shouldShowRegionMenu && (
+          {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}
+          {shouldShowRegionMenu && !isMobileMenuOpen && (
             <div className="w-full bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
               <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
                 {trekRegions.map(region => {
@@ -294,36 +303,58 @@ const Header: React.FC = () => {
             </div>
           )}
 
-          {/* Trek Menu - shown only on individual trek detail pages (below Region Menu) */}
-          {shouldShowTrekMenu && (
-            <TrekMenu
-              treks={getTreksFromCurrentRegion()}
-              selectedTrekId={getCurrentTrekId()}
-              regionName={getCurrentRegion()}
-            />
+          {/* Trek Menu - shown only on individual trek detail pages (below Region Menu, hidden when mobile menu is open) */}
+          {shouldShowTrekMenu && !isMobileMenuOpen && (
+            <>
+              <TrekMenu
+                treks={getTreksFromCurrentRegion()}
+                selectedTrekId={getCurrentTrekId()}
+                regionName={getCurrentRegion()}
+              />
+              <TrekDetailTabs
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+              />
+            </>
           )}
 
-          {/* Peak Menu - shown only on peak expedition and peak detail pages */}
-          {shouldShowPeakMenu && (
-            <PeakMenu
-              peaks={peakExpeditions.map(peak => ({ id: peak.id, name: peak.name }))}
-              selectedPeak={getCurrentPeakId()}
-              onSelect={handlePeakSelect}
-            />
+          {/* Peak Menu - shown only on peak expedition and peak detail pages (hidden when mobile menu is open) */}
+          {shouldShowPeakMenu && !isMobileMenuOpen && (
+            <>
+              <PeakMenu
+                peaks={peakExpeditions.map(peak => ({ id: peak.id, name: peak.name }))}
+                selectedPeak={getCurrentPeakId()}
+                onSelect={handlePeakSelect}
+              />
+              {getCurrentPeakId() && (
+                <PeakDetailTabs
+                  activeTab={peakActiveTab}
+                  onTabChange={setPeakActiveTab}
+                />
+              )}
+            </>
           )}
 
-          {/* Safari Menu - shown only on safari and safari detail pages */}
-          {shouldShowSafariMenu && (
-            <SafariMenu
-              safaris={safariPackages.map(safari => ({ id: safari.id, name: safari.name }))}
-              selectedSafari={getCurrentSafariId()}
-              onSelect={handleSafariSelect}
-            />
+          {/* Safari Menu - shown only on safari and safari detail pages (hidden when mobile menu is open) */}
+          {shouldShowSafariMenu && !isMobileMenuOpen && (
+            <>
+              <SafariMenu
+                safaris={safariPackages.map(safari => ({ id: safari.id, name: safari.name }))}
+                selectedSafari={getCurrentSafariId()}
+                onSelect={handleSafariSelect}
+              />
+              {getCurrentSafariId() && (
+                <SafariDetailTabs
+                  activeTab={safariActiveTab}
+                  onTabChange={setSafariActiveTab}
+                />
+              )}
+            </>
           )}
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Show below 1024px */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute left-0 right-0 top-full z-50 bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 animate-slideDown">
+            <div className="min-[1024px]:hidden absolute left-0 right-0 top-full z-50 bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 animate-slideDown">
               <div className={`py-4 border-t ${
                 isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
