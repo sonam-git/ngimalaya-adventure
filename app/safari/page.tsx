@@ -61,13 +61,13 @@ const SafariPage: React.FC = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
         </div>
-        
+
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 mb-4">
               <Binoculars className="text-primary-500" size={40} />
               <h1 className="text-5xl md:text-6xl jaini-purva-regular font-bold text-white uppercase tracking-wider">
-                Safari Adventures
+                Safari Adventure
               </h1>
             </div>
             <p className="text-xl md:text-2xl text-gray-200 font-body mb-6">
@@ -123,7 +123,7 @@ const SafariPage: React.FC = () => {
       </div>
 
       {/* Safari Packages */}
-      <div className="py-16">
+      <div id="safari-packages" className="py-16 scroll-mt-32 md:scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">

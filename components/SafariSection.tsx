@@ -36,7 +36,7 @@ const SafariSection: React.FC = () => {
       type: 'Wild Tiger',
       duration: '3-5 Days',
       badge: 'Adventure',
-      image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/assets/images/bardia.jpg',
       description: 'Nepal\'s largest and most pristine wilderness area with best tiger spotting.',
     },
     {
@@ -45,7 +45,7 @@ const SafariSection: React.FC = () => {
       type: 'Bird Paradise',
       duration: '2-3 Days',
       badge: 'Bird Watching',
-      image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/assets/images/koshi.webp',
       description: 'Premier bird watching destination with over 500 species.',
     },
   ];
@@ -55,13 +55,11 @@ const SafariSection: React.FC = () => {
     const width = scrollRef.current.offsetWidth;
     scrollRef.current.scrollBy({ left: dir === 'left' ? -width : width, behavior: 'smooth' });
   };
+  //THIS SECTION RENDERS THE SAFARI SECTION AS SCROLLABLE CARDS WITH MODAL DETAILS IN THE HOME PAGE
 
   return (
     <>
-    <section 
-      id="safari"
-      className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16"
-    >
+    <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>

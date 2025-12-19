@@ -18,7 +18,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={`mb-12 ${centered ? 'text-center' : ''}`}>
+    <div className={`mb-12  ${centered ? 'text-center' : ''}`}>
       {subtitle && (
         <div className="mb-3 flex items-center justify-center gap-3">
           <div className="h-px w-12 bg-primary-500"></div>

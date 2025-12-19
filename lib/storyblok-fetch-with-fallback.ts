@@ -91,11 +91,15 @@ export async function fetchTreksByRegionWithFallback(regionId: string): Promise<
     
     return allTreks.filter(t => {
       const trekRegion = t.region.toLowerCase();
+      // Only include treks with adventureType 'trekking' (exclude peaks and safaris)
+      const isTrekking = t.adventureType === 'trekking';
       // Match if region contains the regionId (e.g., "everest region" contains "everest")
       // or if they're exactly equal (case-insensitive)
-      return trekRegion.includes(normalizedRegionId) || 
+      const matchesRegion = trekRegion.includes(normalizedRegionId) || 
              trekRegion === normalizedRegionId ||
              trekRegion.replace(' region', '') === normalizedRegionId;
+      
+      return isTrekking && matchesRegion;
     });
   };
 
@@ -109,9 +113,14 @@ export async function fetchTreksByRegionWithFallback(regionId: string): Promise<
     const storyblokTreks = await getTreksByRegion(regionId);
     
     if (storyblokTreks && storyblokTreks.length > 0) {
-      console.log(`✅ Fetched ${storyblokTreks.length} treks for region ${regionId} from Storyblok - ONLY showing Storyblok data`);
+      // Convert and filter to only include trekking adventures
+      const convertedTreks = storyblokTreks
+        .map(convertStoryblokTrekToTrek)
+        .filter((t: Trek) => t.adventureType === 'trekking');
+      
+      console.log(`✅ Fetched ${storyblokTreks.length} items for region ${regionId} from Storyblok, filtered to ${convertedTreks.length} treks (excluding peaks)`);
       // ONLY return Storyblok data, don't mix with static
-      return storyblokTreks.map(convertStoryblokTrekToTrek);
+      return convertedTreks;
     }
     
     // Fallback to static data only if Storyblok returns nothing

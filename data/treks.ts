@@ -74,12 +74,11 @@ export const allTreks: Trek[] = [
 // Select popular treks for the home page (from different regions)
 export const popularTreks: Trek[] = [
   // Feature the ABC trek with custom image
-
     ...annapurnaRegionTreks.slice(0, 1),
   // Feature 2 Everest treks
   ...everestRegionTreks.slice(0, 2),
   // Feature Manaslu trek
-  ...manasluRegionTreks.slice(0, 1),
+  ...manasluRegionTreks.slice(0, 2),
   // Feature Kanchenjunga trek
   ...kanchenjungaRegionTreks.slice(0, 1),
   // Feature Makalu trek

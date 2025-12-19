@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
-import { popularTreks } from "../data/treks";
+import { allTreks } from "../data/treks";
 import TrekCard from "./TrekCard";
 import SectionHeader from "./SectionHeader";
 import ContactModal from "./ContactModal";
@@ -16,8 +16,23 @@ const TreksSection: React.FC = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  // Show only top 3 treks on homepage
-  const displayTreks = popularTreks.slice(0, 3);
+  
+  // Featured trek IDs
+  const featuredTrekIds = [
+    'everest-base-camp',
+    'ebc-gokyo',
+    'everest-three-passes',
+    'abc-trek',
+    'annapurna-circuit',
+    'langtang-valley',
+    'manaslu-circuit',
+    'kanchenjunga-circuit'
+  ];
+
+  // Get featured treks from allTreks
+  const displayTreks = featuredTrekIds
+    .map(id => allTreks.find(trek => trek.id === id))
+    .filter((trek): trek is import("../data/treks").Trek => trek !== undefined);
 
   useEffect(() => {
     setMounted(true);
@@ -25,9 +40,11 @@ const TreksSection: React.FC = () => {
 
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
-    const width = scrollRef.current.offsetWidth;
+    const cardWidth = scrollRef.current.querySelector('.trek-card-wrapper')?.clientWidth || 0;
+    const gap = 32; // gap-8 = 32px
+    const scrollAmount = cardWidth + gap;
     scrollRef.current.scrollBy({
-      left: dir === "left" ? -width : width,
+      left: dir === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
   };
@@ -45,19 +62,19 @@ const TreksSection: React.FC = () => {
         </div>
 
         <div className="relative z-10 container mx-auto px-2 sm:px-4">
-          <SectionHeader subtitle="Discover" title="Most Popular Trekking" />
-          <p className={`font-body text-lg leading-relaxed mb-6 `}>
+          <SectionHeader subtitle="Discover Your Next Adventure" title="Most Popular Trekking" />
+          <p className="font-body text-lg leading-relaxed mb-6 text-center">
             Explore our most popular trekking routes, each offering a unique
             adventure and breathtaking scenery.
           </p>
-          {/* Mobile Slider */}
+          {/* Mobile Slider - Show 3 treks at a time */}
           <div className="relative block md:hidden">
             <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
               <div
                 ref={scrollRef}
                 className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1"
               >
-                {displayTreks.map((trek) => (
+                {displayTreks.slice(0, 3).map((trek) => (
                   <div
                     key={trek.id}
                     className="flex-shrink-0 w-[85vw] snap-center"
@@ -124,27 +141,82 @@ const TreksSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Desktop Grid */}
+          {/* Desktop Horizontal Slider */}
           <div className="hidden md:block mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-              {displayTreks.map((trek) => (
-                <TrekCard
-                  key={trek.id}
-                  trek={trek}
-                  onExplore={() => {
-                    setSelectedTrek(trek);
-                    setShowDetail(true);
-                  }}
-                />
-              ))}
+            <div className="relative">
+              {/* Horizontal Scrollable Container */}
+              <div className="overflow-hidden">
+                <div
+                  ref={scrollRef}
+                  className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-4"
+                >
+                  {displayTreks.map((trek) => (
+                    <div
+                      key={trek.id}
+                      className="trek-card-wrapper flex-shrink-0 w-[calc(33.333%-21.33px)] snap-start"
+                    >
+                      <TrekCard
+                        trek={trek}
+                        onExplore={() => {
+                          setSelectedTrek(trek);
+                          setShowDetail(true);
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            {/* Desktop Explore More Button */}
-            <div className="text-center">
+            
+            {/* Navigation and Explore More Button */}
+            <div className="flex justify-between items-center mt-8">
+              <button
+                onClick={() => scroll("left")}
+                className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+                aria-label="Previous"
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              
               <button
                 onClick={() => router.push("/regions")}
-                className="bg-primary-500 hover:bg-primary-600 text-white px-10 py-4 text-lg font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+                className="bg-primary-500 hover:bg-primary-600 text-white px-10 py-4 text-lg font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 rounded-lg"
               >
                 Explore More
+              </button>
+              
+              <button
+                onClick={() => scroll("right")}
+                className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+                aria-label="Next"
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </button>
             </div>
           </div>

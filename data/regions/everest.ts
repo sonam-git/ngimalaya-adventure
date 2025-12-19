@@ -190,7 +190,7 @@ export const everestRegionTreks: Trek[] = [
   },
   {
     id: 'ebc-gokyo',
-    name: 'EBC Trek via Gokyo | Cho-La',
+    name: 'EBC via Gokyo | Cho-La',
     duration: '18 Days',
     altitude: '5,545m (18,193ft)',
     difficulty: 'Strenuous',
