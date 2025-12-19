@@ -1,0 +1,425 @@
+{
+  "components": [
+    {
+      "name": "trek",
+      "display_name": "Trek",
+      "schema": {
+        "name": {
+          "type": "text",
+          "required": true,
+          "display_name": "Trek Name"
+        },
+        "duration": {
+          "type": "text",
+          "required": true,
+          "display_name": "Duration",
+          "description": "e.g., '14 Days'"
+        },
+        "altitude": {
+          "type": "text",
+          "required": true,
+          "display_name": "Maximum Altitude",
+          "description": "e.g., '5,545m (18,193ft)'"
+        },
+        "difficulty": {
+          "type": "option",
+          "required": true,
+          "display_name": "Difficulty Level",
+          "options": [
+            {"name": "Easy", "value": "Easy"},
+            {"name": "Moderate", "value": "Moderate"},
+            {"name": "Hard", "value": "Hard"},
+            {"name": "Moderate to Hard", "value": "Moderate to Hard"},
+            {"name": "Challenging", "value": "Challenging"},
+            {"name": "Strenuous", "value": "Strenuous"},
+            {"name": "Extreme", "value": "Extreme"}
+          ]
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "display_name": "Description"
+        },
+        "highlights": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Trek Highlights",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "image": {
+          "type": "asset",
+          "required": true,
+          "display_name": "Trek Image",
+          "filetypes": ["images"]
+        },
+        "price": {
+          "type": "text",
+          "required": true,
+          "display_name": "Price",
+          "description": "e.g., '$1,899'"
+        },
+        "season": {
+          "type": "text",
+          "required": true,
+          "display_name": "Best Season",
+          "description": "e.g., 'Oct-Nov, Mar-May'"
+        },
+        "groupSize": {
+          "type": "text",
+          "required": true,
+          "display_name": "Group Size",
+          "description": "e.g., '2-12 people'"
+        },
+        "region": {
+          "type": "text",
+          "required": true,
+          "display_name": "Region",
+          "description": "e.g., 'Everest Region'"
+        },
+        "adventureType": {
+          "type": "option",
+          "required": true,
+          "display_name": "Adventure Type",
+          "options": [
+            {"name": "Trekking", "value": "trekking"},
+            {"name": "Peak Climbing", "value": "peak"},
+            {"name": "Safari", "value": "safari"}
+          ]
+        },
+        "itinerary": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Itinerary",
+          "restrict_components": true,
+          "component_whitelist": ["itinerary_day"]
+        },
+        "included": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "excluded": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Not Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "requirements": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Requirements",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "mapUrl": {
+          "type": "text",
+          "display_name": "Map URL",
+          "description": "Google My Maps embed URL (optional)"
+        }
+      },
+      "is_root": true,
+      "is_nestable": false
+    },
+    {
+      "name": "region",
+      "display_name": "Region",
+      "schema": {
+        "name": {
+          "type": "text",
+          "required": true,
+          "display_name": "Region Name"
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "display_name": "Description"
+        },
+        "image": {
+          "type": "asset",
+          "required": true,
+          "display_name": "Region Image",
+          "filetypes": ["images"]
+        },
+        "highlights": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Region Highlights",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "bestSeason": {
+          "type": "text",
+          "required": true,
+          "display_name": "Best Season"
+        },
+        "difficulty": {
+          "type": "text",
+          "required": true,
+          "display_name": "Overall Difficulty"
+        },
+        "trekCount": {
+          "type": "number",
+          "display_name": "Number of Treks",
+          "default_value": "0"
+        }
+      },
+      "is_root": true,
+      "is_nestable": false
+    },
+    {
+      "name": "peak",
+      "display_name": "Peak Expedition",
+      "schema": {
+        "name": {
+          "type": "text",
+          "required": true,
+          "display_name": "Peak Name"
+        },
+        "duration": {
+          "type": "text",
+          "required": true,
+          "display_name": "Duration"
+        },
+        "altitude": {
+          "type": "text",
+          "required": true,
+          "display_name": "Peak Altitude"
+        },
+        "difficulty": {
+          "type": "option",
+          "required": true,
+          "display_name": "Difficulty Level",
+          "options": [
+            {"name": "Easy", "value": "Easy"},
+            {"name": "Moderate", "value": "Moderate"},
+            {"name": "Hard", "value": "Hard"},
+            {"name": "Challenging", "value": "Challenging"},
+            {"name": "Strenuous", "value": "Strenuous"},
+            {"name": "Extreme", "value": "Extreme"}
+          ]
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "display_name": "Description"
+        },
+        "highlights": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Expedition Highlights",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "image": {
+          "type": "asset",
+          "required": true,
+          "display_name": "Peak Image",
+          "filetypes": ["images"]
+        },
+        "price": {
+          "type": "text",
+          "required": true,
+          "display_name": "Price"
+        },
+        "season": {
+          "type": "text",
+          "required": true,
+          "display_name": "Best Season"
+        },
+        "groupSize": {
+          "type": "text",
+          "required": true,
+          "display_name": "Group Size"
+        },
+        "region": {
+          "type": "text",
+          "required": true,
+          "display_name": "Region"
+        },
+        "itinerary": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Itinerary",
+          "restrict_components": true,
+          "component_whitelist": ["itinerary_day"]
+        },
+        "included": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "excluded": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Not Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "requirements": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Requirements",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "mapUrl": {
+          "type": "text",
+          "display_name": "Map URL"
+        }
+      },
+      "is_root": true,
+      "is_nestable": false
+    },
+    {
+      "name": "safari",
+      "display_name": "Safari Package",
+      "schema": {
+        "name": {
+          "type": "text",
+          "required": true,
+          "display_name": "Safari Name"
+        },
+        "duration": {
+          "type": "text",
+          "required": true,
+          "display_name": "Duration"
+        },
+        "difficulty": {
+          "type": "option",
+          "required": true,
+          "display_name": "Difficulty Level",
+          "options": [
+            {"name": "Easy", "value": "Easy"},
+            {"name": "Moderate", "value": "Moderate"},
+            {"name": "Hard", "value": "Hard"}
+          ]
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "display_name": "Description"
+        },
+        "highlights": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Safari Highlights",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "image": {
+          "type": "asset",
+          "required": true,
+          "display_name": "Safari Image",
+          "filetypes": ["images"]
+        },
+        "price": {
+          "type": "text",
+          "required": true,
+          "display_name": "Price"
+        },
+        "season": {
+          "type": "text",
+          "required": true,
+          "display_name": "Best Season"
+        },
+        "groupSize": {
+          "type": "text",
+          "required": true,
+          "display_name": "Group Size"
+        },
+        "location": {
+          "type": "text",
+          "required": true,
+          "display_name": "Location"
+        },
+        "itinerary": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Itinerary",
+          "restrict_components": true,
+          "component_whitelist": ["itinerary_day"]
+        },
+        "included": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "excluded": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "What's Not Included",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        },
+        "requirements": {
+          "type": "bloks",
+          "required": true,
+          "display_name": "Requirements",
+          "restrict_components": true,
+          "component_whitelist": ["list_item"]
+        }
+      },
+      "is_root": true,
+      "is_nestable": false
+    },
+    {
+      "name": "itinerary_day",
+      "display_name": "Itinerary Day",
+      "schema": {
+        "day": {
+          "type": "number",
+          "required": true,
+          "display_name": "Day Number"
+        },
+        "title": {
+          "type": "text",
+          "required": true,
+          "display_name": "Day Title"
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "display_name": "Description"
+        },
+        "accommodation": {
+          "type": "text",
+          "required": true,
+          "display_name": "Accommodation"
+        },
+        "meals": {
+          "type": "text",
+          "required": true,
+          "display_name": "Meals"
+        },
+        "walkingHours": {
+          "type": "text",
+          "display_name": "Walking Hours",
+          "description": "Optional, e.g., '5-6 hours'"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "list_item",
+      "display_name": "List Item",
+      "schema": {
+        "text": {
+          "type": "text",
+          "required": true,
+          "display_name": "Text"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    }
+  ]
+}

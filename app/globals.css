@@ -819,8 +819,19 @@ body.modal-open {
   }
 }
 
+/* AI Chat Modal - Mobile specific styles */
 @media (max-width: 767px) {
   .ai-chat-mobile-modal {
     animation: slideUp 0.3s ease-out;
+    max-width: 100vw !important;
+    width: calc(100vw - 2rem) !important;
+    max-height: calc(100vh - 2rem) !important;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent text overflow in mobile chat */
+  .ai-chat-mobile-modal * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }

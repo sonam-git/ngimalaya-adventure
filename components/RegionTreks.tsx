@@ -66,9 +66,37 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
 
         {/* Treks Section */}
         <div className="mb-8">
-          <h2 className={`text-3xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-            Available Treks in {region.name}
-          </h2>
+          <div className="flex items-baseline justify-between mb-6">
+            <h2 className={`text-3xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              Popular Treks
+            </h2>
+            <span className={`text-lg font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              {treks.length} {treks.length === 1 ? 'Trek' : 'Treks'} Available
+            </span>
+          </div>
+
+          {/* Trek Names List */}
+          {treks.length > 0 && (
+            <div className={`mb-6 p-4 rounded-xl ${isDarkMode ? 'bg-gray-800/50' : 'bg-gray-50'}`}>
+              <p className={`text-sm font-semibold mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                Treks in this region:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {treks.map((trek, index) => (
+                  <span 
+                    key={trek.id}
+                    className={`inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium ${
+                      isDarkMode 
+                        ? 'bg-blue-900/30 text-blue-300 border border-blue-700/50' 
+                        : 'bg-blue-50 text-blue-700 border border-blue-200'
+                    }`}
+                  >
+                    {index + 1}. {trek.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
           
           {treks.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -263,7 +263,10 @@ const SafariPage: React.FC = () => {
           <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             Book your safari today and experience the incredible wildlife and natural beauty of Nepal's national parks.
           </p>
-          <button className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
+          <button 
+            onClick={() => setIsContactModalOpen(true)}
+            className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
             Contact Us Today
           </button>
         </div>

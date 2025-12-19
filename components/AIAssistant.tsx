@@ -160,16 +160,16 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           />
           
           {/* Chat Window - Full screen on mobile, floating on desktop */}
-          <div className={`ai-chat-mobile-modal fixed inset-x-4 inset-y-4 md:inset-auto md:bottom-6 md:right-6 z-[101] w-auto md:w-[380px] h-auto md:h-[600px] md:max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out overflow-hidden ${
+          <div className={`ai-chat-mobile-modal fixed left-4 right-4 top-4 bottom-4 md:inset-auto md:bottom-6 md:right-6 z-[101] md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-2rem)] rounded-2xl shadow-2xl flex flex-col transition-transform duration-300 ease-out overflow-hidden ${
             isDarkMode ? 'bg-gray-800 border-0 md:border md:border-gray-700' : 'bg-white border-0 md:border md:border-gray-200'
           }`}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-3 md:p-4 md:rounded-t-2xl flex items-center justify-between flex-shrink-0 min-w-0">
-            <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+          <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-3 md:p-4 rounded-t-2xl flex items-center justify-between flex-shrink-0">
+            <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
               <Sparkles className="w-4 h-4 md:w-5 md:h-5 animate-pulse flex-shrink-0" />
-              <div className="min-w-0 flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-base md:text-lg truncate">AI Trek Assistant</h3>
-                <p className="text-xs text-green-100">Powered by Google Gemini</p>
+                <p className="text-xs text-green-100 truncate">Powered by Google Gemini</p>
               </div>
             </div>
             <button
@@ -191,7 +191,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[85%] md:max-w-[80%] rounded-2xl px-3 md:px-4 py-2.5 md:py-3 break-words ${
                     message.role === 'user'
                       ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white'
                       : isDarkMode
@@ -199,7 +199,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                       : 'bg-white text-gray-900 shadow-sm'
                   }`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message.content}</p>
                   <p className={`text-xs mt-1 ${
                     message.role === 'user' ? 'text-green-100' : isDarkMode ? 'text-gray-500' : 'text-gray-400'
                   }`}>
@@ -245,16 +245,16 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className={`p-3 md:p-4 border-t flex-shrink-0 ${
+          <form onSubmit={handleSubmit} className={`p-3 md:p-4 border-t flex-shrink-0 rounded-b-2xl ${
             isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-          } md:rounded-b-2xl`}>
-            <div className="flex gap-2 w-full min-w-0">
+          }`}>
+            <div className="flex gap-2 items-center">
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask me anything about trekking..."
+                placeholder="Ask about trekking..."
                 disabled={isLoading}
                 className={`flex-1 min-w-0 px-3 md:px-4 py-2 rounded-full border transition-colors text-sm md:text-base ${
                   isDarkMode
@@ -271,7 +271,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                 <Send className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
-            <p className={`text-xs mt-2 text-center ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+            <p className={`text-xs mt-2 text-center truncate ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
               Powered by AI • May occasionally make mistakes
             </p>
           </form>

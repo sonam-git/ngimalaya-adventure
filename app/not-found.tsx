@@ -22,10 +22,10 @@ export default function NotFound() {
               Go Home
             </Link>
             <Link
-              href="/treks"
+              href="/regions"
               className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition-colors font-semibold"
             >
-              Browse Treks
+              Browse Regions
             </Link>
           </div>
         </div>

@@ -632,7 +632,7 @@ export const everestRegionTreks: Trek[] = [
       'Panoramic views of Everest, Lhotse, Ama Dablam, and more',
       'Visit Namche Bazaar, Khumjung, and Tengboche Monastery',
     ],
-    image: '/assets/images/khumbu-panorama.jpeg',
+    image: '/assets/images/khumjung.png',
     price: '$999',
     season: 'Oct-Nov, Mar-May (Best: Oct-Nov)',
     groupSize: '2-10 people',

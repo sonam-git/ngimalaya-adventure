@@ -32,7 +32,7 @@ const Header: React.FC = () => {
   }, []);
 
   // Check if we should show the RegionMenu (for single region or single trek pages)
-  const shouldShowRegionMenu = pathname.startsWith('/treks/regions/') || 
+  const shouldShowRegionMenu = pathname.startsWith('/regions/') || 
                                 (pathname.startsWith('/treks/') && pathname !== '/treks');
   
   // Check if we should show the PeakMenu
@@ -46,11 +46,11 @@ const Header: React.FC = () => {
   // Check if we should show the TrekMenu (only on individual trek pages, not region pages)
   const shouldShowTrekMenu = pathname.startsWith('/treks/') && 
                              pathname !== '/treks' && 
-                             !pathname.startsWith('/treks/regions/');
+                             !pathname.startsWith('/regions/');
   
   // Get current region from pathname
   const getCurrentRegion = () => {
-    if (pathname.startsWith('/treks/regions/')) {
+    if (pathname.startsWith('/regions/')) {
       const regionId = pathname.split('/').pop();
       const region = trekRegions.find(r => r.id === regionId);
       return region?.name || '';
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
   const handleRegionSelect = (regionName: string) => {
     const region = trekRegions.find(r => r.name === regionName);
     if (region) {
-      router.push(`/treks/regions/${region.id}`);
+      router.push(`/regions/${region.id}`);
     }
   };
 
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
 
   // Get current trek ID from pathname
   const getCurrentTrekId = () => {
-    if (pathname.startsWith('/treks/') && pathname !== '/treks' && !pathname.startsWith('/treks/regions/')) {
+    if (pathname.startsWith('/treks/') && pathname !== '/treks' && !pathname.startsWith('/regions/')) {
       return pathname.split('/').pop() || '';
     }
     return '';
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'About', href: '/about', icon: User },
-    { name: 'Trekking', href: '/treks', icon: Mountain },
+    { name: 'Trekking', href: '/regions', icon: Mountain },
     { name: 'Peak', href: '/peak-expedition', icon: Flag },
     { name: 'Safari', href: '/safari', icon: Binoculars },
     { name: 'Contact', href: '/contact', icon: Mail },
@@ -172,14 +172,14 @@ const Header: React.FC = () => {
                 {/* Nepali Script */}
                 <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
                   isDarkMode ? 'text-gray-300 group-hover:text-primary-300' : 'text-blue-800 group-hover:text-primary-500'
-                }`} style={{ letterSpacing: '0.25em' }}>
+                }`} style={{ letterSpacing: '0.31em' }}>
                   ङिमालय एडभेन्चर
                 </div>
                 {/* Tibetan Script with Sliding Line */}
                 <div className="relative">
                   <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
                     isDarkMode ? 'text-gray-400 group-hover:text-primary-300' : 'text-blue-700 group-hover:text-primary-500'
-                  }`} style={{ letterSpacing: '0.4em' }}>
+                  }`} style={{ letterSpacing: '0.5em' }}>
                     སྤོ་ལོ་ཧི་མ་ལ་ཡ
                   </div>
                   {/* Sliding Horizontal Line */}

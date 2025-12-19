@@ -96,7 +96,7 @@ const TreksSection: React.FC = () => {
                 </svg>
               </button>
               <button
-                onClick={() => router.push("/treks")}
+                onClick={() => router.push("/regions")}
                 className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Explore More
@@ -141,7 +141,7 @@ const TreksSection: React.FC = () => {
             {/* Desktop Explore More Button */}
             <div className="text-center">
               <button
-                onClick={() => router.push("/treks")}
+                onClick={() => router.push("/regions")}
                 className="bg-primary-500 hover:bg-primary-600 text-white px-10 py-4 text-lg font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 Explore More

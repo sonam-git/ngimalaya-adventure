@@ -1,33 +1,33 @@
-import TrekDetail from '@/components/TrekDetail';
-import { TrekTabProvider } from '@/contexts/TrekTabContext';
-import { fetchTrekBySlugWithFallback } from '@/lib/storyblok-fetch-with-fallback';
+import RegionTreksClient from './RegionTreksClient';
+import { fetchRegionBySlugWithFallback, fetchTreksByRegionWithFallback } from '@/lib/storyblok-fetch-with-fallback';
 
 // Enable ISR - revalidate every hour
 export const revalidate = 3600;
 
-interface TrekDetailPageProps {
+interface RegionTreksPageProps {
   params: Promise<{
-    trekId: string;
+    regionId: string;
   }>;
 }
 
-export default async function TrekDetailPage({ params }: TrekDetailPageProps) {
+export default async function RegionTreksPage({ params }: RegionTreksPageProps) {
   // In Next.js 15+, params is a Promise and needs to be awaited
-  const { trekId } = await params;
+  const { regionId } = await params;
   
   // Fetch from Storyblok with fallback to static data
-  const trek = await fetchTrekBySlugWithFallback(trekId);
+  const region = await fetchRegionBySlugWithFallback(regionId);
+  const regionTreks = await fetchTreksByRegionWithFallback(regionId);
 
-  if (!trek) {
+  if (!region) {
     return (
       <main className="min-h-screen">
         <div className="min-h-screen pt-32 pb-16 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Trek Not Found
+              Region Not Found
             </h1>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              The trek you're looking for doesn't exist.
+              The region you're looking for doesn't exist.
             </p>
             <a
               href="/regions"
@@ -42,10 +42,11 @@ export default async function TrekDetailPage({ params }: TrekDetailPageProps) {
   }
 
   return (
-    <TrekTabProvider>
-      <main className="min-h-screen">
-        <TrekDetail trek={trek} />
-      </main>
-    </TrekTabProvider>
+    <main className="min-h-screen">
+      <RegionTreksClient 
+        region={region}
+        treks={regionTreks}
+      />
+    </main>
   );
 }

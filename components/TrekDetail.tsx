@@ -106,13 +106,13 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     <div className="text-center">
                       <AlertTriangle className={`mx-auto mb-1 ${
-                        trek.difficulty.toLowerCase() === 'easy' ? 'text-green-400' :
-                        trek.difficulty.toLowerCase() === 'moderate' ? 'text-yellow-400' :
-                        trek.difficulty.toLowerCase() === 'challenging' ? 'text-blue-400' :
+                        trek.difficulty?.toLowerCase() === 'easy' ? 'text-green-400' :
+                        trek.difficulty?.toLowerCase() === 'moderate' ? 'text-yellow-400' :
+                        trek.difficulty?.toLowerCase() === 'challenging' ? 'text-blue-400' :
                         'text-red-400'
                       }`} size={18} />
                       <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Difficulty</p>
-                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty}</p>
+                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty || 'Moderate'}</p>
                     </div>
                     <div className="text-center">
                       <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
@@ -230,13 +230,13 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="text-center">
                       <AlertTriangle className={`mx-auto mb-1 ${
-                        trek.difficulty.toLowerCase() === 'easy' ? 'text-green-400' :
-                        trek.difficulty.toLowerCase() === 'moderate' ? 'text-yellow-400' :
-                        trek.difficulty.toLowerCase() === 'challenging' ? 'text-blue-400' :
+                        trek.difficulty?.toLowerCase() === 'easy' ? 'text-green-400' :
+                        trek.difficulty?.toLowerCase() === 'moderate' ? 'text-yellow-400' :
+                        trek.difficulty?.toLowerCase() === 'challenging' ? 'text-blue-400' :
                         'text-red-400'
                       }`} size={20} />
                       <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Difficulty</p>
-                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty}</p>
+                      <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty || 'Moderate'}</p>
                     </div>
                     <div className="text-center">
                       <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={20} />
@@ -359,7 +359,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Max Altitude: {trek.altitude}
                     </span>
                     <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
-                      {trek.difficulty} Level
+                      {trek.difficulty || 'Moderate'} Level
                     </span>
                   </div>
                 </div>
@@ -419,7 +419,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <strong>Trek Duration:</strong> {trek.duration}
                       </p>
                       <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        <strong>Difficulty:</strong> {trek.difficulty}
+                        <strong>Difficulty:</strong> {trek.difficulty || 'Moderate'}
                       </p>
                     </div>
                   </div>

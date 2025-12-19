@@ -5,10 +5,16 @@ import PeakDetail from '@/components/PeakDetail';
 import { PeakTabProvider } from '@/contexts/PeakTabContext';
 import { peakExpeditions } from '@/data/peakExpeditions';
 
+// Note: Peaks use a different data structure (PeakExpedition) than Trek
+// For Storyblok integration, you may want to create separate peak content types
+// or adapt the Trek structure to include peak-specific fields
+
 export default function PeakDetailPage() {
   const params = useParams();
   const peakId = params.peakId as string;
   
+  // Currently using static data for peaks
+  // TODO: Implement Storyblok integration for peaks when needed
   const peak = peakExpeditions.find(p => p.id === peakId);
 
   if (!peak) {

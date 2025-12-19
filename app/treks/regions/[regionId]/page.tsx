@@ -1,23 +1,22 @@
-'use client';
+import RegionTreksClient from './RegionTreksClient';
+import { fetchRegionBySlugWithFallback, fetchTreksByRegionWithFallback } from '@/lib/storyblok-fetch-with-fallback';
 
-import { useParams, useRouter } from 'next/navigation';
-import RegionTreks from '@/components/RegionTreks';
-import { trekRegions, allTreks } from '@/data/treks';
-import type { Trek } from '@/data/treks';
+// Enable ISR - revalidate every hour
+export const revalidate = 3600;
 
-export default function RegionTreksPage() {
-  const params = useParams();
-  const router = useRouter();
-  const regionId = params.regionId as string;
+interface RegionTreksPageProps {
+  params: Promise<{
+    regionId: string;
+  }>;
+}
+
+export default async function RegionTreksPage({ params }: RegionTreksPageProps) {
+  // In Next.js 15+, params is a Promise and needs to be awaited
+  const { regionId } = await params;
   
-  const region = trekRegions.find((r) => r.id === regionId);
-  const regionTreks = allTreks.filter(trek => {
-    return region && trek.region === region.name;
-  });
-
-  const handleTrekSelect = (trek: Trek) => {
-    router.push(`/treks/${trek.id}`);
-  };
+  // Fetch from Storyblok with fallback to static data
+  const region = await fetchRegionBySlugWithFallback(regionId);
+  const regionTreks = await fetchTreksByRegionWithFallback(regionId);
 
   if (!region) {
     return (
@@ -30,12 +29,12 @@ export default function RegionTreksPage() {
             <p className="text-gray-600 dark:text-gray-300 mb-8">
               The region you're looking for doesn't exist.
             </p>
-            <button
-              onClick={() => router.push('/treks')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
+            <a
+              href="/treks"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
             >
               Back to Regions
-            </button>
+            </a>
           </div>
         </div>
       </main>
@@ -44,10 +43,9 @@ export default function RegionTreksPage() {
 
   return (
     <main className="min-h-screen">
-      <RegionTreks 
+      <RegionTreksClient 
         region={region}
         treks={regionTreks}
-        onTrekSelect={handleTrekSelect}
       />
     </main>
   );

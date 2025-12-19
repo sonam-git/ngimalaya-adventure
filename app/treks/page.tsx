@@ -1,19 +1,25 @@
 'use client';
 
-import { useRouter } from 'next/navigation'
-import RegionsExplorer from '@/components/RegionsExplorer'
-import type { Region } from '@/data/treks'
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
+// LEGACY ROUTE - Redirects to /regions
+// This page maintained for backward compatibility
 export default function TreksPage() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const handleRegionSelect = (region: Region) => {
-    router.push(`/treks/regions/${region.id}`)
-  }
+  useEffect(() => {
+    // Redirect to the new regions route
+    router.replace('/regions');
+  }, [router]);
 
   return (
-    <main className="min-h-screen">
-      <RegionsExplorer onRegionSelect={handleRegionSelect} />
+    <main className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <p className="text-gray-600 dark:text-gray-300">
+          Redirecting to regions...
+        </p>
+      </div>
     </main>
-  )
+  );
 }

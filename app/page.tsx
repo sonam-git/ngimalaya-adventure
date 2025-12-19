@@ -19,7 +19,7 @@ export default function HomePage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
 
   const handleExploreTreks = () => {
-    router.push('/treks')
+    router.push('/regions')
   }
 
   const handleBookNow = () => {

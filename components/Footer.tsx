@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-2.5">
                 <li><Link href="/" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Home</Link></li>
                 <li><Link href="/about" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">About Us</Link></li>
-                <li><Link href="/treks" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Trekking</Link></li>
+                <li><Link href="/regions" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Trekking</Link></li>
                 <li><Link href="/peak-expedition" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Peak Expedition</Link></li>
                 <li><Link href="/safari" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Safari</Link></li>
                 <li><Link href="/contact" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Contact</Link></li>
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
                 {trekRegions.map((region) => (
                   <li key={region.id}>
                     <Link 
-                      href={`/treks/regions/${region.id}`} 
+                      href={`/regions/${region.id}`} 
                       className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block"
                     >
                       {region.name.replace(/ Region$/i, '')}
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-2">
                 <li><Link href="/" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Home</Link></li>
                 <li><Link href="/about" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">About Us</Link></li>
-                <li><Link href="/treks" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Trekking</Link></li>
+                <li><Link href="/regions" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Trekking</Link></li>
                 <li><Link href="/peak-expedition" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Peak Expedition</Link></li>
                 <li><Link href="/safari" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Safari</Link></li>
                 <li><Link href="/contact" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block">Contact</Link></li>
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
                 {trekRegions.map((region) => (
                   <li key={region.id}>
                     <Link 
-                      href={`/treks/regions/${region.id}`} 
+                      href={`/regions/${region.id}`} 
                       className="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-sm block"
                     >
                       {region.name.replace(/ Region$/i, '')}

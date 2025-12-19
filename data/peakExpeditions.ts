@@ -288,17 +288,126 @@ The summit day rewards climbers with one of the most spectacular panoramas in th
       {
         day: 1,
         title: 'Arrival in Kathmandu',
-        description: 'Meet at airport, transfer to hotel, expedition briefing.',
-        altitude: '1,400m'
+        description: 'Meet at airport, transfer to hotel, expedition briefing and equipment check.',
+        altitude: '1,400m',
+        meals: 'Dinner'
       },
       {
         day: 2,
-        title: 'Kathmandu to Lukla, Trek to Paiya',
-        description: 'Scenic flight to Lukla, begin trek to Paiya through lush forests.',
-        altitude: '2,730m',
-        duration: '5-6 hours'
+        title: 'Fly to Lukla, Trek to Chutanga',
+        description: 'Scenic mountain flight to Lukla (2,840m). Begin trek through beautiful landscape to Chutanga.',
+        altitude: '3,060m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
       },
-      // Add more days as needed
+      {
+        day: 3,
+        title: 'Chutanga to Tuli Kharka via Zatr La Pass',
+        description: 'Cross the challenging Zatr La Pass (4,610m) with spectacular mountain views. Descend to Tuli Kharka.',
+        altitude: '3,900m',
+        duration: '6-7 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 4,
+        title: 'Tuli Kharka to Kothe',
+        description: 'Trek through rhododendron forests and beautiful valleys to reach Kothe in the Hinku Valley.',
+        altitude: '4,095m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 5,
+        title: 'Kothe to Thangnak',
+        description: 'Continue up the Hinku Valley with views of Mera Peak. Trek alongside the Hinku Khola river.',
+        altitude: '4,350m',
+        duration: '3-4 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 6,
+        title: 'Thangnak to Khare',
+        description: 'Short but steep climb to Khare, the last settlement before base camp. Stunning views of Mera Peak.',
+        altitude: '5,054m',
+        duration: '3-4 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 7,
+        title: 'Acclimatization Day in Khare',
+        description: 'Rest day for acclimatization. Optional hike to Mera La (5,415m) for views and acclimatization. Equipment check and climbing preparation.',
+        altitude: '5,054m',
+        duration: '3-4 hours (optional)',
+        meals: 'B, L, D'
+      },
+      {
+        day: 8,
+        title: 'Khare to Mera High Camp',
+        description: 'Trek on glacier to Mera High Camp. Set up camp and final preparations for summit attempt.',
+        altitude: '5,790m',
+        duration: '4-5 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 9,
+        title: 'Summit Day - Mera Peak',
+        description: 'Early morning (2-3 AM) start for summit push. Climb glacier, navigate crevasses, and reach the summit (6,476m) for breathtaking panoramic views of five 8,000m peaks. Descend to Khare.',
+        altitude: '6,476m summit, return to 5,054m',
+        duration: '10-12 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 10,
+        title: 'Reserve Day at Khare',
+        description: 'Contingency day in case of bad weather or if summit attempt needs to be rescheduled. If not needed, extra rest day.',
+        altitude: '5,054m',
+        meals: 'B, L, D'
+      },
+      {
+        day: 11,
+        title: 'Khare to Kothe',
+        description: 'Celebrate successful summit and descend back to Kothe. Enjoy the lower altitude.',
+        altitude: '4,095m',
+        duration: '4-5 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 12,
+        title: 'Kothe to Tuli Kharka via Zatr La Pass',
+        description: 'Retrace route back over Zatr La Pass to Tuli Kharka.',
+        altitude: '3,900m',
+        duration: '6-7 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 13,
+        title: 'Tuli Kharka to Lukla',
+        description: 'Final day of trekking back to Lukla. Celebration dinner with climbing team.',
+        altitude: '2,840m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 14,
+        title: 'Fly to Kathmandu',
+        description: 'Morning flight from Lukla to Kathmandu. Transfer to hotel. Free afternoon for rest or shopping.',
+        altitude: '1,400m',
+        meals: 'Breakfast'
+      },
+      {
+        day: 15,
+        title: 'Sightseeing in Kathmandu Valley',
+        description: 'Guided tour of UNESCO World Heritage Sites: Swayambhunath (Monkey Temple), Pashupatinath Temple, Boudhanath Stupa, or Patan Durbar Square.',
+        altitude: '1,400m',
+        meals: 'Breakfast'
+      },
+      {
+        day: 16,
+        title: 'Final Departure',
+        description: 'Transfer to Tribhuvan International Airport for your international departure. End of expedition.',
+        altitude: '1,400m',
+        meals: 'Breakfast'
+      }
     ],
     included: [
       'Airport transfers',
@@ -365,17 +474,143 @@ This expedition is perfect for experienced trekkers with some mountaineering exp
       {
         day: 1,
         title: 'Arrival in Kathmandu',
-        description: 'Airport pickup, hotel transfer, expedition briefing.',
-        altitude: '1,400m'
+        description: 'Arrival at Tribhuvan International Airport. Transfer to hotel. Trek briefing and equipment check.',
+        altitude: '1,400m',
+        meals: 'Dinner'
       },
       {
         day: 2,
-        title: 'Kathmandu - Lukla - Phakding',
-        description: 'Flight to Lukla, trek to Phakding through beautiful landscape.',
+        title: 'Fly to Lukla, Trek to Phakding',
+        description: 'Scenic flight to Lukla (2,840m). Begin trek through pine forests to Phakding.',
         altitude: '2,610m',
-        duration: '3-4 hours'
+        duration: '3-4 hours',
+        meals: 'B, L, D'
       },
-      // Add more days
+      {
+        day: 3,
+        title: 'Phakding to Namche Bazaar',
+        description: 'Cross suspension bridges over Dudh Koshi river. Steep climb to Namche Bazaar, the Sherpa capital.',
+        altitude: '3,440m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 4,
+        title: 'Acclimatization Day in Namche',
+        description: 'Hike to Everest View Hotel or visit Khumjung village. Explore Namche market and monastery.',
+        altitude: '3,440m',
+        duration: '3-4 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 5,
+        title: 'Namche to Tengboche',
+        description: 'Trail through rhododendron forest with magnificent mountain views. Visit famous Tengboche monastery.',
+        altitude: '3,860m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 6,
+        title: 'Tengboche to Dingboche',
+        description: 'Descend to Deboche, cross the Imja River, and climb to Dingboche with stunning valley views.',
+        altitude: '4,410m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 7,
+        title: 'Acclimatization Day in Dingboche',
+        description: 'Hike to Nangkartshang Peak (5,083m) for acclimatization and panoramic views.',
+        altitude: '4,410m',
+        duration: '4-5 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 8,
+        title: 'Dingboche to Lobuche',
+        description: 'Trek past memorials of climbers, through Dughla, and up to Lobuche with views of Khumbu Glacier.',
+        altitude: '4,910m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 9,
+        title: 'Lobuche to Lobuche East Base Camp',
+        description: 'Trek to Lobuche East Base Camp. Set up camp and prepare climbing equipment.',
+        altitude: '5,000m',
+        duration: '3-4 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 10,
+        title: 'Base Camp Training Day',
+        description: 'Mountaineering training: use of ice axe, crampons, ropes, and climbing techniques.',
+        altitude: '5,000m',
+        meals: 'B, L, D'
+      },
+      {
+        day: 11,
+        title: 'Base Camp to High Camp',
+        description: 'Climb to Lobuche East High Camp. Final preparations for summit push.',
+        altitude: '5,600m',
+        duration: '3-4 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 12,
+        title: 'Summit Day, Return to Base Camp',
+        description: 'Summit push starting at 2 AM. Climb steep snow and ice slopes using fixed ropes. Reach summit and return to Base Camp.',
+        altitude: '6,119m summit',
+        duration: '10-12 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 13,
+        title: 'Reserve Day for Summit',
+        description: 'Extra day in case of bad weather or if summit attempt needs to be rescheduled.',
+        altitude: '5,000m',
+        meals: 'B, L, D'
+      },
+      {
+        day: 14,
+        title: 'Base Camp to Gorak Shep',
+        description: 'Descend to Gorak Shep, the last stop before Everest Base Camp.',
+        altitude: '5,140m',
+        duration: '5-6 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 15,
+        title: 'Gorak Shep to Everest Base Camp, Return to Pheriche',
+        description: 'Trek to Everest Base Camp for a visit, then descend to Pheriche for overnight.',
+        altitude: '4,240m',
+        duration: '7-8 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 16,
+        title: 'Pheriche to Namche Bazaar',
+        description: 'Continue descent through Tengboche to Namche Bazaar.',
+        altitude: '3,440m',
+        duration: '6-7 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 17,
+        title: 'Namche to Lukla',
+        description: 'Final day of trekking back to Lukla. Celebration with crew.',
+        altitude: '2,840m',
+        duration: '6-7 hours',
+        meals: 'B, L, D'
+      },
+      {
+        day: 18,
+        title: 'Fly to Kathmandu, Departure',
+        description: 'Morning flight to Kathmandu. Transfer to airport for international departure.',
+        altitude: '1,400m',
+        meals: 'Breakfast'
+      }
     ],
     included: [
       'All airport transfers',

@@ -2,26 +2,30 @@
 import React, { useState } from 'react';
 import { Mountain, Map, Search } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import { trekRegions, allTreks } from '../data/treks';
+
 import type { Region, Trek } from '../data/treks';
 import RegionCard from './RegionCard';
 import TrekCard from './TrekCard';
+import CustomTrekModal from './CustomTrekModal';
 import { useRouter } from 'next/navigation';
 
 interface RegionsExplorerProps {
+  regions: Region[];
+  treks: Trek[];
   onRegionSelect: (region: Region) => void;
 }
 
-const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => {
+const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onRegionSelect }) => {
   const { isDarkMode } = useTheme();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredRegions, setFilteredRegions] = useState<Region[]>(trekRegions);
+  const [filteredRegions, setFilteredRegions] = useState<Region[]>(regions);
   const [filteredTreks, setFilteredTreks] = useState<Trek[]>([]);
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
-      setFilteredRegions(trekRegions);
+      setFilteredRegions(regions);
       setFilteredTreks([]);
       return;
     }
@@ -29,7 +33,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
     const query = searchQuery.toLowerCase().trim();
     
     // Filter regions
-    const matchedRegions = trekRegions.filter(region => {
+    const matchedRegions = regions.filter(region => {
       const regionNameMatch = region.name.toLowerCase().includes(query);
       const popularTrekMatch = region.popularTreks.some(trekName => 
         trekName.toLowerCase().includes(query)
@@ -38,7 +42,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
     });
 
     // Filter individual treks
-    const matchedTreks = allTreks.filter(trek => 
+    const matchedTreks = treks.filter(trek => 
       trek.name.toLowerCase().includes(query) ||
       trek.description.toLowerCase().includes(query) ||
       trek.region.toLowerCase().includes(query)
@@ -49,11 +53,8 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
   };
 
   const handleTrekExplore = (trek: Trek) => {
-    // Find the region for this trek
-    const region = trekRegions.find(r => r.name === trek.region);
-    if (region) {
-      router.push(`/treks/regions/${region.id}/${trek.id}`);
-    }
+    // Navigate directly to the trek detail page
+    router.push(`/treks/${trek.id}`);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -93,11 +94,11 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
             <div className="flex flex-wrap gap-4 mt-6">
               <div className="flex items-center gap-2 text-white">
                 <Map className="text-primary-500" size={20} />
-                <span>{trekRegions.length} Unique Regions</span>
+                <span>{regions.length} Unique Regions</span>
               </div>
               <div className="flex items-center gap-2 text-white">
                 <Mountain className="text-primary-500" size={20} />
-                <span>{trekRegions.reduce((total, region) => total + region.trekCount, 0)}+ Treks Available</span>
+                <span>{regions.reduce((total: number, region: Region) => total + region.trekCount, 0)}+ Treks Available</span>
               </div>
             </div>
           </div>
@@ -223,7 +224,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
             <button
               onClick={() => {
                 setSearchQuery('');
-                setFilteredRegions(trekRegions);
+                setFilteredRegions(regions);
                 setFilteredTreks([]);
               }}
               className={`px-6 py-3 rounded-lg font-display font-semibold uppercase transition-all duration-300 hover:scale-105 ${
@@ -247,16 +248,25 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ onRegionSelect }) => 
               Not sure which region suits you best? Our trek specialists can recommend the perfect 
               region based on your experience level, time availability, and interests.
             </p>
-            <button className={`px-8 py-3 rounded-lg font-display font-semibold uppercase transition-all duration-300 hover:scale-105 ${
-              isDarkMode 
-                ? 'bg-primary-500 hover:bg-primary-600 text-white' 
-                : 'bg-white text-primary-600 hover:bg-gray-50 shadow-lg'
-            }`}>
+            <button 
+              onClick={() => setIsCustomTrekModalOpen(true)}
+              className={`px-8 py-3 rounded-lg font-display font-semibold uppercase transition-all duration-300 hover:scale-105 ${
+                isDarkMode 
+                  ? 'bg-primary-500 hover:bg-primary-600 text-white' 
+                  : 'bg-white text-primary-600 hover:bg-gray-50 shadow-lg'
+              }`}
+            >
               Contact Trek Specialist
             </button>
           </div>
         </div>
       </div>
+
+      {/* Custom Trek Modal */}
+      <CustomTrekModal
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
+      />
     </div>
   );
 };
