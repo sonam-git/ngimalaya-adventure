@@ -1,4 +1,5 @@
 import { Oswald, Lato } from 'next/font/google'
+import type { Viewport } from 'next'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { TrekTabProvider } from '@/contexts/TrekTabContext'
@@ -24,6 +25,14 @@ const lato = Lato({
   display: 'swap',
 })
 
+// Viewport configuration for optimal mobile experience, especially iOS
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+}
 
 export default function RootLayout({
   children,

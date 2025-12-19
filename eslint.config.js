@@ -19,5 +19,12 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Disable react-refresh rule for layout files that export Next.js metadata
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true, allowExportNames: ['viewport', 'metadata'] },
+      ],
+    },
   },
 ])
