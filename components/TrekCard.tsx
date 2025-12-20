@@ -90,17 +90,17 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
           <div className={`p-3 rounded-lg border ${
             isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
           }`}>
-            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Duration</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Difficulty</div>
             <div className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-              {trek.duration}
+              {trek.difficulty}
             </div>
           </div>
           <div className={`p-3 rounded-lg border ${
             isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
           }`}>
-            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Region</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Max Elevation</div>
             <div className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-              {trek.region || 'Nepal'}
+              {trek.altitude || 'Unknown'}
             </div>
           </div>
         </div>

@@ -23,7 +23,10 @@ export default tseslint.config([
       // Disable react-refresh rule for layout files that export Next.js metadata
       'react-refresh/only-export-components': [
         'warn',
-        { allowConstantExport: true, allowExportNames: ['viewport', 'metadata'] },
+        { 
+          allowConstantExport: true, 
+          allowExportNames: ['viewport', 'metadata', 'generateMetadata', 'generateViewport', 'runtime', 'size', 'contentType', 'alt'] 
+        },
       ],
     },
   },

@@ -15,7 +15,8 @@ const TreksSection: React.FC = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRefMobile = useRef<HTMLDivElement>(null);
+  const scrollRefDesktop = useRef<HTMLDivElement>(null);
   
   // Featured trek IDs
   const featuredTrekIds = [
@@ -38,12 +39,21 @@ const TreksSection: React.FC = () => {
     setMounted(true);
   }, []);
 
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const cardWidth = scrollRef.current.querySelector('.trek-card-wrapper')?.clientWidth || 0;
+  const scrollMobile = (dir: "left" | "right") => {
+    if (!scrollRefMobile.current) return;
+    const scrollAmount = scrollRefMobile.current.clientWidth * 0.85; // Scroll one card width
+    scrollRefMobile.current.scrollBy({
+      left: dir === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollDesktop = (dir: "left" | "right") => {
+    if (!scrollRefDesktop.current) return;
+    const cardWidth = scrollRefDesktop.current.querySelector('.trek-card-wrapper')?.clientWidth || 0;
     const gap = 32; // gap-8 = 32px
-    const scrollAmount = cardWidth + gap;
-    scrollRef.current.scrollBy({
+    const scrollAmount = (cardWidth + gap) * 3; // Scroll 3 cards at a time
+    scrollRefDesktop.current.scrollBy({
       left: dir === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
@@ -71,10 +81,10 @@ const TreksSection: React.FC = () => {
           <div className="relative block md:hidden">
             <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
               <div
-                ref={scrollRef}
+                ref={scrollRefMobile}
                 className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1"
               >
-                {displayTreks.slice(0, 3).map((trek) => (
+                {displayTreks.map((trek) => (
                   <div
                     key={trek.id}
                     className="flex-shrink-0 w-[85vw] snap-center"
@@ -93,7 +103,7 @@ const TreksSection: React.FC = () => {
             {/* Navigation and Explore More */}
             <div className="flex justify-between items-center mt-6">
               <button
-                onClick={() => scroll("left")}
+                onClick={() => scrollMobile("left")}
                 className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
                 aria-label="Previous"
               >
@@ -119,7 +129,7 @@ const TreksSection: React.FC = () => {
                 Explore More
               </button>
               <button
-                onClick={() => scroll("right")}
+                onClick={() => scrollMobile("right")}
                 className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
                 aria-label="Next"
               >
@@ -147,7 +157,7 @@ const TreksSection: React.FC = () => {
               {/* Horizontal Scrollable Container */}
               <div className="overflow-hidden">
                 <div
-                  ref={scrollRef}
+                  ref={scrollRefDesktop}
                   className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-4"
                 >
                   {displayTreks.map((trek) => (
@@ -171,7 +181,7 @@ const TreksSection: React.FC = () => {
             {/* Navigation and Explore More Button */}
             <div className="flex justify-between items-center mt-8">
               <button
-                onClick={() => scroll("left")}
+                onClick={() => scrollDesktop("left")}
                 className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
                 aria-label="Previous"
               >
@@ -199,7 +209,7 @@ const TreksSection: React.FC = () => {
               </button>
               
               <button
-                onClick={() => scroll("right")}
+                onClick={() => scrollDesktop("right")}
                 className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
                 aria-label="Next"
               >

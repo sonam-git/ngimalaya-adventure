@@ -19,7 +19,6 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   
   // Use external control if provided, otherwise use internal state
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
@@ -47,15 +46,11 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
   useEffect(() => {
     setMounted(true);
     // Check if desktop on mount
-    const width = window.innerWidth;
-    setIsDesktop(width >= 768);
-    setIsMobile(width < 768);
+    setIsDesktop(window.innerWidth >= 768);
     
     // Add resize listener
     const handleResize = () => {
-      const width = window.innerWidth;
-      setIsDesktop(width >= 768);
-      setIsMobile(width < 768);
+      setIsDesktop(window.innerWidth >= 768);
     };
     
     window.addEventListener('resize', handleResize);
@@ -70,32 +65,11 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
     scrollToBottom();
   }, [messages]);
 
-  // Don't auto-focus on mobile to prevent keyboard from opening immediately
   useEffect(() => {
-    if (isOpen && inputRef.current && isDesktop) {
+    if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isOpen, isDesktop]);
-
-  // Handle iOS keyboard behavior - prevent scroll when modal is open
-  useEffect(() => {
-    if (!mounted) return;
-    
-    if (isOpen && isMobile) {
-      // Prevent body scroll on iOS when keyboard appears
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
-      
-      return () => {
-        const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      };
-    }
-  }, [isOpen, isMobile, mounted]);
+  }, [isOpen]);
 
   // Listen for event from mobile bottom bar
   useEffect(() => {
@@ -198,11 +172,19 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
       {/* Chat Window */}
       {isOpen && (
         <div 
-          className={`fixed inset-x-4 bottom-4 mx-auto max-w-[420px] h-[calc(100vh-120px)] max-h-[620px] z-[999999] rounded-2xl shadow-2xl flex flex-col overflow-hidden ${
+          className={`rounded-2xl shadow-2xl flex flex-col overflow-hidden ${
             isDarkMode ? 'bg-gray-900' : 'bg-white'
-          } ${
-            isMobile ? 'bottom-[82px] h-[calc(100vh-150px)]' : ''
           }`}
+          style={{ 
+            position: 'fixed',
+            bottom: '16px',
+            right: '16px',
+            width: 'calc(100vw - 32px)',
+            maxWidth: '420px',
+            height: 'calc(100vh - 120px)',
+            maxHeight: '620px',
+            zIndex: 999999
+          }}
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white p-4 flex items-center justify-between">

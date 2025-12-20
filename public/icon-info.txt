@@ -1,0 +1,21 @@
+PWA ICONS GENERATED ✅
+
+These are temporary placeholder icons with:
+- Green gradient background (your brand colors)
+- Letter "N" for Ngimalaya
+- Mountain silhouette
+
+FILES CREATED:
+✓ icon-72x72.png through icon-512x512.png (8 sizes)
+✓ apple-touch-icon.png (180x180)
+✓ favicon-16x16.png, favicon-32x32.png
+✓ favicon.ico
+
+NEXT STEPS:
+1. Your site now works with these placeholder icons
+2. When ready, replace them with your actual logo at:
+   https://realfavicongenerator.net/
+3. Upload your logo (1024x1024 recommended)
+4. Download and replace files in /public folder
+
+Your PWA is now fully functional! 🚀

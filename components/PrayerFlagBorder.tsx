@@ -9,7 +9,7 @@ const PrayerFlagBorder = () => {
   ];
   
   return (
-    <div className="flex w-screen h-2 absolute left-0 right-0">
+    <div className="flex w-full h-2">
       {/* Repeat flags enough times to cover even the widest screens */}
       {Array.from({ length: 8 }).map((_, setIndex) => (
         flags.map((colorClass, colorIndex) => (

@@ -272,8 +272,10 @@ const Header: React.FC = () => {
           </div>
 
           {/* Prayer flag border: always visible below header, full width across screen */}
-          <div className="w-full relative">
-            <PrayerFlagBorder />
+          <div className="relative h-2 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16">
+            <div className="absolute left-0 right-0 w-full">
+              <PrayerFlagBorder />
+            </div>
           </div>
 
           {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}

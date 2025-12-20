@@ -1,0 +1,13 @@
+# Robots.txt for Ngimalaya Adventure
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://ngimalayaadventure.com/sitemap.xml
+
+# Crawl-delay for polite crawlers
+Crawl-delay: 1
