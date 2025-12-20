@@ -48,7 +48,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   };
 
   return (
-    <div className="min-h-screen pt-[150px] md:pt-[180px]">
+    <div className="min-h-screen pt-[155px] md:pt-[185px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tab Content */}
         <div ref={contentRef} className="w-full">

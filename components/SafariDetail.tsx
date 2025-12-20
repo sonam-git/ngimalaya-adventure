@@ -35,7 +35,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
   };
 
   return (
-    <div className="min-h-screen pt-[100px] md:pt-[130px]">
+    <div className="min-h-screen pt-[105px] md:pt-[135px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tab Content */}
         <div ref={contentRef} className="w-full">

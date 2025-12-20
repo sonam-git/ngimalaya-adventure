@@ -41,7 +41,7 @@ const TreksSection: React.FC = () => {
 
   const scrollMobile = (dir: "left" | "right") => {
     if (!scrollRefMobile.current) return;
-    const scrollAmount = scrollRefMobile.current.clientWidth * 0.85; // Scroll one card width
+    const scrollAmount = scrollRefMobile.current.clientWidth; // Scroll exactly one full card width
     scrollRefMobile.current.scrollBy({
       left: dir === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
@@ -77,7 +77,7 @@ const TreksSection: React.FC = () => {
             Explore our most popular trekking routes, each offering a unique
             adventure and breathtaking scenery.
           </p>
-          {/* Mobile Slider - Show 3 treks at a time */}
+          {/* Mobile Slider - Show 1 trek card at a time */}
           <div className="relative block md:hidden">
             <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
               <div
@@ -87,7 +87,7 @@ const TreksSection: React.FC = () => {
                 {displayTreks.map((trek) => (
                   <div
                     key={trek.id}
-                    className="flex-shrink-0 w-[85vw] snap-center"
+                    className="flex-shrink-0 w-[calc(100%-0.5rem)] snap-center"
                   >
                     <TrekCard
                       trek={trek}
