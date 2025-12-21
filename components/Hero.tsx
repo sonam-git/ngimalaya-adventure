@@ -31,14 +31,18 @@ const HeroComponent: React.FC<HeroProps> = ({
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoError, setVideoError] = useState(false);
+  const [showVideo, setShowVideo] = useState(true);
 
-  // Auto-rotate slides every 5 seconds
+  // Auto-rotate slides every 5 seconds (only when video fails)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [heroSlides.length]);
+    if (!showVideo || videoError) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [heroSlides.length, showVideo, videoError]);
 
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -90,8 +94,36 @@ const HeroComponent: React.FC<HeroProps> = ({
       {/* Image Carousel Section - Center Focus */}
       <div className="relative flex-1 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] px-4 md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
         <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
-          {/* Background Images with Smooth Transitions */}
-          {heroSlides.map((image, index) => (
+          
+          {/* Video Background (Primary) */}
+          {showVideo && !videoError && (
+            <div className="absolute inset-0 z-10">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
+                onError={() => {
+                  console.log('Video failed to load, falling back to image slideshow');
+                  setVideoError(true);
+                  setShowVideo(false);
+                }}
+                onLoadedData={() => {
+                  console.log('Video loaded successfully');
+                }}
+              >
+                <source src="/assets/videos/Hero.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Subtle vignette effect over video */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20 dark:from-gray-900/20 dark:to-gray-900/20 pointer-events-none" />
+            </div>
+          )}
+          
+          {/* Background Images with Smooth Transitions (Fallback) */}
+          {(!showVideo || videoError) && heroSlides.map((image, index) => (
             <div
               key={index}
               className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -110,37 +142,43 @@ const HeroComponent: React.FC<HeroProps> = ({
             </div>
           ))}
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
-          </button>
-
-          {/* Slide Indicators - Positioned over image */}
-          <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-20">
-            {heroSlides.map((_, index) => (
+          {/* Navigation Arrows - Only show for image slideshow */}
+          {(!showVideo || videoError) && (
+            <>
               <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`transition-all duration-300 ${
-                  index === currentSlide
-                    ? "w-10 md:w-12 h-2 md:h-3 bg-blue-600 dark:bg-blue-500"
-                    : "w-2 md:w-3 h-2 md:h-3 bg-gray-400 dark:bg-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400"
-                } rounded-full shadow-md`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+                onClick={prevSlide}
+                className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
+              </button>
+            </>
+          )}
+
+          {/* Slide Indicators - Only show for image slideshow */}
+          {(!showVideo || videoError) && (
+            <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-20">
+              {heroSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentSlide
+                      ? "w-10 md:w-12 h-2 md:h-3 bg-blue-600 dark:bg-blue-500"
+                      : "w-2 md:w-3 h-2 md:h-3 bg-gray-400 dark:bg-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400"
+                  } rounded-full shadow-md`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

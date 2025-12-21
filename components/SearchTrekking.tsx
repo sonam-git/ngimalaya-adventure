@@ -44,23 +44,6 @@ const SearchTrekking = () => {
   const [searched, setSearched] = useState(false);
   const [showCustomTrekModal, setShowCustomTrekModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
-  const [showHeading, setShowHeading] = useState(false);
-
-  // Show heading after 2 seconds, then hide after 3 more seconds (only on large screens)
-  useEffect(() => {
-    const showTimer = setTimeout(() => {
-      setShowHeading(true);
-    }, 2000);
-
-    const hideTimer = setTimeout(() => {
-      setShowHeading(false);
-    }, 7000); // 2s + 5s = 7s total
-
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
-  }, []);
 
   // Prevent body scroll when mobile modal is open
   useEffect(() => {
@@ -111,19 +94,6 @@ const SearchTrekking = () => {
 
   return (
     <section className="w-full max-w-7xl mx-auto mt-0 mb-12 relative z-50">
-      {/* Heading section - always visible on mobile, timed on large screens */}
-      <div className={`flex flex-col items-center justify-center mb-6 px-4 transition-all duration-500 ${
-        showHeading ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none'
-      } opacity-100 translate-y-0 md:opacity-100 md:translate-y-0`}>
-        <div className="backdrop-blur-md bg-white/70 dark:bg-gray-900/70 rounded-2xl px-6 py-4 md:px-8 md:py-6 shadow-lg border border-white/20 dark:border-gray-700/30">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-center mb-2 text-gray-900 dark:text-white">
-            Find Your Perfect Trek
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg font-body text-center text-gray-700 dark:text-gray-300 max-w-2xl">
-            Search by trek type, region, difficulty, and duration to discover your ideal Himalayan adventure
-          </p>
-        </div>
-      </div>
       {/* Mobile Search Toggle Button */}
       <div className="flex justify-center mb-4 md:hidden">
         <button
@@ -135,7 +105,7 @@ const SearchTrekking = () => {
           {showMobileSearch ? (
             <span className="flex items-center gap-1"><svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' /></svg> Close</span>
           ) : (
-            <span className="flex items-center gap-1"><svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 8h16M4 16h16' /></svg> Search</span>
+            <span className="flex items-center gap-1"><svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 8h16M4 16h16' /></svg> Search Trek</span>
           )}
         </button>
       </div>
