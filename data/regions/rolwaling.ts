@@ -5,7 +5,7 @@ export const rolwalingRegionTreks: Trek[] = [
     id: 'tashi-lapcha-pass',
     name: 'Tashi Lapcha Pass Trek',
     duration: '17 Days',
-    altitude: '5,755m (18,882ft)',
+    altitude: '5,755m | 18,882ft',
     difficulty: 'Strenuous',
     description: 'Rolwaling Tashi Lapcha Pass Trek is a striking journey that combines the beauty of both the Rolwaling valley and the Khumbu region of Nepal. This thrilling and inspiring trek leads you to a remote location and lets you experience the lovely views of the Himalayas with the challenges of crossing the high-mountain pass of Tashi Lapcha (5,755m). An amazing mixture of the quiet and quaint paths of the remote Rolwaling region with the bustling trails of the Khumbu region.',
     highlights: [

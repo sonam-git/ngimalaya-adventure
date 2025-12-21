@@ -5,7 +5,7 @@ export const annapurnaRegionTreks: Trek[] = [
     id: 'abc-trek',
     name: 'Annapurna Base Camp Trek',
     duration: '14 Days',
-    altitude: '4,130m (13,549ft)',
+    altitude: '4,130m | 13,549ft',
     difficulty: 'Moderate',
     description: 'Journey into the heart of the Annapurna massif through diverse landscapes and traditional Gurung villages. Experience the spectacular amphitheater of towering peaks at Annapurna Base Camp.',
     highlights: [
@@ -176,7 +176,7 @@ export const annapurnaRegionTreks: Trek[] = [
     id: 'annapurna-circuit',
     name: 'Annapurna Circuit Trek',
     duration: '17 Days',
-    altitude: '5,416m (17,769ft)',
+    altitude: '5,416m | 17,769ft',
     difficulty: 'Challenging',
     description: 'The classic circuit trek offering incredibly diverse landscapes from subtropical forests to high alpine terrain. Cross the famous Thorong La Pass and experience both Hindu and Buddhist cultures.',
     highlights: [
@@ -533,7 +533,7 @@ export const annapurnaRegionTreks: Trek[] = [
     id: 'mardi-himal',
     name: 'Mardi Himal Trek',
     duration: '10 Days',
-    altitude: '4,500m (14,765ft)',
+    altitude: '4,500m | 14,765ft',
     difficulty: 'Moderate',
     description: 'The Mardi Himal Trek offers a unique and less-traveled trekking experience in the serene corners of Nepal\'s Annapurna region. This trek stands out as an \'off the beaten path\' adventure with a circular route eliminating the need to retrace steps.',
     highlights: [
@@ -678,7 +678,7 @@ export const annapurnaRegionTreks: Trek[] = [
     id: 'poon-hill-trek',
     name: 'Ghorepani Poon Hill Trek',
     duration: '7 Days',
-    altitude: '3,210m (10,531ft)',
+    altitude: '3,210m | 10,531ft',
     difficulty: 'Moderate',
     description: 'The Ghorepani Poon Hill Trek is a popular and accessible trek in the Annapurna region, known for its stunning sunrise views over the Himalayas from Poon Hill. This trek takes you through charming villages, lush rhododendron forests, and offers panoramic vistas of some of the highest peaks in the world.',
     highlights: [
@@ -802,7 +802,7 @@ export const annapurnaRegionTreks: Trek[] = [
     id: 'upper-mustang',
     name: 'Upper Mustang Trek',
     duration: '14 Days',
-    altitude: '3,840m (12,598ft)',
+    altitude: '3,840m | 12,598ft',
     difficulty: 'Moderate',
     description: 'Journey to the ancient forbidden kingdom of Mustang, featuring unique Tibetan culture, dramatic desert landscapes, and the walled city of Lo Manthang.',
     highlights: [

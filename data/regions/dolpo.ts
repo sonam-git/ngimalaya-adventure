@@ -5,7 +5,7 @@ export const dolpoRegionTreks: Trek[] = [
     id: 'upper-dolpo',
     name: 'Upper Dolpo Trek',
     duration: '21 Days',
-    altitude: '5,115m (16,781ft)',
+    altitude: '5,115m | 16,781ft',
     difficulty: 'Strenuous',
     description: 'Journey into the remote trans-Himalayan region of Upper Dolpo, often called the "Last Forbidden Kingdom." Experience pristine Tibetan Buddhist culture, ancient monasteries, and dramatic high-altitude landscapes.',
     highlights: [
@@ -214,7 +214,7 @@ export const dolpoRegionTreks: Trek[] = [
     id: 'lower-dolpo',
     name: 'Lower Dolpo Trek',
     duration: '18 Days',
-    altitude: '3,660m (12,008ft)',
+    altitude: '3,660m | 12,008ft',
     difficulty: 'Challenging',
     description: 'Explore the more accessible part of Dolpo region featuring the stunning Phoksundo Lake and traditional Bon Po culture in a dramatic trans-Himalayan setting.',
     highlights: [

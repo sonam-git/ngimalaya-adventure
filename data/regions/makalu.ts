@@ -5,7 +5,7 @@ export const makaluRegionTreks: Trek[] = [
     id: 'makalu-base-camp',
     name: 'Makalu Base Camp Trek',
     duration: '20 Days',
-    altitude: '4,870m (15,978ft)',
+    altitude: '4,870m | 15,978ft',
     difficulty: 'Strenuous',
     description: 'Remote wilderness trek to the base camp of Makalu, the fifth highest mountain in the world. Experience pristine nature and diverse ecosystems.',
     highlights: [

@@ -5,7 +5,7 @@ export const manasluRegionTreks: Trek[] = [
     id: 'manaslu-circuit',
     name: 'Manaslu Circuit Trek',
     duration: '18 Days',
-    altitude: '5,160m (16,929ft)',
+    altitude: '5,160m | 16,929ft',
     difficulty: 'Strenuous',
     description: 'Trek around the magnificent Manaslu, the eighth highest mountain in the world. This less-crowded alternative to Annapurna Circuit offers pristine wilderness, authentic Tibetan culture, and spectacular mountain views.',
     highlights: [
@@ -212,7 +212,7 @@ export const manasluRegionTreks: Trek[] = [
     id: 'tsum-valley',
     name: 'Tsum Valley Trek',
     duration: '19 Days',
-    altitude: '3,700m (12,140ft)',
+    altitude: '3,700m | 12,140ft',
     difficulty: 'Moderate',
     description: 'Discover the hidden gem of Tsum Valley, a sacred Himalayan pilgrimage valley. This remote trek offers an authentic glimpse into traditional Tibetan Buddhist culture, ancient monasteries, and pristine natural landscapes away from the crowds.',
     highlights: [

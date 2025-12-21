@@ -5,7 +5,7 @@ export const dhaulagiriRegionTreks: Trek[] = [
     id: 'dhaulagiri-circuit',
     name: 'Dhaulagiri Circuit Trek',
     duration: '19 Days',
-    altitude: '5,360m (17,585ft)',
+    altitude: '5,360m | 17,585ft',
     difficulty: 'Strenuous',
     description: 'Ultimate wilderness adventure around Dhaulagiri, the seventh highest mountain in the world. This technical trek includes glacier crossings and high passes.',
     highlights: [

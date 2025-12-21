@@ -5,7 +5,7 @@ export const langtangRegionTreks: Trek[] = [
     id: 'langtang-valley',
     name: 'Langtang Valley Trek',
     duration: '10 Days',
-    altitude: '4,984m (16,352ft)',
+    altitude: '4,984m | 16,352ft',
     difficulty: 'Moderate',
     description: 'Explore the beautiful Langtang Valley, known as the "Valley of Glaciers" with stunning mountain views, rich Tamang culture, and diverse ecosystems. This trek offers spectacular mountain views with relatively easy access from Kathmandu.',
     highlights: [
@@ -144,7 +144,7 @@ export const langtangRegionTreks: Trek[] = [
     id: 'langtang-gosainkunda',
     name: 'Langtang Gosainkunda Trek',
     duration: '12 Days',
-    altitude: '4,984m (16,352ft)',
+    altitude: '4,984m | 16,352ft',
     difficulty: 'Moderate',
     description: 'Combine the beautiful Langtang Valley with the sacred Gosainkunda Lakes. This trek offers diverse landscapes from subtropical forests to alpine lakes, rich cultural experiences, and spectacular mountain views.',
     highlights: [

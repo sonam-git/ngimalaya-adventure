@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Calendar, Mountain, ArrowRight } from 'lucide-react';
+import { Calendar, Mountain, ArrowRight, TrendingUp, MapPin } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Trek } from '../data/treks';
 
@@ -85,21 +85,44 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
         {/* Divider */}
         <div className={`h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent`} />
 
-        {/* Trek Stats */}
+        {/* Trek Stats with Icons */}
         <div className="grid grid-cols-2 gap-3">
-          <div className={`p-3 rounded-lg border ${
-            isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
+          <div className={`p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${
+            isDarkMode 
+              ? 'bg-gradient-to-br from-orange-500/10 to-red-500/10 border-orange-500/30 hover:border-orange-500/50' 
+              : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300/50 hover:border-orange-400'
           }`}>
-            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Difficulty</div>
-            <div className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`p-1.5 rounded-lg ${
+                isDarkMode ? 'bg-orange-500/20' : 'bg-orange-500/10'
+              }`}>
+                <TrendingUp className="text-orange-500 dark:text-orange-400" size={16} />
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Difficulty</div>
+            </div>
+            <div className={`font-bold text-base ${
+              isDarkMode ? 'text-orange-300' : 'text-orange-700'
+            }`}>
               {trek.difficulty}
             </div>
           </div>
-          <div className={`p-3 rounded-lg border ${
-            isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
+          
+          <div className={`p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${
+            isDarkMode 
+              ? 'bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-purple-500/30 hover:border-purple-500/50' 
+              : 'bg-gradient-to-br from-purple-50 to-blue-50 border-purple-300/50 hover:border-purple-400'
           }`}>
-            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Max Elevation</div>
-            <div className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`p-1.5 rounded-lg ${
+                isDarkMode ? 'bg-purple-500/20' : 'bg-purple-500/10'
+              }`}>
+                <MapPin className="text-purple-500 dark:text-purple-400" size={16} />
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Max Elevation</div>
+            </div>
+            <div className={`font-bold text-base ${
+              isDarkMode ? 'text-purple-300' : 'text-purple-700'
+            }`}>
               {trek.altitude || 'Unknown'}
             </div>
           </div>

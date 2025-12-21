@@ -5,7 +5,7 @@ export const everestRegionTreks: Trek[] = [
     id: 'everest-base-camp',
     name: 'Everest Base Camp Trek',
     duration: '16 Days',
-    altitude: '5,364m (17,598ft)',
+    altitude: '5,364m | 17,598ft',
     difficulty: 'Challenging',
     description: 'The most iconic trek in Nepal, leading to the base camp of the world\'s highest mountain. Experience breathtaking views of Everest, Lhotse, Nuptse, and Ama Dablam while immersing yourself in rich Sherpa culture.',
     highlights: [
@@ -192,7 +192,7 @@ export const everestRegionTreks: Trek[] = [
     id: 'ebc-gokyo',
     name: 'EBC via Gokyo | Cho-La',
     duration: '18 Days',
-    altitude: '5,545m (18,193ft)',
+    altitude: '5,545m | 18,193ft',
     difficulty: 'Strenuous',
     description: 'The ultimate Everest region adventure combining Everest Base Camp with the stunning Gokyo Lakes and crossing the challenging Cho La Pass. Experience the best of Khumbu in one epic journey.',
     highlights: [
@@ -396,7 +396,7 @@ export const everestRegionTreks: Trek[] = [
     id: 'everest-three-passes',
     name: 'Everest Three Passes Trek',
     duration: '21 Days',
-    altitude: '5,545m (18,193ft)',
+    altitude: '5,545m | 18,193ft',
     difficulty: 'Strenuous',
     description: 'The ultimate Everest region challenge crossing three high-altitude passes: Kongma La, Cho La, and Renjo La. This is the most comprehensive and adventurous way to explore the Khumbu region.',
     highlights: [
@@ -625,7 +625,7 @@ export const everestRegionTreks: Trek[] = [
     id: 'khumbu-panorama-trek',
     name: 'Khumbu Panorama Trek',
     duration: '7 Days',
-    altitude: '4,000m (14,370ft)',  
+    altitude: '4,000m | 14,370ft',
     difficulty: 'Moderate',
     description: 'A shorter trek offering stunning panoramic views of the Everest region. Perfect for those with limited time who still want to experience the beauty of the Khumbu Valley and its majestic peaks.',
     highlights: [

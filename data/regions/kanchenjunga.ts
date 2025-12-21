@@ -5,7 +5,7 @@ export const kanchenjungaRegionTreks: Trek[] = [
     id: 'kanchenjunga-circuit',
     name: 'Kanchenjunga Circuit Trek',
     duration: '25 Days',
-    altitude: '5,143m (16,874ft)',
+    altitude: '5,143m | 16,874ft',
     difficulty: 'Strenuous',
     description: 'The ultimate wilderness adventure to the base camps of Kanchenjunga, the third highest mountain in the world. This remote and challenging trek offers pristine natural beauty, rich biodiversity, and authentic cultural experiences in one of Nepal\'s most untouched regions.',
     highlights: [
