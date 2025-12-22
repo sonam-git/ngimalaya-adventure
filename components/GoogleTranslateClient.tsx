@@ -124,29 +124,59 @@ const GoogleTranslateClient = () => {
         }
       });
 
-      // Also remove inline font-family styles that Google Translate adds
+      // Remove ALL inline font-family styles that Google Translate adds
       const elementsWithInlineFont = document.querySelectorAll('[style*="font-family"]');
       elementsWithInlineFont.forEach((element: Element) => {
         const htmlElement = element as HTMLElement;
-        // Preserve our custom font classes
-        if (!htmlElement.classList.contains('font-display') &&
-            !htmlElement.classList.contains('font-heading') &&
-            !htmlElement.classList.contains('times') &&
-            !htmlElement.classList.contains('satisfy') &&
-            !htmlElement.classList.contains('jaini-purva') &&
-            !htmlElement.classList.contains('jaini-purva-light') &&
-            !htmlElement.classList.contains('lugrasimo')) {
-          // Remove font-family from inline style
-          const style = htmlElement.getAttribute('style');
-          if (style) {
-            const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
-            if (newStyle.trim()) {
-              htmlElement.setAttribute('style', newStyle);
-            } else {
-              htmlElement.removeAttribute('style');
-            }
+        const style = htmlElement.getAttribute('style');
+        if (style) {
+          // Remove font-family from inline style completely
+          const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
+          if (newStyle.trim()) {
+            htmlElement.setAttribute('style', newStyle);
+          } else {
+            htmlElement.removeAttribute('style');
           }
         }
+      });
+
+      // Force re-apply custom fonts to headings
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .font-heading, .font-display');
+      headings.forEach((heading: Element) => {
+        const htmlHeading = heading as HTMLElement;
+        htmlHeading.style.fontFamily = "'Jaini Purva', system-ui";
+      });
+
+      // Force re-apply body font
+      const bodyElements = document.querySelectorAll('p, span, div, a, li, td, th');
+      bodyElements.forEach((element: Element) => {
+        const htmlElement = element as HTMLElement;
+        // Skip if it has a specific font class
+        if (!htmlElement.closest('h1, h2, h3, h4, h5, h6, .font-heading, .font-display, .times, .satisfy, .satisfy-regular, .lugrasimo, .lugrasimo-regular, .jaini-purva') &&
+            !htmlElement.classList.contains('satisfy') &&
+            !htmlElement.classList.contains('satisfy-regular') &&
+            !htmlElement.classList.contains('lugrasimo') &&
+            !htmlElement.classList.contains('lugrasimo-regular') &&
+            !htmlElement.classList.contains('times') &&
+            !htmlElement.classList.contains('times-new-roman')) {
+          htmlElement.style.fontFamily = "'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+        }
+      });
+
+      // Preserve special font classes
+      const timesElements = document.querySelectorAll('.times, .times-new-roman');
+      timesElements.forEach((element: Element) => {
+        (element as HTMLElement).style.fontFamily = "'Times New Roman', Times, serif";
+      });
+
+      const satisfyElements = document.querySelectorAll('.satisfy, .satisfy-regular');
+      satisfyElements.forEach((element: Element) => {
+        (element as HTMLElement).style.fontFamily = "'Satisfy', cursive";
+      });
+
+      const lugrasimoElements = document.querySelectorAll('.lugrasimo, .lugrasimo-regular');
+      lugrasimoElements.forEach((element: Element) => {
+        (element as HTMLElement).style.fontFamily = "'Lugrasimo', cursive";
       });
     };
 
@@ -220,20 +250,17 @@ const GoogleTranslateClient = () => {
       select.value = lang;
       select.dispatchEvent(new Event('change'));
       
+      // IMMEDIATE font application - before translation even starts
+      removeFontTagsNow();
+      
       // After translation starts, aggressively remove font tags
-      // Multiple delays to catch different stages of translation
-      setTimeout(() => {
-        removeFontTagsNow();
-      }, 500);
-      setTimeout(() => {
-        removeFontTagsNow();
-      }, 1000);
-      setTimeout(() => {
-        removeFontTagsNow();
-      }, 2000);
-      setTimeout(() => {
-        removeFontTagsNow();
-      }, 3000);
+      // More frequent intervals to prevent flickering
+      const intervals = [50, 100, 200, 300, 500, 800, 1000, 1500, 2000, 2500, 3000];
+      intervals.forEach(delay => {
+        setTimeout(() => {
+          removeFontTagsNow();
+        }, delay);
+      });
     }
   };
 
@@ -251,27 +278,58 @@ const GoogleTranslateClient = () => {
       }
     });
 
-    // Also remove inline font-family styles
+    // Remove ALL inline font-family styles
     const elementsWithInlineFont = document.querySelectorAll('[style*="font-family"]');
     elementsWithInlineFont.forEach((element: Element) => {
       const htmlElement = element as HTMLElement;
-      if (!htmlElement.classList.contains('font-display') &&
-          !htmlElement.classList.contains('font-heading') &&
-          !htmlElement.classList.contains('times') &&
-          !htmlElement.classList.contains('satisfy') &&
-          !htmlElement.classList.contains('jaini-purva') &&
-          !htmlElement.classList.contains('jaini-purva-light') &&
-          !htmlElement.classList.contains('lugrasimo')) {
-        const style = htmlElement.getAttribute('style');
-        if (style) {
-          const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
-          if (newStyle.trim()) {
-            htmlElement.setAttribute('style', newStyle);
-          } else {
-            htmlElement.removeAttribute('style');
-          }
+      const style = htmlElement.getAttribute('style');
+      if (style) {
+        const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
+        if (newStyle.trim()) {
+          htmlElement.setAttribute('style', newStyle);
+        } else {
+          htmlElement.removeAttribute('style');
         }
       }
+    });
+
+    // Force re-apply custom fonts to headings
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .font-heading, .font-display');
+    headings.forEach((heading: Element) => {
+      const htmlHeading = heading as HTMLElement;
+      htmlHeading.style.fontFamily = "'Jaini Purva', system-ui";
+    });
+
+    // Force re-apply body font to common elements
+    const bodyElements = document.querySelectorAll('p, span, div, a, li, td, th');
+    bodyElements.forEach((element: Element) => {
+      const htmlElement = element as HTMLElement;
+      // Skip if it's inside a heading or has a special font class
+      if (!htmlElement.closest('h1, h2, h3, h4, h5, h6, .font-heading, .font-display, .times, .satisfy, .satisfy-regular, .lugrasimo, .lugrasimo-regular, .jaini-purva') &&
+          !htmlElement.classList.contains('satisfy') &&
+          !htmlElement.classList.contains('satisfy-regular') &&
+          !htmlElement.classList.contains('lugrasimo') &&
+          !htmlElement.classList.contains('lugrasimo-regular') &&
+          !htmlElement.classList.contains('times') &&
+          !htmlElement.classList.contains('times-new-roman')) {
+        htmlElement.style.fontFamily = "'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+      }
+    });
+
+    // Preserve special font classes
+    const timesElements = document.querySelectorAll('.times, .times-new-roman');
+    timesElements.forEach((element: Element) => {
+      (element as HTMLElement).style.fontFamily = "'Times New Roman', Times, serif";
+    });
+
+    const satisfyElements = document.querySelectorAll('.satisfy, .satisfy-regular');
+    satisfyElements.forEach((element: Element) => {
+      (element as HTMLElement).style.fontFamily = "'Satisfy', cursive";
+    });
+
+    const lugrasimoElements = document.querySelectorAll('.lugrasimo, .lugrasimo-regular');
+    lugrasimoElements.forEach((element: Element) => {
+      (element as HTMLElement).style.fontFamily = "'Lugrasimo', cursive";
     });
   };
 

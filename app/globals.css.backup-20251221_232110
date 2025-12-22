@@ -1,10 +1,5 @@
 /* Import Google Fonts - Jaini Purva for Headings, Lato for Body, Satisfy for Quotes, Lugrasimo for Hero Tagline */
 @import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap');
-
-/* Font Display Strategy - Prevent FOUC (Flash of Unstyled Content) */
-/* Using font-display: swap ensures text is visible immediately with fallback font */
-/* Then swaps to custom font once loaded - minimal flicker */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,34 +7,6 @@
 /* CRITICAL: Global font overrides - MUST come before @layer rules */
 * {
   box-sizing: border-box;
-}
-
-/* ULTRA-CRITICAL: Special fonts FIRST - Highest specificity */
-.satisfy,
-.satisfy-regular,
-p.satisfy,
-p.satisfy-regular,
-span.satisfy,
-span.satisfy-regular,
-div.satisfy,
-div.satisfy-regular {
-  font-family: 'Satisfy', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-.lugrasimo,
-.lugrasimo-regular,
-p.lugrasimo,
-p.lugrasimo-regular {
-  font-family: 'Lugrasimo', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-.times,
-.times-new-roman {
-  font-family: 'Times New Roman', Times, serif !important;
 }
 
 /* Force Jaini Purva for ALL headings - No exceptions */
@@ -53,8 +20,8 @@ h6, h6 * {
   font-weight: 400 !important;
 }
 
-/* Force Lato for body - but NOT for special font classes */
-body:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular) {
+/* Force Lato for body */
+body {
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
@@ -561,8 +528,8 @@ body:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular)
 
 /* Custom Typography Enhancements */
 @layer components {
-  /* Default body text - Lato (but exclude special font classes) */
-  *:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular):not(.times):not(.times-new-roman):not(.font-heading):not(.font-display):not(.jaini-purva):not(.jaini-purva-regular) {
+  /* Default body text - Lato */
+  * {
     font-family: 'Lato', sans-serif;
   }
   
@@ -576,62 +543,21 @@ body:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular)
     font-weight: 400 !important;
   }
 
-  /* Satisfy font for quotes in About page - CRITICAL: Must come after wildcard */
+  /* Satisfy font for quotes in About page */
   .satisfy-regular,
-  .satisfy,
-  p.satisfy-regular,
-  p.satisfy {
+  .satisfy {
     font-family: "Satisfy", cursive !important;
     font-weight: 400 !important;
     font-style: normal !important;
   }
 
-  /* Lugrasimo font for hero tagline - CRITICAL: Must come after wildcard */
+  /* Lugrasimo font for hero tagline */
   .lugrasimo-regular,
-  .lugrasimo,
-  p.lugrasimo-regular,
-  p.lugrasimo {
+  .lugrasimo {
     font-family: "Lugrasimo", cursive !important;
     font-weight: 400 !important;
     font-style: normal !important;
   }
-
-  /* ===== PREVENT FONT FLICKERING ===== */
-  /* Disable font-family transitions to prevent visual flashing */
-  *,
-  *::before,
-  *::after {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    /* Explicitly exclude font-family from transitions */
-  }
-
-  /* Ensure special fonts are applied instantly with zero transition delay */
-  .satisfy,
-  .satisfy-regular,
-  .lugrasimo,
-  .lugrasimo-regular,
-  .times,
-  .times-new-roman,
-  .font-heading,
-  .font-display,
-  .jaini-purva,
-  .jaini-purva-regular {
-    transition: none !important;
-  }
-
-  /* Force immediate font rendering - no delay */
-  .satisfy,
-  .satisfy-regular {
-    font-family: "Satisfy", cursive !important;
-    font-display: swap;
-  }
-
-  .lugrasimo,
-  .lugrasimo-regular {
-    font-family: "Lugrasimo", cursive !important;
-    font-display: swap;
-  }
-  /* ===== END PREVENT FONT FLICKERING ===== */
 
   /* Hide scrollbar for horizontal scrolling galleries */
   .scrollbar-hide {
@@ -918,83 +844,157 @@ body.modal-open {
 }
 
 /* ===== Google Translate Font Preservation ===== */
-/* Aggressive font preservation during translation */
+/* These rules ensure fonts remain consistent when content is translated */
 
-/* Override Google Translate's <font> tags to inherit parent font */
+/* CRITICAL: Override ALL Google Translate font tags with maximum specificity */
 font,
-font * {
+font *,
+body font,
+body font *,
+html font,
+html font *,
+.skiptranslate font,
+.translated-ltr font,
+.translated-rtl font {
   font-family: inherit !important;
   font-size: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
   color: inherit !important;
+  line-height: inherit !important;
 }
 
-/* Force headings to maintain Jaini Purva even with inline styles from translation */
-h1[style*="font-family"],
-h2[style*="font-family"],
-h3[style*="font-family"],
-h4[style*="font-family"],
-h5[style*="font-family"],
-h6[style*="font-family"],
-.font-heading[style*="font-family"],
-.font-display[style*="font-family"] {
+/* Target nested font tags (Google Translate can nest them) */
+font font,
+font font *,
+font font font,
+font font font * {
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+/* Force font inheritance for all translated elements */
+.goog-text-highlight,
+.goog-text-highlight *,
+body[class*="translated"] *,
+html[class*="translated"] *,
+span[style*="font-family"],
+span[style*="font-family"] * {
+  font-family: inherit !important;
+}
+
+/* Override any inline styles from Google Translate */
+[style*="font-family: Arial"],
+[style*="font-family:Arial"],
+[style*="font-family: 'Arial'"],
+[style*='font-family: "Arial"'],
+[style*="font-family: sans-serif"],
+[style*="font-family:sans-serif"] {
+  font-family: inherit !important;
+}
+
+/* Preserve Lato for body text even when translated */
+body,
+body *:not(.font-display):not(.font-heading):not(.times):not(.satisfy):not(.jaini-purva):not(.jaini-purva-light):not(.lugrasimo),
+body p,
+body p *,
+body div:not([class*="font-"]),
+body div:not([class*="font-"]) *,
+body span:not([class*="font-"]),
+body span:not([class*="font-"]) * {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+}
+
+/* Preserve Jaini Purva for display and heading text */
+.font-display,
+.font-display *,
+.font-display font,
+.font-display font *,
+.font-heading,
+.font-heading *,
+.font-heading font,
+.font-heading font *,
+h1, h1 *, h1 font, h1 font *,
+h2, h2 *, h2 font, h2 font *,
+h3, h3 *, h3 font, h3 font *,
+h4, h4 *, h4 font, h4 font *,
+h5, h5 *, h5 font, h5 font *,
+h6, h6 *, h6 font, h6 font *,
+.text-xl,
+.text-2xl,
+.text-3xl,
+.text-4xl,
+.text-5xl,
+.jaini-purva-regular,
+.jaini-purva-regular * {
   font-family: 'Jaini Purva', system-ui !important;
 }
 
-/* Force body elements to maintain Lato even with inline styles */
-p[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display),
-span[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display),
-div[style*="font-family"]:not(.font-heading):not(.font-display):not(.times):not(.satisfy):not(.satisfy-regular):not(.lugrasimo),
-a[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display),
-li[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display),
-td[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display),
-th[style*="font-family"]:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.times):not(.font-heading):not(.font-display) {
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-}
-
-/* Preserve special fonts even when translated */
-.times[style*="font-family"],
-.times-new-roman[style*="font-family"] {
+/* Preserve Times New Roman for trek headings */
+.times,
+.times *,
+.times font,
+.times font * {
   font-family: 'Times New Roman', Times, serif !important;
 }
 
-.satisfy[style*="font-family"],
-.satisfy-regular[style*="font-family"] {
+/* Preserve Satisfy font */
+.satisfy,
+.satisfy *,
+.satisfy font,
+.satisfy font * {
   font-family: "Satisfy", cursive !important;
 }
 
-.lugrasimo[style*="font-family"],
-.lugrasimo-regular[style*="font-family"] {
-  font-family: "Lugrasimo", cursive !important;
-}
-
-.jaini-purva[style*="font-family"],
-.jaini-purva-light[style*="font-family"],
-.jaini-purva-regular[style*="font-family"] {
+/* Preserve Jaini Purva font */
+.jaini-purva,
+.jaini-purva *,
+.jaini-purva font,
+.jaini-purva font *,
+.jaini-purva-light,
+.jaini-purva-light *,
+.jaini-purva-light font,
+.jaini-purva-light font * {
   font-family: "Jaini Purva", system-ui !important;
 }
 
-/* Override any Arial or sans-serif inline styles from Google Translate */
-[style*="font-family: Arial"],
-[style*="font-family:Arial"],
-[style*='font-family: "Arial"'],
-[style*="font-family: sans-serif"]:not(.font-heading):not(.font-display):not(.times):not(.satisfy):not(.lugrasimo) {
+/* Preserve Lugrasimo font */
+.lugrasimo,
+.lugrasimo *,
+.lugrasimo font,
+.lugrasimo font * {
+  font-family: "Lugrasimo", cursive !important;
+}
+
+/* Button and link text preservation */
+button,
+button *,
+button font,
+button font *,
+a,
+a *,
+a font,
+a font * {
   font-family: inherit !important;
 }
 
-/* Additional protection for translated content */
-body.translated-ltr *,
-body.translated-rtl *,
-.goog-text-highlight,
-.goog-text-highlight * {
-  font-family: inherit !important;
+/* Input and form elements */
+input,
+input *,
+textarea,
+textarea *,
+select,
+select * {
+  font-family: 'Lato', sans-serif !important;
 }
 
-/* Ensure headings inside translated content keep Jaini Purva */
-body.translated-ltr h1, body.translated-ltr h2, body.translated-ltr h3,
-body.translated-ltr h4, body.translated-ltr h5, body.translated-ltr h6,
-body.translated-rtl h1, body.translated-rtl h2, body.translated-rtl h3,
-body.translated-rtl h4, body.translated-rtl h5, body.translated-rtl h6 {
-  font-family: 'Jaini Purva', system-ui !important;
+/* Additional specificity for deeply nested elements */
+body > * > font,
+body > * > * > font,
+body > * > * > * > font,
+body > * > * > * > * > font {
+  font-family: inherit !important;
+  font-size: inherit !important;
 }
 
 /* ===== End Google Translate Font Preservation ===== */
@@ -1045,143 +1045,3 @@ h6, h6 *,
   font-family: 'Lato', sans-serif !important;
 }
 /* ===== END CRITICAL FONT OVERRIDES ===== */
-
-/* ============================================================================
-   FINAL FONT OVERRIDES - DO NOT ADD ANY FONT RULES AFTER THIS SECTION
-   This section must come last to have the highest specificity
-   ============================================================================ */
-
-/* 1. SPECIAL FONTS - Highest Priority */
-/* Satisfy font - for quotes and welcome text */
-.satisfy, 
-.satisfy *, 
-.satisfy-regular, 
-.satisfy-regular *,
-.satisfy font,
-.satisfy font *,
-p.satisfy,
-p.satisfy *,
-p.satisfy-regular,
-p.satisfy-regular *,
-p.satisfy-regular font,
-p.satisfy-regular font * {
-  font-family: 'Satisfy', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-/* Lugrasimo font - for hero tagline */
-.lugrasimo, 
-.lugrasimo *, 
-.lugrasimo-regular, 
-.lugrasimo-regular *,
-.lugrasimo font,
-.lugrasimo font *,
-p.lugrasimo,
-p.lugrasimo *,
-p.lugrasimo-regular,
-p.lugrasimo-regular * {
-  font-family: 'Lugrasimo', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-.times, 
-.times *, 
-.times-new-roman, 
-.times-new-roman *,
-.times font,
-.times font * {
-  font-family: 'Times New Roman', Times, serif !important;
-}
-
-/* 2. HEADINGS - Jaini Purva */
-h1, h1 *, h1 font, h1 font *,
-h2, h2 *, h2 font, h2 font *,
-h3, h3 *, h3 font, h3 font *,
-h4, h4 *, h4 font, h4 font *,
-h5, h5 *, h5 font, h5 font *,
-h6, h6 *, h6 font, h6 font *,
-.font-heading,
-.font-heading *,
-.font-display,
-.font-display *,
-.jaini-purva-regular,
-.jaini-purva-regular *,
-.jaini-purva,
-.jaini-purva *,
-[class*="text-2xl"],
-[class*="text-3xl"],
-[class*="text-4xl"],
-[class*="text-5xl"],
-[class*="text-6xl"] {
-  font-family: 'Jaini Purva', system-ui !important;
-  font-weight: 400 !important;
-}
-
-/* 3. BODY TEXT - Lato (but don't override headings or special fonts) */
-body,
-p:not(.satisfy):not(.lugrasimo):not(.times),
-.font-body,
-.font-body *,
-.font-sans,
-.font-sans * {
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-}
-
-/* 4. Dark mode text color for headings */
-.dark h1, 
-.dark h2, 
-.dark h3, 
-.dark h4, 
-.dark h5, 
-.dark h6,
-.dark .font-heading,
-.dark .font-display,
-.dark .jaini-purva-regular {
-  color: white !important;
-}
-
-/* ============================================================================
-   ULTRA-SPECIFIC OVERRIDES FOR SPECIAL FONTS
-   These must be the ABSOLUTE LAST rules to prevent any overrides
-   ============================================================================ */
-
-/* Satisfy font - Maximum specificity for quotes and welcome text */
-p.satisfy-regular,
-div p.satisfy-regular,
-section p.satisfy-regular,
-main p.satisfy-regular,
-body p.satisfy-regular,
-html body p.satisfy-regular {
-  font-family: 'Satisfy', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-/* Lugrasimo font - Maximum specificity for hero tagline */
-p.lugrasimo-regular,
-div p.lugrasimo-regular,
-section p.lugrasimo-regular,
-main p.lugrasimo-regular,
-body p.lugrasimo-regular,
-html body p.lugrasimo-regular {
-  font-family: 'Lugrasimo', cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-/* Times New Roman - Maximum specificity for trek titles */
-h3.times,
-div h3.times,
-section h3.times,
-.times,
-div .times,
-.times-new-roman,
-div .times-new-roman {
-  font-family: 'Times New Roman', Times, serif !important;
-}
-
-/* ============================================================================
-   END FINAL FONT OVERRIDES
-   ============================================================================ */

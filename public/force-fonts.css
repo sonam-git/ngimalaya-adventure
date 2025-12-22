@@ -1,0 +1,88 @@
+/* ============================================================================
+   NUCLEAR FONT FIX - MAXIMUM SPECIFICITY
+   This will override EVERYTHING
+   ============================================================================ */
+
+/* Import fonts with maximum priority */
+@import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap') layer(fonts);
+
+/* Force fonts at the highest level with maximum specificity */
+html {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+html body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* ALL headings - nuclear option */
+html body h1,
+html body h1 *,
+html body h2,
+html body h2 *,
+html body h3,
+html body h3 *,
+html body h4,
+html body h4 *,
+html body h5,
+html body h5 *,
+html body h6,
+html body h6 * {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 400 !important;
+}
+
+/* Heading utility classes */
+html body .jaini-purva-regular,
+html body .jaini-purva-regular *,
+html body .font-heading,
+html body .font-heading *,
+html body .font-display,
+html body .font-display * {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 400 !important;
+}
+
+/* Large text sizes */
+html body [class*="text-2xl"],
+html body [class*="text-3xl"],
+html body [class*="text-4xl"],
+html body [class*="text-5xl"],
+html body [class*="text-6xl"] {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 400 !important;
+}
+
+/* Special fonts */
+html body .satisfy,
+html body .satisfy *,
+html body .satisfy-regular,
+html body .satisfy-regular * {
+  font-family: 'Satisfy', cursive !important;
+  font-weight: 400 !important;
+}
+
+html body .lugrasimo,
+html body .lugrasimo *,
+html body .lugrasimo-regular,
+html body .lugrasimo-regular * {
+  font-family: 'Lugrasimo', cursive !important;
+  font-weight: 400 !important;
+}
+
+html body .times,
+html body .times *,
+html body .times-new-roman,
+html body .times-new-roman * {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Override any inline styles that might be set */
+[style*="font-family"] h1,
+[style*="font-family"] h2,
+[style*="font-family"] h3,
+[style*="font-family"] h4,
+[style*="font-family"] h5,
+[style*="font-family"] h6 {
+  font-family: 'Jaini Purva', system-ui !important;
+}

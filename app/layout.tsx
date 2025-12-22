@@ -1,6 +1,6 @@
-import { Oswald, Lato } from 'next/font/google'
 import type { Viewport, Metadata } from 'next'
 import './globals.css'
+import './force-fonts.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { TrekTabProvider } from '@/contexts/TrekTabContext'
 import { PeakTabProvider } from '@/contexts/PeakTabContext'
@@ -11,20 +11,6 @@ import Footer from '@/components/Footer'
 import BackgroundImage from '@/components/BackgroundImage'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 import StructuredData from '@/components/StructuredData'
-
-
-const oswald = Oswald({
-  subsets: ['latin'],
-  variable: '--font-oswald',
-  display: 'swap',
-})
-
-const lato = Lato({
-  weight: ['300', '400', '700'],
-  subsets: ['latin'],
-  variable: '--font-lato',
-  display: 'swap',
-})
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -137,8 +123,85 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${oswald.variable} ${lato.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preconnect to Google Fonts for faster loading */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        
+        {/* Load all fonts FIRST - before any preload */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap"
+          rel="stylesheet"
+        />
+        
+        {/* Critical inline CSS to apply fonts IMMEDIATELY */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* CRITICAL: Apply fonts before page renders */
+            
+            /* Special fonts - HIGHEST priority - Must be applied FIRST */
+            .satisfy,
+            .satisfy-regular,
+            p.satisfy,
+            p.satisfy-regular,
+            span.satisfy,
+            span.satisfy-regular {
+              font-family: 'Satisfy', cursive !important;
+              font-weight: 400 !important;
+              font-style: normal !important;
+              font-display: swap !important;
+            }
+            
+            .lugrasimo,
+            .lugrasimo-regular,
+            p.lugrasimo,
+            p.lugrasimo-regular {
+              font-family: 'Lugrasimo', cursive !important;
+              font-weight: 400 !important;
+              font-style: normal !important;
+              font-display: swap !important;
+            }
+            
+            .times,
+            .times-new-roman {
+              font-family: 'Times New Roman', Times, serif !important;
+            }
+            
+            /* Headings - Jaini Purva */
+            h1, h1 *,
+            h2, h2 *,
+            h3, h3 *,
+            h4, h4 *,
+            h5, h5 *,
+            h6, h6 *,
+            .jaini-purva-regular,
+            .jaini-purva,
+            .font-heading,
+            .font-display {
+              font-family: 'Jaini Purva', system-ui, sans-serif !important;
+              font-weight: 400 !important;
+            }
+            
+            /* Body text - Lato (but NOT special font classes) */
+            body {
+              font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            }
+            
+            p:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular):not(.times),
+            span:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular),
+            div:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular) {
+              font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+          `
+        }} />
         {/* PWA Meta Tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -152,7 +215,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-body antialiased">
+      <body className="antialiased">
         <ThemeProvider>
           <TrekTabProvider>
             <PeakTabProvider>

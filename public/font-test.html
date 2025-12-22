@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Test - Jaini Purva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Force Jaini Purva for all headings */
+        h1, h1 *, 
+        h2, h2 *, 
+        h3, h3 *, 
+        h4, h4 *, 
+        h5, h5 *, 
+        h6, h6 * {
+            font-family: 'Jaini Purva', system-ui !important;
+            font-weight: 400 !important;
+            margin-bottom: 20px;
+            color: #1e3a8a;
+        }
+        
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+        
+        p {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .satisfy {
+            font-family: 'Satisfy', cursive !important;
+            font-size: 1.5rem;
+            color: #10b981;
+        }
+        
+        .lugrasimo {
+            font-family: 'Lugrasimo', cursive !important;
+            font-size: 2rem;
+            color: #8b5cf6;
+        }
+        
+        .test-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f9fafb;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .font-info {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Font Test Page - Jaini Purva</h1>
+        <p><strong>Purpose:</strong> This page tests if the Jaini Purva font is loading correctly from Google Fonts.</p>
+        
+        <div class="test-section">
+            <h2>Heading 2 - Should be Jaini Purva</h2>
+            <p>This is body text that should use Lato font. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            
+            <h3>Heading 3 - Should be Jaini Purva</h3>
+            <p>More body text in Lato. Notice how the headings have a distinct decorative style while body text is clean and readable.</p>
+            
+            <h4>Heading 4 - Should be Jaini Purva</h4>
+            <p>The Jaini Purva font is designed for Hindi text but works beautifully for English headings too.</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>Special Fonts Test</h2>
+            
+            <p class="satisfy">This is Satisfy font - used for quotes</p>
+            <p class="lugrasimo">This is Lugrasimo font - used for hero tagline</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>Font Loading Verification</h2>
+            <div class="font-info">
+                <p><strong>Expected Fonts:</strong></p>
+                <ul style="list-style: none; padding: 10px 0;">
+                    <li>✓ All headings (h1-h4): Jaini Purva</li>
+                    <li>✓ Body text: Lato</li>
+                    <li>✓ Special quote: Satisfy</li>
+                    <li>✓ Special tagline: Lugrasimo</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Browser DevTools Check</h2>
+            <p><strong>How to verify:</strong></p>
+            <ol style="margin-left: 20px; line-height: 2;">
+                <li>Right-click on any heading above</li>
+                <li>Select "Inspect" or "Inspect Element"</li>
+                <li>In the DevTools panel, look at the "Computed" tab</li>
+                <li>Search for "font-family"</li>
+                <li>It should show: <code style="background: #fef3c7; padding: 2px 6px; border-radius: 3px;">"Jaini Purva", system-ui</code></li>
+            </ol>
+        </div>
+        
+        <div class="test-section">
+            <h2>Console Verification Script</h2>
+            <p>Open browser console (F12) and run this:</p>
+            <div class="font-info">
+                <pre style="overflow-x: auto;">
+const h2 = document.querySelector('h2');
+console.log('Font:', window.getComputedStyle(h2).fontFamily);
+// Should output: "Jaini Purva", system-ui
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-check fonts on page load
+        window.addEventListener('load', () => {
+            console.log('=== FONT TEST RESULTS ===');
+            
+            const h1 = document.querySelector('h1');
+            const h2 = document.querySelector('h2');
+            const h3 = document.querySelector('h3');
+            const p = document.querySelector('p');
+            
+            const h1Font = window.getComputedStyle(h1).fontFamily;
+            const h2Font = window.getComputedStyle(h2).fontFamily;
+            const h3Font = window.getComputedStyle(h3).fontFamily;
+            const pFont = window.getComputedStyle(p).fontFamily;
+            
+            console.log('H1 font:', h1Font);
+            console.log('H2 font:', h2Font);
+            console.log('H3 font:', h3Font);
+            console.log('P font:', pFont);
+            
+            if (h1Font.includes('Jaini Purva') && h2Font.includes('Jaini Purva') && h3Font.includes('Jaini Purva')) {
+                console.log('✅ SUCCESS: All headings using Jaini Purva!');
+            } else {
+                console.error('❌ FAIL: Headings not using Jaini Purva');
+                console.error('Expected: "Jaini Purva", system-ui');
+                console.error('Got:', h2Font);
+            }
+            
+            if (pFont.includes('Lato')) {
+                console.log('✅ SUCCESS: Body text using Lato!');
+            } else {
+                console.error('❌ FAIL: Body text not using Lato');
+            }
+            
+            console.log('===================');
+        });
+    </script>
+</body>
+</html>

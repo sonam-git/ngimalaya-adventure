@@ -1,0 +1,127 @@
+/* =============================================================================
+   ABSOLUTE MAXIMUM PRIORITY FONT OVERRIDE
+   This file uses every CSS trick to force fonts with maximum specificity
+   ============================================================================= */
+
+/* Define CSS Custom Properties */
+:root {
+  --font-heading: 'Jaini Purva', system-ui, sans-serif;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-satisfy: 'Satisfy', cursive;
+  --font-lugrasimo: 'Lugrasimo', cursive;
+  --font-times: 'Times New Roman', Times, serif;
+}
+
+/* LAYER 1: Universal base - everything is Lato by default */
+html {
+  font-family: var(--font-body) !important;
+}
+
+html * {
+  font-family: inherit !important;
+}
+
+html body {
+  font-family: var(--font-body) !important;
+}
+
+html body * {
+  font-family: inherit !important;
+}
+
+/* LAYER 2: Force headings - maximum specificity */
+html body h1 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h2 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h3 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h4 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h5 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h6 { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+
+/* LAYER 3: Force heading children */
+html body h1 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h2 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h3 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h4 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h5 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body h6 * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+
+/* LAYER 4: Force heading utility classes */
+html body .jaini-purva-regular { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body .jaini-purva-regular * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body .font-heading { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body .font-heading * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body .font-display { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+html body .font-display * { font-family: var(--font-heading) !important; font-weight: 400 !important; }
+
+/* LAYER 5: Force large text sizes */
+html body [class*="text-2xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-3xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-4xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-5xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-6xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-7xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-8xl"] { font-family: var(--font-heading) !important; }
+html body [class*="text-9xl"] { font-family: var(--font-heading) !important; }
+
+/* LAYER 6: Special fonts */
+html body .satisfy { font-family: var(--font-satisfy) !important; }
+html body .satisfy * { font-family: var(--font-satisfy) !important; }
+html body .satisfy-regular { font-family: var(--font-satisfy) !important; }
+html body .satisfy-regular * { font-family: var(--font-satisfy) !important; }
+
+html body .lugrasimo { font-family: var(--font-lugrasimo) !important; }
+html body .lugrasimo * { font-family: var(--font-lugrasimo) !important; }
+html body .lugrasimo-regular { font-family: var(--font-lugrasimo) !important; }
+html body .lugrasimo-regular * { font-family: var(--font-lugrasimo) !important; }
+
+html body .times { font-family: var(--font-times) !important; }
+html body .times * { font-family: var(--font-times) !important; }
+html body .times-new-roman { font-family: var(--font-times) !important; }
+html body .times-new-roman * { font-family: var(--font-times) !important; }
+
+/* LAYER 7: Override any element with inline font styles */
+html body [style*="font-family"] h1,
+html body [style*="font-family"] h2,
+html body [style*="font-family"] h3,
+html body [style*="font-family"] h4,
+html body [style*="font-family"] h5,
+html body [style*="font-family"] h6,
+html body [style*="font-family"] .jaini-purva-regular,
+html body [style*="font-family"] .font-heading,
+html body [style*="font-family"] .font-display {
+  font-family: var(--font-heading) !important;
+}
+
+/* LAYER 8: Target common component patterns */
+html body header h1,
+html body header h2,
+html body header h3,
+html body nav .jaini-purva-regular,
+html body nav .font-display,
+html body section h1,
+html body section h2,
+html body section h3,
+html body section h4,
+html body article h1,
+html body article h2,
+html body div h1,
+html body div h2,
+html body div h3 {
+  font-family: var(--font-heading) !important;
+  font-weight: 400 !important;
+}
+
+/* LAYER 9: Body text classes */
+html body .font-body { font-family: var(--font-body) !important; }
+html body .font-body * { font-family: var(--font-body) !important; }
+html body .font-sans { font-family: var(--font-body) !important; }
+html body .font-sans * { font-family: var(--font-body) !important; }
+
+/* LAYER 10: Paragraph override (but not inside special classes) */
+html body p:not(.satisfy):not(.lugrasimo):not(.times) {
+  font-family: var(--font-body) !important;
+}
+
+/* =============================================================================
+   END ABSOLUTE FONT OVERRIDE
+   ============================================================================= */

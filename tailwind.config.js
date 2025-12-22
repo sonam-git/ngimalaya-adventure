@@ -47,10 +47,10 @@ export default {
         }
       },
       fontFamily: {
-        'display': ['Oswald', 'Bebas Neue', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        'heading': ['Oswald', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        'body': ['Lato', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        'sans': ['Lato', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'display': ['var(--font-heading)', 'Jaini Purva', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'heading': ['var(--font-heading)', 'Jaini Purva', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'body': ['var(--font-body)', 'Lato', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'sans': ['var(--font-body)', 'Lato', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       fontSize: {
         'responsive-xs': ['0.75rem', { lineHeight: '1.4' }],

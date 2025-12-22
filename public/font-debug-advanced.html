@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Debug Test - Ngimalaya Adventure</title>
+    
+    <!-- Direct Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #3b82f6;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .status.success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status.error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .test-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 15px;
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            color: #1e40af;
+        }
+        
+        /* Font test classes */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Jaini Purva', system-ui;
+            font-weight: 400;
+            margin: 15px 0;
+        }
+        
+        h1 { font-size: 3rem; color: #1e3a8a; }
+        h2 { font-size: 2.5rem; color: #1e40af; }
+        h3 { font-size: 2rem; color: #2563eb; }
+        h4 { font-size: 1.5rem; color: #3b82f6; }
+        h5 { font-size: 1.25rem; color: #60a5fa; }
+        h6 { font-size: 1rem; color: #93c5fd; }
+        
+        p {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            color: #334155;
+        }
+        
+        .satisfy {
+            font-family: 'Satisfy', cursive;
+            font-size: 1.8rem;
+            color: #7c3aed;
+            font-style: italic;
+        }
+        
+        .lugrasimo {
+            font-family: 'Lugrasimo', cursive;
+            font-size: 1.6rem;
+            color: #059669;
+        }
+        
+        .times {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+            color: #dc2626;
+        }
+        
+        .font-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .font-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .font-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+        
+        .font-card p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 5px 0;
+        }
+        
+        .font-card .sample {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-size: 1.5rem;
+        }
+        
+        .debug-console {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .debug-console .success {
+            color: #10b981;
+        }
+        
+        .debug-console .error {
+            color: #ef4444;
+        }
+        
+        .debug-console .info {
+            color: #3b82f6;
+        }
+        
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 10px 10px 0;
+        }
+        
+        button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Font Debug Test Page</h1>
+            <p style="font-size: 1.2rem; color: #64748b; margin-top: 10px;">
+                Ngimalaya Adventure - Typography Verification
+            </p>
+            <div id="loadStatus" class="status">Checking fonts...</div>
+        </div>
+
+        <!-- Heading Tests -->
+        <div class="test-section">
+            <h2>📝 Heading Elements Test (Jaini Purva)</h2>
+            <p><strong>All headings below should use Jaini Purva font:</strong></p>
+            <h1>H1: Discover the Himalayas</h1>
+            <h2>H2: Adventure Awaits in Nepal</h2>
+            <h3>H3: Trekking to Everest Base Camp</h3>
+            <h4>H4: Expert Sherpa Guides</h4>
+            <h5>H5: 20+ Years of Experience</h5>
+            <h6>H6: Book Your Journey Today</h6>
+        </div>
+
+        <!-- Body Text Test -->
+        <div class="test-section">
+            <h2>📄 Body Text Test (Lato)</h2>
+            <p><strong>Regular paragraph text should use Lato font:</strong></p>
+            <p>
+                Experience the breathtaking beauty of the Himalayas with Ngimalaya Adventure. 
+                Our expert Sherpa guides will lead you through stunning landscapes, ancient 
+                monasteries, and traditional villages. Whether you're trekking to Everest Base 
+                Camp, exploring the Annapurna Circuit, or climbing a Himalayan peak, we provide 
+                safe, authentic, and unforgettable adventures.
+            </p>
+            <p>
+                <strong>Bold text in Lato:</strong> We specialize in custom itineraries 
+                <em>and personalized service.</em>
+            </p>
+        </div>
+
+        <!-- Special Fonts Test -->
+        <div class="test-section">
+            <h2>✨ Special Fonts Test</h2>
+            <div class="font-info">
+                <div class="font-card">
+                    <h4>Satisfy (Quotes)</h4>
+                    <p>Cursive font for testimonials and quotes</p>
+                    <div class="sample satisfy">
+                        "An unforgettable journey through the mountains"
+                    </div>
+                </div>
+                
+                <div class="font-card">
+                    <h4>Lugrasimo (Hero Tagline)</h4>
+                    <p>Decorative font for hero sections</p>
+                    <div class="sample lugrasimo">
+                        Journey to the Roof of the World
+                    </div>
+                </div>
+                
+                <div class="font-card">
+                    <h4>Times New Roman (Trek Titles)</h4>
+                    <p>Classic serif for trek names</p>
+                    <div class="sample times">
+                        Everest Base Camp Trek
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Class Tests -->
+        <div class="test-section">
+            <h2>🎯 CSS Class Tests</h2>
+            <div class="font-info">
+                <div class="font-card">
+                    <h4>Headings with Classes</h4>
+                    <div class="sample">
+                        <div class="jaini-purva-regular" style="font-size: 1.5rem; color: #1e40af;">
+                            .jaini-purva-regular class
+                        </div>
+                        <div class="font-heading" style="font-size: 1.5rem; color: #2563eb; margin-top: 10px;">
+                            .font-heading class
+                        </div>
+                        <div class="font-display" style="font-size: 1.5rem; color: #3b82f6; margin-top: 10px;">
+                            .font-display class
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="test-section">
+            <h2>🔧 Debugging Tools</h2>
+            <button onclick="runFontCheck()">Run Font Diagnostic</button>
+            <button onclick="checkComputedStyles()">Check Computed Styles</button>
+            <button onclick="testFontLoading()">Test Font Loading</button>
+            <button onclick="clearDebugConsole()">Clear Console</button>
+            
+            <div id="debugConsole" class="debug-console">
+                <div class="info">→ Click "Run Font Diagnostic" to start tests...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if fonts are loaded on page load
+        window.addEventListener('load', async () => {
+            const statusEl = document.getElementById('loadStatus');
+            
+            if (document.fonts) {
+                await document.fonts.ready;
+                
+                const fonts = Array.from(document.fonts);
+                const fontNames = ['Jaini Purva', 'Lato', 'Satisfy', 'Lugrasimo'];
+                const loaded = fontNames.filter(name => 
+                    fonts.some(f => f.family === name && f.status === 'loaded')
+                );
+                
+                if (loaded.length === fontNames.length) {
+                    statusEl.textContent = '✅ All fonts loaded successfully!';
+                    statusEl.className = 'status success';
+                } else {
+                    statusEl.textContent = `⚠️ Only ${loaded.length}/4 fonts loaded`;
+                    statusEl.className = 'status error';
+                }
+            } else {
+                statusEl.textContent = '⚠️ Font Loading API not supported';
+                statusEl.className = 'status error';
+            }
+        });
+
+        function log(message, type = 'info') {
+            const console = document.getElementById('debugConsole');
+            const className = type === 'success' ? 'success' : type === 'error' ? 'error' : 'info';
+            const icon = type === 'success' ? '✓' : type === 'error' ? '✗' : '→';
+            console.innerHTML += `<div class="${className}">${icon} ${message}</div>`;
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function clearDebugConsole() {
+            document.getElementById('debugConsole').innerHTML = '';
+            log('Console cleared', 'info');
+        }
+
+        async function runFontCheck() {
+            clearDebugConsole();
+            log('=== STARTING FONT DIAGNOSTIC ===', 'info');
+            
+            // Check font loading
+            if (document.fonts) {
+                await document.fonts.ready;
+                log('Font Loading API: Available', 'success');
+                
+                const fonts = Array.from(document.fonts);
+                const uniqueFonts = [...new Set(fonts.map(f => f.family))];
+                log(`Loaded fonts: ${uniqueFonts.join(', ')}`, 'info');
+                
+                const requiredFonts = ['Jaini Purva', 'Lato', 'Satisfy', 'Lugrasimo'];
+                requiredFonts.forEach(fontName => {
+                    const loaded = fonts.some(f => f.family === fontName && f.status === 'loaded');
+                    log(`${fontName}: ${loaded ? 'LOADED' : 'NOT LOADED'}`, loaded ? 'success' : 'error');
+                });
+            }
+            
+            // Check heading fonts
+            log('\\n=== CHECKING HEADINGS ===', 'info');
+            ['h1', 'h2', 'h3'].forEach(tag => {
+                const el = document.querySelector(tag);
+                if (el) {
+                    const font = window.getComputedStyle(el).fontFamily;
+                    const correct = font.includes('Jaini Purva');
+                    log(`${tag}: ${font}`, correct ? 'success' : 'error');
+                }
+            });
+            
+            // Check body text
+            log('\\n=== CHECKING BODY TEXT ===', 'info');
+            const p = document.querySelector('p');
+            if (p) {
+                const font = window.getComputedStyle(p).fontFamily;
+                const correct = font.includes('Lato');
+                log(`p: ${font}`, correct ? 'success' : 'error');
+            }
+            
+            log('\\n=== DIAGNOSTIC COMPLETE ===', 'success');
+        }
+
+        function checkComputedStyles() {
+            clearDebugConsole();
+            log('=== COMPUTED STYLES CHECK ===', 'info');
+            
+            const elements = [
+                { selector: 'h1', expected: 'Jaini Purva' },
+                { selector: 'h2', expected: 'Jaini Purva' },
+                { selector: 'p', expected: 'Lato' },
+                { selector: '.satisfy', expected: 'Satisfy' },
+                { selector: '.lugrasimo', expected: 'Lugrasimo' }
+            ];
+            
+            elements.forEach(({ selector, expected }) => {
+                const el = document.querySelector(selector);
+                if (el) {
+                    const styles = window.getComputedStyle(el);
+                    log(`\\n${selector}:`, 'info');
+                    log(`  font-family: ${styles.fontFamily}`, 'info');
+                    log(`  font-weight: ${styles.fontWeight}`, 'info');
+                    log(`  font-size: ${styles.fontSize}`, 'info');
+                    
+                    const correct = styles.fontFamily.includes(expected);
+                    log(`  Expected: ${expected} - ${correct ? 'CORRECT' : 'WRONG'}`, correct ? 'success' : 'error');
+                }
+            });
+        }
+
+        async function testFontLoading() {
+            clearDebugConsole();
+            log('=== FONT LOADING TEST ===', 'info');
+            
+            const testFonts = [
+                { family: 'Jaini Purva', weight: '400' },
+                { family: 'Lato', weight: '400' },
+                { family: 'Satisfy', weight: '400' },
+                { family: 'Lugrasimo', weight: '400' }
+            ];
+            
+            for (const font of testFonts) {
+                try {
+                    const loaded = await document.fonts.load(`${font.weight} 12px "${font.family}"`);
+                    log(`${font.family}: ${loaded.length > 0 ? 'Successfully loaded' : 'Failed to load'}`, 
+                        loaded.length > 0 ? 'success' : 'error');
+                } catch (error) {
+                    log(`${font.family}: Error - ${error.message}`, 'error');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
