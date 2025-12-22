@@ -6,55 +6,37 @@ import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
 import ContactModal from './ContactModal';
 import { useRouter } from 'next/navigation';
+import { PeakExpedition } from '@/lib/types';
 
 const PeakExpeditionSection: React.FC = () => {
   const { isDarkMode } = useTheme();
   const router = useRouter();
-  const [selectedPeak, setSelectedPeak] = useState<typeof peaks[0] | null>(null);
+  const [peaks, setPeaks] = useState<PeakExpedition[]>([]);
+  const [selectedPeak, setSelectedPeak] = useState<PeakExpedition | null>(null);
   const [showDetail, setShowDetail] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Fetch peaks from API
+  useEffect(() => {
+    async function fetchPeaks() {
+      try {
+        const response = await fetch('/api/peaks');
+        if (response.ok) {
+          const data = await response.json();
+          setPeaks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching peaks:', error);
+      }
+    }
+    fetchPeaks();
+  }, []);
+
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const peaks = [
-    {
-      id: 'island-peak',
-      name: 'Island Peak (Imja Tse)',
-      region: 'Everest',
-      duration: '19 Days',
-      difficulty: 'Strenuous',
-      adventureType: 'peak',
-      image: '/assets/images/islandpeak.png',
-      description: "Nepal's most popular 6,000m peak, perfect for mountaineering beginners.",
-      height: '6,165m',
-    },
-    {
-      id: 'mera-peak',
-      name: 'Mera Peak',
-      region: 'Everest',
-      duration: '18 Days',
-      difficulty: 'Strenuous',
-      adventureType: 'peak',
-      image: '/assets/images/mera.jpg',
-      description: "Nepal's highest trekking peak with stunning panoramic views of five 8,000m peaks.",
-      height: '6,476m',
-    },
-    {
-      id: 'lobuche-east',
-      name: 'Lobuche East',
-      region: 'Everest',
-      duration: '20 Days',
-      difficulty: 'Challenging',
-      adventureType: 'peak',
-      image: '/assets/images/peak.png',
-      description: 'Technical climbing peak in the Everest region offering spectacular views.',
-      height: '6,119m',
-    },
-  ];
 
   const scroll = (dir: 'left' | 'right') => {
     if (!scrollRef.current) return;

@@ -6,49 +6,37 @@ import { useTheme } from '../contexts/ThemeContext';
 import SectionHeader from './SectionHeader';
 import ContactModal from './ContactModal';
 import { useRouter } from 'next/navigation';
+import { SafariPackage } from '@/lib/types';
 
 const SafariSection: React.FC = () => {
   const { isDarkMode } = useTheme();
   const router = useRouter();
-  const [selectedSafari, setSelectedSafari] = useState<typeof safaris[0] | null>(null);
+  const [safaris, setSafaris] = useState<SafariPackage[]>([]);
+  const [selectedSafari, setSelectedSafari] = useState<SafariPackage | null>(null);
   const [showDetail, setShowDetail] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Fetch safaris from API
+  useEffect(() => {
+    async function fetchSafaris() {
+      try {
+        const response = await fetch('/api/safaris');
+        if (response.ok) {
+          const data = await response.json();
+          setSafaris(data);
+        }
+      } catch (error) {
+        console.error('Error fetching safaris:', error);
+      }
+    }
+    fetchSafaris();
+  }, []);
+
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const safaris = [
-    {
-      id: 'chitwan-national-park',
-      name: 'Chitwan National Park',
-      type: 'UNESCO Site',
-      duration: '2-4 Days',
-      badge: 'Family Friendly',
-      image: '/assets/images/chitawan.jpg',
-      description: 'Home to the rare one-horned rhinoceros and Bengal tigers.',
-    },
-    {
-      id: 'bardia-national-park',
-      name: 'Bardia National Park',
-      type: 'Wild Tiger',
-      duration: '3-5 Days',
-      badge: 'Adventure',
-      image: '/assets/images/bardia.jpg',
-      description: 'Nepal\'s largest and most pristine wilderness area with best tiger spotting.',
-    },
-    {
-      id: 'koshi-tappu-reserve',
-      name: 'Koshi Tappu Reserve',
-      type: 'Bird Paradise',
-      duration: '2-3 Days',
-      badge: 'Bird Watching',
-      image: '/assets/images/koshi.webp',
-      description: 'Premier bird watching destination with over 500 species.',
-    },
-  ];
 
   const scroll = (dir: 'left' | 'right') => {
     if (!scrollRef.current) return;

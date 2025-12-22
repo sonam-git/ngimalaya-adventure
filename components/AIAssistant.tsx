@@ -82,17 +82,30 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
     if (!mounted) return;
     
     if (isOpen && isMobile) {
+      // Add modal-open class to prevent horizontal overflow
+      document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
+      
       // Prevent body scroll on iOS when keyboard appears
+      const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
+      document.body.style.maxWidth = '100vw';
+      document.body.style.overflowX = 'hidden';
       
       return () => {
-        const scrollY = document.body.style.top;
+        // Remove modal-open class
+        document.body.classList.remove('modal-open');
+        document.documentElement.classList.remove('modal-open');
+        
+        // Restore scroll position
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        document.body.style.maxWidth = '';
+        document.body.style.overflowX = '';
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isOpen, isMobile, mounted]);
@@ -106,6 +119,38 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
     window.addEventListener('openAIAssistant', handleOpenAI);
     return () => window.removeEventListener('openAIAssistant', handleOpenAI);
   }, [setIsOpen]);
+
+  // Handle input focus on mobile to prevent overflow
+  useEffect(() => {
+    if (!inputRef.current || !isMobile) return;
+
+    const input = inputRef.current;
+
+    const handleFocus = () => {
+      // Ensure viewport doesn't zoom on iOS
+      input.style.fontSize = '16px';
+      
+      // Prevent any overflow when keyboard appears
+      setTimeout(() => {
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
+      }, 100);
+    };
+
+    const handleBlur = () => {
+      // Keep overflow hidden
+      document.body.style.overflowX = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
+    };
+
+    input.addEventListener('focus', handleFocus);
+    input.addEventListener('blur', handleBlur);
+
+    return () => {
+      input.removeEventListener('focus', handleFocus);
+      input.removeEventListener('blur', handleBlur);
+    };
+  }, [isMobile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -201,8 +246,16 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           className={`fixed inset-x-4 bottom-4 mx-auto max-w-[420px] h-[calc(100vh-120px)] max-h-[620px] z-[999999] rounded-2xl shadow-2xl flex flex-col overflow-hidden ${
             isDarkMode ? 'bg-gray-900' : 'bg-white'
           } ${
-            isMobile ? 'bottom-[82px] h-[calc(100vh-150px)]' : ''
+            isMobile ? 'ai-chat-mobile-modal bottom-[82px] h-[calc(100vh-150px)]' : ''
           }`}
+          style={isMobile ? {
+            maxWidth: 'calc(100vw - 2rem)',
+            width: 'calc(100vw - 2rem)',
+            left: '1rem',
+            right: '1rem',
+            marginLeft: '0',
+            marginRight: '0'
+          } : undefined}
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white p-4 flex items-center justify-between">
@@ -319,7 +372,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
           }`}>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center w-full">
               <input
                 ref={inputRef}
                 type="text"
@@ -327,11 +380,12 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about treks, Nepal, or planning..."
                 disabled={isLoading}
-                className={`flex-1 px-4 py-3 rounded-full border-2 transition-all focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                className={`flex-1 min-w-0 px-4 py-3 rounded-full border-2 transition-all focus:outline-none focus:ring-2 disabled:opacity-50 ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-green-400 focus:ring-green-500/20'
                 }`}
+                style={isMobile ? { fontSize: '16px' } : undefined}
               />
               <button
                 type="submit"

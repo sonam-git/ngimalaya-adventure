@@ -823,10 +823,14 @@ body.modal-open {
 @media (max-width: 767px) {
   .ai-chat-mobile-modal {
     animation: slideUp 0.3s ease-out;
-    max-width: 100vw !important;
+    max-width: calc(100vw - 2rem) !important;
     width: calc(100vw - 2rem) !important;
     max-height: calc(100vh - 2rem) !important;
     box-sizing: border-box;
+    left: 1rem !important;
+    right: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   
   /* Prevent text overflow in mobile chat */
@@ -834,4 +838,198 @@ body.modal-open {
     max-width: 100%;
     box-sizing: border-box;
   }
+
+  /* Prevent input field from causing overflow */
+  .ai-chat-mobile-modal input[type="text"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    /* Prevent iOS zoom on focus */
+    font-size: 16px !important;
+  }
+
+  /* Ensure form doesn't overflow */
+  .ai-chat-mobile-modal form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ai-chat-mobile-modal form > div {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 0.5rem;
+  }
 }
+
+/* Prevent horizontal scroll on body when modal is open on mobile */
+@media (max-width: 767px) {
+  body.modal-open {
+    overflow-x: hidden !important;
+    position: fixed;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  html.modal-open {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* ===== Google Translate Font Preservation ===== */
+/* These rules ensure fonts remain consistent when content is translated */
+
+/* CRITICAL: Override ALL Google Translate font tags with maximum specificity */
+font,
+font *,
+body font,
+body font *,
+html font,
+html font *,
+.skiptranslate font,
+.translated-ltr font,
+.translated-rtl font {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  color: inherit !important;
+  line-height: inherit !important;
+}
+
+/* Target nested font tags (Google Translate can nest them) */
+font font,
+font font *,
+font font font,
+font font font * {
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+/* Force font inheritance for all translated elements */
+.goog-text-highlight,
+.goog-text-highlight *,
+body[class*="translated"] *,
+html[class*="translated"] *,
+span[style*="font-family"],
+span[style*="font-family"] * {
+  font-family: inherit !important;
+}
+
+/* Override any inline styles from Google Translate */
+[style*="font-family: Arial"],
+[style*="font-family:Arial"],
+[style*="font-family: 'Arial'"],
+[style*='font-family: "Arial"'],
+[style*="font-family: sans-serif"],
+[style*="font-family:sans-serif"] {
+  font-family: inherit !important;
+}
+
+/* Preserve Roboto for body text even when translated */
+body,
+body *:not(.font-display):not(.font-heading):not(.times):not(.satisfy):not(.jaini-purva):not(.jaini-purva-light):not(.lugrasimo),
+body p,
+body p *,
+body div:not([class*="font-"]),
+body div:not([class*="font-"]) *,
+body span:not([class*="font-"]),
+body span:not([class*="font-"]) * {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+}
+
+/* Preserve Poppins for display and heading text */
+.font-display,
+.font-display *,
+.font-display font,
+.font-display font *,
+.font-heading,
+.font-heading *,
+.font-heading font,
+.font-heading font *,
+h1, h1 *, h1 font, h1 font *,
+h2, h2 *, h2 font, h2 font *,
+h3, h3 *, h3 font, h3 font *,
+h4, h4 *, h4 font, h4 font *,
+h5, h5 *, h5 font, h5 font *,
+h6, h6 *, h6 font, h6 font *,
+.text-xl,
+.text-2xl,
+.text-3xl,
+.text-4xl,
+.text-5xl {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Preserve Times New Roman for trek headings */
+.times,
+.times *,
+.times font,
+.times font * {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Preserve Satisfy font */
+.satisfy,
+.satisfy *,
+.satisfy font,
+.satisfy font * {
+  font-family: "Satisfy", cursive !important;
+}
+
+/* Preserve Jaini Purva font */
+.jaini-purva,
+.jaini-purva *,
+.jaini-purva font,
+.jaini-purva font *,
+.jaini-purva-light,
+.jaini-purva-light *,
+.jaini-purva-light font,
+.jaini-purva-light font * {
+  font-family: "Jaini Purva", system-ui !important;
+}
+
+/* Preserve Lugrasimo font */
+.lugrasimo,
+.lugrasimo *,
+.lugrasimo font,
+.lugrasimo font * {
+  font-family: "Lugrasimo", cursive !important;
+}
+
+/* Button and link text preservation */
+button,
+button *,
+button font,
+button font *,
+a,
+a *,
+a font,
+a font * {
+  font-family: inherit !important;
+}
+
+/* Input and form elements */
+input,
+input *,
+textarea,
+textarea *,
+select,
+select * {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+/* Additional specificity for deeply nested elements */
+body > * > font,
+body > * > * > font,
+body > * > * > * > font,
+body > * > * > * > * > font {
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+/* ===== End Google Translate Font Preservation ===== */

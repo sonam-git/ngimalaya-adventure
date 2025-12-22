@@ -107,6 +107,53 @@ const GoogleTranslateClient = () => {
     const interval = setInterval(hideAllGoogleUI, 500);
     setTimeout(() => clearInterval(interval), 10000);
 
+    // Function to aggressively remove font tags and preserve our fonts
+    const removeFontTags = () => {
+      // Find all <font> tags in the document
+      const fontTags = document.querySelectorAll('font');
+      fontTags.forEach(fontTag => {
+        // Get the parent element
+        const parent = fontTag.parentNode;
+        if (parent) {
+          // Move all children of the font tag to its parent
+          while (fontTag.firstChild) {
+            parent.insertBefore(fontTag.firstChild, fontTag);
+          }
+          // Remove the now-empty font tag
+          parent.removeChild(fontTag);
+        }
+      });
+
+      // Also remove inline font-family styles that Google Translate adds
+      const elementsWithInlineFont = document.querySelectorAll('[style*="font-family"]');
+      elementsWithInlineFont.forEach((element: Element) => {
+        const htmlElement = element as HTMLElement;
+        // Preserve our custom font classes
+        if (!htmlElement.classList.contains('font-display') &&
+            !htmlElement.classList.contains('font-heading') &&
+            !htmlElement.classList.contains('times') &&
+            !htmlElement.classList.contains('satisfy') &&
+            !htmlElement.classList.contains('jaini-purva') &&
+            !htmlElement.classList.contains('jaini-purva-light') &&
+            !htmlElement.classList.contains('lugrasimo')) {
+          // Remove font-family from inline style
+          const style = htmlElement.getAttribute('style');
+          if (style) {
+            const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
+            if (newStyle.trim()) {
+              htmlElement.setAttribute('style', newStyle);
+            } else {
+              htmlElement.removeAttribute('style');
+            }
+          }
+        }
+      });
+    };
+
+    // Run font tag removal periodically
+    const fontInterval = setInterval(removeFontTags, 1000);
+    setTimeout(() => clearInterval(fontInterval), 15000);
+
     // 3. MutationObserver to catch dynamically added elements
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -132,6 +179,11 @@ const GoogleTranslateClient = () => {
                 element.style.visibility = 'hidden';
               }
             }
+
+            // If a font tag was added, schedule removal
+            if (element.tagName === 'FONT') {
+              setTimeout(removeFontTags, 100);
+            }
           }
         });
       });
@@ -155,6 +207,7 @@ const GoogleTranslateClient = () => {
     return () => {
       window.removeEventListener('load', hideAllGoogleUI);
       clearInterval(interval);
+      clearInterval(fontInterval);
       observer.disconnect();
     };
   }, []);
@@ -166,7 +219,60 @@ const GoogleTranslateClient = () => {
     if (select) {
       select.value = lang;
       select.dispatchEvent(new Event('change'));
+      
+      // After translation starts, aggressively remove font tags
+      // Multiple delays to catch different stages of translation
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 500);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 1000);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 2000);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 3000);
     }
+  };
+
+  // Helper function to remove font tags on demand
+  const removeFontTagsNow = () => {
+    // Find all <font> tags in the document
+    const fontTags = document.querySelectorAll('font');
+    fontTags.forEach(fontTag => {
+      const parent = fontTag.parentNode;
+      if (parent) {
+        while (fontTag.firstChild) {
+          parent.insertBefore(fontTag.firstChild, fontTag);
+        }
+        parent.removeChild(fontTag);
+      }
+    });
+
+    // Also remove inline font-family styles
+    const elementsWithInlineFont = document.querySelectorAll('[style*="font-family"]');
+    elementsWithInlineFont.forEach((element: Element) => {
+      const htmlElement = element as HTMLElement;
+      if (!htmlElement.classList.contains('font-display') &&
+          !htmlElement.classList.contains('font-heading') &&
+          !htmlElement.classList.contains('times') &&
+          !htmlElement.classList.contains('satisfy') &&
+          !htmlElement.classList.contains('jaini-purva') &&
+          !htmlElement.classList.contains('jaini-purva-light') &&
+          !htmlElement.classList.contains('lugrasimo')) {
+        const style = htmlElement.getAttribute('style');
+        if (style) {
+          const newStyle = style.replace(/font-family:\s*[^;]+;?/gi, '');
+          if (newStyle.trim()) {
+            htmlElement.setAttribute('style', newStyle);
+          } else {
+            htmlElement.removeAttribute('style');
+          }
+        }
+      }
+    });
   };
 
   // Close dropdown on outside click
