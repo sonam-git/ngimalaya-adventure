@@ -57,10 +57,10 @@ const HeroComponent: React.FC<HeroProps> = ({
       className="relative min-h-screen flex flex-col"
     >
       {/* Top Text Section */}
-      <div className="relative z-10 pt-20 pb-8 md:pt-28 md:pb-12 px-4">
+      <div className="relative z-10 pt-20 pb-4 md:pt-24 md:pb-6 px-4">
         <div className="relative max-w-6xl mx-auto text-center">
           {/* Welcome Text with Mountain Sketch Background */}
-          <div className="relative inline-block mb-2 md:mb-3">
+          <div className="relative inline-block mb-1 mt-3">
             {/* Mountain Sketch Image as Background - positioned slightly above text */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none -top-16 sm:-top-20 md:-top-24 lg:-top-28">
               <img 
@@ -71,19 +71,40 @@ const HeroComponent: React.FC<HeroProps> = ({
             </div>
             
             {/* Welcome Text */}
-            <p className="satisfy-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-700 dark:text-blue-300 animate-fade-in-up relative z-10 px-4" style={{ animationDelay: "0.1s" }}>
+            <h2 className="satisfy-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-700 dark:text-blue-300 animate-fade-in-up relative z-10 px-4" style={{ animationDelay: "0.1s" }}>
               Welcome to
-            </p>
+            </h2>
           </div>
           
-          {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl jaini-purva-regular mt-0 mb-4 md:mb-6 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Ngimalaya Adventure
-          </h1>
+          {/* Main Headline with Trekker Images */}
+          <div className="relative flex items-center justify-center gap-1 sm:gap-0 mb-2 md:mb-3 overflow-x-auto">
+            {/* Male Trekker - Left Side */}
+            <div className="animate-fade-in-up flex-shrink-0 -mr-1 sm:-mr-3 md:-mr-4 lg:-mr-5 xl:-mr-6" style={{ animationDelay: "0.15s" }}>
+              <img 
+                src="/assets/sketch/trekker-male.png" 
+                alt="Male trekker" 
+                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-80 dark:opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+            
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up whitespace-nowrap flex-shrink-0" style={{ animationDelay: "0.2s" }}>
+              Ngimalaya Adventure
+            </h1>
+            
+            {/* Female Trekker - Right Side */}
+            <div className="animate-fade-in-up flex-shrink-0 -ml-1 sm:-ml-3 md:-ml-4 lg:-ml-5 xl:-ml-6" style={{ animationDelay: "0.25s" }}>
+              <img 
+                src="/assets/sketch/trekker-female.png" 
+                alt="Female trekker" 
+                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-80 dark:opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+          </div>
 
           {/* Subtitle */}
           <p
-            className="text-lg sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up"
+            className="text-md sm:text-lg md:text-xl font-body text-blue-900 dark:text-blue-300 max-w-3xl mx-auto animate-fade-in-up"
             style={{ animationDelay: "0.3s" }}
           >
             Discover Your Himalayan Escape, Where Culture Meets the Clouds

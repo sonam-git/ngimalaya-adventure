@@ -213,15 +213,15 @@ const Header: React.FC = () => {
               {/* Title Column - Visible on all screens */}
               <div className="notranslate flex flex-col justify-center gap-1 min-w-[160px] sm:min-w-[220px]">
                 {/* English */}
-                <div className={`jaini-purva-regular font-bold text-md sm:text-xl lg:text-2xl leading-tight transition-colors whitespace-nowrap ${
+                <h1 className={`jaini-purva-regular font-bold text-md sm:text-xl lg:text-2xl leading-tight transition-colors whitespace-nowrap ${
                   isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
                 }`}>
                   Ngimalaya Adventure
-                </div>
+                </h1>
                 {/* Nepali Script */}
                 <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
                   isDarkMode ? 'text-gray-300 group-hover:text-primary-300' : 'text-blue-800 group-hover:text-primary-500'
-                }`} style={{ letterSpacing: '0.31em' }}>
+                }`} style={{ letterSpacing: '0.25em' }}>
                   ङिमालय एडभेन्चर
                 </div>
                 {/* Tibetan Script with Sliding Line */}
