@@ -13,27 +13,44 @@ import ServicesSection from '@/components/ServicesSection'
 import ContactSection from '@/components/ContactSection'
 import BookingModal from '@/components/BookingModal'
 import SearchTrekking from '@/components/SearchTrekking'
-import { Trek } from '@/lib/types'
+import { Trek, PeakExpedition, SafariPackage } from '@/lib/types'
 
 export default function HomePage() {
   const router = useRouter()
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   const [treks, setTreks] = useState<Trek[]>([])
+  const [peaks, setPeaks] = useState<PeakExpedition[]>([])
+  const [safaris, setSafaris] = useState<SafariPackage[]>([])
 
-  // Fetch treks on mount
+  // Fetch treks, peaks, and safaris on mount
   useEffect(() => {
-    async function fetchTreks() {
+    async function fetchData() {
       try {
-        const response = await fetch('/api/treks')
-        if (response.ok) {
-          const data = await response.json()
-          setTreks(data)
+        // Fetch treks
+        const treksResponse = await fetch('/api/treks')
+        if (treksResponse.ok) {
+          const treksData = await treksResponse.json()
+          setTreks(treksData)
+        }
+
+        // Fetch peaks
+        const peaksResponse = await fetch('/api/peaks')
+        if (peaksResponse.ok) {
+          const peaksData = await peaksResponse.json()
+          setPeaks(peaksData)
+        }
+
+        // Fetch safaris
+        const safarisResponse = await fetch('/api/safaris')
+        if (safarisResponse.ok) {
+          const safarisData = await safarisResponse.json()
+          setSafaris(safarisData)
         }
       } catch (error) {
-        console.error('Error fetching treks:', error)
+        console.error('Error fetching data:', error)
       }
     }
-    fetchTreks()
+    fetchData()
   }, [])
 
   const handleExploreTreks = () => {
@@ -50,12 +67,12 @@ export default function HomePage() {
         <Hero 
           onExploreTreks={handleExploreTreks}
           onBookNow={handleBookNow}
-          searchComponent={<SearchTrekking treks={treks} />}
+          searchComponent={<SearchTrekking treks={treks} peaks={peaks} safaris={safaris} />}
         />
         {/* Overlay SearchTrekking - visible only on desktop, aligned with bottom of slideshow */}
         <div className="hidden md:flex absolute left-0 right-0 w-full z-30 items-end justify-center md:top-28 md:bottom-[200px] lg:bottom-[240px]">
           <div className="w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 pb-6">
-            <SearchTrekking treks={treks} />
+            <SearchTrekking treks={treks} peaks={peaks} safaris={safaris} />
           </div>
         </div>
       </div>

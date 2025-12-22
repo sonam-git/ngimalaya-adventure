@@ -74,6 +74,7 @@ export interface PeakExpedition {
   excluded: string[];
   requirements: string[];
   technicalRequirements: string[];
+  region?: string; // Optional region field for filtering
 }
 
 // Safari Package Types

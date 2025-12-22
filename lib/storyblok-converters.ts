@@ -49,6 +49,7 @@ export interface StoryblokPeakBlock {
   duration?: string;
   difficulty?: string;
   season?: string;
+  region?: string;
   image?: { filename: string };
   description?: string;
   price?: string;
@@ -181,6 +182,7 @@ export function convertStoryblokPeakToPeak(peakBlock: StoryblokPeakBlock): PeakE
     duration: peakBlock.duration || 'N/A',
     difficulty: peakBlock.difficulty || 'Strenuous',
     season: peakBlock.season || 'Year-round',
+    region: peakBlock.region,
     image: peakBlock.image?.filename || '/assets/images/default-peak.jpg',
     description: peakBlock.description || '',
     price: peakBlock.price || 'Contact for pricing',
@@ -209,10 +211,26 @@ export function convertStoryblokSafariToSafari(safariBlock: StoryblokSafariBlock
   // Generate slug from safari name
   const slug = safariBlock.name?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || 'untitled-safari';
   
+  // Extract location from name if location field is empty or just "Nepal"
+  let location = safariBlock.location || 'Nepal';
+  if (!safariBlock.location || safariBlock.location.trim() === '' || safariBlock.location === 'Nepal') {
+    // Try to extract location from safari name
+    const name = safariBlock.name || '';
+    if (name.toLowerCase().includes('koshi')) {
+      location = 'Koshi';
+    } else if (name.toLowerCase().includes('bardia')) {
+      location = 'Bardia';
+    } else if (name.toLowerCase().includes('chitwan') || name.toLowerCase().includes('chitawan')) {
+      location = 'Chitwan';
+    }
+  }
+  
+  console.log(`📍 Safari "${safariBlock.name}" - extracted location: "${location}" (original: "${safariBlock.location || 'undefined'}")`);
+  
   return {
     id: slug,
     name: safariBlock.name || 'Untitled Safari',
-    location: safariBlock.location || 'Nepal',
+    location: location,
     duration: safariBlock.duration || 'N/A',
     type: safariBlock.type || 'Wildlife Safari',
     image: safariBlock.image?.filename || '/assets/images/default-safari.jpg',

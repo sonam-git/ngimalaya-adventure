@@ -1,13 +1,14 @@
 'use client '
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Trek } from '@/lib/types';
+import { Trek, PeakExpedition, SafariPackage } from '@/lib/types';
 import { FaHiking, FaMountain, FaBinoculars, FaMapMarkerAlt, FaChartLine, FaClock, FaEnvelope, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import CustomTrekModal from './CustomTrekModal';
 import { useTheme } from '../contexts/ThemeContext';
 
 
 const TREK_TYPES = [
+  { value: 'all', label: 'All Adventures' },
   { value: 'trekking', label: 'Trekking' },
   { value: 'peak', label: 'Peak Expedition' },
   { value: 'safari', label: 'Safari' },
@@ -25,38 +26,75 @@ const DIFFICULTIES = [
 
 const DURATIONS = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25];
 
-// Helper to get unique regions from treks data
-const getRegions = (treks: Trek[] | undefined) => {
-  if (!treks || treks.length === 0) return [];
+// Helper to get unique regions from treks, peaks, and safari locations
+const getRegions = (treks: Trek[] | undefined, peaks: PeakExpedition[] | undefined, safaris: SafariPackage[] | undefined) => {
+  const regions: string[] = [];
   
-  const regions = treks
-    .filter((t: Trek) => t.region && t.region.length > 0)
-    .map((t: Trek) => t.region)
-    .filter(Boolean);
-  return Array.from(new Set(regions)) as string[];
+  // Get regions from treks
+  if (treks && treks.length > 0) {
+    const trekRegions = treks
+      .filter((t: Trek) => t.region && t.region.length > 0)
+      .map((t: Trek) => t.region)
+      .filter(Boolean);
+    regions.push(...trekRegions);
+  }
+  
+  // Get regions from peaks
+  if (peaks && peaks.length > 0) {
+    const peakRegions = peaks
+      .filter((p: PeakExpedition) => p.region && p.region.length > 0)
+      .map((p: PeakExpedition) => p.region!)
+      .filter(Boolean);
+    regions.push(...peakRegions);
+  }
+  
+  // Get locations from safaris (treated as regions)
+  if (safaris && safaris.length > 0) {
+    const safariLocations = safaris
+      .filter((s: SafariPackage) => s.location && s.location.length > 0)
+      .map((s: SafariPackage) => s.location)
+      .filter(Boolean);
+    regions.push(...safariLocations);
+  }
+  
+  // Return unique sorted regions/locations
+  return Array.from(new Set(regions)).sort() as string[];
 };
 
 interface SearchTrekkingProps {
   treks?: Trek[];
+  peaks?: PeakExpedition[];
+  safaris?: SafariPackage[];
 }
 
-const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
+// Type for combined search results
+type SearchResult = (Trek | PeakExpedition | SafariPackage) & { type: 'trek' | 'peak' | 'safari' };
+
+const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }) => {
   const { isDarkMode } = useTheme();
-  const [adventureType, setAdventureType] = useState('trekking');
+  const [adventureType, setAdventureType] = useState('all');
   const [region, setRegion] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [duration, setDuration] = useState('');
-  const [results, setResults] = useState<Trek[]>(treks || []);
+  const [results, setResults] = useState<SearchResult[]>([
+    ...(treks || []).map(t => ({ ...t, type: 'trek' as const })),
+    ...(peaks || []).map(p => ({ ...p, type: 'peak' as const })),
+    ...(safaris || []).map(s => ({ ...s, type: 'safari' as const }))
+  ]);
   const [searched, setSearched] = useState(false);
   const [showCustomTrekModal, setShowCustomTrekModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-  // Update results when treks prop changes
+  // Update results when props change
   useEffect(() => {
-    if (!searched && treks) {
-      setResults(treks);
+    if (!searched) {
+      setResults([
+        ...(treks || []).map(t => ({ ...t, type: 'trek' as const })),
+        ...(peaks || []).map(p => ({ ...p, type: 'peak' as const })),
+        ...(safaris || []).map(s => ({ ...s, type: 'safari' as const }))
+      ]);
     }
-  }, [treks, searched]);
+  }, [treks, peaks, safaris, searched]);
 
   // Prevent body scroll when mobile modal is open
   useEffect(() => {
@@ -74,21 +112,18 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searched) {
-      if (!treks || treks.length === 0) {
+      if (!treks && !peaks && !safaris) {
         setResults([]);
         setSearched(true);
         return;
       }
       
-      const filtered = treks.filter((t: Trek) => {
-        if (adventureType && t.adventureType && t.adventureType.toLowerCase() !== adventureType) return false;
-        // Region filter for all adventure types
+      // Filter treks
+      const trekResults = (treks || []).filter((t: Trek) => {
+        // Only filter by adventure type if not 'all' and trek has adventureType
+        if (adventureType !== 'all' && t.adventureType && t.adventureType.toLowerCase() !== adventureType) return false;
         if (region && t.region !== region) return false;
-        // Difficulty filter for all adventure types
-        if (difficulty && t.difficulty && difficulty !== '') {
-          if (t.difficulty !== difficulty) return false;
-        }
-        // Duration filter for all adventure types
+        if (difficulty && t.difficulty && difficulty !== '' && t.difficulty !== difficulty) return false;
         if (duration && t.duration) {
           let trekDays: number[] = [];
           if (Array.isArray(t.duration)) {
@@ -104,7 +139,50 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
         }
         return true;
       });
-      setResults(filtered);
+
+      // Filter peaks - all filters apply
+      const peakResults = (peaks || []).filter((p: PeakExpedition) => {
+        // Only include if adventure type is 'all' or 'peak'
+        if (adventureType !== 'all' && adventureType !== 'peak') return false;
+        if (region && p.region && !p.region.toLowerCase().includes(region.toLowerCase())) return false;
+        if (difficulty && p.difficulty && difficulty !== '' && p.difficulty !== difficulty) return false;
+        if (duration && p.duration) {
+          const matches = p.duration.match(/\d+/g);
+          if (matches) {
+            const peakDays = matches.map(Number);
+            const selectedDay = Number(duration);
+            if (!peakDays.some(day => Math.abs(day - selectedDay) <= 1)) return false;
+          }
+        }
+        return true;
+      });
+
+      // Filter safaris - filter by location (not region) and duration, ignore difficulty
+      const safariResults = (safaris || []).filter((s: SafariPackage) => {
+        // Only include if adventure type is 'all' or 'safari'
+        if (adventureType !== 'all' && adventureType !== 'safari') return false;
+        // Filter by location if region filter is set (safari uses 'location' field)
+        if (region && s.location && !s.location.toLowerCase().includes(region.toLowerCase())) return false;
+        // Safaris ignore difficulty filter
+        if (duration && s.duration) {
+          const matches = s.duration.match(/\d+/g);
+          if (matches) {
+            const safariDays = matches.map(Number);
+            const selectedDay = Number(duration);
+            if (!safariDays.some(day => Math.abs(day - selectedDay) <= 1)) return false;
+          }
+        }
+        return true;
+      });
+
+      // Combine all results
+      const combinedResults = [
+        ...trekResults.map(t => ({ ...t, type: 'trek' as const })),
+        ...peakResults.map(p => ({ ...p, type: 'peak' as const })),
+        ...safariResults.map(s => ({ ...s, type: 'safari' as const }))
+      ];
+
+      setResults(combinedResults);
       setSearched(true);
     } else {
       setSearched(false);
@@ -196,7 +274,7 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
                   onChange={e => { setRegion(e.target.value); setSearched(false); }}
                 >
                   <option value="">All Regions</option>
-                  {getRegions(treks).map((r: string) => <option key={r} value={r}>{r}</option>)}
+                  {getRegions(treks, peaks, safaris).map((r: string) => <option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
 
@@ -288,38 +366,50 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {results.map((trek: Trek) => (
-                      <div key={trek.id} className={`rounded-2xl shadow-lg p-4 border ${isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
-                        <img 
-                          src={typeof trek.image === 'string' ? `/assets/images/${trek.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} 
-                          alt={trek.name} 
-                          className="w-full h-48 object-cover rounded-lg mb-3" 
-                        />
-                        <h3 className="font-bold text-lg mb-2 text-primary-700 dark:text-primary-300">{trek.name}</h3>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 space-y-1">
-                          <div className="flex items-center gap-2">
-                            <FaMapMarkerAlt /> <span>{trek.region}</span>
-                          </div>
-                          {adventureType === 'trekking' && trek.difficulty && (
+                    {results.map((result: SearchResult) => {
+                      const detailUrl = result.type === 'safari' 
+                        ? `/safari/${result.id}`
+                        : result.type === 'peak'
+                        ? `/peak-expedition/${result.id}`
+                        : `/treks/${result.id}`;
+                      
+                      // Type guard to safely access properties
+                      const region = 'region' in result ? result.region : ('location' in result ? result.location : 'N/A');
+                      const difficulty = 'difficulty' in result ? result.difficulty : undefined;
+                      
+                      return (
+                        <div key={result.id} className={`rounded-2xl shadow-lg p-4 border ${isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                          <img 
+                            src={typeof result.image === 'string' ? `/assets/images/${result.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} 
+                            alt={result.name} 
+                            className="w-full h-48 object-cover rounded-lg mb-3" 
+                          />
+                          <h3 className="font-bold text-lg mb-2 text-primary-700 dark:text-primary-300">{result.name}</h3>
+                          <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 space-y-1">
                             <div className="flex items-center gap-2">
-                              <FaChartLine /> <span>{trek.difficulty}</span>
+                              <FaMapMarkerAlt /> <span>{region}</span>
                             </div>
-                          )}
-                          <div className="flex items-center gap-2">
-                            <FaClock /> <span>{trek.duration}</span>
+                            {difficulty && (
+                              <div className="flex items-center gap-2">
+                                <FaChartLine /> <span>{difficulty}</span>
+                              </div>
+                            )}
+                            <div className="flex items-center gap-2">
+                              <FaClock /> <span>{result.duration}</span>
+                            </div>
                           </div>
+                          <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm">
+                            {result.description?.slice(0, 100)}...
+                          </p>
+                          <a 
+                            href={detailUrl} 
+                            className="block w-full text-center px-4 py-3 rounded-lg bg-primary-600 text-white font-semibold hover:bg-primary-700 transition"
+                          >
+                            View Details
+                          </a>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm">
-                          {trek.description?.slice(0, 100)}...
-                        </p>
-                        <a 
-                          href={`/treks/${trek.id}`} 
-                          className="block w-full text-center px-4 py-3 rounded-lg bg-primary-600 text-white font-semibold hover:bg-primary-700 transition"
-                        >
-                          View Details
-                        </a>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -366,7 +456,7 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
               <div className="relative">
                 <select className="w-full rounded-lg border-gray-300 dark:border-gray-700 py-2 pl-9 pr-3 focus:ring-2 focus:ring-primary-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm" value={region} onChange={e => { setRegion(e.target.value); setSearched(false); }}>
                   <option value="">All Regions</option>
-                  {getRegions(treks).map((r: string) => <option key={r} value={r}>{r}</option>)}
+                  {getRegions(treks, peaks, safaris).map((r: string) => <option key={r} value={r}>{r}</option>)}
                 </select>
                 <span className={`absolute left-2 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-white' : 'text-primary-600'}`}><FaMapMarkerAlt /></span>
               </div>
@@ -445,19 +535,31 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {results.map((trek: Trek) => (
-                    <div key={trek.id} className="bg-white dark:bg-gray-800/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-5 flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                      <img src={typeof trek.image === 'string' ? `/assets/images/${trek.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} alt={trek.name} className="w-full h-40 object-cover rounded-lg mb-3" />
-                      <h3 className="font-bold text-lg mb-1 text-primary-700 dark:text-primary-300">{trek.name}</h3>
-                      <div className="text-xs text-gray-500 mb-2 flex flex-wrap gap-2">
-                        <span className="inline-flex items-center gap-1"><FaMapMarkerAlt /> {trek.region}</span>
-                        {adventureType === 'trekking' && <span className="inline-flex items-center gap-1"><FaChartLine /> {trek.difficulty}</span>}
-                        <span className="inline-flex items-center gap-1"><FaClock /> {trek.duration}</span>
+                  {results.map((result: SearchResult) => {
+                    const detailUrl = result.type === 'safari' 
+                      ? `/safari/${result.id}`
+                      : result.type === 'peak'
+                      ? `/peak-expedition/${result.id}`
+                      : `/treks/${result.id}`;
+                    
+                    // Type guard to safely access properties
+                    const region = 'region' in result ? result.region : ('location' in result ? result.location : 'N/A');
+                    const difficulty = 'difficulty' in result ? result.difficulty : undefined;
+                    
+                    return (
+                      <div key={result.id} className="bg-white dark:bg-gray-800/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-5 flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                        <img src={typeof result.image === 'string' ? `/assets/images/${result.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} alt={result.name} className="w-full h-40 object-cover rounded-lg mb-3" />
+                        <h3 className="font-bold text-lg mb-1 text-primary-700 dark:text-primary-300">{result.name}</h3>
+                        <div className="text-xs text-gray-500 mb-2 flex flex-wrap gap-2">
+                          <span className="inline-flex items-center gap-1"><FaMapMarkerAlt /> {region}</span>
+                          {difficulty && <span className="inline-flex items-center gap-1"><FaChartLine /> {difficulty}</span>}
+                          <span className="inline-flex items-center gap-1"><FaClock /> {result.duration}</span>
+                        </div>
+                        <p className="text-gray-600 dark:text-gray-300 flex-1 mb-2 text-sm">{result.description?.slice(0, 80)}...</p>
+                        <a href={detailUrl} className="mt-auto inline-block px-4 py-2 rounded bg-primary-600 text-white font-semibold hover:bg-primary-700 transition">View Details</a>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-300 flex-1 mb-2 text-sm">{trek.description?.slice(0, 80)}...</p>
-                      <a href={`/treks/${trek.id}`} className="mt-auto inline-block px-4 py-2 rounded bg-primary-600 text-white font-semibold hover:bg-primary-700 transition">View Details</a>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
