@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'rolwaling',
     'other-regions',
   ].map((region) => ({
-    url: `${baseUrl}/treks/regions/${region}`,
+    url: `${baseUrl}/regions/${region}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,

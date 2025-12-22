@@ -1,20 +1,46 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import PeakDetail from '@/components/PeakDetail';
-import { peakExpeditions } from '@/data/peakExpeditions';
-
-// Note: Peaks use a different data structure (PeakExpedition) than Trek
-// For Storyblok integration, you may want to create separate peak content types
-// or adapt the Trek structure to include peak-specific fields
+import { PeakExpedition } from '@/lib/types';
 
 export default function PeakDetailPage() {
   const params = useParams();
   const peakId = params.peakId as string;
+  const [peak, setPeak] = useState<PeakExpedition | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   
-  // Currently using static data for peaks
-  // TODO: Implement Storyblok integration for peaks when needed
-  const peak = peakExpeditions.find(p => p.id === peakId);
+  // Fetch peak from API
+  useEffect(() => {
+    async function fetchPeak() {
+      try {
+        const response = await fetch('/api/peaks');
+        if (response.ok) {
+          const data = await response.json();
+          const foundPeak = data.find((p: PeakExpedition) => p.id === peakId);
+          setPeak(foundPeak || null);
+        }
+      } catch (error) {
+        console.error('Error fetching peak:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPeak();
+  }, [peakId]);
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen">
+        <div className="min-h-screen pt-32 pb-16 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-300">Loading peak expedition...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (!peak) {
     return (

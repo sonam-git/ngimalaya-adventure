@@ -2,22 +2,38 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
-import { allTreks } from "../data/treks";
+import { Trek } from "@/lib/types";
 import TrekCard from "./TrekCard";
 import SectionHeader from "./SectionHeader";
 import ContactModal from "./ContactModal";
 
 const TreksSection: React.FC = () => {
   const router = useRouter();
-  const [selectedTrek, setSelectedTrek] = useState<
-    import("../data/treks").Trek | null
-  >(null);
+  const [selectedTrek, setSelectedTrek] = useState<Trek | null>(null);
   const [showDetail, setShowDetail] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [allTreks, setAllTreks] = useState<Trek[]>([]);
   const scrollRefMobile = useRef<HTMLDivElement>(null);
   const scrollRefDesktop = useRef<HTMLDivElement>(null);
   
+  // Fetch treks from Storyblok on mount
+  useEffect(() => {
+    async function fetchTreks() {
+      try {
+        const response = await fetch('/api/treks');
+        if (response.ok) {
+          const data = await response.json();
+          setAllTreks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching treks in TreksSection:', error);
+      }
+    }
+    fetchTreks();
+    setMounted(true);
+  }, []);
+
   // Featured trek IDs
   const featuredTrekIds = [
     'everest-base-camp',
@@ -33,11 +49,7 @@ const TreksSection: React.FC = () => {
   // Get featured treks from allTreks
   const displayTreks = featuredTrekIds
     .map(id => allTreks.find(trek => trek.id === id))
-    .filter((trek): trek is import("../data/treks").Trek => trek !== undefined);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    .filter((trek): trek is Trek => trek !== undefined);
 
   const scrollMobile = (dir: "left" | "right") => {
     if (!scrollRefMobile.current) return;

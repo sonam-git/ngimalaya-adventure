@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { getImageSrc } from '../utils/imageHelpers';
-import type { Region, Trek } from '../data/treks';
+import type { Region, Trek } from '@/lib/types';
 import TrekCard from './TrekCard';
 import CustomTrekModal from './CustomTrekModal';
 import ContactModal from './ContactModal';
@@ -35,7 +35,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl jaini-purva-regular font-bold mb-4">{region.name}</h1>
+              <h1 className="text-4xl md:text-6xl jaini-purva-regular font-bold mb-4">{region.name} </h1>
               <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed px-4">
                 {region.description}
               </p>

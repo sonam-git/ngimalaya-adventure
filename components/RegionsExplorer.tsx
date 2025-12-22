@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { Mountain, Map, Search } from 'lucide-react';
+import { Mountain, Map, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
-import type { Region, Trek } from '../data/treks';
+import type { Region, Trek } from '@/lib/types';
 import RegionCard from './RegionCard';
 import TrekCard from './TrekCard';
 import CustomTrekModal from './CustomTrekModal';
@@ -22,6 +22,33 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
   const [filteredRegions, setFilteredRegions] = useState<Region[]>(regions);
   const [filteredTreks, setFilteredTreks] = useState<Trek[]>([]);
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
+  const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  // Number of regions to show at once based on screen size
+  const getRegionsPerView = () => {
+    if (windowWidth >= 1024) return 3; // lg: 3 cards
+    if (windowWidth >= 768) return 2;  // md: 2 cards
+    return 1; // sm: 1 card
+  };
+
+  const regionsPerView = getRegionsPerView();
+
+  // Update window width on mount and resize
+  React.useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize(); // Set initial width
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset index when regions per view changes to avoid out of bounds
+  React.useEffect(() => {
+    const maxIndex = Math.max(0, filteredRegions.length - regionsPerView);
+    if (currentRegionIndex > maxIndex) {
+      setCurrentRegionIndex(maxIndex);
+    }
+  }, [regionsPerView, currentRegionIndex, filteredRegions.length]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
@@ -62,6 +89,26 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
       handleSearch();
     }
   };
+
+  // Navigation functions for region carousel
+  const handlePrevRegions = () => {
+    setCurrentRegionIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextRegions = () => {
+    setCurrentRegionIndex((prev) => 
+      Math.min(filteredRegions.length - regionsPerView, prev + 1)
+    );
+  };
+
+  const canGoPrev = currentRegionIndex > 0;
+  const canGoNext = currentRegionIndex < filteredRegions.length - regionsPerView;
+
+  // Get visible regions based on current index
+  const visibleRegions = filteredRegions.slice(
+    currentRegionIndex, 
+    currentRegionIndex + regionsPerView
+  );
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -179,8 +226,10 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
                 Regions ({filteredRegions.length})
               </h3>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {filteredRegions.map((region) => (
+            
+            {/* Single Row Region Grid with Overflow */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6">
+              {visibleRegions.map((region) => (
                 <RegionCard 
                   key={region.id} 
                   region={region} 
@@ -188,6 +237,58 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
                 />
               ))}
             </div>
+
+            {/* Navigation Controls - Only show if there are more than regionsPerView */}
+            {filteredRegions.length > regionsPerView && (
+              <div className="flex justify-center items-center gap-3 md:gap-4 mt-8">
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrevRegions}
+                  disabled={!canGoPrev}
+                  className={`p-2 md:p-3 rounded-lg font-display font-semibold transition-all duration-300 flex items-center gap-1 md:gap-2 text-sm md:text-base ${
+                    canGoPrev
+                      ? isDarkMode 
+                        ? 'bg-gray-800 hover:bg-gray-700 text-white border-2 border-gray-700 hover:border-primary-500' 
+                        : 'bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 hover:border-primary-500 shadow-md'
+                      : isDarkMode
+                        ? 'bg-gray-900 text-gray-600 border-2 border-gray-800 cursor-not-allowed'
+                        : 'bg-gray-100 text-gray-400 border-2 border-gray-200 cursor-not-allowed'
+                  }`}
+                  aria-label="Previous regions"
+                >
+                  <ChevronLeft size={20} className="md:w-6 md:h-6" />
+                  <span className="hidden sm:inline">Prev</span>
+                </button>
+
+                {/* Page Indicator */}
+                <div className={`px-3 md:px-4 py-2 rounded-lg text-sm md:text-base ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
+                  <span className="font-semibold">
+                    {currentRegionIndex + 1}-{Math.min(currentRegionIndex + regionsPerView, filteredRegions.length)}
+                  </span>
+                  <span className={`mx-1 md:mx-2 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`}>of</span>
+                  <span className="font-semibold">{filteredRegions.length}</span>
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNextRegions}
+                  disabled={!canGoNext}
+                  className={`p-2 md:p-3 rounded-lg font-display font-semibold transition-all duration-300 flex items-center gap-1 md:gap-2 text-sm md:text-base ${
+                    canGoNext
+                      ? isDarkMode 
+                        ? 'bg-gray-800 hover:bg-gray-700 text-white border-2 border-gray-700 hover:border-primary-500' 
+                        : 'bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 hover:border-primary-500 shadow-md'
+                      : isDarkMode
+                        ? 'bg-gray-900 text-gray-600 border-2 border-gray-800 cursor-not-allowed'
+                        : 'bg-gray-100 text-gray-400 border-2 border-gray-200 cursor-not-allowed'
+                  }`}
+                  aria-label="Next regions"
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight size={20} className="md:w-6 md:h-6" />
+                </button>
+              </div>
+            )}
           </div>
         )}
 

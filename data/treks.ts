@@ -88,7 +88,7 @@ export const popularTreks: Trek[] = [
 // Regions data with dynamic trek counts
 export const trekRegions: Region[] = [
   {
-    id: 'everest-region',
+    id: 'everest',
     name: 'Everest Region',
     description: 'Home to the world\'s highest peak, offering iconic treks with spectacular mountain views and rich Sherpa culture.',
     image: '/assets/images/ebc.jpeg',
@@ -96,7 +96,7 @@ export const trekRegions: Region[] = [
     popularTreks: everestRegionTreks.slice(0, 3).map(trek => trek.name)
   },
   {
-    id: 'annapurna-region',
+    id: 'annapurna',
     name: 'Annapurna Region',
     description: 'Diverse landscapes from subtropical forests to high alpine terrain with stunning Annapurna massif views.',
     image: '/assets/images/thorangla-pass.jpeg',
@@ -104,7 +104,7 @@ export const trekRegions: Region[] = [
     popularTreks: annapurnaRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'manaslu-region',
+    id: 'manaslu',
     name: 'Manaslu Region',
     description: 'Off-the-beaten-path treks around the eighth highest mountain with Tibetan Buddhist culture.',
     image: '/assets/images/bhimthang.jpeg',
@@ -112,7 +112,7 @@ export const trekRegions: Region[] = [
     popularTreks: manasluRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'kanchenjunga-region',
+    id: 'kanchenjunga',
     name: 'Kanchenjunga Region',
     description: 'Remote wilderness around the third highest mountain in the world with pristine biodiversity.',
     image: '/assets/images/kanchanjungabc.jpg',
@@ -120,7 +120,7 @@ export const trekRegions: Region[] = [
     popularTreks: kanchenjungaRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'langtang-region',
+    id: 'langtang',
     name: 'Langtang Region',
     description: 'Beautiful valley known as "Valley of Glaciers" with Tamang culture and stunning mountain views.',
     image: '/assets/images/kyangjin.jpg',
@@ -128,7 +128,7 @@ export const trekRegions: Region[] = [
     popularTreks: langtangRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'dolpo-region',
+    id: 'dolpo',
     name: 'Dolpo Region',
     description: 'Remote and pristine region offering unique Tibetan Buddhist culture and stunning trans-Himalayan landscapes.',
     image: '/assets/images/dolpa.jpg',
@@ -136,7 +136,7 @@ export const trekRegions: Region[] = [
     popularTreks: dolpoRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'dhaulagiri-region',
+    id: 'dhaulagiri',
     name: 'Dhaulagiri Region',
     description: 'Challenging treks around the seventh highest mountain with dramatic landscapes and remote villages.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -144,7 +144,7 @@ export const trekRegions: Region[] = [
     popularTreks: dhaulagiriRegionTreks.map((trek: Trek) => trek.name)
   },
   {
-    id: 'makalu-region',
+    id: 'makalu',
     name: 'Makalu Region',
     description: 'Remote region around the fifth highest mountain with pristine wilderness and diverse wildlife.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -152,7 +152,7 @@ export const trekRegions: Region[] = [
     popularTreks: makaluRegionTreks.map(trek => trek.name)
   },
   {
-    id: 'rolwaling-region',
+    id: 'rolwaling',
     name: 'Rolwaling Region',
     description: 'Hidden valley between Everest and Langtang with challenging high passes and pristine mountain scenery.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',

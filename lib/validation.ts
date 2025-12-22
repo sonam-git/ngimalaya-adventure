@@ -3,7 +3,7 @@
  * These functions help ensure data integrity between regions and treks
  */
 
-import { Trek, Region } from '@/data/treks';
+import { Trek, Region } from './types';
 
 export interface ValidationResult {
   isValid: boolean;

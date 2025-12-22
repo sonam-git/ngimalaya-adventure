@@ -1,114 +1,77 @@
 /**
- * Utility functions to fetch from Storyblok with fallback to static data
- * If Storyblok fails or is not configured, returns hardcoded data
+ * Utility functions to fetch data from Storyblok CMS
+ * All data is fetched from Storyblok - no fallback to static data
+ * Returns null or empty arrays if data is not available
  */
 
-import { Trek, trekRegions } from '@/data/treks';
-import { allTreks } from '@/data/treks';
+import { Trek, PeakExpedition, SafariPackage } from './types';
 import {
   getAllTreks,
   getTrekBySlug,
   getTreksByRegion,
   getAllRegions,
   getRegionBySlug,
-  getAllPeaks,
-  getPeakBySlug,
-  getAllSafaris,
-  getSafariBySlug,
+  getAllPeaksFromSection,
+  getPeakBySlugFromSection,
+  getAllSafarisFromSection,
+  getSafariBySlugFromSection,
 } from './storyblok-api';
 import {
   convertStoryblokTrekToTrek,
   convertStoryblokRegionToRegion,
   convertStoryblokPeakToPeak,
   convertStoryblokSafariToSafari,
+  type StoryblokPeakBlock,
+  type StoryblokSafariBlock,
 } from './storyblok-converters';
 
-// Check if Storyblok is configured
-const isStoryblokConfigured = () => {
-  return !!process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN;
-};
-
 /**
- * Fetch all treks with fallback to static data
+ * Fetch all treks from Storyblok
+ * Returns empty array if fetch fails or no data available
  */
 export async function fetchTreksWithFallback(): Promise<Trek[]> {
-  // Return static data immediately if Storyblok is not configured
-  if (!isStoryblokConfigured()) {
-    console.log('🔴 Storyblok not configured, using static trek data');
-    return allTreks.filter(t => t.adventureType === 'trekking');
-  }
-
   try {
     const storyblokTreks = await getAllTreks();
     
     if (storyblokTreks && storyblokTreks.length > 0) {
-      console.log(`✅ Fetched ${storyblokTreks.length} treks from Storyblok - ONLY showing Storyblok data`);
-      // ONLY return Storyblok data, don't mix with static
+      console.log(`✅ Fetched ${storyblokTreks.length} treks from Storyblok`);
       return storyblokTreks.map(convertStoryblokTrekToTrek);
     }
     
-    // If no data returned, use static
-    console.log('⚠️ No treks from Storyblok, using static data');
-    return allTreks.filter(t => t.adventureType === 'trekking');
+    console.log('⚠️ No treks returned from Storyblok');
+    return [];
   } catch (error) {
-    console.log('❌ Error fetching treks from Storyblok, using static data:', error);
-    return allTreks.filter(t => t.adventureType === 'trekking');
+    console.error('❌ Error fetching treks from Storyblok:', error);
+    return [];
   }
 }
 
 /**
- * Fetch a single trek by slug with fallback to static data
+ * Fetch a single trek by slug from Storyblok
+ * Returns null if not found or fetch fails
  */
 export async function fetchTrekBySlugWithFallback(slug: string): Promise<Trek | null> {
-  // Try static data first if Storyblok is not configured
-  if (!isStoryblokConfigured()) {
-    return allTreks.find(t => t.id === slug) || null;
-  }
-
   try {
     const storyblokTrek = await getTrekBySlug(slug);
     
     if (storyblokTrek) {
+      console.log(`✅ Fetched trek "${slug}" from Storyblok`);
       return convertStoryblokTrekToTrek(storyblokTrek);
     }
     
-    // Fallback to static data
-    return allTreks.find(t => t.id === slug) || null;
-  } catch {
-    return allTreks.find(t => t.id === slug) || null;
+    console.log(`⚠️ Trek "${slug}" not found in Storyblok`);
+    return null;
+  } catch (error) {
+    console.error(`❌ Error fetching trek "${slug}" from Storyblok:`, error);
+    return null;
   }
 }
 
 /**
- * Fetch treks by region with fallback to static data
+ * Fetch treks by region from Storyblok
+ * Returns empty array if fetch fails or no data available
  */
 export async function fetchTreksByRegionWithFallback(regionId: string): Promise<Trek[]> {
-  // Helper function to filter static treks by region
-  const filterStaticTreks = () => {
-    // Convert region ID to match static data format
-    // e.g., "everest" -> "Everest" or "everest" -> "everest region"
-    const normalizedRegionId = regionId.toLowerCase().replace('-', ' ');
-    
-    return allTreks.filter(t => {
-      const trekRegion = t.region.toLowerCase();
-      // Only include treks with adventureType 'trekking' (exclude peaks and safaris)
-      const isTrekking = t.adventureType === 'trekking';
-      // Match if region contains the regionId (e.g., "everest region" contains "everest")
-      // or if they're exactly equal (case-insensitive)
-      const matchesRegion = trekRegion.includes(normalizedRegionId) || 
-             trekRegion === normalizedRegionId ||
-             trekRegion.replace(' region', '') === normalizedRegionId;
-      
-      return isTrekking && matchesRegion;
-    });
-  };
-
-  if (!isStoryblokConfigured()) {
-    const staticTreks = filterStaticTreks();
-    console.log(`🔴 Storyblok not configured, using ${staticTreks.length} static treks for region: ${regionId}`);
-    return staticTreks;
-  }
-
   try {
     const storyblokTreks = await getTreksByRegion(regionId);
     
@@ -118,172 +81,149 @@ export async function fetchTreksByRegionWithFallback(regionId: string): Promise<
         .map(convertStoryblokTrekToTrek)
         .filter((t: Trek) => t.adventureType === 'trekking');
       
-      console.log(`✅ Fetched ${storyblokTreks.length} items for region ${regionId} from Storyblok, filtered to ${convertedTreks.length} treks (excluding peaks)`);
-      // ONLY return Storyblok data, don't mix with static
+      console.log(`✅ Fetched ${storyblokTreks.length} items for region "${regionId}" from Storyblok, filtered to ${convertedTreks.length} treks`);
       return convertedTreks;
     }
     
-    // Fallback to static data only if Storyblok returns nothing
-    const staticTreks = filterStaticTreks();
-    console.log(`⚠️ No treks for region ${regionId} from Storyblok, using ${staticTreks.length} static treks`);
-    return staticTreks;
+    console.log(`⚠️ No treks found for region "${regionId}" in Storyblok`);
+    return [];
   } catch (error) {
-    const staticTreks = filterStaticTreks();
-    console.log(`❌ Error fetching treks for region ${regionId}, using ${staticTreks.length} static treks:`, error);
-    return staticTreks;
+    console.error(`❌ Error fetching treks for region "${regionId}" from Storyblok:`, error);
+    return [];
   }
 }
 
 /**
- * Fetch all regions with fallback to static data
+ * Fetch all regions from Storyblok
+ * Returns empty array if fetch fails or no data available
  */
 export async function fetchRegionsWithFallback() {
-  if (!isStoryblokConfigured()) {
-    console.log('🔴 Storyblok not configured, using static regions data');
-    return trekRegions;
-  }
-
   try {
     console.log('🔍 Fetching regions from Storyblok...');
     const storyblokRegions = await getAllRegions();
     
     if (storyblokRegions && storyblokRegions.length > 0) {
-      console.log(`✅ Successfully fetched ${storyblokRegions.length} regions from Storyblok - ONLY showing Storyblok data`);
-      // ONLY return Storyblok data, don't mix with static
+      console.log(`✅ Successfully fetched ${storyblokRegions.length} regions from Storyblok`);
       return storyblokRegions.map(convertStoryblokRegionToRegion);
     }
     
-    // Only fallback if Storyblok returns nothing
-    console.log('⚠️ No regions from Storyblok, using static data');
-    return trekRegions;
+    console.log('⚠️ No regions returned from Storyblok');
+    return [];
   } catch (error) {
-    console.error('❌ Error fetching regions from Storyblok, using static data:', error);
-    return trekRegions;
+    console.error('❌ Error fetching regions from Storyblok:', error);
+    return [];
   }
 }
 
 /**
- * Fetch a single region by slug with fallback to static data
+ * Fetch a single region by slug from Storyblok
+ * Returns null if not found or fetch fails
  */
 export async function fetchRegionBySlugWithFallback(slug: string) {
-  if (!isStoryblokConfigured()) {
-    return trekRegions.find(r => r.id === slug) || null;
-  }
-
   try {
     const storyblokRegion = await getRegionBySlug(slug);
     
     if (storyblokRegion) {
+      console.log(`✅ Fetched region "${slug}" from Storyblok`);
       return convertStoryblokRegionToRegion(storyblokRegion);
     }
     
-    // Fallback to static data
-    return trekRegions.find(r => r.id === slug) || null;
-  } catch {
-    return trekRegions.find(r => r.id === slug) || null;
+    console.log(`⚠️ Region "${slug}" not found in Storyblok`);
+    return null;
+  } catch (error) {
+    console.error(`❌ Error fetching region "${slug}" from Storyblok:`, error);
+    return null;
   }
 }
 
 /**
- * Fetch all peaks with fallback to static data
+ * Fetch all peaks from Storyblok (using nested peak_section structure)
+ * Returns empty array if fetch fails or no data available
  */
-export async function fetchPeaksWithFallback(): Promise<Trek[]> {
-  if (!isStoryblokConfigured()) {
-    console.log('Storyblok not configured, using static peaks data');
-    return allTreks.filter(t => t.adventureType === 'peak');
-  }
-
+export async function fetchPeaksWithFallback(): Promise<PeakExpedition[]> {
   try {
-    console.log('Fetching peaks from Storyblok...');
-    const storyblokPeaks = await getAllPeaks();
+    console.log('🔍 Fetching peaks from Storyblok peak_section...');
+    const storyblokPeaks = await getAllPeaksFromSection();
     
     if (storyblokPeaks && storyblokPeaks.length > 0) {
-      console.log(`Successfully fetched ${storyblokPeaks.length} peaks from Storyblok`);
-      return storyblokPeaks.map(convertStoryblokPeakToPeak);
+      const peaks = storyblokPeaks.map((p: unknown) => convertStoryblokPeakToPeak(p as StoryblokPeakBlock));
+      console.log(`✅ Found ${peaks.length} peaks from Storyblok`);
+      return peaks;
     }
     
-    console.log('No peaks from Storyblok, using static data');
-    return allTreks.filter(t => t.adventureType === 'peak');
+    console.log('⚠️ No peaks found in Storyblok');
+    return [];
   } catch (error) {
-    console.error('Error fetching peaks from Storyblok, using static data:', error);
-    return allTreks.filter(t => t.adventureType === 'peak');
+    console.error('❌ Error fetching peaks from Storyblok:', error);
+    return [];
   }
 }
 
 /**
- * Fetch a single peak by slug with fallback to static data
+ * Fetch a single peak by slug from Storyblok (using nested peak_section structure)
+ * Returns null if not found or fetch fails
  */
-export async function fetchPeakBySlugWithFallback(slug: string): Promise<Trek | null> {
-  if (!isStoryblokConfigured()) {
-    console.log('Storyblok not configured, using static peak data');
-    return allTreks.find(t => t.id === slug && t.adventureType === 'peak') || null;
-  }
-
+export async function fetchPeakBySlugWithFallback(slug: string): Promise<PeakExpedition | null> {
   try {
-    console.log(`Fetching peak ${slug} from Storyblok...`);
-    const storyblokPeak = await getPeakBySlug(slug);
+    console.log(`🔍 Fetching peak "${slug}" from Storyblok peak_section...`);
+    const storyblokPeak = await getPeakBySlugFromSection(slug);
     
     if (storyblokPeak) {
-      console.log(`Successfully fetched peak ${slug} from Storyblok`);
-      return convertStoryblokPeakToPeak(storyblokPeak);
+      const peak = convertStoryblokPeakToPeak(storyblokPeak as StoryblokPeakBlock);
+      console.log(`✅ Fetched peak "${slug}" from Storyblok`);
+      return peak;
     }
     
-    console.log(`Peak ${slug} not found in Storyblok, using static data`);
-    return allTreks.find(t => t.id === slug && t.adventureType === 'peak') || null;
+    console.log(`⚠️ Peak "${slug}" not found in Storyblok`);
+    return null;
   } catch (error) {
-    console.error(`Error fetching peak ${slug} from Storyblok, using static data:`, error);
-    return allTreks.find(t => t.id === slug && t.adventureType === 'peak') || null;
+    console.error(`❌ Error fetching peak "${slug}" from Storyblok:`, error);
+    return null;
   }
 }
 
 /**
- * Fetch all safaris with fallback to static data
+ * Fetch all safaris from Storyblok (using nested safari_section structure)
+ * Returns empty array if fetch fails or no data available
  */
-export async function fetchSafarisWithFallback(): Promise<Trek[]> {
-  if (!isStoryblokConfigured()) {
-    console.log('Storyblok not configured, using static safaris data');
-    return allTreks.filter(t => t.adventureType === 'safari');
-  }
-
+export async function fetchSafarisWithFallback(): Promise<SafariPackage[]> {
   try {
-    console.log('Fetching safaris from Storyblok...');
-    const storyblokSafaris = await getAllSafaris();
+    console.log('🔍 Fetching safaris from Storyblok safari_section...');
+    const storyblokSafaris = await getAllSafarisFromSection();
     
     if (storyblokSafaris && storyblokSafaris.length > 0) {
-      console.log(`Successfully fetched ${storyblokSafaris.length} safaris from Storyblok`);
-      return storyblokSafaris.map(convertStoryblokSafariToSafari);
+      const safaris = storyblokSafaris.map((s: unknown) => convertStoryblokSafariToSafari(s as StoryblokSafariBlock));
+      console.log(`✅ Found ${safaris.length} safaris from Storyblok`);
+      return safaris;
     }
     
-    console.log('No safaris from Storyblok, using static data');
-    return allTreks.filter(t => t.adventureType === 'safari');
+    console.log('⚠️ No safaris found in Storyblok');
+    return [];
   } catch (error) {
-    console.error('Error fetching safaris from Storyblok, using static data:', error);
-    return allTreks.filter(t => t.adventureType === 'safari');
+    console.error('❌ Error fetching safaris from Storyblok:', error);
+    return [];
   }
 }
 
 /**
- * Fetch a single safari by slug with fallback to static data
+ * Fetch a single safari by slug from Storyblok (using nested safari_section structure)
+ * Returns null if not found or fetch fails
  */
-export async function fetchSafariBySlugWithFallback(slug: string): Promise<Trek | null> {
-  if (!isStoryblokConfigured()) {
-    console.log('Storyblok not configured, using static safari data');
-    return allTreks.find(t => t.id === slug && t.adventureType === 'safari') || null;
-  }
-
+export async function fetchSafariBySlugWithFallback(slug: string): Promise<SafariPackage | null> {
   try {
-    console.log(`Fetching safari ${slug} from Storyblok...`);
-    const storyblokSafari = await getSafariBySlug(slug);
+    console.log(`🔍 Fetching safari "${slug}" from Storyblok safari_section...`);
+    const storyblokSafari = await getSafariBySlugFromSection(slug);
     
     if (storyblokSafari) {
-      console.log(`Successfully fetched safari ${slug} from Storyblok`);
-      return convertStoryblokSafariToSafari(storyblokSafari);
+      const safari = convertStoryblokSafariToSafari(storyblokSafari as StoryblokSafariBlock);
+      console.log(`✅ Fetched safari "${slug}" from Storyblok`);
+      return safari;
     }
     
-    console.log(`Safari ${slug} not found in Storyblok, using static data`);
-    return allTreks.find(t => t.id === slug && t.adventureType === 'safari') || null;
+    console.log(`⚠️ Safari "${slug}" not found in Storyblok`);
+    return null;
   } catch (error) {
-    console.error(`Error fetching safari ${slug} from Storyblok, using static data:`, error);
-    return allTreks.find(t => t.id === slug && t.adventureType === 'safari') || null;
+    console.error(`❌ Error fetching safari "${slug}" from Storyblok:`, error);
+    return null;
   }
 }

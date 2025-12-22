@@ -1,13 +1,30 @@
 'use client';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from 'next/image';
 import { useTheme } from "../contexts/ThemeContext";
-import { trekRegions } from "../data/treks";
 import { Phone, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { Region } from '@/lib/types';
 
 const Footer: React.FC = () => {
   const { isDarkMode } = useTheme();
+  const [trekRegions, setTrekRegions] = useState<Region[]>([]);
+
+  // Fetch regions from Storyblok on mount
+  useEffect(() => {
+    async function fetchRegions() {
+      try {
+        const response = await fetch('/api/regions');
+        if (response.ok) {
+          const data = await response.json();
+          setTrekRegions(data);
+        }
+      } catch (error) {
+        console.error('Error fetching regions in Footer:', error);
+      }
+    }
+    fetchRegions();
+  }, []);
 
   return (
     <footer

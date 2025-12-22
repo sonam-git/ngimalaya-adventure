@@ -1,14 +1,34 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Flag, Mountain, Award, Shield, Camera } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import ContactModal from '../../components/ContactModal';
-import { peakExpeditions } from '../../data/peakExpeditions';
+import { PeakExpedition } from '@/lib/types';
 import Link from 'next/link';
 
 const PeakExpeditionPage: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [peaks, setPeaks] = useState<PeakExpedition[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch peaks from API
+  useEffect(() => {
+    async function fetchPeaks() {
+      try {
+        const response = await fetch('/api/peaks');
+        if (response.ok) {
+          const data = await response.json();
+          setPeaks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching peaks:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPeaks();
+  }, []);
 
   const features = [
     {
@@ -120,7 +140,16 @@ const PeakExpeditionPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {peakExpeditions.map((expedition) => (
+            {isLoading ? (
+              <div className="col-span-full text-center py-12">
+                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading peaks...</p>
+              </div>
+            ) : peaks.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No peaks available at the moment.</p>
+              </div>
+            ) : (
+              peaks.map((expedition) => (
               <div
                 key={expedition.id}
                 className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
@@ -200,7 +229,8 @@ const PeakExpeditionPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+            )}
           </div>
         </div>
       </div>

@@ -25,6 +25,15 @@ interface TrekDetailTabsProps {
 const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange }) => {
   const { isDarkMode } = useTheme();
 
+  const handleTabClick = (tabId: string) => {
+    // Scroll to top when changing tabs
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    onTabChange(tabId);
+  };
+
   const tabs: Tab[] = [
     { id: 'overview', label: 'Overview', icon: Mountain },
     { id: 'highlights', label: 'Highlights', icon: Star },
@@ -37,17 +46,16 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
 
   return (
     <div
-      className="bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 w-full"
+      className="bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700"
       aria-label="Trek detail tabs"
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex overflow-x-auto scrollbar-hide">
-          {tabs.map((tab) => {
+      <div className="flex overflow-x-auto scrollbar-hide">
+        {tabs.map((tab) => {
             const IconComponent = tab.icon;
             return (
               <button
                 key={tab.id}
-                onClick={() => onTabChange(tab.id)}
+                onClick={() => handleTabClick(tab.id)}
                 className={`flex-shrink-0 px-4 md:px-6 py-3 md:py-4 font-semibold text-xs md:text-sm transition-all duration-200 whitespace-nowrap flex items-center gap-2 border-b-2 ${
                   activeTab === tab.id
                     ? `${isDarkMode ? 'text-blue-400 border-blue-400 bg-blue-900/20' : 'text-blue-600 border-blue-600 bg-blue-50'}`
@@ -61,7 +69,6 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
             );
           })}
         </div>
-      </div>
     </div>
   );
 };

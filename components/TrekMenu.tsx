@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Trek } from '../data/treks';
+import { Trek } from '@/lib/types';
 
 interface TrekMenuProps {
   treks: Trek[];
@@ -18,10 +18,10 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
 
   return (
     <div
-      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700 w-full"
+      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700"
       aria-label="Trek menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
         {treks.map(trek => (
           <li key={trek.id} className="flex-shrink-0 w-max">
             <button

@@ -14,7 +14,7 @@ import {
   ChevronUp,
   MapPin
 } from 'lucide-react';
-import type { Trek } from '../data/treks';
+import type { Trek } from '@/lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { useTrekTab } from '../contexts/TrekTabContext';
 import { getImageSrc } from '../utils/imageHelpers';

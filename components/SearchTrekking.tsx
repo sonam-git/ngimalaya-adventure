@@ -1,7 +1,7 @@
 'use client '
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { allTreks, Trek } from '../data/treks';
+import { Trek } from '@/lib/types';
 import { FaHiking, FaMountain, FaBinoculars, FaMapMarkerAlt, FaChartLine, FaClock, FaEnvelope, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import CustomTrekModal from './CustomTrekModal';
 import { useTheme } from '../contexts/ThemeContext';
@@ -26,24 +26,37 @@ const DIFFICULTIES = [
 const DURATIONS = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25];
 
 // Helper to get unique regions from treks data
-const getRegions = () => {
-  const regions = allTreks
+const getRegions = (treks: Trek[] | undefined) => {
+  if (!treks || treks.length === 0) return [];
+  
+  const regions = treks
     .filter((t: Trek) => t.region && t.region.length > 0)
     .map((t: Trek) => t.region)
     .filter(Boolean);
   return Array.from(new Set(regions)) as string[];
 };
 
-const SearchTrekking = () => {
+interface SearchTrekkingProps {
+  treks?: Trek[];
+}
+
+const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks }) => {
   const { isDarkMode } = useTheme();
   const [adventureType, setAdventureType] = useState('trekking');
   const [region, setRegion] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [duration, setDuration] = useState('');
-  const [results, setResults] = useState<Trek[]>(allTreks);
+  const [results, setResults] = useState<Trek[]>(treks || []);
   const [searched, setSearched] = useState(false);
   const [showCustomTrekModal, setShowCustomTrekModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  // Update results when treks prop changes
+  useEffect(() => {
+    if (!searched && treks) {
+      setResults(treks);
+    }
+  }, [treks, searched]);
 
   // Prevent body scroll when mobile modal is open
   useEffect(() => {
@@ -61,7 +74,13 @@ const SearchTrekking = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searched) {
-      const filtered = allTreks.filter((t: Trek) => {
+      if (!treks || treks.length === 0) {
+        setResults([]);
+        setSearched(true);
+        return;
+      }
+      
+      const filtered = treks.filter((t: Trek) => {
         if (adventureType && t.adventureType && t.adventureType.toLowerCase() !== adventureType) return false;
         // Region filter for all adventure types
         if (region && t.region !== region) return false;
@@ -177,7 +196,7 @@ const SearchTrekking = () => {
                   onChange={e => { setRegion(e.target.value); setSearched(false); }}
                 >
                   <option value="">All Regions</option>
-                  {getRegions().map((r: string) => <option key={r} value={r}>{r}</option>)}
+                  {getRegions(treks).map((r: string) => <option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
 
@@ -347,7 +366,7 @@ const SearchTrekking = () => {
               <div className="relative">
                 <select className="w-full rounded-lg border-gray-300 dark:border-gray-700 py-2 pl-9 pr-3 focus:ring-2 focus:ring-primary-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm" value={region} onChange={e => { setRegion(e.target.value); setSearched(false); }}>
                   <option value="">All Regions</option>
-                  {getRegions().map((r: string) => <option key={r} value={r}>{r}</option>)}
+                  {getRegions(treks).map((r: string) => <option key={r} value={r}>{r}</option>)}
                 </select>
                 <span className={`absolute left-2 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-white' : 'text-primary-600'}`}><FaMapMarkerAlt /></span>
               </div>

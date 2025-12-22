@@ -1,14 +1,34 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import ContactModal from '../../components/ContactModal';
-import { safariPackages } from '../../data/safariPackages';
+import { SafariPackage } from '@/lib/types';
 import Link from 'next/link';
 
 const SafariPage: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [safaris, setSafaris] = useState<SafariPackage[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch safaris from API
+  useEffect(() => {
+    async function fetchSafaris() {
+      try {
+        const response = await fetch('/api/safaris');
+        if (response.ok) {
+          const data = await response.json();
+          setSafaris(data);
+        }
+      } catch (error) {
+        console.error('Error fetching safaris:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchSafaris();
+  }, []);
 
   const handleBookNow = () => {
     setIsContactModalOpen(true);
@@ -135,7 +155,16 @@ const SafariPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {safariPackages.map((safari) => (
+            {isLoading ? (
+              <div className="col-span-full text-center py-12">
+                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading safaris...</p>
+              </div>
+            ) : safaris.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No safaris available at the moment.</p>
+              </div>
+            ) : (
+              safaris.map((safari) => (
               <div
                 key={safari.id}
                 className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
@@ -218,7 +247,8 @@ const SafariPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+            )}
           </div>
         </div>
       </div>

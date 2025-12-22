@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Calendar, User, MapPin, Activity, Mail, Phone, Users, Mountain, Loader2 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import type { Trek } from '../data/treks';
-import { allTreks } from '../data/treks';
+import type { Trek } from '@/lib/types';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -33,6 +32,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
   const { isDarkMode } = useTheme();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [allTreks, setAllTreks] = useState<Trek[]>([]);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -52,6 +52,22 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
     emergencyContact: '',
     emergencyPhone: ''
   });
+
+  // Fetch treks from Storyblok on mount
+  useEffect(() => {
+    async function fetchTreks() {
+      try {
+        const response = await fetch('/api/treks');
+        if (response.ok) {
+          const data = await response.json();
+          setAllTreks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching treks in BookingModal:', error);
+      }
+    }
+    fetchTreks();
+  }, []);
 
   const fitnessLevels = [
     { value: 'beginner', label: 'Beginner - Little to no hiking experience' },

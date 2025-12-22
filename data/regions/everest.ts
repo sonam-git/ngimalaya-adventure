@@ -160,7 +160,6 @@ export const everestRegionTreks: Trek[] = [
       'All required permits (Sagarmatha National Park, TIMS)',
       'Welcome and farewell dinners',
       'Comprehensive pre-trek briefing',
-      'Trekking equipment (duffel bag, sleeping bag, down jacket)',
       'First aid kit and emergency arrangements',
       'Government taxes and service charges'
     ],

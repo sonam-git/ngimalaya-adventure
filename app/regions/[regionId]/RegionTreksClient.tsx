@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import RegionTreks from '@/components/RegionTreks';
-import type { Trek, Region } from '@/data/treks';
+import type { Trek, Region } from '@/lib/types';
 
 interface RegionTreksClientProps {
   region: Region;

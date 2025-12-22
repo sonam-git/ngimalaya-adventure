@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import RegionsExplorer from '@/components/RegionsExplorer';
-import type { Region, Trek } from '@/data/treks';
+import type { Region, Trek } from '@/lib/types';
 
 interface RegionsExplorerClientProps {
   regions: Region[];

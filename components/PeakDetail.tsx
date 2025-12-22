@@ -11,7 +11,7 @@ import {
   Thermometer,
   Flag
 } from 'lucide-react';
-import type { PeakExpedition } from '../data/peakExpeditions';
+import type { PeakExpedition } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { usePeakTab } from '../contexts/PeakTabContext';
 import ContactModal from './ContactModal';
@@ -284,9 +284,25 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
               </ul>
             </div>
           )}
+          {/* Technical Requirements Tab */}
+          {activeTab === ' technicalRequirements' && (
+            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <Mountain className="mr-3 text-green-500" size={28} />
+                Technical Requirements
+              </h2>
+              <ul className="space-y-3">
+                {peak.technicalRequirements.map((item, index) => (
+                  <li key={index} className="flex items-start space-x-3">
+                    <Mountain className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={20} />
+                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
-
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}

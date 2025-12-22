@@ -2,7 +2,7 @@
 import React from 'react';
 import { Calendar, Mountain, ArrowRight, TrendingUp, MapPin } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import type { Trek } from '../data/treks';
+import type { Trek } from '@/lib/types';
 
 interface TrekCardProps {
   trek: Trek;

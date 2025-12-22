@@ -9,10 +9,10 @@ interface SafariMenuProps {
 const SafariMenu: React.FC<SafariMenuProps> = ({ safaris, selectedSafari, onSelect }) => {
   return (
     <div
-      className="w-full bg-white dark:bg-gray-900 shadow-md border-b border-green-300"
+      className="bg-white dark:bg-gray-900 shadow-md border-b border-green-300"
       aria-label="Safari adventure menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
         {safaris.map(safari => (
           <li key={safari.id} className="flex-shrink-0 w-max">
             <button

@@ -12,7 +12,7 @@ import {
   Trees,
   Camera
 } from 'lucide-react';
-import type { SafariPackage } from '../data/safariPackages';
+import type { SafariPackage } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSafariTab } from '../contexts/SafariTabContext';
 import ContactModal from './ContactModal';

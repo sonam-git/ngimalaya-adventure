@@ -8,9 +8,6 @@ import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
 import PrayerFlagBorder from './PrayerFlagBorder';
 import GoogleTranslateClient from './GoogleTranslateClient';
-import { trekRegions, allTreks } from '../data/treks';
-import { peakExpeditions } from '../data/peakExpeditions';
-import { safariPackages } from '../data/safariPackages';
 import PeakMenu from './PeakMenu';
 import SafariMenu from './SafariMenu';
 import TrekMenu from './TrekMenu';
@@ -20,6 +17,7 @@ import PeakDetailTabs from './PeakDetailTabs';
 import { useTrekTab } from '../contexts/TrekTabContext';
 import { useSafariTab } from '../contexts/SafariTabContext';
 import { usePeakTab } from '../contexts/PeakTabContext';
+import { Trek, Region, PeakExpedition, SafariPackage } from '@/lib/types';
 
 const Header: React.FC = () => {
   const { activeTab, setActiveTab } = useTrekTab();
@@ -28,9 +26,51 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [trekRegions, setTrekRegions] = useState<Region[]>([]);
+  const [allTreks, setAllTreks] = useState<Trek[]>([]);
+  const [allPeaks, setAllPeaks] = useState<PeakExpedition[]>([]);
+  const [allSafaris, setAllSafaris] = useState<SafariPackage[]>([]);
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
+
+  // Fetch regions and treks from Storyblok on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Fetch regions
+        const regionsResponse = await fetch('/api/regions');
+        if (regionsResponse.ok) {
+          const regionsData = await regionsResponse.json();
+          setTrekRegions(regionsData);
+        }
+
+        // Fetch treks
+        const treksResponse = await fetch('/api/treks');
+        if (treksResponse.ok) {
+          const treksData = await treksResponse.json();
+          setAllTreks(treksData);
+        }
+
+        // Fetch peaks
+        const peaksResponse = await fetch('/api/peaks');
+        if (peaksResponse.ok) {
+          const peaksData = await peaksResponse.json();
+          setAllPeaks(peaksData);
+        }
+
+        // Fetch safaris
+        const safarisResponse = await fetch('/api/safaris');
+        if (safarisResponse.ok) {
+          const safarisData = await safarisResponse.json();
+          setAllSafaris(safarisData);
+        }
+      } catch (error) {
+        console.error('Error fetching data in Header:', error);
+      }
+    }
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -324,7 +364,7 @@ const Header: React.FC = () => {
           {shouldShowPeakMenu && !isMobileMenuOpen && (
             <>
               <PeakMenu
-                peaks={peakExpeditions.map(peak => ({ id: peak.id, name: peak.name }))}
+                peaks={allPeaks.map(peak => ({ id: peak.id, name: peak.name }))}
                 selectedPeak={getCurrentPeakId()}
                 onSelect={handlePeakSelect}
               />
@@ -341,7 +381,7 @@ const Header: React.FC = () => {
           {shouldShowSafariMenu && !isMobileMenuOpen && (
             <>
               <SafariMenu
-                safaris={safariPackages.map(safari => ({ id: safari.id, name: safari.name }))}
+                safaris={allSafaris.map(safari => ({ id: safari.id, name: safari.name }))}
                 selectedSafari={getCurrentSafariId()}
                 onSelect={handleSafariSelect}
               />

@@ -1,14 +1,46 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import SafariDetail from '@/components/SafariDetail';
-import { safariPackages } from '@/data/safariPackages';
+import { SafariPackage } from '@/lib/types';
 
 export default function SafariDetailPage() {
   const params = useParams();
   const safariId = params.safariId as string;
+  const [safari, setSafari] = useState<SafariPackage | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   
-  const safari = safariPackages.find(s => s.id === safariId);
+  // Fetch safari from API
+  useEffect(() => {
+    async function fetchSafari() {
+      try {
+        const response = await fetch('/api/safaris');
+        if (response.ok) {
+          const data = await response.json();
+          const foundSafari = data.find((s: SafariPackage) => s.id === safariId);
+          setSafari(foundSafari || null);
+        }
+      } catch (error) {
+        console.error('Error fetching safari:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchSafari();
+  }, [safariId]);
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen">
+        <div className="min-h-screen pt-32 pb-16 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-300">Loading safari...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (!safari) {
     return (
