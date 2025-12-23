@@ -4,7 +4,7 @@ const nextConfig = {
   
   // Image optimization
   images: {
-    domains: [],
+    domains: ['a.storyblok.com', 'images.unsplash.com'],
     unoptimized: false,
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

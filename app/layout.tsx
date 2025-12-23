@@ -11,6 +11,7 @@ import Footer from '@/components/Footer'
 import BackgroundImage from '@/components/BackgroundImage'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 import StructuredData from '@/components/StructuredData'
+import AnnouncementModal from '@/components/AnnouncementModal'
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -21,6 +22,22 @@ export const metadata: Metadata = {
   },
   description: "Experience the Himalayas with Ngimalaya Adventure - a Sherpa-owned trekking company offering authentic Nepal treks, peak expeditions, wildlife safaris, and custom adventure tours. Expert guides, 20+ years experience.",
   keywords: [
+    "Ngimalaya Adventure",
+    "best guide company in Nepal",
+    "best prices trekking Nepal",
+    "best trekking packages Nepal",
+    "best trekking company in Nepal",
+    "Nepal trekking agency",
+    "Himalayan treks",
+    "Sherpa guides Nepal",
+    "Everest Base Camp",
+    "Annapurna trekking",
+    "custom Nepal tours",
+    "wildlife safari Nepal",
+    "mountain climbing Nepal",
+    "adventure travel Nepal",
+    "guided treks Himalayas",
+    "Nepal tour packages",  
     "Nepal trekking",
     "Everest Base Camp trek",
     "Annapurna Circuit",
@@ -50,7 +67,7 @@ export const metadata: Metadata = {
     description: "Authentic Sherpa-led treks and expeditions in Nepal. Everest Base Camp, Annapurna, peak climbing, wildlife safaris. Expert local guides with 20+ years experience.",
     url: 'https://ngimalayaadventure.com',
     siteName: 'Ngimalaya Adventure',
-    locale: 'en_US',
+    locale: 'nepal-NP',
     type: 'website',
     images: [
       {
@@ -219,6 +236,7 @@ export default function RootLayout({
                 <Footer />
                 {/* <ScrollToTop /> */}
                 <LayoutClientWrapper />
+                <AnnouncementModal />
               </SafariTabProvider>
             </PeakTabProvider>
           </TrekTabProvider>
