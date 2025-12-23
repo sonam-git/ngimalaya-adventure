@@ -34,7 +34,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   };
 
   return (
-    <div className="min-h-screen pt-[105px] md:pt-[135px]">
+    <div className="min-h-screen pt-[55px] md:pt-[105px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tab Content */}
         <div ref={contentRef} className="w-full">

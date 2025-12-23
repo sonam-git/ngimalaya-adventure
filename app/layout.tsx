@@ -125,7 +125,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect to Google Fonts for faster loading */}
+        {/* Preload critical fonts FIRST - before any other resources */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap"
+          as="style"
+        />
         <link
           rel="preconnect"
           href="https://fonts.googleapis.com"
@@ -135,70 +140,56 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        
-        {/* Load all fonts FIRST - before any preload */}
         <link
           href="https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=swap"
           rel="stylesheet"
         />
         
-        {/* Critical inline CSS to apply fonts IMMEDIATELY */}
+        {/* Critical inline CSS - Force fonts immediately, no FOUC */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* CRITICAL: Apply fonts before page renders */
+            /* Load fonts synchronously */
+            @import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Lato:wght@300;400;700;900&family=Satisfy&family=Lugrasimo&display=block');
             
-            /* Special fonts - HIGHEST priority - Must be applied FIRST */
-            .satisfy,
-            .satisfy-regular,
-            p.satisfy,
-            p.satisfy-regular,
-            span.satisfy,
-            span.satisfy-regular {
-              font-family: 'Satisfy', cursive !important;
-              font-weight: 400 !important;
-              font-style: normal !important;
-              font-display: swap !important;
+            /* CRITICAL: Apply fonts immediately on page load */
+            * {
+              font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
             }
             
-            .lugrasimo,
-            .lugrasimo-regular,
-            p.lugrasimo,
-            p.lugrasimo-regular {
-              font-family: 'Lugrasimo', cursive !important;
-              font-weight: 400 !important;
-              font-style: normal !important;
-              font-display: swap !important;
-            }
-            
-            .times,
-            .times-new-roman {
-              font-family: 'Times New Roman', Times, serif !important;
-            }
-            
-            /* Headings - Jaini Purva */
-            h1, h1 *,
-            h2, h2 *,
-            h3, h3 *,
-            h4, h4 *,
-            h5, h5 *,
-            h6, h6 *,
-            .jaini-purva-regular,
-            .jaini-purva,
-            .font-heading,
-            .font-display {
+            /* Force Jaini Purva for headings and special classes - MAXIMUM SPECIFICITY */
+            html body h1,
+            html body h1 *,
+            html body h2,
+            html body h2 *,
+            html body h3,
+            html body h3 *,
+            html body h4,
+            html body h4 *,
+            html body h5,
+            html body h5 *,
+            html body h6,
+            html body h6 *,
+            html body .jaini-purva-regular,
+            html body .jaini-purva-regular *,
+            html body .font-heading,
+            html body .font-heading *,
+            html body .font-display,
+            html body .font-display *,
+            html body [class*="jaini-purva"],
+            html body [class*="jaini-purva"] * {
               font-family: 'Jaini Purva', system-ui, sans-serif !important;
               font-weight: 400 !important;
             }
             
-            /* Body text - Lato (but NOT special font classes) */
+            /* Prevent font flash */
             body {
-              font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+              font-family: 'Lato', sans-serif !important;
+              visibility: visible;
             }
             
-            p:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular):not(.times),
-            span:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular),
-            div:not(.satisfy):not(.satisfy-regular):not(.lugrasimo):not(.lugrasimo-regular) {
-              font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            /* Override any Google Translate font modifications */
+            font {
+              font-family: inherit !important;
             }
           `
         }} />
@@ -222,7 +213,7 @@ export default function RootLayout({
               <SafariTabProvider>
                 <BackgroundImage />
                 <Header />
-                <main className="mt-20 md:mt-30 relative z-0">
+                <main className="mt-32 md:mt-30 relative z-0">
                   {children}
                 </main>
                 <Footer />

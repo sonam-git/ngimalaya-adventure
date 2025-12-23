@@ -54,57 +54,56 @@ const HeroComponent: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col"
+      className="relative min-h-screen flex flex-col -mt-10 md:-mt-28 lg:-mt-32"
     >
       {/* Top Text Section */}
-      <div className="relative z-10 pt-20 pb-4 md:pt-24 md:pb-6 px-4">
+      <div className="relative z-10 px-4">
         <div className="relative max-w-6xl mx-auto text-center">
-          {/* Welcome Text with Mountain Sketch Background */}
-          <div className="relative inline-block mb-1 mt-3">
-            {/* Mountain Sketch Image as Background - positioned slightly above text */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -top-16 sm:-top-20 md:-top-24 lg:-top-28">
-              <img 
-                src="/assets/images/mountain-sketch.png" 
-                alt="Mountain sketch" 
-                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain opacity-20 dark:opacity-15 animate-fade-in-up"
-              />
-            </div>
-            
-            {/* Welcome Text */}
-            <h2 className="satisfy-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-700 dark:text-blue-300 animate-fade-in-up relative z-10 px-4" style={{ animationDelay: "0.1s" }}>
-              Welcome to
-            </h2>
+          {/* Mountain Sketch - positioned slightly above the headline */}
+          <div className="relative flex justify-center animate-fade-in-up -mb-14 sm:-mb-32 md:-mb-40 lg:-mb-48" style={{ animationDelay: "0.1s" }}>
+            <img 
+              src="/assets/images/mountain-sketch.png" 
+              alt="Mountain sketch" 
+              className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-contain opacity-40 dark:opacity-35"
+            />
           </div>
           
           {/* Main Headline with Trekker Images */}
-          <div className="relative flex items-center justify-center gap-1 sm:gap-0 mb-2 md:mb-3 overflow-x-auto">
+          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-1 md:mb-2 px-2">
             {/* Male Trekker - Left Side */}
-            <div className="animate-fade-in-up flex-shrink-0 -mr-1 sm:-mr-3 md:-mr-4 lg:-mr-5 xl:-mr-6" style={{ animationDelay: "0.15s" }}>
+            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
               <img 
                 src="/assets/sketch/trekker-male.png" 
                 alt="Male trekker" 
-                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-80 dark:opacity-70 hover:opacity-100 transition-opacity duration-300"
+                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-85 dark:opacity-75 hover:opacity-100 hover:scale-110 transition-all duration-300"
               />
             </div>
             
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up whitespace-nowrap flex-shrink-0" style={{ animationDelay: "0.2s" }}>
+            <h1 
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up text-center px-0.5 sm:px-1 whitespace-nowrap"
+              style={{ 
+                animationDelay: "0.2s",
+                fontFamily: '"Jaini Purva", system-ui !important',
+                fontWeight: '400 !important'
+              }}
+            >
               Ngimalaya Adventure
             </h1>
             
             {/* Female Trekker - Right Side */}
-            <div className="animate-fade-in-up flex-shrink-0 -ml-1 sm:-ml-3 md:-ml-4 lg:-ml-5 xl:-ml-6" style={{ animationDelay: "0.25s" }}>
+            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.25s" }}>
               <img 
                 src="/assets/sketch/trekker-female.png" 
                 alt="Female trekker" 
-                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-80 dark:opacity-70 hover:opacity-100 transition-opacity duration-300"
+                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-85 dark:opacity-75 hover:opacity-100 hover:scale-110 transition-all duration-300"
               />
             </div>
           </div>
 
           {/* Subtitle */}
           <p
-            className="text-md sm:text-lg md:text-xl font-body text-blue-900 dark:text-blue-300 max-w-3xl mx-auto animate-fade-in-up"
+            className="text-xs sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up"
             style={{ animationDelay: "0.3s" }}
           >
             Discover Your Himalayan Escape, Where Culture Meets the Clouds

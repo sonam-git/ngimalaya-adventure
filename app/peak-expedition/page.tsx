@@ -58,14 +58,15 @@ const PeakExpeditionPage: React.FC = () => {
       <div className={`min-h-screen ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
+         <div 
+          className="absolute inset-0 bg-cover bg-top-center"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1920)',
+            backgroundImage: 'url(/assets/sketch/peak.png)',
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
         </div>
+        
         
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="max-w-3xl">

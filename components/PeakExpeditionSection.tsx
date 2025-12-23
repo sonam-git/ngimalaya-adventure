@@ -3,7 +3,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Flag, Mountain } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import SectionHeader from './SectionHeader';
 import ContactModal from './ContactModal';
 import { useRouter } from 'next/navigation';
 import { PeakExpedition } from '@/lib/types';
@@ -54,11 +53,7 @@ const PeakExpeditionSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-2 sm:px-4">
-        <SectionHeader
-          subtitle="Peak Expeditions"
-          title="Take Your Adventure to New Heights"
-        />
-
+     
         <div className="max-w-6xl mx-auto mb-12">
           <p className={`text-center text-lg max-w-3xl mx-auto mb-8 ${
             isDarkMode ? 'text-gray-300' : 'text-gray-600'

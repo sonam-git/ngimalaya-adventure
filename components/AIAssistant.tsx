@@ -246,7 +246,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           className={`fixed inset-x-4 bottom-4 mx-auto max-w-[420px] h-[calc(100vh-120px)] max-h-[620px] z-[999999] rounded-2xl shadow-2xl flex flex-col overflow-hidden ${
             isDarkMode ? 'bg-gray-900' : 'bg-white'
           } ${
-            isMobile ? 'ai-chat-mobile-modal bottom-[90px] h-[calc(100vh-180px)] max-h-[70vh]' : ''
+            isMobile ? 'ai-chat-mobile-modal bottom-[82px] h-[calc(100vh-150px)]' : ''
           }`}
           style={isMobile ? {
             maxWidth: 'calc(100vw - 2rem)',
@@ -285,7 +285,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           {/* Messages */}
           <div className={`flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b ${
             isDarkMode ? 'from-gray-800 to-gray-900' : 'from-gray-50 to-white'
-          } ${isMobile ? 'pb-2' : ''}`}>
+          }`}>
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -341,7 +341,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
 
             {/* Quick Questions (show when chat is empty) */}
             {messages.length === 1 && !isLoading && (
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-4">
                 <p className={`text-xs font-semibold uppercase tracking-wide ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-600'
                 }`}>
@@ -367,11 +367,11 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className={`p-3 border-t ${
+          <form onSubmit={handleSubmit} className={`p-4 border-t ${
             isDarkMode 
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
-          } ${isMobile ? 'p-3' : 'p-4'}`}>
+          }`}>
             <div className="flex gap-2 items-center w-full">
               <input
                 ref={inputRef}
@@ -384,7 +384,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-green-400 focus:ring-green-500/20'
-                } ${isMobile ? 'py-2.5 text-sm' : 'py-3'}`}
+                }`}
                 style={isMobile ? { fontSize: '16px' } : undefined}
               />
               <button
@@ -394,15 +394,15 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen: externalIsOpen, onTog
                   isDarkMode
                     ? 'bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 disabled:from-gray-600 disabled:to-gray-700'
                     : 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 disabled:from-gray-400 disabled:to-gray-500'
-                } text-white ${isMobile ? 'p-2.5' : 'p-3'}`}
+                } text-white`}
                 aria-label="Send message"
               >
-                <Send className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                <Send className="w-5 h-5" />
               </button>
             </div>
-            <p className={`text-xs mt-1.5 text-center ${
+            <p className={`text-xs mt-2 text-center ${
               isDarkMode ? 'text-gray-400' : 'text-gray-500'
-            } ${isMobile ? 'mt-1 text-[10px]' : 'mt-1.5 text-xs'}`}>
+            }`}>
               Powered by AI • May occasionally make mistakes
             </p>
           </form>

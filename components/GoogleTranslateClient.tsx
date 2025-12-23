@@ -103,9 +103,8 @@ const GoogleTranslateClient = () => {
     // 1. Immediate hide on load
     window.addEventListener('load', hideAllGoogleUI);
 
-    // 2. Periodic checks (every 500ms for first 10 seconds)
-    const interval = setInterval(hideAllGoogleUI, 500);
-    setTimeout(() => clearInterval(interval), 10000);
+    // 2. Periodic checks - run every 2 seconds (less aggressive to prevent flicker)
+    const interval = setInterval(hideAllGoogleUI, 2000);
 
     // Function to aggressively remove font tags and preserve our fonts
     const removeFontTags = () => {
@@ -140,11 +139,19 @@ const GoogleTranslateClient = () => {
         }
       });
 
+      // CRITICAL: Force re-apply Jaini Purva to header title elements
+      const jainiElements = document.querySelectorAll('.jaini-purva-regular, .jaini-purva');
+      jainiElements.forEach((element: Element) => {
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
+        htmlElement.style.fontWeight = '400';
+      });
+
       // Force re-apply custom fonts to headings
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .font-heading, .font-display');
       headings.forEach((heading: Element) => {
         const htmlHeading = heading as HTMLElement;
-        htmlHeading.style.fontFamily = "'Jaini Purva', system-ui";
+        htmlHeading.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
       });
 
       // Force re-apply body font
@@ -180,13 +187,24 @@ const GoogleTranslateClient = () => {
       });
     };
 
-    // Run font tag removal periodically
-    const fontInterval = setInterval(removeFontTags, 1000);
-    setTimeout(() => clearInterval(fontInterval), 15000);
+    // Run font tag removal periodically - but less frequently to prevent flicker
+    const fontInterval = setInterval(removeFontTags, 3000); // Every 3 seconds instead of 1
 
-    // 3. MutationObserver to catch dynamically added elements
+    // 3. MutationObserver to catch dynamically added elements and INSTANTLY fix fonts
     const observer = new MutationObserver((mutations) => {
+      let needsFontFix = false;
+      
       mutations.forEach((mutation) => {
+        // Check if font-family style was modified
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          const element = mutation.target as HTMLElement;
+          if (element.style.fontFamily && element.classList.contains('jaini-purva-regular')) {
+            // Instantly re-apply correct font
+            element.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
+            element.style.fontWeight = '400';
+          }
+        }
+        
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === 1) { // Element node
             const element = node as HTMLElement;
@@ -210,13 +228,25 @@ const GoogleTranslateClient = () => {
               }
             }
 
-            // If a font tag was added, schedule removal
+            // If a font tag was added, mark for fix
             if (element.tagName === 'FONT') {
-              setTimeout(removeFontTags, 100);
+              needsFontFix = true;
             }
           }
         });
       });
+      
+      // Apply font fix if needed (debounced)
+      if (needsFontFix) {
+        requestAnimationFrame(() => {
+          const jainiElements = document.querySelectorAll('.jaini-purva-regular, .jaini-purva');
+          jainiElements.forEach((element: Element) => {
+            const htmlElement = element as HTMLElement;
+            htmlElement.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
+            htmlElement.style.fontWeight = '400';
+          });
+        });
+      }
       
       // Also fix body modifications on any mutation
       if (document.body.style.top && document.body.style.top !== '0px') {
@@ -250,17 +280,20 @@ const GoogleTranslateClient = () => {
       select.value = lang;
       select.dispatchEvent(new Event('change'));
       
-      // IMMEDIATE font application - before translation even starts
-      removeFontTagsNow();
-      
       // After translation starts, aggressively remove font tags
-      // More frequent intervals to prevent flickering
-      const intervals = [50, 100, 200, 300, 500, 800, 1000, 1500, 2000, 2500, 3000];
-      intervals.forEach(delay => {
-        setTimeout(() => {
-          removeFontTagsNow();
-        }, delay);
-      });
+      // Multiple delays to catch different stages of translation
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 500);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 1000);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 2000);
+      setTimeout(() => {
+        removeFontTagsNow();
+      }, 3000);
     }
   };
 
@@ -291,6 +324,14 @@ const GoogleTranslateClient = () => {
           htmlElement.removeAttribute('style');
         }
       }
+    });
+
+    // CRITICAL: Force re-apply Jaini Purva to header title elements
+    const jainiElements = document.querySelectorAll('.jaini-purva-regular, .jaini-purva');
+    jainiElements.forEach((element: Element) => {
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
+      htmlElement.style.fontWeight = '400';
     });
 
     // Force re-apply custom fonts to headings
@@ -353,31 +394,23 @@ const GoogleTranslateClient = () => {
   return (
     <div className="relative flex items-center ml-2">
       <button
-        className="p-2 rounded-full focus:outline-none transition-all duration-200 shadow-lg bg-yellow-100 dark:bg-blue-100 border-2 border-gray-300 dark:border-white"
+        className="p-2 rounded-full focus:outline-none transition-all duration-200 shadow-lg bg-white dark:bg-white border border-blue-900 dark:border-blue-900"
         style={{
-          boxShadow: '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)',
+          boxShadow: '0 4px 16px rgba(30,58,138,0.18), 0 1.5px 6px rgba(0,0,0,0.10)',
           width: '44px',
           height: '44px',
         }}
         onClick={() => setOpen(!open)}
         aria-label="Change language"
         onMouseEnter={e => {
-          if (document.body.classList.contains('dark')) {
-            e.currentTarget.style.boxShadow = '0 0 12px 2px #fff, 0 4px 16px rgba(255,255,255,0.10)';
-            e.currentTarget.style.backgroundColor = '#dbeafe'; // Tailwind blue-100
-          } else {
-            e.currentTarget.style.boxShadow = '0 0 12px 2px #eab308, 0 4px 16px rgba(234,179,8,0.18)'; // yellow-500
-            e.currentTarget.style.backgroundColor = '#fef9c3'; // Tailwind yellow-100
-          }
+          e.currentTarget.style.boxShadow = '0 0 12px 2px rgba(30,58,138,0.4), 0 4px 16px rgba(30,58,138,0.30)';
+          e.currentTarget.style.backgroundColor = '#f8fafc'; // Tailwind slate-50
+          e.currentTarget.style.transform = 'scale(1.05)';
         }}
         onMouseLeave={e => {
-          if (document.body.classList.contains('dark')) {
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
-            e.currentTarget.style.backgroundColor = '#dbeafe'; // Tailwind blue-100
-          } else {
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,139,34,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
-            e.currentTarget.style.backgroundColor = '#fef9c3'; // Tailwind yellow-100
-          }
+          e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,58,138,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
+          e.currentTarget.style.backgroundColor = '#ffffff';
+          e.currentTarget.style.transform = 'scale(1)';
         }}
       >
         <img 

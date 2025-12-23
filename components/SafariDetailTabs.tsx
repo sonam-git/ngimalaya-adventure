@@ -48,10 +48,10 @@ const SafariDetailTabs: React.FC<SafariDetailTabsProps> = ({ activeTab, onTabCha
 
   return (
     <div
-      className="bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700"
+      className="bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
       aria-label="Safari detail tabs"
     >
-      <div className="flex overflow-x-auto scrollbar-hide">
+      <div className="flex overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
         {tabs.map((tab) => {
             const IconComponent = tab.icon;
             return (

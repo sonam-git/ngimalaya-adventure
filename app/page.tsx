@@ -76,7 +76,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div className="px-4 md:px-6 lg:px-8 space-y-8 md:space-y-12 py-8">
+      <div className="px-4 md:px-6 lg:px-8 space-y-8 md:space-y-12 py-8 ">
         <About showFull={false} />
         <TreksSection />
         <PeakExpeditionSection />

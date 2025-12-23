@@ -34,6 +34,58 @@ const Header: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  // Force font re-application after hydration to prevent FOUC
+  useEffect(() => {
+    // Inject a high-priority style tag that can't be overridden
+    const styleId = 'jaini-purva-force-style';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        /* ULTRA HIGH PRIORITY - Force Jaini Purva */
+        html body .jaini-purva-regular,
+        html body .jaini-purva-regular *,
+        html body div.jaini-purva-regular,
+        html body span.jaini-purva-regular {
+          font-family: 'Jaini Purva', system-ui !important;
+          font-weight: 400 !important;
+        }
+        
+        /* Override any font tags inside */
+        html body .jaini-purva-regular font,
+        html body .jaini-purva-regular font * {
+          font-family: inherit !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    const applyFonts = () => {
+      const elements = document.querySelectorAll('.jaini-purva-regular');
+      elements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        // Use setProperty with important flag
+        htmlEl.style.setProperty('font-family', '"Jaini Purva", system-ui', 'important');
+        htmlEl.style.fontWeight = '400';
+      });
+    };
+    
+    // Apply immediately
+    applyFonts();
+    
+    // Apply repeatedly for the first 5 seconds to catch any overrides
+    const intervals = [100, 200, 500, 1000, 2000, 5000];
+    const timers = intervals.map(delay => setTimeout(applyFonts, delay));
+    
+    // Less aggressive interval - every 5 seconds instead of 2 (prevent flicker)
+    const interval = setInterval(applyFonts, 5000);
+    
+    return () => {
+      timers.forEach(timer => clearTimeout(timer));
+      clearInterval(interval);
+    };
+  }, []);
+
   // Fetch regions and treks from Storyblok on mount
   useEffect(() => {
     async function fetchData() {
@@ -179,14 +231,12 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Main Header */}
-      <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
         isScrolled 
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
             : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
-          : isDarkMode 
-            ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900' 
-            : 'bg-gradient-to-r from-white via-blue-50 to-white'
+          : 'bg-transparent'
       }`}>
         <nav className="w-full px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 relative">
           <div className="flex items-center justify-between h-24 md:h-28">
@@ -210,30 +260,30 @@ const Header: React.FC = () => {
                 />
               </div>
               
-              {/* Title Column - Visible on all screens */}
-              <div className="notranslate flex flex-col justify-center gap-1 min-w-[160px] sm:min-w-[220px]">
-                {/* English */}
-                <h1 className={`jaini-purva-regular font-bold text-md sm:text-xl lg:text-2xl leading-tight transition-colors whitespace-nowrap ${
-                  isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
-                }`}>
-                  Ngimalaya Adventure
-                </h1>
-                {/* Nepali Script */}
-                <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
-                  isDarkMode ? 'text-gray-300 group-hover:text-primary-300' : 'text-blue-800 group-hover:text-primary-500'
-                }`} style={{ letterSpacing: '0.25em' }}>
-                  ङिमालय एडभेन्चर
+              {/* Title Column - Visible on all screens - Two rows matching logo height */}
+              <div className="notranslate flex flex-col justify-center gap-0.5 min-w-[120px] sm:min-w-[160px] h-14 md:h-16 lg:h-18">
+                {/* First Row - Ngimalaya */}
+                 <div 
+                  className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
+                    isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
+                  } group-hover:scale-105`}
+                  style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
+                >
+                  Ngimalaya
                 </div>
-                {/* Tibetan Script with Sliding Line */}
+                {/* Second Row - Adventure with Sliding Underline */}
                 <div className="relative">
-                  <div className={`font-sans font-bold text-sm sm:text-lg lg:text-xl leading-tight transition-colors whitespace-nowrap ${
-                    isDarkMode ? 'text-gray-400 group-hover:text-primary-300' : 'text-blue-700 group-hover:text-primary-500'
-                  }`} style={{ letterSpacing: '0.5em' }}>
-                    སྤོ་ལོ་ཧི་མ་ལ་ཡ
+                  <div 
+                    className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
+                      isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
+                    } group-hover:scale-105`}
+                    style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
+                  >
+                    Adventure
                   </div>
                   {/* Sliding Horizontal Line */}
-                  <div className={`absolute -bottom-1 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out ${
-                    isDarkMode ? 'bg-primary-400' : 'bg-yellow-600'
+                  <div className={`absolute -bottom-0.5 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out ${
+                    isDarkMode ? 'bg-gradient-to-r from-primary-400 to-yellow-400' : 'bg-gradient-to-r from-blue-600 to-yellow-600'
                   }`}></div>
                 </div>
               </div>
@@ -312,7 +362,9 @@ const Header: React.FC = () => {
           </div>
 
           {/* Prayer flag border: always visible below header, full width across screen */}
-          <div className="relative h-2 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16">
+          <div className={`relative h-2 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16 transition-opacity duration-500 ${
+            isScrolled ? 'opacity-100' : 'opacity-0'
+          }`}>
             <div className="absolute left-0 right-0 w-full">
               <PrayerFlagBorder />
             </div>
@@ -320,8 +372,9 @@ const Header: React.FC = () => {
 
           {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}
           {shouldShowRegionMenu && !isMobileMenuOpen && (
-            <div className="w-full bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
-              <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 w-full justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+            <div className="relative -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16">
+              <div className="w-screen bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
+                <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
                 {trekRegions.map(region => {
                   const isSelected = getCurrentRegion() === region.name;
                   return (
@@ -342,6 +395,7 @@ const Header: React.FC = () => {
                   );
                 })}
               </ul>
+            </div>
             </div>
           )}
 

@@ -24,6 +24,13 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
+  
+  // Touch/swipe state
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum swipe distance (in px) to trigger navigation
+  const minSwipeDistance = 50;
 
   // Number of regions to show at once based on screen size
   const getRegionsPerView = () => {
@@ -104,6 +111,31 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
   const canGoPrev = currentRegionIndex > 0;
   const canGoNext = currentRegionIndex < filteredRegions.length - regionsPerView;
 
+  // Touch handlers for swipe gestures
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && canGoNext) {
+      handleNextRegions();
+    }
+    if (isRightSwipe && canGoPrev) {
+      handlePrevRegions();
+    }
+  };
+
   // Get visible regions based on current index
   const visibleRegions = filteredRegions.slice(
     currentRegionIndex, 
@@ -115,9 +147,9 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-top-center"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=1920)',
+            backgroundImage: 'url(/assets/sketch/region.png)',
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
@@ -228,7 +260,12 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
             )}
             
             {/* Single Row Region Grid with Overflow */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6">
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6 touch-pan-y"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {visibleRegions.map((region) => (
                 <RegionCard 
                   key={region.id} 
