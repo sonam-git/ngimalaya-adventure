@@ -81,7 +81,7 @@ const HeroComponent: React.FC<HeroProps> = ({
             
             {/* Main Headline */}
             <h1 
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up text-center px-0.5 sm:px-1 whitespace-nowrap"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up text-center px-0.5 sm:px-1 whitespace-nowrap"
               style={{ 
                 animationDelay: "0.2s",
                 fontFamily: '"Jaini Purva", system-ui !important',
