@@ -132,6 +132,18 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Determine if the header should always have a background (for pages without hero sections)
+  const shouldAlwaysHaveBackground = pathname === '/regions' || 
+                                      pathname.startsWith('/regions/') ||
+                                      pathname.startsWith('/treks/') ||
+                                      pathname === '/peak-expedition' || 
+                                      pathname.startsWith('/peak-expedition/') ||
+                                      pathname === '/safari' || 
+                                      pathname.startsWith('/safari/') ||
+                                      pathname === '/about' ||
+                                      pathname === '/contact' ||
+                                      pathname === '/services';
+
   // Check if we should show the RegionMenu (for single region or single trek pages)
   const shouldShowRegionMenu = pathname.startsWith('/regions/') || 
                                 (pathname.startsWith('/treks/') && pathname !== '/treks');
@@ -232,7 +244,7 @@ const Header: React.FC = () => {
     <>
       {/* Main Header */}
       <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-        isScrolled 
+        isScrolled || shouldAlwaysHaveBackground
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
             : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
@@ -363,7 +375,7 @@ const Header: React.FC = () => {
 
           {/* Prayer flag border: always visible below header, full width across screen */}
           <div className={`relative h-2 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16 transition-opacity duration-500 ${
-            isScrolled ? 'opacity-100' : 'opacity-0'
+            isScrolled || shouldAlwaysHaveBackground ? 'opacity-100' : 'opacity-0'
           }`}>
             <div className="absolute left-0 right-0 w-full">
               <PrayerFlagBorder />
