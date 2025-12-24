@@ -175,7 +175,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   About This Trek
                 </h2>
-                <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <p className={`text-lg leading-relaxed font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                   {trek.description}
                 </p>
               </div>
@@ -192,7 +192,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Star className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{highlight}</span>
+                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -240,14 +240,14 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {day.title}
                         </h4>
-                        <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <p className={`mb-3 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                           {day.description}
                         </p>
                         <div className="flex space-x-4 text-sm">
-                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
+                          <span className={`font-light ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                             <strong>Accommodation:</strong> {day.accommodation}
                           </span>
-                          <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
+                          <span className={`font-light ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                             <strong>Meals:</strong> {day.meals}
                           </span>
                         </div>
@@ -259,17 +259,17 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
               
               {!isItineraryOpen && (
                 <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
-                  <p className="mb-2">
+                  <p className="mb-2 font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                     This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                       {trek.itinerary.length} Days Total
                     </span>
-                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs">
+                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                       Max Altitude: {trek.altitude}
                     </span>
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                       {trek.difficulty || 'Moderate'} Level
                     </span>
                   </div>
@@ -289,7 +289,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {/* Custom Map Notice */}
                 {trek.mapUrl && (
                   <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-3 mb-2`}>
-                    <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-800'} flex items-center`}>
+                    <p className={`text-sm font-light ${isDarkMode ? 'text-blue-300' : 'text-blue-800'} flex items-center`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                       <MapPin className="mr-2 flex-shrink-0" size={16} />
                       <span>This is a custom route map showing the detailed trekking path and key locations.</span>
                     </p>
@@ -320,16 +320,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Location Details
                     </h3>
                     <div className="space-y-2">
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Region:</strong> {trek.region}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Max Altitude:</strong> {trek.altitude}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Trek Duration:</strong> {trek.duration}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Difficulty:</strong> {trek.difficulty || 'Moderate'}
                       </p>
                     </div>
@@ -342,16 +342,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Route Overview
                     </h3>
                     <div className="space-y-2">
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Starting Point:</strong> {trek.itinerary[0]?.title || 'N/A'}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Ending Point:</strong> {trek.itinerary[trek.itinerary.length - 1]?.title || 'N/A'}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Total Days:</strong> {trek.itinerary.length}
                       </p>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                         <strong>Group Size:</strong> {trek.groupSize}
                       </p>
                     </div>
@@ -370,7 +370,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full flex-shrink-0 mt-0.5">
                           {day.day}
                         </span>
-                        <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <span className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                           {day.title}
                         </span>
                       </div>
@@ -392,7 +392,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.included.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <CheckCircle className="mt-0.5 text-green-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -410,7 +410,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.excluded.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <XCircle className="mt-0.5 text-red-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -428,7 +428,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.requirements.map((requirement, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <AlertTriangle className="mt-0.5 text-yellow-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{requirement}</span>
+                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{requirement}</span>
                   </li>
                 ))}
               </ul>

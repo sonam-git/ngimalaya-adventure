@@ -114,7 +114,7 @@ export const metadata: Metadata = {
   },
   category: 'travel',
   verification: {
-    // google: 'your-google-search-console-code',
+    google: 'JF82sIgYbSGhJxTrBrssPZhvqg8TaJliLPCQwyRWvA4',
     // other: {
     //   'facebook-domain-verification': 'your-facebook-code',
     // },
