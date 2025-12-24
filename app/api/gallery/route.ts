@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import StoryblokClient from 'storyblok-js-client';
 
+// Force dynamic rendering to avoid caching issues
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // Initialize Storyblok client
 const Storyblok = new StoryblokClient({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN || '',
@@ -57,7 +61,7 @@ export async function GET() {
       try {
         console.log(`🔍 Trying path: ${path}`);
         response = await Storyblok.get(path, {
-          version: 'draft',
+          version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
         });
         story = response.data.story;
         console.log(`✅ Found story at path: ${path}`);
@@ -162,6 +166,3 @@ export async function GET() {
     });
   }
 }
-
-// Enable revalidation every 60 seconds
-export const revalidate = 60;
