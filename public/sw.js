@@ -1,5 +1,5 @@
 // Service Worker for Ngimalaya Adventure PWA
-const CACHE_NAME = 'ngimalaya-v1';
+const CACHE_NAME = 'ngimalaya-v2'; // Updated version to force reinstall
 const urlsToCache = [
   '/',
   '/treks',
@@ -23,6 +23,16 @@ self.addEventListener('install', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  // Skip caching for non-http(s) requests (chrome-extension, etc.)
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // Skip caching for Chrome extension requests
+  if (event.request.url.startsWith('chrome-extension://')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       // Cache hit - return response
@@ -36,12 +46,18 @@ self.addEventListener('fetch', (event) => {
           return response;
         }
 
-        // Clone the response
-        const responseToCache = response.clone();
+        // Only cache same-origin requests
+        if (event.request.url.startsWith(self.location.origin)) {
+          // Clone the response
+          const responseToCache = response.clone();
 
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          }).catch((err) => {
+            // Silently fail cache operations to prevent errors
+            console.warn('Cache put failed:', err);
+          });
+        }
 
         return response;
       }).catch(() => {
