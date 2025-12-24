@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { fetchTreksWithFallback } from '@/lib/storyblok-fetch-with-fallback';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0; // Disable caching
+
 export async function GET() {
   try {
     const treks = await fetchTreksWithFallback();
