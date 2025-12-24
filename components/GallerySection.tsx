@@ -315,7 +315,7 @@ const GallerySection = () => {
       ref={sectionRef}
       id="gallery" 
       aria-labelledby="gallery-heading"
-      className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16"
+      className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16"
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
@@ -334,7 +334,7 @@ const GallerySection = () => {
           </p>
         {/* Featured Gallery Section */}
         <div className="mt-4 mb-4">
-          <div className="relative z-20 w-full my-6 sm:my-10 rounded-3xl shadow-2xl border-4  bg-white dark:bg-black/60 backdrop-blur-xl px-0.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-3 before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-blue-200/10 before:via-green-200/10 before:to-blue-200/10 before:blur-2xl before:z-0 overflow-hidden">
+          <div className="relative z-20 w-full my-6 sm:my-10 rounded-3xl shadow-2xl border-4  bg-white dark:bg-black/60 backdrop-blur-xl px-0.5 sm:px-3 xl:px-6 2xl:px-8 py-1.5 sm:py-3 before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-blue-200/10 before:via-green-200/10 before:to-blue-200/10 before:blur-2xl before:z-0 overflow-hidden">
           
             <div className="relative z-10">
               {/* Loading State */}
@@ -405,7 +405,7 @@ const GallerySection = () => {
               {/* Navigation Controls */}
               <div className="flex flex-row items-center justify-center mt-2 mb-6 gap-2 w-full">
                 <button
-                  className="rounded-full p-2 md:p-3 bg-white/90 dark:bg-gray-800/90 shadow-lg hover:bg-blue-100 dark:hover:bg-blue-900 border-2 border-blue-300 dark:border-blue-700 transition w-10 h-10 md:w-12 md:h-12 flex items-center justify-center group"
+                  className="rounded-full p-2 xl:p-3 bg-white/90 dark:bg-gray-800/90 shadow-lg hover:bg-blue-100 dark:hover:bg-blue-900 border-2 border-blue-300 dark:border-blue-700 transition w-10 h-10 xl:w-12 xl:h-12 flex items-center justify-center group"
                   onClick={() => {
                     if (galleryScrollRef.current) {
                       const container = galleryScrollRef.current;
@@ -437,13 +437,13 @@ const GallerySection = () => {
                 </button>
 
                 <div className="text-center px-4">
-                  <span className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-semibold">
+                  <span className="text-sm xl:text-base text-gray-600 dark:text-gray-300 font-semibold">
                     Scroll to explore more
                   </span>
                 </div>
 
                 <button
-                  className="rounded-full p-2 md:p-3 bg-white/90 dark:bg-gray-800/90 shadow-lg hover:bg-blue-100 dark:hover:bg-blue-900 border-2 border-blue-300 dark:border-blue-700 transition w-10 h-10 md:w-12 md:h-12 flex items-center justify-center group"
+                  className="rounded-full p-2 xl:p-3 bg-white/90 dark:bg-gray-800/90 shadow-lg hover:bg-blue-100 dark:hover:bg-blue-900 border-2 border-blue-300 dark:border-blue-700 transition w-10 h-10 xl:w-12 xl:h-12 flex items-center justify-center group"
                   onClick={() => {
                     if (galleryScrollRef.current) {
                       const container = galleryScrollRef.current;
@@ -558,27 +558,27 @@ const GallerySection = () => {
             <button
               aria-label="Previous"
               onClick={e => { e.stopPropagation(); prevItem(); }}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white dark:text-gray-100 rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white dark:text-gray-100 rounded-full p-3 xl:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
             >
-              <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 xl:w-7 xl:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               aria-label="Close"
               onClick={e => { e.stopPropagation(); closeModal(); }}
-              className="bg-gradient-to-r from-red-500 via-blue-400 to-blue-400 text-white dark:text-gray-100 rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-red-500 via-blue-400 to-blue-400 text-white dark:text-gray-100 rounded-full p-3 xl:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
             >
-              <svg className="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7 xl:w-8 xl:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <button
               aria-label="Next"
               onClick={e => { e.stopPropagation(); nextItem(); }}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white dark:text-gray-100 rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white dark:text-gray-100 rounded-full p-3 xl:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
             >
-              <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 xl:w-7 xl:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>

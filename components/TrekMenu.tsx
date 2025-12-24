@@ -18,10 +18,10 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
 
   return (
     <div
-      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
+      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
       aria-label="Trek menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
         {treks.map(trek => (
           <li key={trek.id} className="flex-shrink-0 w-max">
             <button

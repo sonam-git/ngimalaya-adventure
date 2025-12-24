@@ -64,7 +64,7 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
 
         {/* Region Title Overlay - Enhanced */}
         <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-1 drop-shadow-2xl times group-hover:text-blue-300 transition-colors duration-300">
+          <h3 className="text-3xl xl:text-4xl font-bold text-white mb-1 drop-shadow-2xl times group-hover:text-blue-300 transition-colors duration-300">
             {region.name}
           </h3>
           <div className="flex items-center gap-2 text-blue-300 mb-2">

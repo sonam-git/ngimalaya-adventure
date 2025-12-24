@@ -75,7 +75,7 @@ const TreksSection: React.FC = () => {
     <>
       <section
         id="treks"
-        className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16"
+        className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16"
       >
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
@@ -90,7 +90,7 @@ const TreksSection: React.FC = () => {
             adventure and breathtaking scenery.
           </p>
           {/* Mobile Slider - Show 1 trek card at a time */}
-          <div className="relative block md:hidden">
+          <div className="relative block xl:hidden">
             <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
               <div
                 ref={scrollRefMobile}
@@ -164,7 +164,7 @@ const TreksSection: React.FC = () => {
           </div>
 
           {/* Desktop Horizontal Slider */}
-          <div className="hidden md:block mb-12">
+          <div className="hidden xl:block mb-12">
             <div className="relative">
               {/* Horizontal Scrollable Container */}
               <div className="overflow-hidden">

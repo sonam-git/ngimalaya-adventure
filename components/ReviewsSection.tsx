@@ -129,7 +129,7 @@ const ReviewsSection: React.FC = () => {
 
   return (
     <>
-    <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
+    <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -144,7 +144,7 @@ const ReviewsSection: React.FC = () => {
           subtitle="Client Reviews"
           title="What Our Adventurers Say"
         />
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto ${
+          <p className={`text-lg xl:text-xl max-w-2xl mx-auto ${
             isDarkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
             Real stories from travelers around the world who experienced the magic of the Himalayas with us. 
@@ -156,14 +156,14 @@ const ReviewsSection: React.FC = () => {
           {/* Reviews Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 md:px-12 py-2 md:py-4"
+            className="flex gap-4 xl:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 xl:px-12 py-2 xl:py-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {reviews.map((review) => (
               <div
                 key={review.id}
                 onClick={() => setSelectedReview(review)}
-                className={`flex-shrink-0 w-72 sm:w-80 md:w-96 p-4 md:p-6 rounded-xl cursor-pointer transition-all duration-300 snap-start transform hover:scale-105 ${
+                className={`flex-shrink-0 w-72 sm:w-80 xl:w-96 p-4 xl:p-6 rounded-xl cursor-pointer transition-all duration-300 snap-start transform hover:scale-105 ${
                   isDarkMode
                     ? 'bg-gray-800 hover:bg-gray-750 shadow-xl'
                     : 'bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl'

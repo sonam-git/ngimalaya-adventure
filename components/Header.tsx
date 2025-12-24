@@ -250,8 +250,8 @@ const Header: React.FC = () => {
             : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}>
-        <nav className="w-full px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 relative">
-          <div className="flex items-center justify-between h-24 md:h-28">
+        <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
+          <div className="flex items-center justify-between h-24 xl:h-28">
             {/* Logo and Title */}
             <Link href="/" className="flex items-center gap-3 group">
               {/* Logo Column with Sun-like Circle Background */}
@@ -268,15 +268,15 @@ const Header: React.FC = () => {
                 <img
                   src={isDarkMode ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
                   alt="Ngimalaya Adventure Nepal"
-                  className="h-14 md:h-16 lg:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
+                  className="h-14 xl:h-16 2xl:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
                 />
               </div>
               
               {/* Title Column - Visible on all screens - Two rows matching logo height */}
-              <div className="notranslate flex flex-col justify-center gap-0.5 min-w-[120px] sm:min-w-[160px] h-14 md:h-16 lg:h-18">
+              <div className="notranslate flex flex-col justify-center gap-0.5 min-w-[120px] sm:min-w-[160px] h-14 xl:h-16 2xl:h-18">
                 {/* First Row - Ngimalaya */}
                  <div 
-                  className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
+                  className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
                     isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
                   } group-hover:scale-105`}
                   style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
@@ -286,7 +286,7 @@ const Header: React.FC = () => {
                 {/* Second Row - Adventure with Sliding Underline */}
                 <div className="relative">
                   <div 
-                    className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
+                    className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
                       isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
                     } group-hover:scale-105`}
                     style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
@@ -374,7 +374,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Prayer flag border: always visible below header, full width across screen */}
-          <div className={`relative h-2 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16 transition-opacity duration-500 ${
+          <div className={`relative h-2 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16 transition-opacity duration-500 ${
             isScrolled || shouldAlwaysHaveBackground ? 'opacity-100' : 'opacity-0'
           }`}>
             <div className="absolute left-0 right-0 w-full">
@@ -384,9 +384,9 @@ const Header: React.FC = () => {
 
           {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}
           {shouldShowRegionMenu && !isMobileMenuOpen && (
-            <div className="relative -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16">
+            <div className="relative -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16">
               <div className="w-screen bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
-                <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+                <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
                 {trekRegions.map(region => {
                   const isSelected = getCurrentRegion() === region.name;
                   return (

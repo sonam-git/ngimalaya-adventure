@@ -192,7 +192,7 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
   return (
     <section className="w-full max-w-7xl mx-auto mt-0 mb-12 relative z-50">
       {/* Mobile Search Toggle Button */}
-      <div className="flex justify-center mb-4 md:hidden">
+      <div className="flex justify-center mb-4 xl:hidden">
         <button
           type="button"
           aria-label={showMobileSearch ? 'Close search' : 'Open search'}
@@ -209,7 +209,7 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
 
       {/* Mobile Full-Screen Modal Overlay with Portal and Blur */}
       {showMobileSearch && typeof window !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm md:hidden">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm xl:hidden">
           <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-gray-800">
             {/* Header */}
             <div className={`sticky top-0 z-10 flex items-center justify-between p-6 border-b ${
@@ -423,13 +423,13 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
       {/* Desktop Search Form - hidden on mobile */}
       <form
         onSubmit={handleSearch}
-        className="hidden md:flex relative z-20 rounded-3xl border-2 border-primary-700 dark:border-primary-100 bg-white/95 dark:bg-gray-900/95 px-4 py-4 md:py-6 md:px-10 flex-col gap-4 md:gap-8 shadow-2xl md:shadow-3xl backdrop-blur-xl"
+        className="hidden xl:flex relative z-20 rounded-3xl border-2 border-primary-700 dark:border-primary-100 bg-white/95 dark:bg-gray-900/95 px-4 py-4 xl:py-6 xl:px-10 flex-col gap-4 xl:gap-8 shadow-2xl xl:shadow-3xl backdrop-blur-xl"
         style={{ boxShadow: '0 8px 40px 0 rgba(0,0,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)' }}
       >
         {/* Inputs Row + Search Button Row for desktop */}
-        <div className="flex flex-col md:flex-row md:gap-8 lg:flex-row lg:items-end lg:gap-8">
+        <div className="flex flex-col xl:flex-row xl:gap-8 2xl:flex-row 2xl:items-end 2xl:gap-8">
           {/* Inputs */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 flex-1">
+          <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 flex-1">
             {/* Trek Type */}
             <div className="flex-1 min-w-[150px]">
               <label className="flex text-sm font-bold mb-1 text-gray-700 dark:text-gray-200 items-center gap-1">
@@ -495,16 +495,16 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
             </div>
           </div>
           {/* Search/Close Button - inline for lg+, below for md */}
-          <div className="md:w-full lg:w-auto md:flex md:justify-end mt-4 md:mt-0">
-            <button type="submit" className="flex-shrink-0 px-6 py-3 rounded-lg bg-primary-600 text-white font-bold shadow hover:bg-primary-700 transition h-12 w-full md:w-auto">
+          <div className="xl:w-full 2xl:w-auto xl:flex xl:justify-end mt-4 xl:mt-0">
+            <button type="submit" className="flex-shrink-0 px-6 py-3 rounded-lg bg-primary-600 text-white font-bold shadow hover:bg-primary-700 transition h-12 w-full xl:w-auto">
               {searched ? 'Close' : 'Search'}
             </button>
           </div>
         </div>
         {/* Desktop Results Dropdown Overlay (positioned below form) */}
         {searched && (
-          <div className="absolute left-0 right-0 top-full mt-4 z-[9999] flex items-start justify-center px-2 md:px-0">
-            <div className="w-full max-w-5xl bg-gray-200 dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-10 overflow-y-auto max-h-[80vh]">
+          <div className="absolute left-0 right-0 top-full mt-4 z-[9999] flex items-start justify-center px-2 xl:px-0">
+            <div className="w-full max-w-5xl bg-gray-200 dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 xl:p-10 overflow-y-auto max-h-[80vh]">
               {results.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-lg font-semibold text-red-500 mb-2">
@@ -520,21 +520,21 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
                     <div className="mt-2 grid grid-cols-3 gap-4 items-center justify-center text-gray-600 dark:text-gray-300">
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaEnvelope /></span>
-                        <span className="jaini-purva-light text-sm md:text-base">ngiman81@gmail.com</span>
+                        <span className="jaini-purva-light text-sm xl:text-base">ngiman81@gmail.com</span>
                       </div>
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaPhoneAlt /></span>
-                        <span className="jaini-purva-light text-sm md:text-base">9803499156</span>
+                        <span className="jaini-purva-light text-sm xl:text-base">9803499156</span>
                       </div>
                       <div className="flex flex-col items-center">
                         <span className="text-2xl mb-1"><FaWhatsapp /></span>
-                        <span className="jaini-purva-light text-sm md:text-base">9803499156</span>
+                        <span className="jaini-purva-light text-sm xl:text-base">9803499156</span>
                       </div>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8">
                   {results.map((result: SearchResult) => {
                     const detailUrl = result.type === 'safari' 
                       ? `/safari/${result.id}`

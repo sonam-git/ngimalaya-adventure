@@ -46,7 +46,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
   ];
 
   return (
-    <section id="about" className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
+    <section id="about" className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -59,7 +59,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
           title="Where every trek tells a story and culture meets the clouds"
         />
 
-        <div className={`grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto ${showFull ? 'mb-16' : 'mb-0'}`}>
+        <div className={`grid xl:grid-cols-2 gap-12 items-center max-w-6xl mx-auto ${showFull ? 'mb-16' : 'mb-0'}`}>
           {/* Image Side */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6">
@@ -70,16 +70,16 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               {/* Stats Badge - overlayed on image */}
-              <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-gray-500/60 text-white p-4 md:p-6 rounded-lg shadow-2xl z-10 flex flex-col items-center w-max">
-                <div className="text-3xl md:text-4xl font-display font-bold">20+</div>
-                <div className="text-xs md:text-sm  tracking-wider text-center italic">Years Experience</div>
+              <div className="absolute bottom-4 right-4 xl:bottom-8 xl:right-8 bg-gray-500/60 text-white p-4 xl:p-6 rounded-lg shadow-2xl z-10 flex flex-col items-center w-max">
+                <div className="text-3xl xl:text-4xl font-display font-bold">20+</div>
+                <div className="text-xs xl:text-sm  tracking-wider text-center italic">Years Experience</div>
               </div>
             </div>
             {/* Quote Section */}
             <div className={`border-l-4 border-primary-500 pl-6 py-4 ${
               isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
             }`}>
-              <p className={`satisfy-regular text-xl md:text-2xl mb-3 ${
+              <p className={`satisfy-regular text-xl xl:text-2xl mb-3 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}>
                 "Ngimalaya Adventure Nepal – Where Culture Meets the Clouds, and Every Trek Tells a Story!"
@@ -94,7 +94,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
 
           {/* Content Side */}
           <div>
-            <h3 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-6 ${
+            <h3 className={`text-2xl xl:text-3xl 2xl:text-4xl jaini-purva-regular mb-6 ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               A Journey Born From Passion
@@ -132,7 +132,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
         {showFull && (
           <>
             {/* Feature Boxes */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -164,7 +164,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
               isDarkMode ? 'bg-gray-800' : 'bg-primary-50'
             }`}>
               <div className="text-center mb-12">
-                <h3 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-4 ${
+                <h3 className={`text-2xl xl:text-3xl 2xl:text-4xl jaini-purva-regular mb-4 ${
                   isDarkMode ? 'text-gray-100' : 'text-gray-900'
                 }`}>
                   Our Achievements
@@ -176,7 +176,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
                 {achievements.map((achievement, index) => (
                   <div
                     key={index}
@@ -206,7 +206,7 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
 
             {/* Call to Action */}
             <div className="text-center mt-16">
-              <h3 className={`text-xl md:text-2xl lg:text-3xl jaini-purva-regular mb-4 ${
+              <h3 className={`text-xl xl:text-2xl 2xl:text-3xl jaini-purva-regular mb-4 ${
                 isDarkMode ? 'text-gray-100' : 'text-gray-900'
               }`}>
                 Ready for Your Adventure?

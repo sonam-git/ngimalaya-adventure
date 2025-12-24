@@ -33,14 +33,14 @@ const ContactSection: React.FC = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      content: "+977 98XXXXXXXX",
+      content: "+977 9803499156",
       link: "tel:+977"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      content: "info@ngimalaya.com",
-      link: "mailto:info@ngimalaya.com"
+      content: "ngiman81@gmail.com",
+      link: "mailto:ngiman81@gmail.com"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -116,7 +116,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16 ">
+    <section id="contact" className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16 ">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -131,7 +131,7 @@ const ContactSection: React.FC = () => {
           />
 
           {/* Contact Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-12">
             {contactInfo.map((info, index) => (
               <div
                 key={index}
@@ -171,7 +171,7 @@ const ContactSection: React.FC = () => {
           <div className={`p-8 rounded-2xl ${
             isDarkMode ? 'bg-gray-700' : 'bg-white shadow-xl'
           }`}>
-            <h3 className={`text-xl md:text-2xl lg:text-3xl jaini-purva-regular mb-6 text-center ${
+            <h3 className={`text-xl xl:text-2xl 2xl:text-3xl jaini-purva-regular mb-6 text-center ${
               isDarkMode ? 'text-gray-100' : 'text-gray-900'
             }`}>
               Send Us A Message
@@ -204,7 +204,7 @@ const ContactSection: React.FC = () => {
                 autoComplete="off"
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-700'
@@ -248,7 +248,7 @@ const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-700'

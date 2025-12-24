@@ -11,7 +11,7 @@ const BackgroundImage = () => {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat md:bg-fixed"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat xl:bg-fixed"
         style={{
           backgroundImage: 'url(/assets/images/threepasses.jpeg)',
         }}

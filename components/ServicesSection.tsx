@@ -65,7 +65,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
   return (
     <section
       id="services"
-      className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16"
+      className="scroll-offset-mobile relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16"
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
@@ -77,7 +77,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
         <SectionHeader subtitle="What We Offer" title="Our Services" />
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto">
+        <div className="hidden xl:grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
@@ -109,7 +109,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
         </div>
 
         {/* Mobile Slider */}
-        <div className="relative block md:hidden">
+        <div className="relative block xl:hidden">
           <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
             <div
               ref={scrollContainerRef}
@@ -180,7 +180,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
             isDarkMode ? "bg-gray-700" : "bg-gradient-to-r from-primary-500 to-primary-600"
           }`}
         >
-          <h3 className="text-2xl md:text-3xl lg:text-4xl jaini-purva-regular text-white mb-4">
+          <h3 className="text-2xl xl:text-3xl 2xl:text-4xl jaini-purva-regular text-white mb-4">
             Get Ready for Next Trekking Adventure
           </h3>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">

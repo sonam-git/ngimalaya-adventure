@@ -47,7 +47,7 @@ const SafariSection: React.FC = () => {
 
   return (
     <>
-    <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 md:py-16">
+    <section className="relative transition-colors duration-300 overflow-hidden w-full rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-blue-600 dark:border-blue-400/60 py-12 xl:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none w-full rounded-2xl sm:rounded-3xl">
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -85,17 +85,17 @@ const SafariSection: React.FC = () => {
 
         {/* Unified Slider for All Screen Sizes */}
         <div className="relative mb-12">
-          <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 md:p-4 relative">
-            <div ref={scrollRef} className="flex gap-3 md:gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1 md:px-2">
+          <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 xl:p-4 relative">
+            <div ref={scrollRef} className="flex gap-3 xl:gap-4 2xl:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1 xl:px-2">
               {safaris.map((safari) => (
-                <div key={safari.id} className="flex-shrink-0 w-[85vw] md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.5rem)] snap-center">
+                <div key={safari.id} className="flex-shrink-0 w-[85vw] xl:w-[calc(33.333%-1rem)] 2xl:w-[calc(33.333%-1.5rem)] snap-center">
                   <div
                     className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                       isDarkMode ? 'bg-gray-800' : 'bg-white'
                     } cursor-pointer h-full flex flex-col`}
                     onClick={() => { setSelectedSafari(safari); setShowDetail(true); }}
                   >
-                    <div className="relative h-64 md:h-72 overflow-hidden flex-shrink-0">
+                    <div className="relative h-64 xl:h-72 overflow-hidden flex-shrink-0">
                       <img
                         src={safari.image}
                         alt={safari.name}
@@ -144,20 +144,20 @@ const SafariSection: React.FC = () => {
           <div className="flex justify-between items-center mt-6">
             <button
               onClick={() => scroll('left')}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 xl:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
               aria-label="Previous"
             >
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
             </button>
             <button
               onClick={() => router.push('/safari')}
-              className="bg-primary-500 hover:bg-primary-600 text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm md:text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="bg-primary-500 hover:bg-primary-600 text-white px-6 xl:px-10 py-3 xl:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm xl:text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Explore More
             </button>
             <button
               onClick={() => scroll('right')}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 xl:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
               aria-label="Next"
             >
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>

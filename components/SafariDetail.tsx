@@ -35,17 +35,17 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
   };
 
   return (
-    <div className="min-h-screen pt-[55px] md:pt-[105px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-[55px] xl:pt-[105px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 py-8">
         {/* Tab Content */}
         <div ref={contentRef} className="w-full">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-8">
               {/* Hero Section: Image (75%) + Contact Card (25%) */}
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Image Column - 75% width */}
-          <div className="lg:col-span-3">
+          <div className="xl:col-span-3">
             <div className="relative h-[500px] rounded-2xl overflow-hidden">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
@@ -60,15 +60,15 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
               
               {/* Title Overlay at Top */}
               <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight times drop-shadow-2xl">
+                <h1 className="text-3xl xl:text-5xl 2xl:text-6xl font-bold text-white tracking-tight leading-tight times drop-shadow-2xl">
                   {safari.name}
                 </h1>
               </div>
 
               {/* Safari Overview Overlay at Bottom - Hidden on small screens */}
-              <div className="hidden md:block absolute bottom-0 left-0 right-0 p-4">
+              <div className="hidden xl:block absolute bottom-0 left-0 right-0 p-4">
                 <div className={`${isDarkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm rounded-xl p-3 shadow-2xl`}>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
                     <div className="text-center">
                       <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
                       <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Duration</p>
@@ -96,8 +96,8 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
           </div>
 
           {/* Booking Card Column - 25% width */}
-          <div className="lg:col-span-1">
-            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg sticky top-[100px] md:top-[120px]`}>
+          <div className="xl:col-span-1">
+            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg sticky top-[100px] xl:top-[120px]`}>
               <div className="text-center mb-6">
                 <div className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   Contact for Price
@@ -168,7 +168,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
 
           {/* Wildlife & Activities Tab */}
           {activeTab === 'wildlife' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
                 <h3 className={`text-2xl jaini-purva-regular font-bold mb-4 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   <Trees className="mr-3 text-green-500" size={28} />

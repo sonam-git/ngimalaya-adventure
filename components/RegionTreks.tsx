@@ -19,8 +19,8 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen pt-[20px] md:pt-[50px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-[20px] xl:pt-[50px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 py-8">
         {/* Region Hero */}
         <div className="relative h-80 rounded-2xl overflow-hidden mb-8">
           <div 
@@ -35,8 +35,8 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl jaini-purva-regular font-bold mb-4">{region.name} </h1>
-              <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed px-4">
+              <h1 className="text-4xl xl:text-6xl jaini-purva-regular font-bold mb-4">{region.name} </h1>
+              <p className="text-xl xl:text-2xl max-w-3xl mx-auto leading-relaxed px-4">
                 {region.description}
               </p>
               <div className="mt-6 flex justify-center items-center space-x-6">
@@ -99,7 +99,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
           )}
           
           {treks.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-8">
               {treks.map((trek) => (
                 <TrekCard 
                   key={trek.id} 
@@ -135,7 +135,7 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
           <h3 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             What Makes {region.name} Special
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-6">
             <div>
               <h4 className={`font-semibold mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                 Unique Landscapes

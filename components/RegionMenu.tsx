@@ -9,10 +9,10 @@ interface RegionMenuProps {
 const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSelect }) => {
   return (
     <div
-      className="sticky top-[104px] md:top-[120px] z-[35] bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 shadow-lg border-b border-green-300 dark:border-blue-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
+      className="sticky top-[104px] xl:top-[120px] z-[35] bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 shadow-lg border-b border-green-300 dark:border-blue-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
       aria-label="Region menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
         {regions.map(region => (
           <li key={region} className="flex-shrink-0 w-max">
             <button

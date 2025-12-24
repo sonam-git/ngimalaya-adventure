@@ -9,10 +9,10 @@ interface PeakMenuProps {
 const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) => {
   return (
     <div
-      className="bg-white dark:bg-gray-900 shadow-md border-b border-blue-300 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
+      className="bg-white dark:bg-gray-900 shadow-md border-b border-blue-300 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
       aria-label="Peak expedition menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 justify-start md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
+      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
         {peaks.map(peak => (
           <li key={peak.id} className="flex-shrink-0 w-max">
             <button
