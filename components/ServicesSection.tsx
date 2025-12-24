@@ -188,7 +188,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
           </p>
           <button 
             onClick={onBookNow}
-            className="bg-white text-primary-500 hover:bg-gray-100 px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+            className="bg-white dark:bg-gray-800 text-primary-500 hover:bg-gray-100 px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
           >
             START JOURNEY
           </button>

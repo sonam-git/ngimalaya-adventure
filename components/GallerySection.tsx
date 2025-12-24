@@ -6,42 +6,15 @@ import Image from 'next/image';
 import GalleryImageCard from './GalleryImageCard';
 import SectionHeader from './SectionHeader';
 
-const GallerySection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const galleryScrollRef = useRef<HTMLDivElement>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Image modal text overlay state (delayed show, auto-hide)
-  const [showModalText, setShowModalText] = useState(false);
-  useEffect(() => {
-    let showTimer: NodeJS.Timeout;
-    let hideTimer: NodeJS.Timeout;
-    if (modalOpen && selectedIndex !== null) {
-      // Show text after 2 seconds
-      showTimer = setTimeout(() => setShowModalText(true), 2000);
-      // Hide text after 25 seconds total (2s delay + 23s visible)
-      hideTimer = setTimeout(() => setShowModalText(false), 25000);
-    }
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
-  }, [modalOpen, selectedIndex]);
-
-  const galleryImages = [
-    {
-      title: 'Everest Base Camp',
-      description: 'A breathtaking journey to the base of the world\'s highest mountain, offering stunning Himalayan views.',
-      image: '/assets/images/ebc.jpeg',
-      region: 'Everest',
-      trek: 'EBC Trek',
-    },
+// Hardcoded fallback images - moved outside component to avoid dependencies
+const fallbackImages = [
+  {
+    title: 'Everest Base Camp',
+    description: 'A breathtaking journey to the base of the world\'s highest mountain, offering stunning Himalayan views.',
+    image: '/assets/images/ebc.jpeg',
+    region: 'Everest',
+    trek: 'EBC Trek',
+  },
     {
       title: 'Annapurna Base Camp',
       description: 'Experience diverse landscapes, from lush valleys to high mountain passes, on this iconic trek.',
@@ -212,6 +185,84 @@ const GallerySection = () => {
     },
   ];
 
+const GallerySection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const galleryScrollRef = useRef<HTMLDivElement>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<Array<{
+    title: string;
+    description: string;
+    image: string;
+    region: string;
+    trek: string;
+  }>>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch gallery images from Storyblok API
+  useEffect(() => {
+    const fetchGallery = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        console.log('🔄 Fetching gallery from API...');
+        const response = await fetch('/api/gallery');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        console.log('📦 Gallery API response:', data);
+        console.log('📊 Number of items:', data.items?.length);
+        
+        // Use Storyblok images if available, otherwise use fallback
+        if (data.items && data.items.length > 0) {
+          console.log('✅ Using Storyblok images:', data.items);
+          setGalleryImages(data.items);
+        } else {
+          console.log('⚠️ No Storyblok items found - using fallback images');
+          setError('No gallery items found in Storyblok, showing fallback images');
+          setGalleryImages(fallbackImages);
+        }
+      } catch (error) {
+        console.error('❌ Error fetching gallery:', error);
+        console.log('⚠️ Using fallback images due to error');
+        setError(error instanceof Error ? error.message : 'Failed to fetch gallery');
+        // Use fallback images when there's an error
+        setGalleryImages(fallbackImages);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchGallery();
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Image modal text overlay state (delayed show, auto-hide)
+  const [showModalText, setShowModalText] = useState(false);
+  useEffect(() => {
+    let showTimer: NodeJS.Timeout;
+    let hideTimer: NodeJS.Timeout;
+    if (modalOpen && selectedIndex !== null) {
+      // Show text after 2 seconds
+      showTimer = setTimeout(() => setShowModalText(true), 2000);
+      // Hide text after 25 seconds total (2s delay + 23s visible)
+      hideTimer = setTimeout(() => setShowModalText(false), 25000);
+    }
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [modalOpen, selectedIndex]);
+
   const openModal = (idx: number) => {
     setSelectedIndex(idx);
     setModalOpen(true);
@@ -276,13 +327,58 @@ const GallerySection = () => {
         {/* Section Heading */}
         <SectionHeader
           subtitle="Explore the stunning landscapes and adventures that await you in the Himalayas"
-          title="Our Gallery"
+          title="Moments from the Trail"
         />
-
+    <p className={`text-center text-lg max-w-3xl mx-auto mb-8 `}>
+            A visual journey through unforgettable moments we experience during our treks, safaris, and mountain adventures—captured along the way.
+          </p>
         {/* Featured Gallery Section */}
         <div className="mt-4 mb-4">
           <div className="relative z-20 w-full my-6 sm:my-10 rounded-3xl shadow-2xl border-4  bg-white dark:bg-black/60 backdrop-blur-xl px-0.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-3 before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-blue-200/10 before:via-green-200/10 before:to-blue-200/10 before:blur-2xl before:z-0 overflow-hidden">
+          
             <div className="relative z-10">
+              {/* Loading State */}
+              {isLoading && (
+                <div className="flex items-center justify-center py-20">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600 dark:text-gray-300">Loading gallery from Storyblok...</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Error State - Only show if there's an error AND no fallback images */}
+              {!isLoading && error && galleryImages.length === 0 && (
+                <div className="flex items-center justify-center py-20">
+                  <div className="text-center bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-lg p-6 max-w-md">
+                    <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <h3 className="text-lg font-bold text-red-700 dark:text-red-300 mb-2">Gallery Not Available</h3>
+                    <p className="text-red-600 dark:text-red-400 text-sm mb-2">{error}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs">Check the browser console for details</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Info Banner - Show when using fallback images */}
+              {!isLoading && error && galleryImages.length > 0 && (
+                <div className="mb-4 bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-300 dark:border-yellow-700 rounded-lg p-4">
+                  <div className="flex items-center gap-3">
+                    <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div className="flex-1">
+                      <p className="text-sm text-yellow-800 dark:text-yellow-200 font-semibold">Using Fallback Images</p>
+                      <p className="text-xs text-yellow-700 dark:text-yellow-300">Storyblok gallery unavailable. Showing default images.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Gallery Content */}
+              {!isLoading && galleryImages.length > 0 && (
+                <>
               <div 
                 ref={galleryScrollRef} 
                 className="flex gap-6 overflow-x-auto pb-2 px-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-transparent gallery-scroll focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400/70" 
@@ -379,6 +475,20 @@ const GallerySection = () => {
                   </svg>
                 </button>
               </div>
+                </>
+              )}
+
+              {/* Empty State */}
+              {!isLoading && !error && galleryImages.length === 0 && (
+                <div className="flex items-center justify-center py-20">
+                  <div className="text-center">
+                    <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <p className="text-gray-600 dark:text-gray-400">No gallery images found</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

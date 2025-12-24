@@ -83,19 +83,19 @@ const SafariSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Slider */}
-        <div className="relative block md:hidden">
-          <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 relative">
-            <div ref={scrollRef} className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1">
+        {/* Unified Slider for All Screen Sizes */}
+        <div className="relative mb-12">
+          <div className="rounded-2xl border border-primary-200 dark:border-primary-800 bg-white/70 dark:bg-gray-900/70 shadow-xl p-2 md:p-4 relative">
+            <div ref={scrollRef} className="flex gap-3 md:gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1 md:px-2">
               {safaris.map((safari) => (
-                <div key={safari.id} className="flex-shrink-0 w-[85vw] snap-center">
+                <div key={safari.id} className="flex-shrink-0 w-[85vw] md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.5rem)] snap-center">
                   <div
                     className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                       isDarkMode ? 'bg-gray-800' : 'bg-white'
-                    } cursor-pointer`}
+                    } cursor-pointer h-full flex flex-col`}
                     onClick={() => { setSelectedSafari(safari); setShowDetail(true); }}
                   >
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative h-64 md:h-72 overflow-hidden flex-shrink-0">
                       <img
                         src={safari.image}
                         alt={safari.name}
@@ -114,18 +114,20 @@ const SafariSection: React.FC = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className={`text-xl font-display font-bold mb-2 ${
+                    <div className="p-6 flex flex-col flex-1 min-h-0">
+                      <h3 className={`text-xl font-display font-bold mb-2 flex-shrink-0 ${
                         isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}>
                         {safari.name}
                       </h3>
-                      <p className={`mb-4 text-sm ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                      }`}>
-                        {safari.description}
-                      </p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex-1 overflow-y-auto mb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
+                        <p className={`text-sm ${
+                          isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          {safari.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between flex-shrink-0">
                         <span className={`text-sm font-display font-semibold ${
                           isDarkMode ? 'text-gray-300' : 'text-gray-700'
                         }`}>
@@ -142,86 +144,23 @@ const SafariSection: React.FC = () => {
           <div className="flex justify-between items-center mt-6">
             <button
               onClick={() => scroll('left')}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
               aria-label="Previous"
             >
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
             </button>
             <button
               onClick={() => router.push('/safari')}
-              className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-primary-500 hover:bg-primary-600 text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm md:text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Explore More
             </button>
             <button
               onClick={() => scroll('right')}
-              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
+              className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-110 focus:outline-none border-2 border-white/70 dark:border-gray-700 transition-transform duration-200"
               aria-label="Next"
             >
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Desktop Grid */}
-        <div className="hidden md:block mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
-            {safaris.map((safari) => (
-              <div
-                key={safari.id}
-                className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
-                  isDarkMode ? 'bg-gray-800' : 'bg-white'
-                } cursor-pointer`}
-                onClick={() => { setSelectedSafari(safari); setShowDetail(true); }}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={safari.image}
-                    alt={safari.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-display font-semibold ${
-                      isDarkMode ? 'bg-gray-900/80 text-white' : 'bg-white/90 text-gray-900'
-                    }`}>
-                      {safari.type}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 left-4">
-                    <span className="bg-primary-500 text-white px-3 py-1 rounded-full font-display font-semibold text-xs shadow-lg">
-                      {safari.badge}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className={`text-xl font-display font-bold mb-2 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
-                  }`}>
-                    {safari.name}
-                  </h3>
-                  <p className={`mb-4 text-sm ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    {safari.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className={`text-sm font-display font-semibold ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      {safari.duration}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Desktop Explore More Button */}
-          <div className="text-center">
-            <button
-              onClick={() => router.push('/safari')}
-              className="bg-primary-500 hover:bg-primary-600 text-white px-10 py-4 text-lg font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
-            >
-              Explore More
             </button>
           </div>
         </div>

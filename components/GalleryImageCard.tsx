@@ -103,7 +103,7 @@ const GalleryImageCard: React.FC<GalleryImageCardProps> = ({
         <div className="pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
-              Himalayan Adventure
+              Ngimalaya Adventure
             </span>
             <div className="flex gap-1.5" aria-hidden="true">
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
