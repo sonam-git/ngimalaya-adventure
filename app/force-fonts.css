@@ -122,6 +122,44 @@ html body p:not(.satisfy):not(.lugrasimo):not(.times) {
   font-family: var(--font-body) !important;
 }
 
+/* LAYER 11: Region Treks Stats Section - Force Jaini Purva persistently */
+html body .jaini-purva-regular div { font-family: var(--font-heading) !important; }
+html body .jaini-purva-regular div * { font-family: var(--font-heading) !important; }
+html body .jaini-purva-regular span { font-family: var(--font-heading) !important; }
+html body .jaini-purva-regular span * { font-family: var(--font-heading) !important; }
+
+/* Target specific stat numbers */
+html body .jaini-purva-regular [class*="text-xl"] { font-family: var(--font-heading) !important; font-weight: 700 !important; }
+html body .jaini-purva-regular [class*="text-2xl"] { font-family: var(--font-heading) !important; font-weight: 700 !important; }
+html body .jaini-purva-regular [class*="text-3xl"] { font-family: var(--font-heading) !important; font-weight: 700 !important; }
+
+/* Target specific stat labels */
+html body .jaini-purva-regular [class*="text-xs"] { font-family: var(--font-heading) !important; font-weight: 600 !important; }
+html body .jaini-purva-regular [class*="text-sm"] { font-family: var(--font-heading) !important; font-weight: 600 !important; }
+html body .jaini-purva-regular [class*="text-[10px]"] { font-family: var(--font-heading) !important; font-weight: 600 !important; }
+
+/* Extra aggressive override for dynamic content */
+html body .jaini-purva-regular div[class*="text-"] { font-family: var(--font-heading) !important; }
+html body .jaini-purva-regular div[class*="flex"] { font-family: var(--font-heading) !important; }
+html body .jaini-purva-regular div[class*="flex"] * { font-family: var(--font-heading) !important; }
+
+/* LAYER 12: Times New Roman for About Section - Force persistence */
+html body .times-new-roman { font-family: var(--font-times) !important; }
+html body .times-new-roman * { font-family: var(--font-times) !important; }
+html body .times-new-roman p { font-family: var(--font-times) !important; }
+html body .times-new-roman h4 { font-family: var(--font-times) !important; }
+html body .times-new-roman span { font-family: var(--font-times) !important; }
+html body .times-new-roman div { font-family: var(--font-times) !important; }
+
+/* Extra specificity for About section */
+html body section#about .times-new-roman { font-family: var(--font-times) !important; }
+html body section#about .times-new-roman * { font-family: var(--font-times) !important; }
+html body section#about h4.times-new-roman { font-family: var(--font-times) !important; }
+html body section#about p.times-new-roman { font-family: var(--font-times) !important; }
+
+/* Override any text size classes */
+html body .times-new-roman[class*="text-"] { font-family: var(--font-times) !important; }
+
 /* =============================================================================
    END ABSOLUTE FONT OVERRIDE
    ============================================================================= */

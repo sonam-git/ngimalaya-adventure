@@ -100,30 +100,30 @@ const About: React.FC<{ showFull?: boolean }> = ({ showFull = true }) => {
               A Journey Born From Passion
             </h3>
             
-            <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
+             <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               Born in the Himalayas
             </h4>
             <p className={`times-new-roman text-lg leading-relaxed mb-6 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
+            }`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               Welcome to Ngimalaya Adventure Nepal, where the journey begins with a name rooted in the rich cultural heritage of the Sherpa community. I am Ngima Nuru Sherpa, born into the heart of the Himalayas and having spent two decades as a seasoned trekking guide.
             </p>
 
-            <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
+            <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               Multilingual Guide
             </h4>
             <p className={`times-new-roman text-lg leading-relaxed mb-6 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
+            }`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               My passion for exploration has connected me with diverse cultures and people across the globe. Proficient in 6 languages including English, German, Japanese, Hindi, Nepali, and Sherpa, my extensive career has allowed me to traverse not only the stunning landscapes of Nepal but also venture into the vibrant tapestries of Japan and Germany.
             </p>
 
-            <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`}>
+            <h4 className={`text-xl times-new-roman font-semibold mb-3 text-primary-700 dark:text-blue-200`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               Founded on Passion
             </h4>
             <p className={`times-new-roman text-lg leading-relaxed mb-6 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
+            }`} style={{ fontFamily: "'Times New Roman', Times, serif" }}>
               Fueled by the desire to share the mesmerizing views of the Himalayas and the diverse cultures within Nepal, I founded Ngimalaya Adventure Nepal in 2016. Our commitment goes beyond conventional trekking experiences, as we strive to provide personalized plans, warm Nepali welcomes, and a team of experts dedicated to making every trekking adventure unforgettable.
             </p>
           </div>

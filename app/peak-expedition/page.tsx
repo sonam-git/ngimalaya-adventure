@@ -1,6 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { Flag, Mountain, Award, Shield, Camera } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Flag, Mountain, Award, Shield, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import ContactModal from '../../components/ContactModal';
 import { PeakExpedition } from '@/lib/types';
@@ -11,6 +11,8 @@ const PeakExpeditionPage: React.FC = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [peaks, setPeaks] = useState<PeakExpedition[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Fetch peaks from API
   useEffect(() => {
@@ -29,6 +31,43 @@ const PeakExpeditionPage: React.FC = () => {
     }
     fetchPeaks();
   }, []);
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      scrollToIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < peaks.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      scrollToIndex(currentIndex + 1);
+    }
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const isLargeScreen = window.innerWidth >= 1280; // xl breakpoint
+      
+      if (isLargeScreen) {
+        // On large screens, show 2 cards at a time
+        const cardWidth = (container.scrollWidth + 32) / peaks.length; // 32 is gap-8
+        container.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      } else {
+        // On small screens, show 1 card at a time
+        const cardWidth = container.scrollWidth / peaks.length;
+        container.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   const features = [
     {
@@ -101,8 +140,168 @@ const PeakExpeditionPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Features Section */}
+      {/* Expeditions Slider */}
       <div className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
+              Our Peak | Expeditions
+            </h2>
+            <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Choose from our carefully curated peak expeditions, each designed to provide an unforgettable mountaineering experience
+            </p>
+          </div>
+
+          {isLoading ? (
+            <div className="text-center py-12">
+              <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading peaks...</p>
+            </div>
+          ) : peaks.length === 0 ? (
+            <div className="text-center py-12">
+              <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No peaks available at the moment.</p>
+            </div>
+          ) : (
+            <div className="relative">
+              {/* Horizontal Slider */}
+              <div 
+                ref={scrollContainerRef}
+                className="flex gap-6 xl:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {peaks.map((expedition) => (
+                  <div
+                    key={expedition.id}
+                    className={`flex-none w-full xl:w-[calc(50%-1rem)] snap-start rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
+                      isDarkMode ? 'bg-gray-800' : 'bg-white'
+                    }`}
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={expedition.image}
+                        alt={expedition.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      />
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-primary-500 text-white px-4 py-2 rounded-full font-display font-bold text-sm shadow-lg">
+                          {expedition.price}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{expedition.name}</h3>
+                      <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {expedition.description}
+                      </p>
+
+                      <div className="space-y-3 mb-6">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Max. Altitude</p>
+                            <p className="font-display font-semibold text-primary-500">{expedition.height}</p>
+                          </div>
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Trip Duration</p>
+                            <p className="font-display font-semibold">{expedition.duration}</p>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Trek Grade</p>
+                            <p className="font-display font-semibold">{expedition.difficulty}</p>
+                          </div>
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Best Time</p>
+                            <p className="font-display font-semibold text-sm">{expedition.season}</p>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Accommodation</p>
+                            <p className="font-display font-semibold">{expedition.accommodation}</p>
+                          </div>
+                          <div>
+                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Per Day Hiking</p>
+                            <p className="font-display font-semibold">{expedition.hiking}</p>
+                          </div>
+                        </div>
+                        <div>
+                          <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Meals Included</p>
+                          <p className="font-display font-semibold">{expedition.meals}</p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <Link href={`/peak-expedition/${expedition.id}`}>
+                          <button 
+                            className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                          >
+                            View Details
+                          </button>
+                        </Link>
+                        <button 
+                          onClick={() => setIsContactModalOpen(true)}
+                          className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                        >
+                          Enquire Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Navigation Controls */}
+              <div className="flex items-center justify-center gap-8 mt-8">
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrev}
+                  disabled={currentIndex === 0}
+                  className={`p-3 rounded-full transition-all duration-300 ${
+                    currentIndex === 0
+                      ? 'bg-gray-300 cursor-not-allowed opacity-50'
+                      : isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                  }`}
+                  aria-label="Previous peak"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* Swipe Indicator */}
+                <div className={`text-center px-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className="text-sm font-semibold">
+                    {currentIndex + 1} / {peaks.length}
+                  </p>
+                  <p className="text-xs mt-1 opacity-75">
+                    Swipe or click arrows for more
+                  </p>
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  disabled={currentIndex === peaks.length - 1}
+                  className={`p-3 rounded-full transition-all duration-300 ${
+                    currentIndex === peaks.length - 1
+                      ? 'bg-gray-300 cursor-not-allowed opacity-50'
+                      : isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                  }`}
+                  aria-label="Next peak"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+        {/* Features Section */}
+      <div className="py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => {
@@ -124,114 +323,6 @@ const PeakExpeditionPage: React.FC = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Expeditions Grid */}
-      <div className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
-              Our Expeditions
-            </h2>
-            <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Choose from our carefully curated peak expeditions, each designed to provide an unforgettable mountaineering experience
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLoading ? (
-              <div className="col-span-full text-center py-12">
-                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading peaks...</p>
-              </div>
-            ) : peaks.length === 0 ? (
-              <div className="col-span-full text-center py-12">
-                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No peaks available at the moment.</p>
-              </div>
-            ) : (
-              peaks.map((expedition) => (
-              <div
-                key={expedition.id}
-                className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-                  isDarkMode ? 'bg-gray-800' : 'bg-white'
-                }`}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={expedition.image}
-                    alt={expedition.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-primary-500 text-white px-4 py-2 rounded-full font-display font-bold text-sm shadow-lg">
-                      {expedition.price}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{expedition.name}</h3>
-                  <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {expedition.description}
-                  </p>
-
-                  <div className="space-y-3 mb-6">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Max. Altitude</p>
-                        <p className="font-display font-semibold text-primary-500">{expedition.height}</p>
-                      </div>
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Trip Duration</p>
-                        <p className="font-display font-semibold">{expedition.duration}</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Trek Grade</p>
-                        <p className="font-display font-semibold">{expedition.difficulty}</p>
-                      </div>
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Best Time</p>
-                        <p className="font-display font-semibold text-sm">{expedition.season}</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Accommodation</p>
-                        <p className="font-display font-semibold">{expedition.accommodation}</p>
-                      </div>
-                      <div>
-                        <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Per Day Hiking</p>
-                        <p className="font-display font-semibold">{expedition.hiking}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>Meals Included</p>
-                      <p className="font-display font-semibold">{expedition.meals}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <Link href={`/peak-expedition/${expedition.id}`}>
-                      <button 
-                        className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                      >
-                        View Details
-                      </button>
-                    </Link>
-                    <button 
-                      onClick={() => setIsContactModalOpen(true)}
-                      className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
-                      Enquire Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))
-            )}
           </div>
         </div>
       </div>

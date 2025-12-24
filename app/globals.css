@@ -28,6 +28,9 @@ body {
 @layer base {
   html, body {
     max-width: 100vw;
+    overscroll-behavior: none; /* Prevent bounce/rubber-band scrolling */
+    height: 100%; /* Ensure full height */
+    min-height: 100vh; /* Minimum full viewport height */
   }
   
   html {
@@ -42,6 +45,10 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent overscroll */
+    overscroll-behavior-y: none;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-x: none;
   }
   
   @media (min-width: 768px) {
@@ -67,6 +74,10 @@ body {
     padding: 0;
     line-height: 1.6;
     font-size: 16px;
+    overscroll-behavior: none; /* Prevent bounce/rubber-band scrolling */
+    overscroll-behavior-y: none; /* Prevent vertical overscroll */
+    touch-action: pan-y pinch-zoom; /* Allow vertical scroll and pinch zoom only */
+    position: relative; /* Establish positioning context */
   }
 
   /* Mobile-first typography */
@@ -1068,4 +1079,89 @@ p:not(.satisfy):not(.lugrasimo):not(.times),
 
 /* ============================================================================
    END FINAL FONT OVERRIDES
+   ============================================================================ */
+
+/* ============================================================================
+   REGION TREKS STATS SECTION - Ensure Jaini Purva font persists
+   ============================================================================ */
+.jaini-purva-regular div,
+.jaini-purva-regular div *,
+.jaini-purva-regular span,
+.jaini-purva-regular span * {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 400 !important;
+}
+
+/* Specifically target number displays in stats */
+.jaini-purva-regular [class*="text-xl"],
+.jaini-purva-regular [class*="text-2xl"],
+.jaini-purva-regular [class*="text-3xl"] {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 700 !important;
+}
+
+/* Specifically target label text in stats */
+.jaini-purva-regular [class*="text-xs"],
+.jaini-purva-regular [class*="text-sm"] {
+  font-family: 'Jaini Purva', system-ui !important;
+  font-weight: 600 !important;
+}
+/* ============================================================================
+   END REGION TREKS STATS SECTION
+   ============================================================================ */
+
+/* ============================================================================
+   SCROLLBAR UTILITIES
+   ============================================================================ */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, and Opera */
+}
+/* ============================================================================
+   END SCROLLBAR UTILITIES
+   ============================================================================ */
+
+/* ============================================================================
+   TIMES NEW ROMAN FONT PERSISTENCE - About Section
+   ============================================================================ */
+/* Maximum specificity for Times New Roman */
+.times-new-roman,
+.times-new-roman *,
+.times-new-roman p,
+.times-new-roman h4,
+.times-new-roman span,
+.times-new-roman div {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Specifically target About section body text */
+section#about .times-new-roman,
+section#about .times-new-roman *,
+section#about .times-new-roman p,
+section#about .times-new-roman h4 {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Override any conflicting rules */
+html body section#about .times-new-roman,
+html body section#about .times-new-roman *,
+html body section#about .times-new-roman p {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Ensure h4 titles in about section */
+html body section#about h4.times-new-roman {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Ensure paragraphs in about section */
+html body section#about p.times-new-roman {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+/* ============================================================================
+   END TIMES NEW ROMAN FONT PERSISTENCE
    ============================================================================ */

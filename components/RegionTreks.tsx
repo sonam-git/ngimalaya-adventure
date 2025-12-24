@@ -6,6 +6,7 @@ import type { Region, Trek } from '@/lib/types';
 import TrekCard from './TrekCard';
 import CustomTrekModal from './CustomTrekModal';
 import ContactModal from './ContactModal';
+import { Mountain, Clock, TrendingUp } from 'lucide-react';
 
 interface RegionTreksProps {
   region: Region;
@@ -33,31 +34,64 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
               }), url("${getImageSrc(region.image)}")`
             }}
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-4xl xl:text-6xl jaini-purva-regular font-bold mb-4">{region.name} </h1>
-              <p className="text-xl xl:text-2xl max-w-3xl mx-auto leading-relaxed px-4">
+          <div className="absolute inset-0 flex items-center justify-center p-4 overflow-hidden">
+            <div className="text-center text-white w-full max-w-5xl">
+              {/* Title with consistent sizing */}
+              <h1 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl jaini-purva-regular font-bold mb-3 xl:mb-4 drop-shadow-2xl leading-tight px-2">
+                {region.name}
+              </h1>
+              
+              {/* Description with line clamp to prevent overflow */}
+              <p className="text-base sm:text-lg xl:text-xl 2xl:text-2xl max-w-3xl mx-auto leading-relaxed px-4 mb-4 xl:mb-6 drop-shadow-lg line-clamp-2">
                 {region.description}
               </p>
-              <div className="mt-6 flex justify-center items-center space-x-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold">{treks.length}</div>
-                  <div className="text-sm opacity-80">Available Treks</div>
-                </div>
-                <div className="w-px h-8 bg-white/30"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">
-                    {treks.length > 0 ? 
-                      `${Math.min(...treks.map(t => parseInt(t.duration)))} - ${Math.max(...treks.map(t => parseInt(t.duration)))} Days`
-                      : 'N/A'
-                    }
+              
+              {/* Stats with better responsive behavior */}
+              <div 
+                className="mt-4 xl:mt-6 inline-flex items-center justify-center gap-3 sm:gap-4 xl:gap-6 bg-black/30 backdrop-blur-sm rounded-2xl px-4 sm:px-6 py-3 sm:py-4 border border-white/20 shadow-2xl jaini-purva-regular"
+                style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}
+              >
+                {/* Available Treks */}
+                <div className="text-center min-w-[70px] sm:min-w-[80px]">
+                  <div className="flex items-center justify-center mb-1">
+                    <Mountain className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 mr-1 sm:mr-1.5 opacity-90" />
+                    <div className="text-xl sm:text-2xl xl:text-3xl font-bold drop-shadow-lg" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>{treks.length}</div>
                   </div>
-                  <div className="text-sm opacity-80">Duration Range</div>
+                  <div className="text-[10px] sm:text-xs xl:text-sm opacity-90 uppercase tracking-wider font-semibold" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>Treks</div>
                 </div>
-                <div className="w-px h-8 bg-white/30"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">All Levels</div>
-                  <div className="text-sm opacity-80">Difficulty</div>
+                
+                {/* Divider */}
+                <div className="w-px h-10 sm:h-12 bg-white/30"></div>
+                
+                {/* Duration Range */}
+                <div className="text-center min-w-[90px] sm:min-w-[110px] xl:min-w-[130px]">
+                  <div className="flex items-center justify-center mb-1">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 mr-1 sm:mr-1.5 opacity-90" />
+                    <div className="text-lg sm:text-xl xl:text-2xl font-bold drop-shadow-lg whitespace-nowrap" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>
+                      {treks.length > 0 ? (() => {
+                        const minDuration = Math.min(...treks.map(t => parseInt(t.duration)));
+                        const maxDuration = Math.max(...treks.map(t => parseInt(t.duration)));
+                        return minDuration === maxDuration 
+                          ? `Up to ${maxDuration}` 
+                          : `${minDuration}-${maxDuration}`;
+                      })() : 'N/A'}
+                    </div>
+                  </div>
+                  <div className="text-[10px] sm:text-xs xl:text-sm opacity-90 uppercase tracking-wider font-semibold" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>
+                    {treks.length > 0 && Math.min(...treks.map(t => parseInt(t.duration))) === Math.max(...treks.map(t => parseInt(t.duration))) ? 'Days' : 'Days'}
+                  </div>
+                </div>
+                
+                {/* Divider */}
+                <div className="w-px h-10 sm:h-12 bg-white/30"></div>
+                
+                {/* Difficulty */}
+                <div className="text-center min-w-[70px] sm:min-w-[90px]">
+                  <div className="flex items-center justify-center mb-1">
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 mr-1 sm:mr-1.5 opacity-90" />
+                    <div className="text-xl sm:text-2xl xl:text-3xl font-bold drop-shadow-lg" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>All</div>
+                  </div>
+                  <div className="text-[10px] sm:text-xs xl:text-sm opacity-90 uppercase tracking-wider font-semibold" style={{ fontFamily: "'Jaini Purva', system-ui, sans-serif" }}>Levels</div>
                 </div>
               </div>
             </div>

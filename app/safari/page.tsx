@@ -1,6 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Binoculars, Footprints, Camera, Bird, Trees, Sun, MapPin, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import ContactModal from '../../components/ContactModal';
 import { SafariPackage } from '@/lib/types';
@@ -11,6 +11,8 @@ const SafariPage: React.FC = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [safaris, setSafaris] = useState<SafariPackage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Fetch safaris from API
   useEffect(() => {
@@ -29,6 +31,43 @@ const SafariPage: React.FC = () => {
     }
     fetchSafaris();
   }, []);
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      scrollToIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < safaris.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      scrollToIndex(currentIndex + 1);
+    }
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const isLargeScreen = window.innerWidth >= 1280; // xl breakpoint
+      
+      if (isLargeScreen) {
+        // On large screens, show 2 cards at a time
+        const cardWidth = (container.scrollWidth + 32) / safaris.length; // 32 is gap-8
+        container.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      } else {
+        // On small screens, show 1 card at a time
+        const cardWidth = container.scrollWidth / safaris.length;
+        container.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   const handleBookNow = () => {
     setIsContactModalOpen(true);
@@ -116,8 +155,171 @@ const SafariPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="py-16">
+      {/* Safari Packages Slider */}
+      <div id="safari-packages" className="py-16 scroll-mt-32 md:scroll-mt-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
+              Our Safari Packages
+            </h2>
+            <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Choose from our exciting safari packages designed to give you the best wildlife experience
+            </p>
+          </div>
+
+          {isLoading ? (
+            <div className="text-center py-12">
+              <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading safaris...</p>
+            </div>
+          ) : safaris.length === 0 ? (
+            <div className="text-center py-12">
+              <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No safaris available at the moment.</p>
+            </div>
+          ) : (
+            <div className="relative">
+              {/* Horizontal Slider */}
+              <div 
+                ref={scrollContainerRef}
+                className="flex gap-6 xl:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {safaris.map((safari) => (
+                  <div
+                    key={safari.id}
+                    className={`flex-none w-full xl:w-[calc(50%-1rem)] snap-start rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
+                      isDarkMode ? 'bg-gray-800' : 'bg-white'
+                    }`}
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={safari.image}
+                        alt={safari.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-display font-semibold ${
+                          isDarkMode ? 'bg-gray-900/80 text-white' : 'bg-white/90 text-gray-900'
+                        }`}>
+                          {safari.type}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-4 left-4">
+                        <span className="bg-primary-500 text-white px-3 py-1 rounded-full font-display font-semibold text-xs shadow-lg">
+                          {safari.badge}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{safari.name}</h3>
+                      <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {safari.description}
+                      </p>
+
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="text-primary-500" size={18} />
+                          <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            {safari.location}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="text-primary-500" size={18} />
+                          <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            {safari.duration}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h4 className="font-display font-semibold mb-2">Highlights:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {safari.highlights.map((highlight, index) => (
+                            <span
+                              key={index}
+                              className={`px-3 py-1 rounded-full text-xs font-display ${
+                                isDarkMode
+                                  ? 'bg-gray-700 text-gray-300'
+                                  : 'bg-gray-100 text-gray-700'
+                              }`}
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <Link href={`/safari/${safari.id}`}>
+                          <button 
+                            className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                          >
+                            View Details
+                          </button>
+                        </Link>
+                        <button
+                          className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+                          onClick={handleBookNow}
+                        >
+                          Enquire Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Navigation Controls */}
+              <div className="flex items-center justify-center gap-8 mt-8">
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrev}
+                  disabled={currentIndex === 0}
+                  className={`p-3 rounded-full transition-all duration-300 ${
+                    currentIndex === 0
+                      ? 'bg-gray-300 cursor-not-allowed opacity-50'
+                      : isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                  }`}
+                  aria-label="Previous safari"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* Swipe Indicator */}
+                <div className={`text-center px-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className="text-sm font-semibold">
+                    {currentIndex + 1} / {safaris.length}
+                  </p>
+                  <p className="text-xs mt-1 opacity-75">
+                    Swipe or click arrows for more
+                  </p>
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  disabled={currentIndex === safaris.length - 1}
+                  className={`p-3 rounded-full transition-all duration-300 ${
+                    currentIndex === safaris.length - 1
+                      ? 'bg-gray-300 cursor-not-allowed opacity-50'
+                      : isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                  }`}
+                  aria-label="Next safari"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+  {/* Features Section */}
+      <div className="py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => {
@@ -142,120 +344,8 @@ const SafariPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Safari Packages */}
-      <div id="safari-packages" className="py-16 scroll-mt-32 md:scroll-mt-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
-              Our Safari Packages
-            </h2>
-            <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Choose from our exciting safari packages designed to give you the best wildlife experience
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLoading ? (
-              <div className="col-span-full text-center py-12">
-                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Loading safaris...</p>
-              </div>
-            ) : safaris.length === 0 ? (
-              <div className="col-span-full text-center py-12">
-                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>No safaris available at the moment.</p>
-              </div>
-            ) : (
-              safaris.map((safari) => (
-              <div
-                key={safari.id}
-                className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-                  isDarkMode ? 'bg-gray-800' : 'bg-white'
-                }`}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={safari.image}
-                    alt={safari.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-display font-semibold ${
-                      isDarkMode ? 'bg-gray-900/80 text-white' : 'bg-white/90 text-gray-900'
-                    }`}>
-                      {safari.type}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 left-4">
-                    <span className="bg-primary-500 text-white px-3 py-1 rounded-full font-display font-semibold text-xs shadow-lg">
-                      {safari.badge}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-2xl jaini-purva-regular font-bold mb-3">{safari.name}</h3>
-                  <p className={`mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {safari.description}
-                  </p>
-
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="text-primary-500" size={18} />
-                      <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        {safari.location}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="text-primary-500" size={18} />
-                      <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        {safari.duration}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <h4 className="font-display font-semibold mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {safari.highlights.map((highlight, index) => (
-                        <span
-                          key={index}
-                          className={`px-3 py-1 rounded-full text-xs font-display ${
-                            isDarkMode
-                              ? 'bg-gray-700 text-gray-300'
-                              : 'bg-gray-100 text-gray-700'
-                          }`}
-                        >
-                          {highlight}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <Link href={`/safari/${safari.id}`}>
-                      <button 
-                        className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                      >
-                        View Details
-                      </button>
-                    </Link>
-                    <button
-                      className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
-                      onClick={handleBookNow}
-                    >
-                      Enquire Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Activities Section */}
-      <div className="py-16">
+      <div className="py-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Footprints className="mx-auto text-primary-500 mb-4" size={48} />
