@@ -109,7 +109,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                 onClick={() => setIsContactModalOpen(true)}
                 className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
               >
-                Enquire Now
+                Inquire Now
               </button>
 
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
@@ -159,7 +159,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                 {safari.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Star className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{highlight}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -178,7 +178,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                   {safari.wildlife.map((animal, index) => (
                     <li key={index} className="flex items-start space-x-3">
                       <span className="text-green-500 text-xl">🦁</span>
-                      <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{animal}</span>
+                      <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{animal}</span>
                     </li>
                   ))}
                 </ul>
@@ -193,7 +193,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                   {safari.activities.map((activity, index) => (
                     <li key={index} className="flex items-start space-x-3">
                       <CheckCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={20} />
-                      <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{activity}</span>
+                      <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{activity}</span>
                     </li>
                   ))}
                 </ul>
@@ -282,7 +282,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                 {safari.included.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <CheckCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -300,7 +300,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                 {safari.excluded.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <XCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -318,7 +318,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
                 {safari.requirements.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <AlertTriangle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-orange-400' : 'text-orange-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>

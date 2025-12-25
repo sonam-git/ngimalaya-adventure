@@ -108,7 +108,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 onClick={() => setIsContactModalOpen(true)}
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
               >
-                Enquire Now
+                Inquire Now
               </button>
 
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
@@ -136,7 +136,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   About This Peak
                 </h2>
-                <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <p className={`text-md leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   {peak.overview}
                 </p>
               </div>
@@ -153,7 +153,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 {peak.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Star className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{highlight}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -242,7 +242,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 {peak.included.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <CheckCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -260,7 +260,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 {peak.excluded.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <XCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -278,7 +278,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 {peak.requirements.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <AlertTriangle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-orange-400' : 'text-orange-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -295,7 +295,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                 {peak.technicalRequirements.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Mountain className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={20} />
-                    <span className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                    <span className={`text-md ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -306,7 +306,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
-        title={`Enquire About ${peak.name}`}
+        title={`Inquire About ${peak.name}`}
         subtitle="Get detailed information about this peak expedition"
       />
     </div>

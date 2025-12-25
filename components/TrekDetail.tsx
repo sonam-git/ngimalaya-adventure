@@ -175,7 +175,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   About This Trek
                 </h2>
-                <p className={`text-lg leading-relaxed font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                <p className={`text-md leading-relaxed font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
                   {trek.description}
                 </p>
               </div>
@@ -192,7 +192,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Star className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} size={20} />
-                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{highlight}</span>
+                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -392,7 +392,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.included.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <CheckCircle className="mt-0.5 text-green-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
+                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -410,7 +410,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.excluded.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <XCircle className="mt-0.5 text-red-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
+                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -428,7 +428,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.requirements.map((requirement, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <AlertTriangle className="mt-0.5 text-yellow-500 flex-shrink-0" size={20} />
-                    <span className={`text-lg font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{requirement}</span>
+                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{requirement}</span>
                   </li>
                 ))}
               </ul>
