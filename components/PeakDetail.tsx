@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Calendar, 
   Mountain, 
@@ -22,9 +22,14 @@ interface PeakDetailProps {
 
 const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   const { isDarkMode } = useTheme();
-  const { activeTab } = usePeakTab();
+  const { activeTab, setActiveTab } = usePeakTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Reset to overview tab whenever the peak changes
+  useEffect(() => {
+    setActiveTab('overview');
+  }, [peak.id, setActiveTab]);
 
   // Generate Google Maps embed URL for the peak
   const getGoogleMapsUrl = () => {

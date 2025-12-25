@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Calendar, 
   MapPin, 
@@ -23,9 +23,14 @@ interface SafariDetailProps {
 
 const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
   const { isDarkMode } = useTheme();
-  const { activeTab } = useSafariTab();
+  const { activeTab, setActiveTab } = useSafariTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Reset to overview tab whenever the safari changes
+  useEffect(() => {
+    setActiveTab('overview');
+  }, [safari.id, setActiveTab]);
 
   // Generate Google Maps embed URL for the safari
   const getGoogleMapsUrl = () => {

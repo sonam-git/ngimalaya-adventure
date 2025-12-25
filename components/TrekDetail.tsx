@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Calendar, 
   Mountain, 
@@ -28,12 +28,17 @@ interface TrekDetailProps {
 
 const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   const { isDarkMode } = useTheme();
-  const { activeTab } = useTrekTab();
+  const { activeTab, setActiveTab } = useTrekTab();
   const [isItineraryOpen, setIsItineraryOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Reset to overview tab whenever the trek changes
+  useEffect(() => {
+    setActiveTab('overview');
+  }, [trek.id, setActiveTab]);
 
   // Get Google Maps URL - use custom mapUrl if available, otherwise generate generic map
   const getGoogleMapsUrl = () => {
@@ -175,7 +180,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   About This Trek
                 </h2>
-                <p className={`text-md leading-relaxed font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                <p className={`text-md leading-relaxed font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                   {trek.description}
                 </p>
               </div>
@@ -192,7 +197,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <Star className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} size={20} />
-                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{highlight}</span>
+                    <span className={`text-md font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -240,14 +245,14 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {day.title}
                         </h4>
-                        <p className={`mb-3 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                        <p className={`mb-3 font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                           {day.description}
                         </p>
                         <div className="flex space-x-4 text-sm">
-                          <span className={`font-light ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                          <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                             <strong>Accommodation:</strong> {day.accommodation}
                           </span>
-                          <span className={`font-light ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                          <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                             <strong>Meals:</strong> {day.meals}
                           </span>
                         </div>
@@ -258,18 +263,18 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
               )}
               
               {!isItineraryOpen && (
-                <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
-                  <p className="mb-2 font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-700'} text-sm`}>
+                  <p className="mb-2 font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                     This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                       {trek.itinerary.length} Days Total
                     </span>
-                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                       Max Altitude: {trek.altitude}
                     </span>
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-light" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                       {trek.difficulty || 'Moderate'} Level
                     </span>
                   </div>
@@ -320,16 +325,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Location Details
                     </h3>
                     <div className="space-y-2">
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Region:</strong> {trek.region}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Max Altitude:</strong> {trek.altitude}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Trek Duration:</strong> {trek.duration}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Difficulty:</strong> {trek.difficulty || 'Moderate'}
                       </p>
                     </div>
@@ -342,16 +347,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Route Overview
                     </h3>
                     <div className="space-y-2">
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Starting Point:</strong> {trek.itinerary[0]?.title || 'N/A'}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Ending Point:</strong> {trek.itinerary[trek.itinerary.length - 1]?.title || 'N/A'}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Total Days:</strong> {trek.itinerary.length}
                       </p>
-                      <p className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                         <strong>Group Size:</strong> {trek.groupSize}
                       </p>
                     </div>
@@ -370,7 +375,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full flex-shrink-0 mt-0.5">
                           {day.day}
                         </span>
-                        <span className={`text-sm font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>
+                        <span className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                           {day.title}
                         </span>
                       </div>
@@ -392,7 +397,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.included.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <CheckCircle className="mt-0.5 text-green-500 flex-shrink-0" size={20} />
-                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
+                    <span className={`text-md font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -410,7 +415,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.excluded.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <XCircle className="mt-0.5 text-red-500 flex-shrink-0" size={20} />
-                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{item}</span>
+                    <span className={`text-md font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -428,7 +433,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 {trek.requirements.map((requirement, index) => (
                   <li key={index} className="flex items-start space-x-3">
                     <AlertTriangle className="mt-0.5 text-yellow-500 flex-shrink-0" size={20} />
-                    <span className={`text-md font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 300 }}>{requirement}</span>
+                    <span className={`text-md font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>{requirement}</span>
                   </li>
                 ))}
               </ul>
