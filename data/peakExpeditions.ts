@@ -5,6 +5,7 @@ export interface PeakItineraryDay {
   altitude?: string;
   duration?: string;
   meals?: string;
+  location?: string; // Added location field
 }
 
 export interface PeakExpedition {
@@ -63,7 +64,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         title: 'Arrival in Kathmandu',
         description: 'Arrival at Tribhuvan International Airport. Transfer to hotel. Trek briefing and equipment check.',
         altitude: '1,400m',
-        meals: 'Dinner'
+        meals: 'Dinner',
+        location: 'Kathmandu'
       },
       {
         day: 2,
@@ -71,7 +73,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Scenic flight to Lukla (2,840m). Begin trek through pine forests to Phakding.',
         altitude: '2,610m',
         duration: '3-4 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Phakding'
       },
       {
         day: 3,
@@ -79,7 +82,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Cross suspension bridges over Dudh Koshi river. Steep climb to Namche Bazaar, the Sherpa capital.',
         altitude: '3,440m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Namche Bazaar'
       },
       {
         day: 4,
@@ -87,7 +91,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Hike to Everest View Hotel or visit Khumjung village. Explore Namche market and monastery.',
         altitude: '3,440m',
         duration: '3-4 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Namche Bazaar'
       },
       {
         day: 5,
@@ -95,7 +100,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Trail through rhododendron forest with magnificent mountain views. Visit famous Tengboche monastery.',
         altitude: '3,860m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Tengboche'
       },
       {
         day: 6,
@@ -103,7 +109,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Descend to Deboche, cross the Imja River, and climb to Dingboche with stunning valley views.',
         altitude: '4,410m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Dingboche'
       },
       {
         day: 7,
@@ -111,7 +118,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Hike to Nangkartshang Peak (5,083m) for acclimatization and panoramic views.',
         altitude: '4,410m',
         duration: '4-5 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Dingboche'
       },
       {
         day: 8,
@@ -119,7 +127,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Trek past memorials of climbers, through Dughla, and up to Lobuche with views of Khumbu Glacier.',
         altitude: '4,910m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Lobuche'
       },
       {
         day: 9,
@@ -127,7 +136,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Trek to Gorak Shep, afternoon visit to Everest Base Camp. Return to Gorak Shep for overnight.',
         altitude: '5,140m',
         duration: '7-8 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Gorak Shep'
       },
       {
         day: 10,
@@ -135,7 +145,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Early morning hike to Kala Patthar (5,545m) for sunrise over Everest. Trek to Chhukung.',
         altitude: '4,730m',
         duration: '7-8 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Chhukung'
       },
       {
         day: 11,
@@ -143,14 +154,16 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Trek to Island Peak Base Camp. Set up camp and prepare climbing equipment.',
         altitude: '5,200m',
         duration: '3-4 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Island Peak Base Camp'
       },
       {
         day: 12,
         title: 'Base Camp Training Day',
         description: 'Mountaineering training: use of ice axe, crampons, ropes, and climbing techniques.',
         altitude: '5,200m',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Island Peak Base Camp'
       },
       {
         day: 13,
@@ -158,7 +171,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Climb to Island Peak High Camp. Final preparations for summit push.',
         altitude: '5,600m',
         duration: '3-4 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Island Peak High Camp'
       },
       {
         day: 14,
@@ -166,14 +180,16 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Summit push starting at 2 AM. Climb glacier, ascend headwall with fixed ropes, reach summit. Return to Base Camp.',
         altitude: '6,165m summit',
         duration: '10-12 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Island Peak Summit'
       },
       {
         day: 15,
         title: 'Reserve Day for Summit',
         description: 'Extra day in case of bad weather or if summit attempt needs to be rescheduled.',
         altitude: '5,200m',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Island Peak Base Camp'
       },
       {
         day: 16,
@@ -181,7 +197,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Descend to Pangboche, celebrate successful summit.',
         altitude: '3,930m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Pangboche'
       },
       {
         day: 17,
@@ -189,7 +206,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Continue descent through Tengboche to Namche Bazaar.',
         altitude: '3,440m',
         duration: '5-6 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Namche Bazaar'
       },
       {
         day: 18,
@@ -197,7 +215,8 @@ Island Peak is an excellent introduction to Himalayan mountaineering, requiring 
         description: 'Final day of trekking back to Lukla. Celebration with crew.',
         altitude: '2,840m',
         duration: '6-7 hours',
-        meals: 'B, L, D'
+        meals: 'B, L, D',
+        location: 'Lukla'
       },
       {
         day: 19,

@@ -21,6 +21,7 @@ import { getImageSrc } from '../utils/imageHelpers';
 import BookingModal from './BookingModal';
 import CustomTrekModal from './CustomTrekModal';
 import ContactModal from './ContactModal';
+import TrekMapModal from './TrekMapModal';
 
 interface TrekDetailProps {
   trek: Trek;
@@ -33,6 +34,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Reset to overview tab whenever the trek changes
@@ -314,6 +316,28 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 Trek Route Map
               </h2>
               <div className="space-y-4">
+                {/* Interactive Map Button */}
+                <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-6 mb-4`}>
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex-1">
+                      <h3 className={`text-lg font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}>
+                        Interactive Trek Route Map
+                      </h3>
+                      <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        View day-by-day trekking route with interactive markers showing start and end points for each day
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setIsMapModalOpen(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                    >
+                      <MapPin size={20} />
+                      <span>Open Interactive Map</span>
+                    </button>
+                  </div>
+                </div>
+
                 {/* Custom Map Notice */}
                 {trek.mapUrl && (
                   <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-3 mb-2`}>
@@ -487,6 +511,13 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
         onClose={() => setIsContactModalOpen(false)}
         title="Enquire About This Trek"
         subtitle={`Get enquiries and advice about ${trek.name}`}
+      />
+
+      {/* Trek Map Modal */}
+      <TrekMapModal 
+        isOpen={isMapModalOpen}
+        onClose={() => setIsMapModalOpen(false)}
+        trek={trek}
       />
     </div>
   );

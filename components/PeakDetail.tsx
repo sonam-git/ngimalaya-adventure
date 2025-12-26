@@ -9,12 +9,14 @@ import {
   AlertTriangle,
   Star,
   Thermometer,
-  Flag
+  Flag,
+  MapPin
 } from 'lucide-react';
 import type { PeakExpedition } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { usePeakTab } from '../contexts/PeakTabContext';
 import ContactModal from './ContactModal';
+import PeakMapModal from './PeakMapModal';
 
 interface PeakDetailProps {
   peak: PeakExpedition;
@@ -24,6 +26,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   const { isDarkMode } = useTheme();
   const { activeTab, setActiveTab } = usePeakTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Reset to overview tab whenever the peak changes
@@ -31,11 +34,10 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
     setActiveTab('overview');
   }, [peak.id, setActiveTab]);
 
-  // Generate Google Maps embed URL for the peak
+  // Generate Google Maps embed URL for the peak (no API key needed)
   const getGoogleMapsUrl = () => {
     const query = encodeURIComponent(`${peak.name}, Nepal`);
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY';
-    return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${query}&zoom=10`;
+    return `https://maps.google.com/maps?q=${query}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
   };
 
   return (
@@ -224,24 +226,92 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
           {/* Map Tab */}
           {activeTab === 'map' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Location Map
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <MapPin className="mr-3 text-blue-500" size={28} />
+                Expedition Route Map
               </h2>
-              <div className="w-full h-[500px] rounded-xl overflow-hidden">
-                <iframe
-                  src={getGoogleMapsUrl()}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Map of ${peak.name}`}
-                />
+              <div className="space-y-4">
+                {/* Interactive Map Button */}
+                <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-6 mb-4`}>
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex-1">
+                      <h3 className={`text-lg font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}>
+                        Interactive Expedition Route Map
+                      </h3>
+                      <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        View day-by-day expedition route with interactive markers showing all camps and locations
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setIsMapModalOpen(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                    >
+                      <MapPin size={20} />
+                      <span>Open Interactive Map</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Google Maps Embed */}
+                <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl overflow-hidden`}>
+                  <iframe
+                    src={getGoogleMapsUrl()}
+                    width="100%"
+                    height="500"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${peak.name} Map`}
+                    className="rounded-xl"
+                  />
+                </div>
+
+                {/* Map Information */}
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                  {/* Peak Location Info */}
+                  <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-xl p-5`}>
+                    <h3 className={`font-bold mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <MapPin className="mr-2 text-blue-500" size={20} />
+                      Location Details
+                    </h3>
+                    <div className="space-y-2">
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Peak:</strong> {peak.name}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Height:</strong> {peak.height}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Duration:</strong> {peak.duration}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Difficulty:</strong> {peak.difficulty}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Quick Info */}
+                  <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-xl p-5`}>
+                    <h3 className={`font-bold mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <Mountain className="mr-2 text-blue-500" size={20} />
+                      Expedition Info
+                    </h3>
+                    <div className="space-y-2">
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Best Season:</strong> {peak.season}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Accommodation:</strong> {peak.accommodation}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Meals:</strong> {peak.meals}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                📍 {peak.name}, Nepal
-              </p>
             </div>
           )}
 
@@ -322,6 +392,11 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
         onClose={() => setIsContactModalOpen(false)}
         title={`Inquire About ${peak.name}`}
         subtitle="Get detailed information about this peak expedition"
+      />
+      <PeakMapModal
+        isOpen={isMapModalOpen}
+        onClose={() => setIsMapModalOpen(false)}
+        peak={peak}
       />
     </div>
   );

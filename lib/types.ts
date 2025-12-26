@@ -12,6 +12,7 @@ export interface ItineraryDay {
   accommodation: string;
   meals: string;
   walkingHours?: string;
+  location?: string; // Location name for map display (e.g., "Kathmandu", "Lukla", "Namche Bazaar")
 }
 
 export interface Trek {
@@ -52,6 +53,7 @@ export interface PeakItineraryDay {
   altitude?: string;
   duration?: string;
   meals?: string;
+  location?: string; // Location name for map display (e.g., "Kathmandu", "Lukla", "Base Camp")
 }
 
 export interface PeakExpedition {

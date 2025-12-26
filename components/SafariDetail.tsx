@@ -32,11 +32,10 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
     setActiveTab('overview');
   }, [safari.id, setActiveTab]);
 
-  // Generate Google Maps embed URL for the safari
+  // Generate Google Maps embed URL for the safari (no API key needed)
   const getGoogleMapsUrl = () => {
     const query = encodeURIComponent(`${safari.location}, Nepal`);
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY';
-    return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${query}&zoom=10`;
+    return `https://maps.google.com/maps?q=${query}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
   };
 
   return (
@@ -264,24 +263,67 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
           {/* Map Tab */}
           {activeTab === 'map' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Location Map
+              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <MapPin className="mr-3 text-blue-500" size={28} />
+                Safari Location Map
               </h2>
-              <div className="w-full h-[500px] rounded-xl overflow-hidden">
-                <iframe
-                  src={getGoogleMapsUrl()}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Map of ${safari.name}`}
-                />
+              <div className="space-y-4">
+                {/* Google Maps Embed */}
+                <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl overflow-hidden`}>
+                  <iframe
+                    src={getGoogleMapsUrl()}
+                    width="100%"
+                    height="500"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${safari.name} Map`}
+                    className="rounded-xl"
+                  />
+                </div>
+
+                {/* Map Information */}
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                  {/* Safari Location Info */}
+                  <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-xl p-5`}>
+                    <h3 className={`font-bold mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <MapPin className="mr-2 text-blue-500" size={20} />
+                      Location Details
+                    </h3>
+                    <div className="space-y-2">
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Location:</strong> {safari.location}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Duration:</strong> {safari.duration}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Type:</strong> {safari.type}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Quick Info */}
+                  <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-xl p-5`}>
+                    <h3 className={`font-bold mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <Binoculars className="mr-2 text-blue-500" size={20} />
+                      Safari Info
+                    </h3>
+                    <div className="space-y-2">
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Best Time:</strong> {safari.bestTime}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Activities:</strong> {safari.activities.slice(0, 2).join(', ')}
+                      </p>
+                      <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                        <strong>Wildlife:</strong> {safari.wildlife.slice(0, 2).join(', ')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                📍 {safari.location}, Nepal
-              </p>
             </div>
           )}
 
