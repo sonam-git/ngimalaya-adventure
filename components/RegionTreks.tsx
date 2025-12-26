@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useTheme } from '../contexts/ThemeContext';
 import { getImageSrc } from '../utils/imageHelpers';
 import type { Region, Trek } from '@/lib/types';
@@ -18,6 +19,16 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
   const { isDarkMode } = useTheme();
   const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  // Helper function to convert trek name to URL slug
+  const trekNameToSlug = (trekName: string): string => {
+    return trekName
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .trim();
+  };
 
   return (
     <div className="min-h-screen pt-[20px] xl:pt-[50px]">
@@ -117,16 +128,18 @@ const RegionTreks: React.FC<RegionTreksProps> = ({ region, treks, onTrekSelect }
               </p>
               <div className="flex flex-wrap gap-2">
                 {treks.map((trek, index) => (
-                  <span 
+                  <Link
                     key={trek.id}
-                    className={`inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium ${
+                    href={`/treks/${trekNameToSlug(trek.name)}`}
+                    onClick={(e) => e.stopPropagation()} // Prevent any parent click handlers
+                    className={`inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
                       isDarkMode 
-                        ? 'bg-blue-900/30 text-blue-300 border border-blue-700/50' 
-                        : 'bg-blue-50 text-blue-700 border border-blue-200'
+                        ? 'bg-blue-900/30 text-blue-300 border border-blue-700/50 hover:bg-blue-900/50 hover:border-blue-600 hover:text-blue-200' 
+                        : 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 hover:border-blue-300 hover:text-blue-800'
                     }`}
                   >
                     {index + 1}. {trek.name}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>

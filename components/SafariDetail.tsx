@@ -104,15 +104,24 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
           <div className="xl:col-span-1">
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg sticky top-[100px] xl:top-[120px]`}>
               <div className="text-center mb-6">
-                <div className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <div 
+                  className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                  style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                >
                   Contact for Price
                 </div>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>per person</p>
+                <p 
+                  className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+                  style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                >
+                  per person
+                </p>
               </div>
 
               <button 
                 onClick={() => setIsContactModalOpen(true)}
                 className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+                style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
               >
                 Inquire Now
               </button>

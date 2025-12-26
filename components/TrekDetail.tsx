@@ -127,46 +127,69 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 <div className="xl:col-span-1">
                   <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
                     <div className="text-center mb-6">
-                      <div className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <div 
+                        className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                      >
                         {trek.price}
                       </div>
-                      <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>per person</p>
+                      <p 
+                        className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                      >
+                        per person
+                      </p>
                     </div>
 
                     <button 
                       onClick={() => setIsBookingModalOpen(true)}
                       className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-gray-100 hover:to-blue-400 hover:text-blue-950 hover:border border-blue-950 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
                     >
                       Book Now
                     </button>
 
                     <button 
                       onClick={() => setIsCustomTrekModalOpen(true)}
-                      className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-heading font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
                         isDarkMode ? 'border-blue-400 text-blue-800 dark:text-white hover:bg-blue-400 hover:text-gray-100' : ''
                       }`}
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 600 }}
                     >
                       Request Custom Trek
                     </button>
 
                     <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                      <h4 className={`font-heading font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <h4 
+                        className={`font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 600 }}
+                      >
                         Need Help?
                       </h4>
-                      <p className={`font-body text-responsive-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <p 
+                        className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                      >
                         Contact our trek specialists for personalized advice
                       </p>
                       <button
                         onClick={() => setIsContactModalOpen(true)}
-                        className="w-full bg-primary-500 hover:bg-primary-600 text-white font-heading font-bold py-3 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl mb-3 uppercase tracking-wider"
+                        className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl mb-3 uppercase tracking-wider"
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
                       >
                         Enquire Now
                       </button>
-                      <div className="space-y-2 text-responsive-sm">
-                        <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
+                      <div className="space-y-2 text-sm">
+                        <p 
+                          className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+                          style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                        >
                           📞 +977 980-3499156
                         </p>
-                        <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
+                        <p 
+                          className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+                          style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                        >
                           ✉️ ngiman81@gmail.com
                         </p>
                       </div>

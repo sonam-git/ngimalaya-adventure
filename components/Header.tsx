@@ -144,8 +144,9 @@ const Header: React.FC = () => {
                                       pathname === '/contact' ||
                                       pathname === '/services';
 
-  // Check if we should show the RegionMenu (for single region or single trek pages)
-  const shouldShowRegionMenu = pathname.startsWith('/regions/') || 
+  // Check if we should show the RegionMenu (for regions page, single region, or single trek pages)
+  const shouldShowRegionMenu = pathname === '/regions' ||
+                                pathname.startsWith('/regions/') || 
                                 (pathname.startsWith('/treks/') && pathname !== '/treks');
   
   // Check if we should show the PeakMenu

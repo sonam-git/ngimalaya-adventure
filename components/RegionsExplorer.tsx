@@ -188,7 +188,7 @@ const RegionsExplorer: React.FC<RegionsExplorerProps> = ({ regions, treks, onReg
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className={`text-2xl md:text-3xl lg:text-4xl jaini-purva-regular mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-            Choose Your Adventure
+            Choose Your Adventure | Region
           </h2>
           <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             Select from our diverse trekking regions to explore available trails

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import type { Region } from "@/lib/types";
@@ -11,6 +12,16 @@ interface RegionCardProps {
 
 const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
   const { isDarkMode } = useTheme();
+
+  // Helper function to convert trek name to URL slug
+  const trekNameToSlug = (trekName: string): string => {
+    return trekName
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .trim();
+  };
 
   return (
     <div
@@ -127,10 +138,12 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
           </h4>
           <div className="space-y-2">
             {region.popularTreks.slice(0, 2).map((trek, index) => (
-              <div
+              <Link
                 key={index}
-                className={`flex items-center text-sm p-2 rounded-lg transition-colors ${
-                  isDarkMode ? "hover:bg-gray-600/50" : "hover:bg-white"
+                href={`/treks/${trekNameToSlug(trek)}`}
+                onClick={(e) => e.stopPropagation()} // Prevent card click when clicking trek
+                className={`flex items-center text-sm p-2 rounded-lg transition-colors  ${
+                  isDarkMode ? "hover:bg-gray-600/50" : "hover:bg-blue-100"
                 }`}
               >
                 <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-3 shadow-md">
@@ -139,13 +152,13 @@ const RegionCard: React.FC<RegionCardProps> = ({ region, onSelect }) => {
                   </span>
                 </div>
                 <span
-                  className={`font-medium ${
+                  className={`font-medium hover:no-underline ${
                     isDarkMode ? "text-gray-200" : "text-gray-700"
                   }`}
                 >
                   {trek}
                 </span>
-              </div>
+              </Link>
             ))}
             {region.popularTreks.length > 2 && (
               <div

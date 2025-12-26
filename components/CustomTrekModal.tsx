@@ -42,9 +42,10 @@ const CustomTrekModal: React.FC<CustomTrekModalProps> = ({
   ];
 
   const trekDestinations = [
-    'Everest Base Camp', 'Annapurna Base Camp', 'Manaslu Circuit', 'Langtang Valley',
-    'Everest Three Passes', 'Annapurna Circuit', 'Upper Mustang', 'Kanchenjunga',
-    'Gokyo Lakes', 'Nar Phu Valley', 'Tsum Valley', 'Dolpo', 'Other/Custom Route'
+    'Everest Base Camp', 'Annapurna Base Camp', 'Gorepani | Poon Hill', 'Manaslu Circuit', 'Langtang Valley','Tashi Lapcha Pass',
+    'Everest Three Passes', 'Annapurna Circuit', 'Upper Mustang', 'Kanchenjunga circuit', 'Makalu Base Camp','Tengboche Manirimdu Trek',
+    'Dhaulagiri Circuit', 'Helambu Trek', 'Jomsom Muktinath', 'Rara Lake','Tilicho Lake', 'Solu Pikey Peak','Gosaikunda Trek',
+    'Gokyo Lakes', 'Nar Phu Valley', 'Tsum Valley', 'Dolpo','Say Phoksundo','Other/Custom Route'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
