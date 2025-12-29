@@ -10,15 +10,28 @@ const PrayerFlagBorder = () => {
   
   return (
     <div className="flex w-full h-2">
-      {/* Repeat flags enough times to cover even the widest screens */}
-      {Array.from({ length: 8 }).map((_, setIndex) => (
-        flags.map((colorClass, colorIndex) => (
+      {/* Show 1 set on small screens, more on larger screens */}
+      {/* Small screens (< 640px): 1 set (5 colors) */}
+      <div className="flex w-full sm:hidden">
+        {flags.map((colorClass, colorIndex) => (
           <div 
-            key={`${setIndex}-${colorIndex}`} 
+            key={`mobile-${colorIndex}`} 
             className={`flex-1 ${colorClass}`}
           />
-        ))
-      ))}
+        ))}
+      </div>
+      
+      {/* Medium and larger screens (≥ 640px): Multiple sets */}
+      <div className="hidden sm:flex w-full">
+        {Array.from({ length: 3 }).map((_, setIndex) => (
+          flags.map((colorClass, colorIndex) => (
+            <div 
+              key={`${setIndex}-${colorIndex}`} 
+              className={`flex-1 ${colorClass}`}
+            />
+          ))
+        ))}
+      </div>
     </div>
   );
 };

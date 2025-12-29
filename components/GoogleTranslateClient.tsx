@@ -394,29 +394,18 @@ const GoogleTranslateClient = () => {
   return (
     <div className="relative flex items-center ml-2">
       <button
-        className="p-2 rounded-full focus:outline-none transition-all duration-200 shadow-lg bg-white dark:bg-white border border-blue-900 dark:border-blue-900"
+        className="p-2 rounded-full focus:outline-none transition-all duration-200 bg-transparent hover:bg-white/10 dark:hover:bg-gray-800/30 border-2 border-transparent hover:border-gray-800 dark:hover:border-white"
         style={{
-          boxShadow: '0 4px 16px rgba(30,58,138,0.18), 0 1.5px 6px rgba(0,0,0,0.10)',
-          width: '44px',
-          height: '44px',
+          width: '48px',
+          height: '48px',
         }}
         onClick={() => setOpen(!open)}
         aria-label="Change language"
-        onMouseEnter={e => {
-          e.currentTarget.style.boxShadow = '0 0 12px 2px rgba(30,58,138,0.4), 0 4px 16px rgba(30,58,138,0.30)';
-          e.currentTarget.style.backgroundColor = '#f8fafc'; // Tailwind slate-50
-          e.currentTarget.style.transform = 'scale(1.05)';
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,58,138,0.18), 0 1.5px 6px rgba(0,0,0,0.10)';
-          e.currentTarget.style.backgroundColor = '#ffffff';
-          e.currentTarget.style.transform = 'scale(1)';
-        }}
       >
         <img 
           src="/assets/images/logos/translation.png" 
           alt="Translate" 
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-200"
         />
       </button>
       {open && (
