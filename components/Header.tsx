@@ -423,9 +423,13 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu - Show below 1024px */}
           {isMobileMenuOpen && (
-            <div className="min-[1024px]:hidden absolute left-0 right-0 top-full z-50 bg-transparent backdrop-blur-lg shadow-2xl border-t border-gray-200/20 dark:border-gray-700/20 animate-slideDown">
+            <div className={`min-[1024px]:hidden absolute left-0 right-0 top-full z-50 shadow-2xl border-t animate-slideDown ${
+              isDarkMode 
+                ? 'bg-gray-900/80 border-gray-700' 
+                : 'bg-gray-100/90 border-gray-200'
+            }`}>
               <div className={`py-4 border-t ${
-                isDarkMode ? 'border-gray-700/20' : 'border-gray-200/20'
+                isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}>
                 {navItems.map((item, index) => {
                   const Icon = item.icon;

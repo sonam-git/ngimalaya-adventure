@@ -409,12 +409,12 @@ const GoogleTranslateClient = () => {
         />
       </button>
       {open && (
-        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:text-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50" style={{ marginTop: '25rem' }}>
+        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-50" style={{ marginTop: '25rem' }}>
           <ul className="py-1">
             {LANGUAGES.map(lang => (
               <li key={lang.code}>
                 <button
-                  className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-blue-50 dark:hover:bg-gray-800 rounded-md ${currentLang === lang.code ? 'bg-blue-100 dark:bg-gray-800 font-bold' : ''}`}
+                  className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors duration-200 ${currentLang === lang.code ? 'bg-blue-100 dark:bg-gray-700 font-bold' : ''}`}
                   onClick={() => handleChange(lang.code)}
                 >
                   <span className="text-lg">{lang.flag}</span>
