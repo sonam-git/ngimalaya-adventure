@@ -253,53 +253,13 @@ const Header: React.FC = () => {
       }`}>
         <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
           <div className="flex items-center justify-between h-24 xl:h-28">
-            {/* Logo and Title */}
-            <Link href="/" className="flex items-center gap-3 group">
-              {/* Logo Column with Sun-like Circle Background */}
-              <div className={`relative p-2 rounded-full transition-all duration-300 group-hover:scale-110 ${
-                isDarkMode 
-                  ? 'bg-gray-900 border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.3),0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4),0_0_50px_rgba(255,255,255,0.3)]' 
-                  : 'bg-white border-2 border-blue-800 shadow-[0_0_20px_rgba(30,64,175,0.3),0_0_40px_rgba(30,64,175,0.2)] group-hover:shadow-[0_0_25px_rgba(30,64,175,0.4),0_0_50px_rgba(30,64,175,0.3)]'
-              }`}>
-                {/* Ringing Circle Animation on Hover */}
-                <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping ${
-                  isDarkMode ? 'border-2 border-white' : 'border-2 border-blue-800'
-                }`} style={{ animationDuration: '1s' }}></div>
-                
-                <img
-                  src={isDarkMode ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
-                  alt="Ngimalaya Adventure Nepal"
-                  className="h-14 xl:h-16 2xl:h-18 w-auto relative z-10 transition-transform duration-300 group-hover:rotate-3"
-                />
-              </div>
-              
-              {/* Title Column - Visible on all screens - Two rows matching logo height */}
-              <div className="notranslate flex flex-col justify-center gap-0.5 min-w-[120px] sm:min-w-[160px] h-14 xl:h-16 2xl:h-18">
-                {/* First Row - Ngimalaya */}
-                 <div 
-                  className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
-                    isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
-                  } group-hover:scale-105`}
-                  style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
-                >
-                  Ngimalaya
-                </div>
-                {/* Second Row - Adventure with Sliding Underline */}
-                <div className="relative">
-                  <div 
-                    className={`jaini-purva-regular font-extrabold text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-none transition-all duration-300 whitespace-nowrap ${
-                      isDarkMode ? 'text-gray-100 group-hover:text-primary-400' : 'text-blue-900 group-hover:text-primary-600'
-                    } group-hover:scale-105`}
-                    style={{ fontFamily: '"Jaini Purva", system-ui !important' }}
-                  >
-                    Adventure
-                  </div>
-                  {/* Sliding Horizontal Line */}
-                  <div className={`absolute -bottom-0.5 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out ${
-                    isDarkMode ? 'bg-gradient-to-r from-primary-400 to-yellow-400' : 'bg-gradient-to-r from-blue-600 to-yellow-600'
-                  }`}></div>
-                </div>
-              </div>
+            {/* Logo Only - Clean and Simple */}
+            <Link href="/" className="group ml-4 sm:ml-6 xl:ml-8 2xl:ml-10">
+              <img
+                src={isDarkMode ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
+                alt="Ngimalaya Adventure Nepal"
+                className="h-20 sm:h-24 xl:h-28 2xl:h-32 w-auto transition-all duration-300 group-hover:scale-105"
+              />
             </Link>
 
             {/* Desktop Navigation - Only show above 1024px */}
@@ -463,9 +423,9 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu - Show below 1024px */}
           {isMobileMenuOpen && (
-            <div className="min-[1024px]:hidden absolute left-0 right-0 top-full z-50 bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 animate-slideDown">
+            <div className="min-[1024px]:hidden absolute left-0 right-0 top-full z-50 bg-transparent backdrop-blur-lg shadow-2xl border-t border-gray-200/20 dark:border-gray-700/20 animate-slideDown">
               <div className={`py-4 border-t ${
-                isDarkMode ? 'border-gray-700' : 'border-gray-200'
+                isDarkMode ? 'border-gray-700/20' : 'border-gray-200/20'
               }`}>
                 {navItems.map((item, index) => {
                   const Icon = item.icon;
