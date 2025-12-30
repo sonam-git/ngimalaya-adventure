@@ -45,7 +45,9 @@ const PeakMapModal: React.FC<PeakMapModalProps> = ({ isOpen, onClose, peak }) =>
 
         // Transform peak itinerary to the format needed for geocoding
         // Use location field if available, otherwise try to extract from title
-        const peakDays = peak.itinerary.map((day) => ({
+        // TypeScript now knows itinerary exists due to the check above
+        const itinerary = peak.itinerary; // Store in const to help TypeScript
+        const peakDays = itinerary.map((day) => ({
           day: day.day,
           title: day.title,
           location: day.location || extractMainLocation(day.title) || `${peak.region || 'Nepal'}`,
