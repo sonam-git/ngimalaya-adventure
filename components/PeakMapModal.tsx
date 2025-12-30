@@ -36,6 +36,13 @@ const PeakMapModal: React.FC<PeakMapModalProps> = ({ isOpen, onClose, peak }) =>
       setError(null);
 
       try {
+        // Check if itinerary is available
+        if (!peak.itinerary || peak.itinerary.length === 0) {
+          setError('Itinerary data is not available for this peak expedition.');
+          setIsLoading(false);
+          return;
+        }
+
         // Transform peak itinerary to the format needed for geocoding
         // Use location field if available, otherwise try to extract from title
         const peakDays = peak.itinerary.map((day) => ({
