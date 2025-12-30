@@ -45,117 +45,116 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
         <div ref={contentRef} className="w-full">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
-            <div className="space-y-8">
-              {/* Hero Section: Image (75%) + Contact Card (25%) */}
-              <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-          {/* Image Column - 75% width */}
-          <div className="xl:col-span-3">
-            <div className="relative h-[500px] rounded-2xl overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `linear-gradient(${
-                    isDarkMode 
-                      ? 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)' 
-                      : 'rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)'
-                  }), url("${safari.image}")`
-                }}
-              />
-              
-              {/* Title Overlay at Top */}
-              <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent">
-                <h1 className="text-3xl xl:text-5xl 2xl:text-6xl font-bold text-white tracking-tight leading-tight times drop-shadow-2xl">
-                  {safari.name}
-                </h1>
-              </div>
-
-              {/* Safari Overview Overlay at Bottom - Hidden on small screens */}
-              <div className="hidden xl:block absolute bottom-0 left-0 right-0 p-4">
-                <div className={`${isDarkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm rounded-xl p-3 shadow-2xl`}>
-                  <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
-                    <div className="text-center">
-                      <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Duration</p>
-                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.duration}</p>
-                    </div>
-                    <div className="text-center">
-                      <MapPin className={`mx-auto mb-1 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={18} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Location</p>
-                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.location}</p>
-                    </div>
-                    <div className="text-center">
-                      <Binoculars className={`mx-auto mb-1 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={18} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Park Type</p>
-                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.type}</p>
-                    </div>
-                    <div className="text-center">
-                      <Thermometer className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
-                      <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best Time</p>
-                      <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.bestTime.split('.')[0]}</p>
+            <div className="space-y-6">
+              {/* Responsive Grid Layout */}
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                {/* Image Section - Row 1 on mobile, Left Column on desktop */}
+                <div className="xl:col-span-2">
+                  <div className="relative h-[400px] xl:h-[500px] rounded-2xl overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `linear-gradient(${
+                          isDarkMode 
+                            ? 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)' 
+                            : 'rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)'
+                        }), url("${safari.image}")`
+                      }}
+                    />
+                    
+                    {/* Title Overlay at Top */}
+                    <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent">
+                      <h1 className="text-3xl xl:text-5xl 2xl:text-6xl font-bold text-white tracking-tight leading-tight times drop-shadow-2xl">
+                        {safari.name}
+                      </h1>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Booking Card Column - 25% width */}
-          <div className="xl:col-span-1">
-            <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg sticky top-[100px] xl:top-[120px]`}>
-              <div className="text-center mb-6">
-                <div 
-                  className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-                  style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
-                >
-                  Contact for Price
+                {/* CTA/Booking Card - Row 3 on mobile, Right Column on desktop */}
+                <div className="order-3 xl:order-2">
+                  <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg xl:sticky xl:top-[120px]`}>
+                    <div className="text-center mb-6">
+                      <div 
+                        className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                      >
+                        Contact for Price
+                      </div>
+                      <p 
+                        className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                      >
+                        per person
+                      </p>
+                    </div>
+
+                    <button 
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                    >
+                      Inquire Now
+                    </button>
+
+                    <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                      <h4 className={`font-heading font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        Need Help?
+                      </h4>
+                      <p className={`font-body text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        Contact our safari specialists for personalized advice
+                      </p>
+                      <div className="space-y-2 text-sm">
+                        <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
+                          📞 +977 980-3499156
+                        </p>
+                        <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
+                          ✉️ ngiman81@gmail.com
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p 
-                  className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
-                  style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
-                >
-                  per person
-                </p>
-              </div>
 
-              <button 
-                onClick={() => setIsContactModalOpen(true)}
-                className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
-                style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
-              >
-                Inquire Now
-              </button>
+                {/* About Section - Row 2 on mobile, spans full width on desktop below image */}
+                <div className="order-2 xl:order-3 xl:col-span-3">
+                  <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+                    <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      About This Safari
+                    </h2>
 
-              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h4 className={`font-heading font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Need Help?
-                </h4>
-                <p className={`font-body text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Contact our safari specialists for personalized advice
-                </p>
-                <div className="space-y-2 text-sm">
-                  <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
-                    📞 +977 980-3499156
-                  </p>
-                  <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
-                    ✉️ ngiman81@gmail.com
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-              
-              {/* About This Safari */}
-              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-                <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  About This Safari
-                </h2>
-                <div className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {safari.overview.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">
-                      {paragraph}
-                    </p>
-                  ))}
+                    {/* Safari Stats - Always visible */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-xl">
+                      <div className="text-center">
+                        <Calendar className={`mx-auto mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.duration}</p>
+                      </div>
+                      <div className="text-center">
+                        <MapPin className={`mx-auto mb-2 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Location</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.location}</p>
+                      </div>
+                      <div className="text-center">
+                        <Binoculars className={`mx-auto mb-2 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Park Type</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.type}</p>
+                      </div>
+                      <div className="text-center">
+                        <Thermometer className={`mx-auto mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Best Time</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{safari.bestTime.split('.')[0]}</p>
+                      </div>
+                    </div>
+
+                    <div className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      {safari.overview.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className="mb-4 last:mb-0">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

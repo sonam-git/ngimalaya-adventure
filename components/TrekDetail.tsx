@@ -93,11 +93,11 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-8">
-              {/* Hero Section: Image (75%) + Booking Card (25%) */}
+              {/* Hero Section: Responsive Layout */}
               <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-                {/* Image Column - 75% width */}
-                <div className="xl:col-span-3">
-                  <div className="relative h-[500px] rounded-2xl overflow-hidden">
+                {/* Image - First row on mobile, 75% width on desktop */}
+                <div className="xl:col-span-3 order-1">
+                  <div className="relative h-[400px] xl:h-[500px] rounded-2xl overflow-hidden">
                     <div 
                       className="absolute inset-0 bg-cover bg-center"
                       style={{
@@ -108,56 +108,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         }), url("${getImageSrc(trek.image)}")`
                       }}
                     />
-                    
-                    {/* Title Overlay at Top */}
                     <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent">
                       <h1 className="text-3xl xl:text-5xl 2xl:text-6xl font-bold text-white tracking-tight leading-tight times drop-shadow-2xl">
                         {trek.name}
                       </h1>
                     </div>
-
-                    {/* Trek Overview Overlay at Bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className={`${isDarkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm rounded-xl p-3 shadow-2xl`}>
-                        <div className="grid grid-cols-2 xl:grid-cols-5 gap-3">
-                          <div className="text-center">
-                            <AlertTriangle className={`mx-auto mb-1 ${
-                              trek.difficulty?.toLowerCase() === 'easy' ? 'text-green-400' :
-                              trek.difficulty?.toLowerCase() === 'moderate' ? 'text-yellow-400' :
-                              trek.difficulty?.toLowerCase() === 'challenging' ? 'text-blue-400' :
-                              'text-red-400'
-                            }`} size={18} />
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Difficulty</p>
-                            <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty || 'Moderate'}</p>
-                          </div>
-                          <div className="text-center">
-                            <Calendar className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Duration</p>
-                            <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.duration}</p>
-                          </div>
-                          <div className="text-center">
-                            <Mountain className={`mx-auto mb-1 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={18} />
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Max Altitude</p>
-                            <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.altitude}</p>
-                          </div>
-                          <div className="text-center">
-                            <Users className={`mx-auto mb-1 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={18} />
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Group Size</p>
-                            <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.groupSize}</p>
-                          </div>
-                          <div className="text-center">
-                            <Thermometer className={`mx-auto mb-1 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
-                            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best Season</p>
-                            <p className={`font-semibold text-xs ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.season}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
-                {/* Booking Card Column - 25% width */}
-                <div className="xl:col-span-1">
+                {/* Booking Card - Third row on mobile (order-3), 25% width sidebar on desktop */}
+                <div className="xl:col-span-1 order-3 xl:order-2">
                   <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
                     <div className="text-center mb-6">
                       <div 
@@ -184,7 +144,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
 
                     <button 
                       onClick={() => setIsCustomTrekModalOpen(true)}
-                      className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 mb-4 xl:mb-0 ${
                         isDarkMode ? 'border-blue-400 text-blue-800 dark:text-white hover:bg-blue-400 hover:text-gray-100' : ''
                       }`}
                       style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 600 }}
@@ -192,7 +152,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                       Request Custom Trek
                     </button>
 
-                    <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 hidden xl:block">
                       <h4 
                         className={`font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
                         style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 600 }}
@@ -227,18 +187,80 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         </p>
                       </div>
                     </div>
+
+                    {/* Enquire Now button for mobile - shown below Request Custom Trek */}
+                    <button
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="w-full xl:hidden bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl uppercase tracking-wider"
+                      style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+                    >
+                      Enquire Now
+                    </button>
+
+                    {/* Contact info for mobile */}
+                    <div className="xl:hidden mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-2 text-sm text-center">
+                      <p 
+                        className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                      >
+                        📞 +977 980-3499156
+                      </p>
+                      <p 
+                        className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+                        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}
+                      >
+                        ✉️ ngiman81@gmail.com
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* About This Trek */}
-              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-                <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  About This Trek
-                </h2>
-                <p className={`text-md leading-relaxed font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
-                  {trek.description}
-                </p>
+                {/* About This Trek - Second row on mobile (order-2), spans full width below image/sidebar on desktop */}
+                <div className={`xl:col-span-4 order-2 xl:order-3 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
+                  <h2 className={`text-2xl jaini-purva-regular font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    About This Trek
+                  </h2>
+                  
+                  {/* Trek Overview Stats */}
+                  <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-xl p-4 mb-6`}>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+                      <div className="text-center">
+                        <AlertTriangle className={`mx-auto mb-2 ${
+                          trek.difficulty?.toLowerCase() === 'easy' ? 'text-green-400' :
+                          trek.difficulty?.toLowerCase() === 'moderate' ? 'text-yellow-400' :
+                          trek.difficulty?.toLowerCase() === 'challenging' ? 'text-blue-400' :
+                          'text-red-400'
+                        }`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Difficulty</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.difficulty || 'Moderate'}</p>
+                      </div>
+                      <div className="text-center">
+                        <Calendar className={`mx-auto mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Duration</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.duration}</p>
+                      </div>
+                      <div className="text-center">
+                        <Mountain className={`mx-auto mb-2 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Max Altitude</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.altitude}</p>
+                      </div>
+                      <div className="text-center">
+                        <Users className={`mx-auto mb-2 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Group Size</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.groupSize}</p>
+                      </div>
+                      <div className="text-center">
+                        <Thermometer className={`mx-auto mb-2 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
+                        <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best Season</p>
+                        <p className={`font-semibold text-sm ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{trek.season}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className={`text-md leading-relaxed font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                    {trek.description}
+                  </p>
+                </div>
               </div>
             </div>
           )}
