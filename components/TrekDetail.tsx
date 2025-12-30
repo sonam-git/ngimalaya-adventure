@@ -54,6 +54,37 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
     return `https://maps.google.com/maps?q=${query}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
   };
 
+  // Reusable Action Buttons Component for non-overview tabs
+  const ActionButtons = () => (
+    <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <button 
+        onClick={() => setIsBookingModalOpen(true)}
+        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-gray-100 hover:to-blue-400 hover:text-blue-950 hover:border border-blue-950 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+      >
+        Book Now
+      </button>
+
+      <button 
+        onClick={() => setIsCustomTrekModalOpen(true)}
+        className={`w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 ${
+          isDarkMode ? 'border-blue-400 text-blue-800 dark:text-white hover:bg-blue-400 hover:text-gray-100' : ''
+        }`}
+        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 600 }}
+      >
+        Request Custom Trek
+      </button>
+
+      <button
+        onClick={() => setIsContactModalOpen(true)}
+        className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 uppercase tracking-wider"
+        style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
+      >
+        Enquire Now
+      </button>
+    </div>
+  );
+
   return (
     <div className="min-h-screen pt-[105px] xl:pt-[145px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 py-8">
@@ -226,6 +257,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </li>
                 ))}
               </ul>
+              <ActionButtons />
             </div>
           )}
 
@@ -305,6 +337,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </div>
                 </div>
               )}
+              <ActionButtons />
             </div>
           )}
 
@@ -318,7 +351,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
               <div className="space-y-4">
                 {/* Interactive Map Button */}
                 <div className={`${isDarkMode ? 'bg-blue-900/20 border-blue-500/30' : 'bg-blue-50 border-blue-200'} border rounded-lg p-6 mb-4`}>
-                  <div className="flex items-center justify-between flex-wrap gap-4">
+                  <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
                     <div className="flex-1">
                       <h3 className={`text-lg font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}>
                         Interactive Trek Route Map
@@ -329,7 +362,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                     </div>
                     <button
                       onClick={() => setIsMapModalOpen(true)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 w-full xl:w-auto"
                       style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 700 }}
                     >
                       <MapPin size={20} />
@@ -430,6 +463,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </div>
                 </div>
               </div>
+              <ActionButtons />
             </div>
           )}
 
@@ -448,6 +482,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </li>
                 ))}
               </ul>
+              <ActionButtons />
             </div>
           )}
 
@@ -466,6 +501,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </li>
                 ))}
               </ul>
+              <ActionButtons />
             </div>
           )}
 
@@ -484,6 +520,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </li>
                 ))}
               </ul>
+              <ActionButtons />
             </div>
           )}
         </div>
