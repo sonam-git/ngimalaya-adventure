@@ -71,7 +71,7 @@ export interface PeakExpedition {
   hiking: string;
   overview: string;
   highlights: string[];
-  itinerary: PeakItineraryDay[];
+  itinerary?: PeakItineraryDay[]; // Optional - may not be available for all peaks
   included: string[];
   excluded: string[];
   requirements: string[];
@@ -99,7 +99,7 @@ export interface SafariPackage {
   highlights: string[];
   badge: string;
   overview: string;
-  itinerary: SafariItineraryDay[];
+  itinerary?: SafariItineraryDay[]; // Optional - may not be available for all safaris
   included: string[];
   excluded: string[];
   requirements: string[];

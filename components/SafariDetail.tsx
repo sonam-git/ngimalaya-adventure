@@ -16,6 +16,7 @@ import type { SafariPackage } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSafariTab } from '../contexts/SafariTabContext';
 import ContactModal from './ContactModal';
+import CustomTrekModal from './CustomTrekModal';
 
 interface SafariDetailProps {
   safari: SafariPackage;
@@ -25,6 +26,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
   const { isDarkMode } = useTheme();
   const { activeTab, setActiveTab } = useSafariTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Reset to overview tab whenever the safari changes
@@ -216,46 +218,99 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
           {/* Itinerary Tab */}
           {activeTab === 'itinerary' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Detailed Itinerary
-              </h2>
-              {safari.itinerary.map((day, index) => (
-                <div key={index} className={`pb-6 ${index !== safari.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700 mb-6' : ''}`}>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">
-                        {day.day}
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                        Day {day.day}: {day.title}
-                      </h3>
-                      <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        {day.description}
-                      </p>
-                      <div className="mb-3">
-                        <h4 className={`font-semibold text-sm mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          Activities:
-                        </h4>
-                        <ul className="space-y-1">
-                          {day.activities.map((activity, idx) => (
-                            <li key={idx} className="flex items-start space-x-2">
-                              <CheckCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={14} />
-                              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{activity}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {day.meals && (
-                        <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          🍽️ Meals: {day.meals}
-                        </div>
-                      )}
-                    </div>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <h2 className={`text-2xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Detailed Itinerary
+                </h2>
+                
+                {/* Show custom itinerary button only when itinerary exists */}
+                {safari.itinerary && safari.itinerary.length > 0 && (
+                  <button
+                    onClick={() => setIsCustomTrekModalOpen(true)}
+                    className={`text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow hover:shadow-md flex items-center gap-2 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                        : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <Calendar size={16} />
+                    <span>Request Custom Itinerary</span>
+                  </button>
+                )}
+              </div>
+              
+              {/* Check if itinerary is available */}
+              {!safari.itinerary || safari.itinerary.length === 0 ? (
+                <div className="text-center py-12">
+                  <Calendar className={`mx-auto mb-6 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} size={64} />
+                  <h3 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    Itinerary Will Be Available Soon
+                  </h3>
+                  <p className={`text-md mb-8 max-w-md mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    The detailed itinerary for this safari is currently being prepared. Contact us for more information or request a custom itinerary.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                    >
+                      <span>Contact Us</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => setIsCustomTrekModalOpen(true)}
+                      className={`font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 ${
+                        isDarkMode 
+                          ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                          : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <span>Request Custom Itinerary</span>
+                    </button>
                   </div>
                 </div>
-              ))}
+              ) : (
+                <>
+                  {safari.itinerary.map((day, index) => (
+                    <div key={index} className={`pb-6 ${index !== safari.itinerary!.length - 1 ? 'border-b border-gray-200 dark:border-gray-700 mb-6' : ''}`}>
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">
+                            {day.day}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            Day {day.day}: {day.title}
+                          </h3>
+                          <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {day.description}
+                          </p>
+                          <div className="mb-3">
+                            <h4 className={`font-semibold text-sm mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              Activities:
+                            </h4>
+                            <ul className="space-y-1">
+                              {day.activities.map((activity, idx) => (
+                                <li key={idx} className="flex items-start space-x-2">
+                                  <CheckCircle className={`mt-1 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={14} />
+                                  <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{activity}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          {day.meals && (
+                            <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              🍽️ Meals: {day.meals}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           )}
 
@@ -387,6 +442,10 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
         onClose={() => setIsContactModalOpen(false)}
         title={`Enquire About ${safari.name}`}
         subtitle="Get detailed information about this safari adventure"
+      />
+      <CustomTrekModal
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
       />
     </div>
   );

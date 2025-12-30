@@ -1,8 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Mountain, Compass, Backpack, Camera, Shield, Users } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import SectionHeader from "./SectionHeader";
+import ContactModal from "./ContactModal";
+import { useRouter } from "next/navigation";
 
 interface ServicesSectionProps {
   onBookNow?: () => void;
@@ -11,6 +13,9 @@ interface ServicesSectionProps {
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
   const { isDarkMode } = useTheme();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactModalTitle, setContactModalTitle] = useState("");
+  const router = useRouter();
 
   const services = [
     {
@@ -18,36 +23,51 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
       title: "Mountain Trekking",
       description:
         "Experience breathtaking mountain trails with expert guides and comprehensive support.",
+      action: () => router.push("/regions"),
     },
     {
       icon: <Compass className="w-16 h-16" />,
       title: "Expedition Planning",
       description:
         "Custom itineraries tailored to your preferences, fitness level, and schedule.",
+      action: () => router.push("/peak-expedition"),
     },
     {
       icon: <Backpack className="w-16 h-16" />,
       title: "Equipment Support",
       description:
         "Quality trekking gear and equipment provided for your safety and comfort.",
+      action: () => {
+        setContactModalTitle("Equipment Support");
+        setIsContactModalOpen(true);
+      },
     },
     {
       icon: <Camera className="w-16 h-16" />,
-      title: "Cultural Tours",
+      title: "Safari Tours",
       description:
         "Immerse yourself in local culture with authentic experiences and interactions.",
+      action: () => router.push("/safari"),
     },
     {
       icon: <Shield className="w-16 h-16" />,
       title: "Safety Assurance",
       description:
         "Professional guides, emergency support, and comprehensive insurance coverage.",
+      action: () => {
+        setContactModalTitle("Safety Assurance");
+        setIsContactModalOpen(true);
+      },
     },
     {
       icon: <Users className="w-16 h-16" />,
       title: "Group & Private",
       description:
         "Join group adventures or customize your own private trekking experience.",
+      action: () => {
+        setContactModalTitle("Group & Private Tours");
+        setIsContactModalOpen(true);
+      },
     },
   ];
 
@@ -79,9 +99,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
         {/* Desktop Grid */}
         <div className="hidden xl:grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto">
           {services.map((service, index) => (
-            <div
+            <button
               key={index}
-              className={`text-center p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border-2 ${
+              onClick={service.action}
+              className={`text-center p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border-2 cursor-pointer ${
                 isDarkMode
                   ? "bg-gray-800/70 border-gray-700 hover:bg-gray-700/70"
                   : "bg-white/70 border-gray-200 hover:bg-white shadow-lg"
@@ -104,7 +125,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
               >
                 {service.description}
               </p>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -124,8 +145,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
                   key={index}
                   className="flex-shrink-0 w-[85vw] snap-center"
                 >
-                  <div
-                    className={`text-center p-8 rounded-xl transition-all duration-300 border-2 h-full ${
+                  <button
+                    onClick={service.action}
+                    className={`text-center p-8 rounded-xl transition-all duration-300 border-2 h-full w-full cursor-pointer ${
                       isDarkMode
                         ? "bg-gray-800 border-gray-700"
                         : "bg-white border-gray-200 shadow-lg"
@@ -148,7 +170,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
                     >
                       {service.description}
                     </p>
-                  </div>
+                  </button>
                 </div>
               ))}
             </div>
@@ -194,6 +216,13 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
           </button>
         </div>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title={`Enquire About ${contactModalTitle}`}
+        subtitle="Get detailed information about this service"
+      />
     </section>
   );
 };

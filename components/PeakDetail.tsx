@@ -16,6 +16,7 @@ import type { PeakExpedition } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
 import { usePeakTab } from '../contexts/PeakTabContext';
 import ContactModal from './ContactModal';
+import CustomTrekModal from './CustomTrekModal';
 import PeakMapModal from './PeakMapModal';
 
 interface PeakDetailProps {
@@ -26,6 +27,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   const { isDarkMode } = useTheme();
   const { activeTab, setActiveTab } = usePeakTab();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isCustomTrekModalOpen, setIsCustomTrekModalOpen] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -178,47 +180,100 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
           {/* Itinerary Tab */}
           {activeTab === 'itinerary' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
-              <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Detailed Itinerary
-              </h2>
-              {peak.itinerary.map((day, index) => (
-                <div key={index} className={`pb-6 ${index !== peak.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700 mb-6' : ''}`}>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-                        {day.day}
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                        Day {day.day}: {day.title}
-                      </h3>
-                      <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        {day.description}
-                      </p>
-                      <div className="flex flex-wrap gap-4 text-sm">
-                        {day.altitude && (
-                          <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            <Mountain className="mr-1" size={16} />
-                            {day.altitude}
-                          </span>
-                        )}
-                        {day.duration && (
-                          <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            <Clock className="mr-1" size={16} />
-                            {day.duration}
-                          </span>
-                        )}
-                        {day.meals && (
-                          <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            🍽️ {day.meals}
-                          </span>
-                        )}
-                      </div>
-                    </div>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <h2 className={`text-2xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Detailed Itinerary
+                </h2>
+                
+                {/* Show custom itinerary button only when itinerary exists */}
+                {peak.itinerary && peak.itinerary.length > 0 && (
+                  <button
+                    onClick={() => setIsCustomTrekModalOpen(true)}
+                    className={`text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow hover:shadow-md flex items-center gap-2 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                        : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                    }`}
+                  >
+                    <Calendar size={16} />
+                    <span>Request Custom Itinerary</span>
+                  </button>
+                )}
+              </div>
+              
+              {/* Check if itinerary is available */}
+              {!peak.itinerary || peak.itinerary.length === 0 ? (
+                <div className="text-center py-12">
+                  <Calendar className={`mx-auto mb-6 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} size={64} />
+                  <h3 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    Itinerary Will Be Available Soon
+                  </h3>
+                  <p className={`text-md mb-8 max-w-md mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    The detailed itinerary for this expedition is currently being prepared. Contact us for more information or request a custom itinerary.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                    >
+                      <span>Contact Us</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => setIsCustomTrekModalOpen(true)}
+                      className={`font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 ${
+                        isDarkMode 
+                          ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                          : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <span>Request Custom Itinerary</span>
+                    </button>
                   </div>
                 </div>
-              ))}
+              ) : (
+                <>
+                  {peak.itinerary.map((day, index) => (
+                    <div key={index} className={`pb-6 ${index !== peak.itinerary!.length - 1 ? 'border-b border-gray-200 dark:border-gray-700 mb-6' : ''}`}>
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+                            {day.day}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            Day {day.day}: {day.title}
+                          </h3>
+                          <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {day.description}
+                          </p>
+                          <div className="flex flex-wrap gap-4 text-sm">
+                            {day.altitude && (
+                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <Mountain className="mr-1" size={16} />
+                                {day.altitude}
+                              </span>
+                            )}
+                            {day.duration && (
+                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <Clock className="mr-1" size={16} />
+                                {day.duration}
+                              </span>
+                            )}
+                            {day.meals && (
+                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                🍽️ {day.meals}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           )}
 
@@ -368,7 +423,7 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
             </div>
           )}
           {/* Technical Requirements Tab */}
-          {activeTab === ' technicalRequirements' && (
+          {activeTab === 'technicalRequirements' && (
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-lg`}>
               <h2 className={`text-2xl jaini-purva-regular font-bold mb-6 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <Mountain className="mr-3 text-green-500" size={28} />
@@ -391,6 +446,10 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
         onClose={() => setIsContactModalOpen(false)}
         title={`Inquire About ${peak.name}`}
         subtitle="Get detailed information about this peak expedition"
+      />
+      <CustomTrekModal
+        isOpen={isCustomTrekModalOpen}
+        onClose={() => setIsCustomTrekModalOpen(false)}
       />
       <PeakMapModal
         isOpen={isMapModalOpen}

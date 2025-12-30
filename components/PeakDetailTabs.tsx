@@ -42,7 +42,7 @@ const PeakDetailTabs: React.FC<PeakDetailTabsProps> = ({ activeTab, onTabChange 
     { id: 'includes', label: 'Cost Includes', icon: CheckCircle },
     { id: 'excludes', label: 'Cost Excludes', icon: XCircle },
     { id: 'requirements', label: 'Prerequisites', icon: AlertTriangle },
-    { id: ' technicalRequirements', label: 'Technical Requirements', icon: Mountain }
+    { id: 'technicalRequirements', label: 'Technical Requirements', icon: Mountain }
   ];
 
   return (

@@ -243,7 +243,7 @@ const SafariPage: React.FC = () => {
                                   : 'bg-gray-100 text-gray-700'
                               }`}
                             >
-                              {highlight}
+                              {highlight.split(':')[0]}
                             </span>
                           ))}
                         </div>
