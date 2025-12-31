@@ -110,6 +110,32 @@ body {
         padding-right: env(safe-area-inset-right);
       }
 
+      /* Create a fixed background bar for the safe area at top */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: env(safe-area-inset-top);
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 9999; /* Above everything */
+      }
+
+      /* Dark mode - make it darker */
+      .dark body::before {
+        background: rgba(0, 0, 0, 0.95);
+      }
+
+      /* Light mode - make it match light theme */
+      body:not(.dark)::before {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
       /* Adjust fixed header to respect safe area */
       header[class*="fixed"] {
         top: env(safe-area-inset-top) !important;

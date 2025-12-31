@@ -286,7 +286,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar - Common for all screen sizes */}
         <div className="border-t border-gray-700 mt-12 pt-6 text-center pb-24 md:pb-8">
           <p className="text-gray-500 text-sm">
-            Copyright © {new Date().getFullYear()} Ngimalaya Adventure Nepal. All Rights Reserved.
+           | Copyright © {new Date().getFullYear()} Ngimalaya Adventure Nepal |
           </p>
         </div>
       </div>
