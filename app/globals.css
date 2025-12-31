@@ -98,12 +98,38 @@ body {
     color: rgb(243 244 246) !important; /* Force white in dark mode */
   }
 
-  .dark .text-blue-900 {
-    color: rgb(191 219 254) !important; /* text-blue-200 in dark mode */
-  }
+  /* PWA Safe Area Support - Only applies when running as standalone app */
+  @supports (padding-top: env(safe-area-inset-top)) {
+    /* Detect if running as PWA (standalone mode) */
+    @media (display-mode: standalone) {
+      /* Add safe area padding to body when in PWA mode */
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
 
-  .dark .text-blue-700 {
-    color: rgb(147 197 253) !important; /* text-blue-300 in dark mode */
+      /* Adjust fixed header to respect safe area */
+      header[class*="fixed"] {
+        top: env(safe-area-inset-top) !important;
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+
+      /* Adjust main content area to account for safe areas */
+      main {
+        /* Additional top margin already exists (mt-32), just ensure it respects safe area */
+        min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        margin-top: calc(8rem + env(safe-area-inset-top)) !important; /* mt-32 + safe area */
+      }
+
+      /* Adjust mobile bottom bar if it exists */
+      .mobile-bottom-bar {
+        bottom: env(safe-area-inset-bottom) !important;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
   }
 
   /* Enhanced typography classes - Jaini Purva for Headings & Lato for Body */
