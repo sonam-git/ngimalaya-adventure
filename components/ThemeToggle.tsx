@@ -10,12 +10,11 @@ const ThemeToggle: React.FC = () => {
     <button
       onClick={toggleTheme}
       className={`
-        relative p-2 rounded-full border-2 transition-all duration-300 hover:scale-110
+        relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105
         ${isDarkMode 
-          ? 'bg-gray-800 border-gray-600 text-yellow-400 hover:bg-gray-700' 
-          : 'bg-white border-gray-300 text-blue-500 hover:bg-gray-50'
+          ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20' 
+          : 'bg-gradient-to-br from-sky-100 to-sky-200 hover:from-sky-200 hover:to-sky-300 shadow-lg shadow-sky-300/50 hover:shadow-xl hover:shadow-sky-400/60'
         }
-        shadow-lg hover:shadow-xl
       `}
       aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
@@ -27,7 +26,7 @@ const ThemeToggle: React.FC = () => {
             absolute inset-0 transition-all duration-300 transform
             ${isDarkMode 
               ? 'opacity-0 rotate-90 scale-0' 
-              : 'opacity-100 rotate-0 scale-100'
+              : 'opacity-100 rotate-0 scale-100 text-sky-600'
             }
           `}
         />
@@ -38,7 +37,7 @@ const ThemeToggle: React.FC = () => {
           className={`
             absolute inset-0 transition-all duration-300 transform
             ${isDarkMode 
-              ? 'opacity-100 rotate-0 scale-100' 
+              ? 'opacity-100 rotate-0 scale-100 text-gray-300' 
               : 'opacity-0 -rotate-90 scale-0'
             }
           `}

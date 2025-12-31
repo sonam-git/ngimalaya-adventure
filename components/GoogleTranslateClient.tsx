@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const LANGUAGES = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -24,6 +25,7 @@ const GoogleTranslateClient = () => {
   const [open, setOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     // Aggressive function to hide ALL Google Translate UI elements
@@ -394,18 +396,20 @@ const GoogleTranslateClient = () => {
   return (
     <div className="relative flex items-center ml-2">
       <button
-        className="p-2 rounded-full focus:outline-none transition-all duration-200 bg-transparent hover:bg-white/10 dark:hover:bg-gray-800/30 border-2 border-transparent hover:border-gray-800 dark:hover:border-white"
-        style={{
-          width: '48px',
-          height: '48px',
-        }}
+        className={`w-12 h-12 rounded-xl flex items-center justify-center focus:outline-none transition-all duration-300 hover:scale-105 ${
+          isDarkMode
+            ? 'bg-gray-900 hover:bg-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20'
+            : 'bg-gradient-to-br from-sky-100 to-sky-200 hover:from-sky-200 hover:to-sky-300 shadow-lg shadow-sky-300/50 hover:shadow-xl hover:shadow-sky-400/60'
+        }`}
         onClick={() => setOpen(!open)}
         aria-label="Change language"
       >
         <img 
           src="/assets/images/logos/translation.png" 
           alt="Translate" 
-          className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-200"
+          className={`w-6 h-6 object-contain transition-all duration-200 ${
+            isDarkMode ? 'brightness-0 invert' : 'brightness-75'
+          }`}
         />
       </button>
       {open && (

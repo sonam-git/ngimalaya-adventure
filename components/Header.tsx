@@ -317,12 +317,12 @@ const Header: React.FC = () => {
               {/* Modern Animated Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 ${
                   isMobileMenuOpen
-                    ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg scale-95'
+                    ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-xl shadow-primary-400/50 scale-95'
                     : isDarkMode 
-                      ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 shadow-md' 
-                      : 'bg-gradient-to-br from-white to-gray-50 hover:from-gray-50 hover:to-gray-100 shadow-md hover:shadow-lg'
+                      ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20' 
+                      : 'bg-gradient-to-br from-sky-100 to-sky-200 hover:from-sky-200 hover:to-sky-300 shadow-lg shadow-sky-300/50 hover:shadow-xl hover:shadow-sky-400/60'
                 }`}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
@@ -334,7 +334,7 @@ const Header: React.FC = () => {
                         ? 'bg-white rotate-45 translate-y-0' 
                         : isDarkMode 
                           ? 'bg-gray-300 -translate-y-2' 
-                          : 'bg-gray-700 -translate-y-2'
+                          : 'bg-sky-700 -translate-y-2'
                     }`}
                   />
                   {/* Middle Line */}
@@ -344,7 +344,7 @@ const Header: React.FC = () => {
                         ? 'bg-white opacity-0 scale-0' 
                         : isDarkMode 
                           ? 'bg-gray-300 opacity-100 scale-100' 
-                          : 'bg-gray-700 opacity-100 scale-100'
+                          : 'bg-sky-700 opacity-100 scale-100'
                     }`}
                   />
                   {/* Bottom Line */}
@@ -354,7 +354,7 @@ const Header: React.FC = () => {
                         ? 'bg-white -rotate-45 translate-y-0' 
                         : isDarkMode 
                           ? 'bg-gray-300 translate-y-2' 
-                          : 'bg-gray-700 translate-y-2'
+                          : 'bg-sky-700 translate-y-2'
                     }`}
                   />
                 </div>

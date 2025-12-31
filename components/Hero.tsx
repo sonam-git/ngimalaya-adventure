@@ -56,18 +56,20 @@ const HeroComponent: React.FC<HeroProps> = ({
       id="home"
       className="relative min-h-screen flex flex-col -mt-10 md:-mt-28 lg:-mt-32"
     >
+      {/* Mountain Sketch Background - Behind Top Section Only */}
+      <div className="absolute -top-32 sm:-top-28 md:-top-20 lg:-top-24 left-0 right-0 h-[50vh] md:h-[55vh] z-0 overflow-hidden">
+        <img 
+          src="/assets/images/heading-hero.png" 
+          alt="Mountain sketch background" 
+          className="w-full h-full object-cover object-[center_35%] opacity-30 dark:opacity-20"
+        />
+        {/* Gradient fade at bottom */}
+       
+      </div>
+
       {/* Top Text Section */}
-      <div className="relative z-10 px-4">
-        <div className="relative max-w-6xl mx-auto text-center">
-          {/* Mountain Sketch - positioned slightly above the headline */}
-          <div className="relative flex justify-center animate-fade-in-up -mb-14 sm:-mb-32 md:-mb-40 lg:-mb-48" style={{ animationDelay: "0.1s" }}>
-            <img 
-              src="/assets/images/mountain-sketch.png" 
-              alt="Mountain sketch" 
-              className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-contain opacity-40 dark:opacity-35"
-            />
-          </div>
-          
+      <div className="relative z-10">
+        <div className="relative max-w-6xl mx-auto text-center px-4 pt-24 sm:pt-24 md:pt-28 lg:pt-32">
           {/* Main Headline with Trekker Images */}
           <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-1 md:mb-2 px-2">
             {/* Male Trekker - Left Side */}
