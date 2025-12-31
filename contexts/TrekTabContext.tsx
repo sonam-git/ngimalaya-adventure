@@ -1,6 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface TrekTabContextType {
   activeTab: string;
@@ -9,7 +9,7 @@ interface TrekTabContextType {
 
 const TrekTabContext = createContext<TrekTabContextType | undefined>(undefined);
 
-export const TrekTabProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function TrekTabProvider({ children }: { children: ReactNode }) {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
@@ -17,12 +17,12 @@ export const TrekTabProvider: React.FC<{ children: ReactNode }> = ({ children })
       {children}
     </TrekTabContext.Provider>
   );
-};
+}
 
-export const useTrekTab = () => {
+export function useTrekTab() {
   const context = useContext(TrekTabContext);
-  if (context === undefined) {
-    return { activeTab: 'overview', setActiveTab: () => {} };
+  if (!context) {
+    throw new Error('useTrekTab must be used within a TrekTabProvider');
   }
   return context;
-};
+}

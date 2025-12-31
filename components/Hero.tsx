@@ -71,7 +71,7 @@ const HeroComponent: React.FC<HeroProps> = ({
       <div className="relative z-10">
         <div className="relative max-w-6xl mx-auto text-center px-4 pt-24 sm:pt-24 md:pt-28 lg:pt-32">
           {/* Main Headline with Trekker Images */}
-          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-1 md:mb-2 px-2">
+          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-1 md:mb-1 px-2">
             {/* Male Trekker - Left Side */}
             <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
               <img 

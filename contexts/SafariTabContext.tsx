@@ -1,6 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SafariTabContextType {
   activeTab: string;
@@ -9,7 +9,7 @@ interface SafariTabContextType {
 
 const SafariTabContext = createContext<SafariTabContextType | undefined>(undefined);
 
-export const SafariTabProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function SafariTabProvider({ children }: { children: ReactNode }) {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
@@ -17,12 +17,12 @@ export const SafariTabProvider: React.FC<{ children: ReactNode }> = ({ children 
       {children}
     </SafariTabContext.Provider>
   );
-};
+}
 
-export const useSafariTab = () => {
+export function useSafariTab() {
   const context = useContext(SafariTabContext);
-  if (context === undefined) {
-    return { activeTab: 'overview', setActiveTab: () => {} };
+  if (!context) {
+    throw new Error('useSafariTab must be used within a SafariTabProvider');
   }
   return context;
-};
+}

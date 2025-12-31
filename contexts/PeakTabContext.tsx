@@ -1,6 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface PeakTabContextType {
   activeTab: string;
@@ -9,7 +9,7 @@ interface PeakTabContextType {
 
 const PeakTabContext = createContext<PeakTabContextType | undefined>(undefined);
 
-export const PeakTabProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function PeakTabProvider({ children }: { children: ReactNode }) {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
@@ -17,12 +17,12 @@ export const PeakTabProvider: React.FC<{ children: ReactNode }> = ({ children })
       {children}
     </PeakTabContext.Provider>
   );
-};
+}
 
-export const usePeakTab = () => {
+export function usePeakTab() {
   const context = useContext(PeakTabContext);
-  if (context === undefined) {
-    return { activeTab: 'overview', setActiveTab: () => {} };
+  if (!context) {
+    throw new Error('usePeakTab must be used within a PeakTabProvider');
   }
   return context;
-};
+}

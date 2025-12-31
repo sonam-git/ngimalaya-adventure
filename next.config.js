@@ -41,9 +41,28 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@headlessui/react'],
   },
   
-  // PWA Support
+  // PWA Support with Cache Control
   async headers() {
     return [
+      // HTML pages - always revalidate to ensure fresh content
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
+      // Manifest
       {
         source: '/manifest.json',
         headers: [
@@ -53,10 +72,11 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=86400, must-revalidate',
           },
         ],
       },
+      // Service Worker - never cache
       {
         source: '/sw.js',
         headers: [
@@ -66,12 +86,41 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Service-Worker-Allowed',
+            value: '/',
           },
         ],
       },
+      // Version file - never cache
       {
-        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif)',
+        source: '/version.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
+      // Static images - long cache with revalidation
+      {
+        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, must-revalidate',
+          },
+        ],
+      },
+      // Next.js static files - immutable
+      {
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',

@@ -1,30 +1,18 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ThemeContext } from './theme-context';
 
-interface ThemeContextType {
-  isDarkMode: boolean;
-  toggleTheme: () => void;
-}
+// Re-export useTheme for backward compatibility with existing imports
+export { useTheme } from './use-theme';
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
-
-
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
 
   useEffect(() => {
-    // Check for saved theme on mount
+    // Check for saved theme on mount, default to dark if not set
     const savedTheme = localStorage.getItem('theme');
-    const isDark = savedTheme === 'dark';
+    const isDark = savedTheme ? savedTheme === 'dark' : true; // Default to dark mode
     setIsDarkMode(isDark);
     
     // Apply theme immediately
@@ -64,4 +52,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       {children}
     </ThemeContext.Provider>
   );
-};
+}
