@@ -4,7 +4,6 @@ import {
   Calendar, 
   Mountain, 
   Users, 
-  Clock,
   CheckCircle,
   XCircle,
   AlertTriangle,
@@ -12,7 +11,10 @@ import {
   Thermometer,
   ChevronDown,
   ChevronUp,
-  MapPin
+  MapPin,
+  Home,
+  Utensils,
+  Timer
 } from 'lucide-react';
 import type { Trek } from '@/lib/types';
 import { useTheme } from '../contexts/ThemeContext';
@@ -41,6 +43,15 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
   useEffect(() => {
     setActiveTab('overview');
   }, [trek.id, setActiveTab]);
+
+  // Helper function to format multiple values (e.g., "Breakfast, Lunch, Dinner" → "Breakfast | Lunch | Dinner")
+  const formatMultipleValues = (value: string | undefined): string => {
+    if (!value) return '';
+    // Ensure value is a string
+    const stringValue = typeof value === 'string' ? value : String(value);
+    // Split by comma and trim whitespace, then join with ' | '
+    return stringValue.split(',').map(item => item.trim()).filter(item => item).join(' | ');
+  };
 
   // Get Google Maps URL - use custom mapUrl if available, otherwise generate generic map
   const getGoogleMapsUrl = () => {
@@ -317,7 +328,7 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                           <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">Day {day.day}</span>
                           {day.walkingHours && (
                             <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                              <Clock size={14} className="inline mr-1" />{day.walkingHours}
+                              <Timer size={14} className="inline mr-1" />{day.walkingHours}
                             </span>
                           )}
                         </div>
@@ -327,13 +338,38 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                         <p className={`mb-3 font-normal ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
                           {day.description}
                         </p>
-                        <div className="flex space-x-4 text-sm">
-                          <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
-                            <strong>Accommodation:</strong> {day.accommodation}
-                          </span>
-                          <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
-                            <strong>Meals:</strong> {day.meals}
-                          </span>
+                        
+                        {/* Icon-based Info Cards */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+                          {day.accommodation && (
+                            <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-lg p-3 flex items-center space-x-2`}>
+                              <Home className={`${isDarkMode ? 'text-blue-400' : 'text-blue-600'} flex-shrink-0`} size={18} />
+                              <div>
+                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Accommodation</p>
+                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{formatMultipleValues(day.accommodation)}</p>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {day.meals && (
+                            <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg p-3 flex items-center space-x-2`}>
+                              <Utensils className={`${isDarkMode ? 'text-green-400' : 'text-green-600'} flex-shrink-0`} size={18} />
+                              <div>
+                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Meals</p>
+                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{formatMultipleValues(day.meals)}</p>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {day.walkingHours && (
+                            <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-purple-50'} rounded-lg p-3 flex items-center space-x-2`}>
+                              <Timer className={`${isDarkMode ? 'text-purple-400' : 'text-purple-600'} flex-shrink-0`} size={18} />
+                              <div>
+                                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Walking Time</p>
+                                <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{day.walkingHours}</p>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}

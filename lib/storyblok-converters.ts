@@ -65,6 +65,9 @@ export interface StoryblokPeakBlock {
     altitude?: string;
     duration?: string;
     meals?: string;
+    accommodation?: string;
+    walkingHours?: string;
+    location?: string;
   }>;
   included?: Array<{ text: string }>;
   excluded?: Array<{ text: string }>;
@@ -198,6 +201,9 @@ export function convertStoryblokPeakToPeak(peakBlock: StoryblokPeakBlock): PeakE
       altitude: day.altitude || '',
       duration: day.duration || '',
       meals: day.meals || '',
+      accommodation: day.accommodation || '',
+      walkingHours: day.walkingHours || '',
+      location: day.location || '',
     })) || [],
     included: peakBlock.included?.map(i => i.text) || [],
     excluded: peakBlock.excluded?.map(e => e.text) || [],

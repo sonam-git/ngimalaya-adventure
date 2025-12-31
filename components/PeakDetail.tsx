@@ -10,7 +10,10 @@ import {
   Star,
   Thermometer,
   Flag,
-  MapPin
+  MapPin,
+  Home,
+  Utensils,
+  Timer
 } from 'lucide-react';
 import type { PeakExpedition } from '../lib/types';
 import { useTheme } from '../contexts/ThemeContext';
@@ -35,6 +38,15 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
   useEffect(() => {
     setActiveTab('overview');
   }, [peak.id, setActiveTab]);
+
+  // Helper function to format multiple values (e.g., "Breakfast, Lunch, Dinner" → "Breakfast | Lunch | Dinner")
+  const formatMultipleValues = (value: string | undefined): string => {
+    if (!value) return '';
+    // Ensure value is a string
+    const stringValue = typeof value === 'string' ? value : String(value);
+    // Split by comma and trim whitespace, then join with ' | '
+    return stringValue.split(',').map(item => item.trim()).filter(item => item).join(' | ');
+  };
 
   // Generate Google Maps embed URL for the peak (no API key needed)
   const getGoogleMapsUrl = () => {
@@ -249,23 +261,57 @@ const PeakDetail: React.FC<PeakDetailProps> = ({ peak }) => {
                           <p className={`mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                             {day.description}
                           </p>
-                          <div className="flex flex-wrap gap-4 text-sm">
+                          
+                          {/* Itinerary Details Grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
                             {day.altitude && (
-                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                <Mountain className="mr-1" size={16} />
-                                {day.altitude}
-                              </span>
+                              <div className={`flex items-center px-3 py-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                <Mountain className={`mr-2 flex-shrink-0 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} size={18} />
+                                <div>
+                                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Altitude</div>
+                                  <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>{day.altitude}</div>
+                                </div>
+                              </div>
                             )}
+                            
                             {day.duration && (
-                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                <Clock className="mr-1" size={16} />
-                                {day.duration}
-                              </span>
+                              <div className={`flex items-center px-3 py-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                <Clock className={`mr-2 flex-shrink-0 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} size={18} />
+                                <div>
+                                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Duration</div>
+                                  <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>{day.duration}</div>
+                                </div>
+                              </div>
                             )}
+                            
+                            {day.walkingHours && (
+                              <div className={`flex items-center px-3 py-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                <Timer className={`mr-2 flex-shrink-0 ${isDarkMode ? 'text-orange-400' : 'text-orange-600'}`} size={18} />
+                                <div>
+                                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Walking Hours</div>
+                                  <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>{day.walkingHours}</div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {day.accommodation && (
+                              <div className={`flex items-center px-3 py-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                <Home className={`mr-2 flex-shrink-0 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={18} />
+                                <div>
+                                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Accommodation</div>
+                                  <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>{formatMultipleValues(day.accommodation)}</div>
+                                </div>
+                              </div>
+                            )}
+                            
                             {day.meals && (
-                              <span className={`flex items-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                🍽️ {day.meals}
-                              </span>
+                              <div className={`flex items-center px-3 py-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                <Utensils className={`mr-2 flex-shrink-0 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`} size={18} />
+                                <div>
+                                  <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Meals</div>
+                                  <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>{formatMultipleValues(day.meals)}</div>
+                                </div>
+                              </div>
                             )}
                           </div>
                         </div>

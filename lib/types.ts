@@ -53,6 +53,8 @@ export interface PeakItineraryDay {
   altitude?: string;
   duration?: string;
   meals?: string;
+  accommodation?: string;
+  walkingHours?: string;
   location?: string; // Location name for map display (e.g., "Kathmandu", "Lukla", "Base Camp")
 }
 
