@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X, Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
+import { Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
@@ -314,22 +314,50 @@ const Header: React.FC = () => {
               {/* Theme Toggle for Mobile */}
               <ThemeToggle />
               <GoogleTranslateClient />
-              {/* Mobile Menu Button */}
+              {/* Modern Animated Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`relative p-2 rounded-lg transition-all duration-300 ${
+                className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                   isMobileMenuOpen
-                    ? 'bg-primary-500 text-white'
+                    ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg scale-95'
                     : isDarkMode 
-                      ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 shadow-md' 
+                      : 'bg-gradient-to-br from-white to-gray-50 hover:from-gray-50 hover:to-gray-100 shadow-md hover:shadow-lg'
                 }`}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
-                {isMobileMenuOpen ? (
-                  <X size={24} className="transition-transform duration-300 rotate-90" />
-                ) : (
-                  <Menu size={24} className="transition-transform duration-300" />
-                )}
+                <div className="relative w-6 h-5 flex flex-col justify-center items-center">
+                  {/* Top Line */}
+                  <span
+                    className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
+                      isMobileMenuOpen 
+                        ? 'bg-white rotate-45 translate-y-0' 
+                        : isDarkMode 
+                          ? 'bg-gray-300 -translate-y-2' 
+                          : 'bg-gray-700 -translate-y-2'
+                    }`}
+                  />
+                  {/* Middle Line */}
+                  <span
+                    className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
+                      isMobileMenuOpen 
+                        ? 'bg-white opacity-0 scale-0' 
+                        : isDarkMode 
+                          ? 'bg-gray-300 opacity-100 scale-100' 
+                          : 'bg-gray-700 opacity-100 scale-100'
+                    }`}
+                  />
+                  {/* Bottom Line */}
+                  <span
+                    className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
+                      isMobileMenuOpen 
+                        ? 'bg-white -rotate-45 translate-y-0' 
+                        : isDarkMode 
+                          ? 'bg-gray-300 translate-y-2' 
+                          : 'bg-gray-700 translate-y-2'
+                    }`}
+                  />
+                </div>
               </button>
             </div>
           </div>
@@ -459,7 +487,7 @@ const Header: React.FC = () => {
                           ? 'bg-primary-500 text-white' 
                           : isDarkMode 
                             ? 'bg-gray-700' 
-                            : 'bg-gray-200'
+                            : 'bg-sky-100 text-sky-600'
                       }`}>
                         <Icon size={22} />
                       </div>
