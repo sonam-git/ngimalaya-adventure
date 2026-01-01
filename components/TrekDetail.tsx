@@ -14,7 +14,8 @@ import {
   MapPin,
   Home,
   Utensils,
-  Timer
+  Timer,
+  Footprints
 } from 'lucide-react';
 import type { Trek } from '@/lib/types';
 import { useTheme } from '../contexts/ThemeContext';
@@ -301,10 +302,15 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                 onClick={() => setIsItineraryOpen(!isItineraryOpen)}
                 className="w-full flex items-center justify-between mb-4"
               >
-                <h2 className={`text-2xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Detailed Itinerary
-                </h2>
-                <div className="flex items-center space-x-2">
+                <div className="flex-1 text-left">
+                  <h2 className={`text-2xl jaini-purva-regular font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    Detailed Itinerary
+                  </h2>
+                  <p className={`text-xs mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                    Note: Itinerary may be adjusted based on weather conditions, clients' physical condition, and other unforeseen circumstances.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-2 ml-4 flex-shrink-0">
                   <span className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     {isItineraryOpen ? 'Hide' : 'Show'} Details
                   </span>
@@ -325,12 +331,10 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                     {trek.itinerary.map((day, index) => (
                       <div key={index} className={`border-l-4 border-blue-500 pl-6 pb-4 ${index !== trek.itinerary.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''}`}> 
                         <div className="flex items-center space-x-2 mb-2">
-                          <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">Day {day.day}</span>
-                          {day.walkingHours && (
-                            <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                              <Timer size={14} className="inline mr-1" />{day.walkingHours}
-                            </span>
-                          )}
+                          <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                            <Footprints size={14} />
+                            Day {day.day}
+                          </span>
                         </div>
                         <h4 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {day.title}
@@ -383,13 +387,16 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                     This {trek.duration.toLowerCase()} trek includes {trek.itinerary.length} days of detailed activities from arrival to departure.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal flex items-center gap-1.5" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                      <Calendar size={14} />
                       {trek.itinerary.length} Days Total
                     </span>
-                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                    <span className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-2 py-1 rounded text-xs font-normal flex items-center gap-1.5" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                      <Mountain size={14} />
                       Max Altitude: {trek.altitude}
                     </span>
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs font-normal flex items-center gap-1.5" style={{ fontFamily: 'Lato, "Open Sans", Roboto, sans-serif', fontWeight: 400 }}>
+                      <AlertTriangle size={14} />
                       {trek.difficulty || 'Moderate'} Level
                     </span>
                   </div>
