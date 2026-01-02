@@ -35,10 +35,19 @@ const ContactModal: React.FC<ContactModalProps> = ({
 
   const subjects = [
     'General Inquiry',
+    'Service Information',
     'Trek Information',
     'Peak Climbing',
     'Cultural Tours',
     'Wildlife Safari',
+    'Trekking permits and regulations',
+    'Nepal Visa Fee & Assistance',
+    'Chitwan National Park',
+    'Koshi Tappu Wildlife Reserve',
+    'Tengboche Manirimdu Festival Trek',
+    'Bardiya National Park',
+    'Adventure Activities',
+    'Rafting & Kayaking',
     'Cycling Tours',
     'Booking Assistance',
     'Group Trek Planning',
@@ -46,7 +55,7 @@ const ContactModal: React.FC<ContactModalProps> = ({
     'Travel Insurance',
     'Custom Itinerary',
     'Safety & Preparation',
-    'Other'
+    'Other | explain in the message box'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

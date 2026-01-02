@@ -198,19 +198,31 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookNow }) => {
 
         {/* CTA Section */}
         <div
-          className={`mt-16 text-center p-12 rounded-2xl ${
-            isDarkMode ? "bg-gray-700" : "bg-gradient-to-r from-primary-500 to-primary-600"
-          }`}
+          className="mt-16 text-center p-12 rounded-2xl relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, ${
+              isDarkMode 
+                ? 'rgba(17, 24, 39, 0.75), rgba(31, 41, 55, 0.85)' 
+                : 'rgba(255, 255, 255, 0.75), rgba(239, 246, 255, 0.85)'
+            }), url(/assets/images/mountain-border.png)`,
+            backgroundSize: 'cover, 100% 100%',
+            backgroundPosition: 'center, center',
+            backgroundRepeat: 'no-repeat, no-repeat'
+          }}
         >
-          <h3 className="text-2xl xl:text-3xl 2xl:text-4xl jaini-purva-regular text-white mb-4">
+          <h3 className={`text-2xl xl:text-3xl 2xl:text-4xl jaini-purva-regular mb-4 relative z-10 ${
+            isDarkMode ? 'text-white' : 'text-blue-900'
+          }`}>
             Get Ready for Next Trekking Adventure
           </h3>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+          <p className={`text-lg mb-8 max-w-2xl mx-auto relative z-10 ${
+            isDarkMode ? 'text-white/90' : 'text-blue-800'
+          }`}>
             Start planning your unforgettable journey to the Himalayas with our expert team
           </p>
           <button 
             onClick={onBookNow}
-            className="bg-white dark:bg-gray-800 text-primary-500 hover:bg-gray-100 px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+            className="bg-white dark:bg-gray-800 text-primary-500 hover:bg-gray-100 px-12 py-5 text-xl font-display font-bold uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 relative z-10"
           >
             START JOURNEY
           </button>

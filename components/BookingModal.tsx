@@ -80,8 +80,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
 
   const countries = [
     'Nepal', 'United States', 'United Kingdom', 'Canada', 'Australia', 'Germany', 
-    'France', 'Japan', 'South Korea', 'India', 'China', 'Netherlands', 'Switzerland',
-    'Sweden', 'Norway', 'Denmark', 'Belgium', 'Austria', 'Italy', 'Spain', 'Other'
+    'France', 'Belgium', 'Poland', 'Japan', 'South Korea', 'India', 'China', 'Netherlands', 'Switzerland',
+    'Sweden', 'Norway', 'Denmark', 'Austria', 'Italy', 'Spain', 'Czech Republic', 'Other | add country in the message'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

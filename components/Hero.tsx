@@ -59,9 +59,9 @@ const HeroComponent: React.FC<HeroProps> = ({
       {/* Mountain Sketch Background - Behind Top Section Only */}
       <div className="absolute -top-32 sm:-top-28 md:-top-20 lg:-top-24 left-0 right-0 h-[50vh] md:h-[55vh] z-0 overflow-hidden">
         <img 
-          src="/assets/images/heading-hero.png" 
+          src="/assets/images/mountain-border.png" 
           alt="Mountain sketch background" 
-          className="w-full h-full object-cover object-[center_35%] opacity-30 dark:opacity-20"
+          className="w-full h-full object-cover object-[center_35%] opacity-15 dark:opacity-20"
         />
         {/* Gradient fade at bottom */}
        
