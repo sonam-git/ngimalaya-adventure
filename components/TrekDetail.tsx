@@ -402,7 +402,6 @@ const TrekDetail: React.FC<TrekDetailProps> = ({ trek }) => {
                   </div>
                 </div>
               )}
-              <ActionButtons />
             </div>
           )}
 
