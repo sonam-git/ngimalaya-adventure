@@ -413,7 +413,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
                     <option value="">Select your trekking destination</option>
                     {allTreks.map(trekOption => (
                       <option key={trekOption.id} value={trekOption.id}>
-                        {trekOption.name} - {trekOption.duration} - {trekOption.price}
+                        {trekOption.name} 
                       </option>
                     ))}
                   </select>
@@ -439,6 +439,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, trek }) =>
                         ? 'bg-gray-700 border-gray-600 text-white' 
                         : 'bg-gray-50 border-gray-300 text-gray-900'
                     }`}
+                    style={{ maxWidth: '100%', minWidth: '0' }}
                   />
                 </div>
 
