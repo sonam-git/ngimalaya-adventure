@@ -9,7 +9,7 @@ const PrayerFlagBorder = () => {
   ];
   
   return (
-    <div className="flex w-full h-2">
+    <div className="flex w-full h-1">
       {/* Show 1 set on small screens, more on larger screens */}
       {/* Small screens (< 640px): 1 set (5 colors) */}
       <div className="flex w-full sm:hidden">

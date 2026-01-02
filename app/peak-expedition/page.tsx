@@ -328,16 +328,33 @@ const PeakExpeditionPage: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-primary-50'}`}>
-        <div className="container mx-auto px-4 text-center">
-          <Flag className="mx-auto text-primary-500 mb-6" size={48} />
-          <h2 className="text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4">
+      <div 
+        className="py-20 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, ${
+            isDarkMode 
+              ? 'rgba(17, 24, 39, 0.75), rgba(31, 41, 55, 0.85)' 
+              : 'rgba(255, 255, 255, 0.75), rgba(239, 246, 255, 0.85)'
+          }), url(/assets/images/heading-hero.png)`,
+          backgroundSize: 'cover, 100% 100%',
+          backgroundPosition: 'center, center',
+          backgroundRepeat: 'no-repeat, no-repeat'
+        }}
+      >
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <Flag className={`mx-auto mb-6 ${isDarkMode ? 'text-primary-400' : 'text-primary-600'}`} size={48} />
+          <h2 className={`text-4xl jaini-purva-regular font-bold uppercase tracking-wider mb-4 ${
+            isDarkMode ? 'text-white' : 'text-blue-900'
+          }`}>
             Ready for the Ultimate Challenge?
           </h2>
-          <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-200' : 'text-blue-800'}`}>
             Join us on an unforgettable journey to the top of the world. Our experienced team will guide you every step of the way.
           </p>
-          <button className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
+          <button 
+            onClick={() => setIsContactModalOpen(true)}
+            className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+          >
             Contact Us Today
           </button>
         </div>
