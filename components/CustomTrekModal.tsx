@@ -286,7 +286,12 @@ const CustomTrekModal: React.FC<CustomTrekModalProps> = ({
                         ? 'bg-gray-700 border-gray-600 text-white' 
                         : 'bg-gray-50 border-gray-300 text-gray-900'
                     }`}
-                    style={{ maxWidth: '100%', minWidth: '0' }}
+                    style={{ 
+                      maxWidth: '100%', 
+                      minWidth: '0',
+                      width: '100%',
+                      boxSizing: 'border-box'
+                    }}
                   />
                 </div>
               </div>
