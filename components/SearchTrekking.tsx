@@ -380,7 +380,7 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
                       return (
                         <div key={result.id} className={`rounded-2xl shadow-lg p-4 border ${isDarkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
                           <img 
-                            src={typeof result.image === 'string' ? `/assets/images/${result.image.replace(/^.*\//, '')}` : '/assets/images/hero.png'} 
+                            src={typeof result.image === 'string' ? `/assets/images/${result.image.replace(/^.*\//, '')}` : '/assets/images/mountain.jpg'} 
                             alt={result.name} 
                             className="w-full h-48 object-cover rounded-lg mb-3" 
                           />
