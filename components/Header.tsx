@@ -322,7 +322,7 @@ const Header: React.FC = () => {
                     ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-xl shadow-primary-400/50 scale-95'
                     : isDarkMode 
                       ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20' 
-                      : 'bg-gradient-to-br from-sky-100 to-sky-200 hover:from-sky-200 hover:to-sky-300 shadow-lg shadow-sky-300/50 hover:shadow-xl hover:shadow-sky-400/60'
+                      : 'bg-gradient-to-r from-sky-50/80 via-blue-50/80 to-sky-50/80 hover:from-sky-100 hover:to-blue-100 shadow-md hover:shadow-lg border border-sky-100/50 backdrop-blur-sm'
                 }`}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
