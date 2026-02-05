@@ -413,7 +413,7 @@ const GoogleTranslateClient = () => {
         />
       </button>
       {open && (
-        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-50" style={{ marginTop: '25rem' }}>
+        <div ref={dropdownRef} className="absolute right-0 w-36 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-[9999]" style={{ marginTop: '25rem' }}>
           <ul className="py-1">
             {LANGUAGES.map(lang => (
               <li key={lang.code}>
