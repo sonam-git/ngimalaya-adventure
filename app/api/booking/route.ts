@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import { sendEmail } from '@/lib/email';
 import { formatPhoneNumber } from '@/utils/phoneFormatter';
-
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
 interface BookingData {
   fullName: string;
@@ -261,8 +258,8 @@ IP Address: ${clientIP}
       `
     };
     
-    // Send email via SendGrid
-    await sgMail.send(emailContent);
+    // Send email
+    await sendEmail(emailContent);
     
     return NextResponse.json({
       success: true,

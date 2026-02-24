@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import { sendEmail } from '@/lib/email';
 import { formatPhoneNumber } from '@/utils/phoneFormatter';
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
 interface InquiryData {
   fullName: string;
@@ -247,7 +245,7 @@ Please respond within 24 hours.
       `
     };
     
-    await sgMail.send(emailContent);
+    await sendEmail(emailContent);
     
     return NextResponse.json({
       success: true,

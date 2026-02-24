@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+import { sendEmail } from '@/lib/email';
 
 interface CustomTrekData {
   fullName: string;
@@ -221,7 +219,7 @@ IP Address: ${clientIP}
       `
     };
     
-    await sgMail.send(emailContent);
+    await sendEmail(emailContent);
     
     return NextResponse.json({
       success: true,
