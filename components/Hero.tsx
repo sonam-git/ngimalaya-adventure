@@ -71,9 +71,9 @@ const HeroComponent: React.FC<HeroProps> = ({
 
       {/* Top Text Section */}
       <div className="relative z-10">
-        <div className="relative max-w-6xl mx-auto text-center px-4 pt-24 sm:pt-24 md:pt-28 lg:pt-32">
+        <div className="relative max-w-6xl mx-auto text-center px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32">
           {/* Main Headline with Trekker Images */}
-          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-1 md:mb-1 px-2">
+          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-0 sm:mb-1 md:mb-1 px-2">
             {/* Male Trekker - Left Side */}
             <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
               <img 
@@ -107,7 +107,7 @@ const HeroComponent: React.FC<HeroProps> = ({
 
           {/* Subtitle */}
           <p
-            className="text-xs sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up"
+            className="text-xs sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up mb-1 sm:mb-0"
             style={{ animationDelay: "0.3s" }}
           >
             Discover Your Himalayan Escape, Where Culture Meets the Clouds
@@ -116,8 +116,8 @@ const HeroComponent: React.FC<HeroProps> = ({
       </div>
 
       {/* Image Carousel Section - Center Focus */}
-      <div className="relative flex-1 min-h-[300px] md:min-h-[350px] lg:min-h-[400px]  md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
-        <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
+      <div className="relative min-h-[200px] sm:min-h-[280px] md:min-h-[350px] lg:min-h-[400px] md:px-8 lg:px-16 xl:px-24 flex items-center z-0 -mt-2 sm:mt-0">
+        <div className="relative w-full h-[180px] sm:h-[230px] md:h-[320px] lg:h-[400px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
           
           {/* Video Background (Primary) */}
           {showVideo && !videoError && (
@@ -208,7 +208,7 @@ const HeroComponent: React.FC<HeroProps> = ({
 
       {/* Trek Reel - Above the tagline */}
       {trekReelComponent && (
-        <div className="relative z-0 w-full mt-1">
+        <div className="relative z-0 w-full -mt-4 sm:mt-1">
           {trekReelComponent}
         </div>
       )}
