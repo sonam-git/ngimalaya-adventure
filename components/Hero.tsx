@@ -7,12 +7,14 @@ export interface HeroProps {
   onWatchStory?: () => void;
   onBookNow?: () => void;
   searchComponent?: React.ReactNode;
+  trekReelComponent?: React.ReactNode;
 }
 
 const HeroComponent: React.FC<HeroProps> = ({
   onExploreTreks,
   onBookNow,
   searchComponent,
+  trekReelComponent,
 }) => {
   // Hero slides - images only
   const heroSlides = [
@@ -114,8 +116,8 @@ const HeroComponent: React.FC<HeroProps> = ({
       </div>
 
       {/* Image Carousel Section - Center Focus */}
-      <div className="relative flex-1 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] px-4 md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
-        <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
+      <div className="relative flex-1 min-h-[300px] md:min-h-[350px] lg:min-h-[400px] px-4 md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
+        <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
           
           {/* Video Background (Primary) */}
           {showVideo && !videoError && (
@@ -204,19 +206,23 @@ const HeroComponent: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Bottom Text & CTA Section */}
-      <div className="relative py-8 md:py-12 lg:py-16 px-4 z-0">
-        <div className="relative max-w-5xl mx-auto text-center">
-          {/* Search Component - visible only on small screens */}
-          {searchComponent && (
-            <div
-              className="block md:hidden mb-6 animate-fade-in-up relative z-[100]"
-              style={{ animationDelay: "0.3s" }}
-            >
-              {searchComponent}
-            </div>
-          )}
+      {/* Trek Reel - Above the tagline */}
+      {trekReelComponent && (
+        <div className="relative z-0 w-full mt-2">
+          {trekReelComponent}
+        </div>
+      )}
 
+      {/* Search Component - Right below TrekReel */}
+      {searchComponent && (
+        <div className="relative z-50 w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 py-2 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+          {searchComponent}
+        </div>
+      )}
+
+      {/* Bottom Text & CTA Section */}
+      <div className="relative py-4 md:py-6 lg:py-8 px-4 z-0">
+        <div className="relative max-w-5xl mx-auto text-center">
           {/* Tagline */}
           <h2
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl lugrasimo-regular mb-6 md:mb-8 text-blue-800 dark:text-gray-200 animate-fade-in-up"

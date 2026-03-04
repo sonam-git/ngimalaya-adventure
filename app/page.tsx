@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Hero from '@/components/Hero'
+import TrekReel from '@/components/TrekReel'
 import About from '@/components/About'
 import TreksSection from '@/components/TreksSection'
 import PeakExpeditionSection from '@/components/PeakExpeditionSection'
@@ -68,14 +69,10 @@ export default function HomePage() {
           onExploreTreks={handleExploreTreks}
           onBookNow={handleBookNow}
           searchComponent={<SearchTrekking treks={treks} peaks={peaks} safaris={safaris} />}
+          trekReelComponent={<TrekReel />}
         />
-        {/* Overlay SearchTrekking - visible only on desktop, aligned with bottom of slideshow */}
-        <div className="hidden md:flex absolute left-0 right-0 w-full z-30 items-end justify-center md:top-28 md:bottom-[200px] lg:bottom-[240px]">
-          <div className="w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 pb-6">
-            <SearchTrekking treks={treks} peaks={peaks} safaris={safaris} />
-          </div>
-        </div>
       </div>
+      
       <div className="px-4 md:px-6 lg:px-8 space-y-8 md:space-y-12 py-8 ">
         <About showFull={false} />
         <TreksSection />
