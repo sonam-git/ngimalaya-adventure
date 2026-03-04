@@ -116,7 +116,7 @@ const HeroComponent: React.FC<HeroProps> = ({
       </div>
 
       {/* Image Carousel Section - Center Focus */}
-      <div className="relative flex-1 min-h-[300px] md:min-h-[350px] lg:min-h-[400px] px-4 md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
+      <div className="relative flex-1 min-h-[300px] md:min-h-[350px] lg:min-h-[400px]  md:px-8 lg:px-16 xl:px-24 flex items-center z-0">
         <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
           
           {/* Video Background (Primary) */}
@@ -208,20 +208,48 @@ const HeroComponent: React.FC<HeroProps> = ({
 
       {/* Trek Reel - Above the tagline */}
       {trekReelComponent && (
-        <div className="relative z-0 w-full mt-2">
+        <div className="relative z-0 w-full mt-1">
           {trekReelComponent}
         </div>
       )}
 
-      {/* Search Component - Right below TrekReel */}
+      {/* Mobile Layout - Tagline and CTAs right after TrekReel */}
+      <div className="xl:hidden relative z-50 px-4 py-4">
+        <div className="max-w-md mx-auto text-center">
+          {/* Tagline for mobile */}
+          <h2
+            className="text-base sm:text-lg lugrasimo-regular mb-4 text-blue-800 dark:text-gray-200 animate-fade-in-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            Expert-Guided Treks Through Nepal's Majestic Landscapes
+          </h2>
+          
+          {/* Two-column buttons for mobile */}
+          <div className="grid grid-cols-2 gap-3 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+            <button
+              onClick={onBookNow}
+              className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-3 text-sm font-display font-semibold uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Book Now</span>
+            </button>
+            {/* Search button will be rendered here by searchComponent */}
+            {searchComponent}
+          </div>
+        </div>
+      </div>
+
+      {/* Search Component - Desktop Only (full form) */}
       {searchComponent && (
-        <div className="relative z-50 w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 py-2 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+        <div className="hidden xl:block relative z-50 w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-20 py-2 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
           {searchComponent}
         </div>
       )}
 
-      {/* Bottom Text & CTA Section */}
-      <div className="relative py-4 md:py-6 lg:py-8 px-4 z-0">
+      {/* Bottom Text & CTA Section - Desktop Only */}
+      <div className="hidden xl:block relative py-4 md:py-6 lg:py-8 px-4 z-0">
         <div className="relative max-w-5xl mx-auto text-center">
           {/* Tagline */}
           <h2

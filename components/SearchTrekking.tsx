@@ -190,46 +190,36 @@ const SearchTrekking: React.FC<SearchTrekkingProps> = ({ treks, peaks, safaris }
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto mt-0 mb-1 relative z-50">
+    <section className="w-full max-w-7xl xl:mx-auto mt-0 mb-1 relative z-50">
       {/* Mobile Search Toggle Button - Modern UI */}
-      <div className="flex justify-center mb-4 xl:hidden">
+      <div className="xl:hidden">
         <button
           type="button"
           aria-label={showMobileSearch ? 'Close search' : 'Open search'}
           onClick={() => setShowMobileSearch(v => !v)}
           className={`
-            group relative flex items-center gap-3 px-6 py-3 rounded-2xl font-bold shadow-lg 
-            transition-all duration-300 transform hover:scale-105 active:scale-95
+            group relative flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold shadow-lg 
+            transition-all duration-300 transform hover:scale-105 active:scale-95 w-full
             ${showMobileSearch 
               ? 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700' 
               : 'bg-gradient-to-r from-blue-500 via-blue-600 to-green-500 text-white hover:from-blue-600 hover:via-blue-700 hover:to-green-600'
             }
-            before:absolute before:inset-0 before:rounded-2xl before:bg-white/20 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100
             shadow-[0_4px_20px_rgba(59,130,246,0.4)] hover:shadow-[0_6px_30px_rgba(59,130,246,0.5)]
           `}
         >
           {showMobileSearch ? (
             <>
-              <div className="p-1.5 bg-white/20 rounded-lg">
-                <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M6 18L18 6M6 6l12 12' />
-                </svg>
-              </div>
-              <span className="text-sm tracking-wide uppercase">Close Search</span>
+              <svg xmlns='http://www.w3.org/2000/svg' className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M6 18L18 6M6 6l12 12' />
+              </svg>
+              <span className="text-sm tracking-wide uppercase">Close</span>
             </>
           ) : (
             <>
-              <div className="p-1.5 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
-                <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-                </svg>
-              </div>
-              <span className="text-sm tracking-wide uppercase">Find Your Trek</span>
-              <div className="flex items-center gap-1 ml-1">
-                <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse"></span>
-                <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></span>
-                <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></span>
-              </div>
+              <svg xmlns='http://www.w3.org/2000/svg' className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
+              </svg>
+              <span className="text-sm tracking-wide uppercase">Find Trek</span>
             </>
           )}
         </button>
