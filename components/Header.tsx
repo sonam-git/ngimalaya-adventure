@@ -144,6 +144,12 @@ const Header: React.FC = () => {
                                       pathname === '/contact' ||
                                       pathname === '/services';
 
+  // Check if we're on the homepage (for transparent header with white text)
+  const isHomePage = pathname === '/';
+  
+  // Use hero mode (white text/icons) when on homepage and not scrolled
+  const useHeroMode = isHomePage && !isScrolled;
+
   // Check if we should show the RegionMenu (for regions page, single region, or single trek pages)
   const shouldShowRegionMenu = pathname === '/regions' ||
                                 pathname.startsWith('/regions/') || 
@@ -256,7 +262,7 @@ const Header: React.FC = () => {
             {/* Logo Only - Clean and Simple */}
             <Link href="/" className="group ml-4 sm:ml-6 xl:ml-8 2xl:ml-10">
               <img
-                src={isDarkMode ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
+                src={(isDarkMode || useHeroMode) ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
                 alt="Ngimalaya Adventure Nepal"
                 className="h-20 sm:h-24 xl:h-28 2xl:h-32 w-auto transition-all duration-300 group-hover:scale-105"
               />
@@ -273,16 +279,16 @@ const Header: React.FC = () => {
                     href={item.href}
                     className={`group flex flex-col items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ${
                       active
-                        ? isDarkMode
-                          ? 'bg-primary-600/20 text-primary-400'
+                        ? (isDarkMode || useHeroMode)
+                          ? 'bg-amber-500/20 text-amber-300'
                           : 'bg-primary-50 text-primary-600'
-                        : isDarkMode
-                          ? 'text-gray-300 hover:bg-gray-800 hover:text-primary-400'
+                        : (isDarkMode || useHeroMode)
+                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
                           : 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
                     }`}
                   >
                     <Icon size={22} className={`mb-1 transition-transform duration-300 group-hover:scale-110 ${
-                      active ? 'text-primary-500' : ''
+                      active ? (isDarkMode || useHeroMode) ? 'text-amber-400' : 'text-primary-500' : ''
                     }`} />
                     <span className="font-display font-semibold uppercase tracking-wider text-sm">
                       {item.name}
@@ -320,8 +326,8 @@ const Header: React.FC = () => {
                 className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 ${
                   isMobileMenuOpen
                     ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-xl shadow-primary-400/50 scale-95'
-                    : isDarkMode 
-                      ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20' 
+                    : (isDarkMode || useHeroMode)
+                      ? 'bg-white/10 hover:bg-white/20 border border-white/30 shadow-lg backdrop-blur-sm' 
                       : 'bg-gradient-to-r from-sky-50/80 via-blue-50/80 to-sky-50/80 hover:from-sky-100 hover:to-blue-100 shadow-md hover:shadow-lg border border-sky-100/50 backdrop-blur-sm'
                 }`}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -332,8 +338,8 @@ const Header: React.FC = () => {
                     className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
                       isMobileMenuOpen 
                         ? 'bg-white rotate-45 translate-y-0' 
-                        : isDarkMode 
-                          ? 'bg-gray-300 -translate-y-2' 
+                        : (isDarkMode || useHeroMode)
+                          ? 'bg-white -translate-y-2' 
                           : 'bg-sky-700 -translate-y-2'
                     }`}
                   />
@@ -342,8 +348,8 @@ const Header: React.FC = () => {
                     className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
                       isMobileMenuOpen 
                         ? 'bg-white opacity-0 scale-0' 
-                        : isDarkMode 
-                          ? 'bg-gray-300 opacity-100 scale-100' 
+                        : (isDarkMode || useHeroMode)
+                          ? 'bg-white opacity-100 scale-100' 
                           : 'bg-sky-700 opacity-100 scale-100'
                     }`}
                   />
@@ -352,8 +358,8 @@ const Header: React.FC = () => {
                     className={`absolute w-6 h-0.5 rounded-full transition-all duration-300 ${
                       isMobileMenuOpen 
                         ? 'bg-white -rotate-45 translate-y-0' 
-                        : isDarkMode 
-                          ? 'bg-gray-300 translate-y-2' 
+                        : (isDarkMode || useHeroMode)
+                          ? 'bg-white translate-y-2' 
                           : 'bg-sky-700 translate-y-2'
                     }`}
                   />

@@ -56,40 +56,77 @@ const HeroComponent: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col -mt-10 md:-mt-28 lg:-mt-32"
+      className="relative flex flex-col -mt-32 md:-mt-30"
     >
-      {/* Mountain Sketch Background - Behind Top Section Only */}
-      <div className="absolute -top-32 sm:-top-28 md:-top-20 lg:-top-24 left-0 right-0 h-[50vh] md:h-[55vh] z-0 overflow-hidden">
-        <img 
-          src="/assets/images/heading-hero.png" 
-          alt="Mountain sketch background" 
-          className="w-full h-full object-cover object-[center_35%] opacity-25 dark:opacity-30"
-        />
-        {/* Gradient fade at bottom */}
-       
-      </div>
+      {/* Full-screen Hero Video/Image Background - extends under header */}
+      <div className="relative min-h-[55vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] w-full overflow-hidden">
+        {/* Video Background (Primary) */}
+        {showVideo && !videoError && (
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+              onError={() => {
+                console.log('Video failed to load, falling back to image slideshow');
+                setVideoError(true);
+                setShowVideo(false);
+              }}
+              onLoadedData={() => {
+                console.log('Video loaded successfully');
+              }}
+            >
+              <source src="/assets/videos/Hero.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
+        
+        {/* Background Images with Smooth Transitions (Fallback) */}
+        {(!showVideo || videoError) && heroSlides.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 z-0 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url("${image}")`,
+                backgroundPosition: "center 40%",
+              }}
+            />
+          </div>
+        ))}
 
-      {/* Top Text Section */}
-      <div className="relative z-10">
-        <div className="relative max-w-6xl mx-auto text-center px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32">
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
+        
+        {/* Content Overlay */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-4 pt-20 md:pt-24">
           {/* Main Headline with Trekker Images */}
-          <div className="relative flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 mb-0 sm:mb-1 md:mb-1 px-2">
+          <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 mb-2 md:mb-4 px-2">
             {/* Male Trekker - Left Side */}
             <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
               <img 
                 src="/assets/sketch/trekker-male.png" 
                 alt="Male trekker" 
-                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-85 dark:opacity-75 hover:opacity-100 hover:scale-110 transition-all duration-300"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 drop-shadow-lg"
               />
             </div>
             
             {/* Main Headline */}
             <h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular mt-0 tracking-wide text-blue-900 dark:text-blue-200 animate-fade-in-up text-center px-0.5 sm:px-1 whitespace-nowrap"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl jaini-purva-regular tracking-wide text-white animate-fade-in-up text-center px-1 drop-shadow-2xl"
               style={{ 
                 animationDelay: "0.2s",
                 fontFamily: '"Jaini Purva", system-ui !important',
-                fontWeight: '400 !important'
+                fontWeight: '400 !important',
+                textShadow: '2px 2px 8px rgba(0,0,0,0.5)'
               }}
             >
               Ngimalaya Adventure
@@ -100,115 +137,62 @@ const HeroComponent: React.FC<HeroProps> = ({
               <img 
                 src="/assets/sketch/trekker-female.png" 
                 alt="Female trekker" 
-                className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-85 dark:opacity-75 hover:opacity-100 hover:scale-110 transition-all duration-300"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 object-contain opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 drop-shadow-lg"
               />
             </div>
           </div>
 
           {/* Subtitle */}
           <p
-            className="text-xs sm:text-xl md:text-2xl font-body text-gray-800 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up mb-1 sm:mb-0"
-            style={{ animationDelay: "0.3s" }}
+            className="text-sm sm:text-lg md:text-xl lg:text-2xl font-body text-white/90 max-w-3xl mx-auto animate-fade-in-up text-center drop-shadow-lg"
+            style={{ animationDelay: "0.3s", textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
           >
             Discover Your Himalayan Escape, Where Culture Meets the Clouds
           </p>
         </div>
-      </div>
 
-      {/* Image Carousel Section - Center Focus */}
-      <div className="relative min-h-[200px] sm:min-h-[280px] md:min-h-[350px] lg:min-h-[400px] md:px-8 lg:px-16 xl:px-24 flex items-center z-0 -mt-2 sm:mt-0">
-        <div className="relative w-full h-[180px] sm:h-[230px] md:h-[320px] lg:h-[400px] max-w-[1600px] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3),0_20px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6),0_20px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4),0_25px_100px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_50px_rgba(0,0,0,0.7),0_25px_100px_rgba(0,0,0,0.5)] transition-shadow duration-500">
-          
-          {/* Video Background (Primary) */}
-          {showVideo && !videoError && (
-            <div className="absolute inset-0 z-10">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-full object-cover"
-                onError={() => {
-                  console.log('Video failed to load, falling back to image slideshow');
-                  setVideoError(true);
-                  setShowVideo(false);
-                }}
-                onLoadedData={() => {
-                  console.log('Video loaded successfully');
-                }}
-              >
-                <source src="/assets/videos/Hero.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              {/* Subtle vignette effect over video */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20 dark:from-gray-900/20 dark:to-gray-900/20 pointer-events-none" />
-            </div>
-          )}
-          
-          {/* Background Images with Smooth Transitions (Fallback) */}
-          {(!showVideo || videoError) && heroSlides.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
+        {/* Navigation Arrows - Only show for image slideshow */}
+        {(!showVideo || videoError) && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
+              aria-label="Previous slide"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: `url("${image}")`,
-                  backgroundPosition: "center 40%",
-                }}
+              <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
+            </button>
+          </>
+        )}
+
+        {/* Slide Indicators - Only show for image slideshow */}
+        {(!showVideo || videoError) && (
+          <div className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-30">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`transition-all duration-300 ${
+                  index === currentSlide
+                    ? "w-10 md:w-12 h-2 md:h-3 bg-white"
+                    : "w-2 md:w-3 h-2 md:h-3 bg-white/50 hover:bg-white/70"
+                } rounded-full shadow-md`}
+                aria-label={`Go to slide ${index + 1}`}
               />
-              {/* Subtle vignette effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/30 dark:from-gray-900/30 dark:to-gray-900/30" />
-            </div>
-          ))}
-
-          {/* Navigation Arrows - Only show for image slideshow */}
-          {(!showVideo || videoError) && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm p-3 rounded-full transition-all duration-300 shadow-lg items-center justify-center"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
-              </button>
-            </>
-          )}
-
-          {/* Slide Indicators - Only show for image slideshow */}
-          {(!showVideo || videoError) && (
-            <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-20">
-              {heroSlides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`transition-all duration-300 ${
-                    index === currentSlide
-                      ? "w-10 md:w-12 h-2 md:h-3 bg-blue-600 dark:bg-blue-500"
-                      : "w-2 md:w-3 h-2 md:h-3 bg-gray-400 dark:bg-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400"
-                  } rounded-full shadow-md`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Trek Reel - Above the tagline */}
+      {/* Trek Reel - Right below hero */}
       {trekReelComponent && (
-        <div className="relative z-0 w-full -mt-4 sm:mt-1">
+        <div className="relative z-0 w-full">
           {trekReelComponent}
         </div>
       )}
