@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { 
   Calendar, 
   Mountain, 
@@ -9,6 +9,7 @@ import {
   Star,
   MapPin
 } from 'lucide-react';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { useTheme } from '../contexts/ThemeContext';
 
 interface Tab {
@@ -24,6 +25,34 @@ interface TrekDetailTabsProps {
 
 const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange }) => {
   const { isDarkMode } = useTheme();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    if (el) el.addEventListener('scroll', checkScroll, { passive: true });
+    return () => el?.removeEventListener('scroll', checkScroll);
+  }, [checkScroll]);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+    if (!activeEl) return;
+    container.scrollTo({
+      left: activeEl.offsetLeft - container.clientWidth / 2 + activeEl.offsetWidth / 2,
+      behavior: 'smooth',
+    });
+  }, [activeTab]);
 
   const handleTabClick = (tabId: string) => {
     // Scroll to top when changing tabs
@@ -46,16 +75,26 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
 
   return (
     <div
-      className="bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
+      className="relative bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
       aria-label="Trek detail tabs"
     >
-      <div className="flex overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      {canScrollLeft && (
+        <button
+          onClick={() => scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
+          aria-label="Scroll left"
+        >
+          <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300" />
+        </button>
+      )}
+      <div ref={scrollRef} className="flex overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
         {tabs.map((tab) => {
             const IconComponent = tab.icon;
             return (
               <button
                 key={tab.id}
                 onClick={() => handleTabClick(tab.id)}
+                data-active={activeTab === tab.id ? 'true' : undefined}
                 className={`flex-shrink-0 px-4 md:px-6 py-3 md:py-4 font-semibold text-xs md:text-sm transition-all duration-200 whitespace-nowrap flex items-center gap-2 border-b-2 ${
                   activeTab === tab.id
                     ? `${isDarkMode ? 'text-blue-400 border-blue-400 bg-blue-900/20' : 'text-blue-600 border-blue-600 bg-blue-50'}`
@@ -68,7 +107,16 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
               </button>
             );
           })}
-        </div>
+      </div>
+      {canScrollRight && (
+        <button
+          onClick={() => scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
+          aria-label="Scroll right"
+        >
+          <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300" />
+        </button>
+      )}
     </div>
   );
 };
