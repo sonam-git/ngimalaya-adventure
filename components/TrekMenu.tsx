@@ -57,7 +57,7 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
       {canScrollLeft && (
         <button
           onClick={scrollLeft}
-          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-r from-blue-50 dark:from-gray-800 to-transparent"
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-blue-50 dark:bg-gray-800"
           aria-label="Scroll left"
         >
           <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
@@ -86,7 +86,7 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
       {canScrollRight && (
         <button
           onClick={scrollRight}
-          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-l from-blue-50 dark:from-gray-800 to-transparent"
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-blue-50 dark:bg-gray-800"
           aria-label="Scroll right"
         >
           <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />

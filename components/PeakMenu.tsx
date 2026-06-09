@@ -50,7 +50,7 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
       {canScrollLeft && (
         <button
           onClick={scrollLeft}
-          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-r from-white dark:from-gray-900 to-transparent"
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
           aria-label="Scroll left"
         >
           <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
@@ -78,7 +78,7 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
       {canScrollRight && (
         <button
           onClick={scrollRight}
-          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-l from-white dark:from-gray-900 to-transparent"
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
           aria-label="Scroll right"
         >
           <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
