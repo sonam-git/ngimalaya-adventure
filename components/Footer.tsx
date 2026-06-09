@@ -286,7 +286,8 @@ const Footer: React.FC = () => {
         {/* Bottom Bar - Common for all screen sizes */}
         <div className="border-t border-gray-700 mt-12 pt-6 text-center pb-24 md:pb-8">
           <p className="text-gray-500 text-sm">
-           | Copyright © {new Date().getFullYear()} Ngimalaya Adventure Nepal | Built By <a href="https://www.linkedin.com/in/sonam-j-sherpa/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-600 transition-colors">Sonam J Sherpa </a> |
+            <span className="block md:inline">| Copyright © 2016 - {new Date().getFullYear()} Ngimalaya Adventure Nepal |</span>
+            <span className="block md:inline md:ml-1"> | Built By <a href="https://www.linkedin.com/in/sonam-j-sherpa/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-600 transition-colors">Sonam J Sherpa</a> |</span>
           </p>
         </div>
       </div>

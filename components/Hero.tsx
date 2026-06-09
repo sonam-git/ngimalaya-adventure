@@ -56,10 +56,51 @@ const HeroComponent: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative flex flex-col -mt-32 md:-mt-30"
+      className="relative flex flex-col mt-3 sm:mt-4 md:mt-6 xl:-mt-32"
     >
+      {/* Mobile/Tablet Hero Header - shown above video */}
+      <div className="xl:hidden px-4 sm:px-6 md:px-8 mb-3 md:mb-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 mb-2 md:mb-3 px-2">
+            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
+              <img
+                src="/assets/sketch/trekker-male.png"
+                alt="Male trekker"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain opacity-90"
+              />
+            </div>
+
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl jaini-purva-regular tracking-wide text-blue-900 dark:text-white animate-fade-in-up text-center px-1"
+              style={{
+                animationDelay: "0.2s",
+                fontFamily: '"Jaini Purva", system-ui !important',
+                fontWeight: "400 !important",
+              }}
+            >
+              Ngimalaya Adventure
+            </h1>
+
+            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.25s" }}>
+              <img
+                src="/assets/sketch/trekker-female.png"
+                alt="Female trekker"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain opacity-90"
+              />
+            </div>
+          </div>
+
+          <p
+            className="text-[11px] sm:text-base md:text-lg font-body text-blue-900/90 dark:text-white/90 max-w-none sm:max-w-3xl mx-auto animate-fade-in-up text-center whitespace-nowrap"
+            style={{ animationDelay: "0.3s" }}
+          >
+            Discover Your Himalayan Escape, Where Culture Meets the Clouds
+          </p>
+        </div>
+      </div>
+
       {/* Full-screen Hero Video/Image Background - extends under header */}
-      <div className="relative min-h-[55vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] w-full overflow-hidden">
+      <div className="relative mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-0 min-h-[38vh] sm:min-h-[44vh] md:min-h-[50vh] lg:min-h-[56vh] xl:min-h-[62vh] w-auto xl:w-full overflow-hidden rounded-[2rem] border border-white/50 dark:border-gray-700/60 shadow-2xl xl:rounded-none xl:border-0 xl:shadow-none">
         {/* Video Background (Primary) */}
         {showVideo && !videoError && (
           <div className="absolute inset-0 z-0">
@@ -106,8 +147,8 @@ const HeroComponent: React.FC<HeroProps> = ({
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
         
-        {/* Content Overlay */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-4 pt-20 md:pt-24">
+        {/* Content Overlay - Desktop only */}
+        <div className="hidden xl:flex absolute inset-0 z-20 flex-col justify-center items-center px-4 pt-20 md:pt-24">
           {/* Main Headline with Trekker Images */}
           <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 mb-2 md:mb-4 px-2">
             {/* Male Trekker - Left Side */}

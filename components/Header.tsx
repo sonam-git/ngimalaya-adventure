@@ -178,7 +178,10 @@ const Header: React.FC = () => {
   const isHomePage = pathname === '/';
   
   // Use hero mode (white text/icons) when on homepage and not scrolled
-  const useHeroMode = isHomePage && !isScrolled;
+  const useHeroMode = isHomePage && !isScrolled && isDarkMode;
+
+  // Light theme top-state styling on homepage
+  const useLightTopStyle = isHomePage && !isScrolled && !isDarkMode;
 
   // Check if we should show the RegionMenu (for regions page, single region, or single trek pages)
   const shouldShowRegionMenu = pathname === '/regions' ||
@@ -277,15 +280,26 @@ const Header: React.FC = () => {
     return pathname.startsWith(href);
   };
 
+  const handleMobileNav = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
+
   return (
     <>
       {/* Main Header */}
       <header className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-        isScrolled || shouldAlwaysHaveBackground
+        isMobileMenuOpen
+          ? isDarkMode
+            ? 'bg-gray-900/95 backdrop-blur-md shadow-lg'
+            : 'bg-[#fdfcf6] backdrop-blur-sm shadow-sm'
+          : isScrolled || shouldAlwaysHaveBackground
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
             : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          : isDarkMode
+            ? 'bg-transparent'
+            : 'bg-white/95 backdrop-blur-sm shadow-sm'
       }`}>
         <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
           <div className="flex items-center justify-between h-24 xl:h-28">
@@ -311,14 +325,18 @@ const Header: React.FC = () => {
                       active
                         ? (isDarkMode || useHeroMode)
                           ? 'bg-amber-500/20 text-amber-300'
-                          : 'bg-primary-50 text-primary-600'
+                          : useLightTopStyle
+                            ? 'bg-blue-50 text-blue-900'
+                            : 'bg-primary-50 text-primary-600'
                         : (isDarkMode || useHeroMode)
                           ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
+                          : useLightTopStyle
+                            ? 'text-blue-900 hover:bg-blue-50 hover:text-blue-900'
+                            : 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
                     }`}
                   >
                     <Icon size={22} className={`mb-1 transition-transform duration-300 group-hover:scale-110 ${
-                      active ? (isDarkMode || useHeroMode) ? 'text-amber-400' : 'text-primary-500' : ''
+                      active ? (isDarkMode || useHeroMode) ? 'text-amber-400' : useLightTopStyle ? 'text-blue-900' : 'text-primary-500' : ''
                     }`} />
                     <span className="font-display font-semibold uppercase tracking-wider text-sm">
                       {item.name}
@@ -358,7 +376,9 @@ const Header: React.FC = () => {
                     ? 'bg-gradient-to-br from-primary-500 to-primary-600 shadow-xl shadow-primary-400/50 scale-95'
                     : (isDarkMode || useHeroMode)
                       ? 'bg-white/10 hover:bg-white/20 border border-white/30 shadow-lg backdrop-blur-sm' 
-                      : 'bg-gradient-to-r from-sky-50/80 via-blue-50/80 to-sky-50/80 hover:from-sky-100 hover:to-blue-100 shadow-md hover:shadow-lg border border-sky-100/50 backdrop-blur-sm'
+                      : useLightTopStyle
+                        ? 'bg-white hover:bg-blue-50 shadow-md hover:shadow-lg border border-blue-900/30'
+                        : 'bg-gradient-to-r from-sky-50/80 via-blue-50/80 to-sky-50/80 hover:from-sky-100 hover:to-blue-100 shadow-md hover:shadow-lg border border-sky-100/50 backdrop-blur-sm'
                 }`}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
@@ -370,7 +390,7 @@ const Header: React.FC = () => {
                         ? 'bg-white rotate-45 translate-y-0' 
                         : (isDarkMode || useHeroMode)
                           ? 'bg-white -translate-y-2' 
-                          : 'bg-sky-700 -translate-y-2'
+                          : 'bg-blue-900 -translate-y-2'
                     }`}
                   />
                   {/* Middle Line */}
@@ -380,7 +400,7 @@ const Header: React.FC = () => {
                         ? 'bg-white opacity-0 scale-0' 
                         : (isDarkMode || useHeroMode)
                           ? 'bg-white opacity-100 scale-100' 
-                          : 'bg-sky-700 opacity-100 scale-100'
+                          : 'bg-blue-900 opacity-100 scale-100'
                     }`}
                   />
                   {/* Bottom Line */}
@@ -390,7 +410,7 @@ const Header: React.FC = () => {
                         ? 'bg-white -rotate-45 translate-y-0' 
                         : (isDarkMode || useHeroMode)
                           ? 'bg-white translate-y-2' 
-                          : 'bg-sky-700 translate-y-2'
+                          : 'bg-blue-900 translate-y-2'
                     }`}
                   />
                 </div>
@@ -506,77 +526,73 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu - Show below 1024px */}
           {isMobileMenuOpen && (
-            <div className={`min-[1024px]:hidden absolute left-0 right-0 top-full z-50 shadow-2xl border-t animate-slideDown ${
-              isDarkMode 
-                ? 'bg-gray-900/80 border-gray-700' 
-                : 'bg-gray-100/90 border-gray-200'
-            }`}>
-              <div className={`py-4 border-t ${
-                isDarkMode ? 'border-gray-700' : 'border-gray-200'
-              }`}>
-                {navItems.map((item, index) => {
-                  const Icon = item.icon;
-                  const active = isActive(item.href);
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-4 py-4 px-4 mx-2 mb-2 rounded-xl transition-all duration-300 transform hover:scale-[1.02] ${
-                        active
-                          ? isDarkMode
-                            ? 'bg-gradient-to-r from-primary-600/30 to-primary-500/20 text-primary-200 shadow-lg'
-                            : 'bg-gradient-to-r from-primary-100 to-primary-50 text-primary-700 shadow-md'
-                          : isDarkMode
-                            ? 'text-gray-100 hover:bg-gray-800 hover:text-primary-200'
-                            : 'text-gray-900 hover:bg-gray-50 hover:text-primary-700'
-                      }`}
-                      style={{ 
-                        animationDelay: `${index * 50}ms`,
-                        animation: 'fadeInUp 0.3s ease-out forwards',
-                        opacity: 0
-                      }}
-                    >
-                      <div className={`p-2 rounded-lg ${
-                        active 
-                          ? 'bg-primary-500 text-white' 
-                          : isDarkMode 
-                            ? 'bg-gray-700' 
-                            : 'bg-sky-100 text-sky-600'
-                      }`}>
-                        <Icon size={22} />
-                      </div>
-                      <div className="flex-1">
-                        <span className="font-display font-bold uppercase tracking-wider text-base block">
-                          {item.name}
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
-                
-                <div className="px-4 pt-4 mt-2 border-t border-gray-200 dark:border-gray-700">
-                  <button 
-                    onClick={() => {
-                      setIsBookingModalOpen(true);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 font-display font-bold uppercase tracking-wider text-base transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl flex items-center justify-center gap-3 transform hover:scale-[1.02]"
-                    style={{ 
-                      animationDelay: `${navItems.length * 50}ms`,
-                      animation: 'fadeInUp 0.3s ease-out forwards',
-                      opacity: 0
-                    }}
-                  >
-                    <Calendar size={22} />
-                    Book Now
-                  </button>
-                </div>
-              </div>
+            <div className="min-[1024px]:hidden absolute left-0 right-0 top-full z-50 animate-slideDown">
+              <div className="flex items-start">
+                <div className={`w-[78%] max-w-[360px] shadow-2xl border-r rounded-br-2xl ${
+                  isDarkMode
+                    ? 'bg-gray-900/95 border-gray-700'
+                    : 'bg-[#fdfcf6] border-[#d8c496]'
+                }`}>
+                  <div className="px-5 py-5">
+                    <div className="space-y-2">
+                      {navItems.map((item, index) => {
+                        const Icon = item.icon;
+                        const active = isActive(item.href);
+                        return (
+                          <button
+                            type="button"
+                            key={item.name}
+                            onClick={() => handleMobileNav(item.href)}
+                            className={`w-full flex items-center gap-3 py-3 px-4 rounded-xl border transition-all duration-300 ${
+                              active
+                                ? isDarkMode
+                                  ? 'bg-blue-800 text-white border-blue-600 shadow-lg'
+                                  : 'bg-blue-900 text-white border-[#d8c496] shadow-lg'
+                                : isDarkMode
+                                  ? 'bg-gray-800 text-gray-100 border-gray-700 hover:bg-gray-700'
+                                  : 'bg-white text-gray-900 border-[#d8c496] hover:bg-gray-50'
+                            }`}
+                            style={{
+                              animationDelay: `${index * 50}ms`,
+                              animation: 'fadeInUp 0.3s ease-out forwards',
+                              opacity: 0
+                            }}
+                          >
+                            <Icon size={22} className={active ? 'text-white' : isDarkMode ? 'text-gray-200' : 'text-gray-900'} />
+                            <span className="font-display font-bold text-lg leading-none">
+                              {item.name}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
 
-              {/* Prayer flag border at the bottom of mobile menu */}
-              <div className="relative w-full z-20">
-                <PrayerFlagBorder />
+                    <div className={`mt-4 pt-4 border-t ${isDarkMode ? 'border-gray-700' : 'border-[#d8c496]'}`}>
+                      <button
+                        onClick={() => {
+                          setIsBookingModalOpen(true);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 font-display font-bold uppercase tracking-wider text-base transition-all duration-300 shadow-lg hover:shadow-xl rounded-2xl flex items-center justify-center gap-3"
+                        style={{
+                          animationDelay: `${navItems.length * 50}ms`,
+                          animation: 'fadeInUp 0.3s ease-out forwards',
+                          opacity: 0
+                        }}
+                      >
+                        <Calendar size={22} />
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex-1 bg-black/20 backdrop-blur-[1px]"
+                  aria-label="Close menu overlay"
+                />
               </div>
             </div>
           )}

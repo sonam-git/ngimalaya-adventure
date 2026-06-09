@@ -399,7 +399,7 @@ const GoogleTranslateClient = () => {
         className={`w-12 h-12 rounded-xl flex items-center justify-center focus:outline-none transition-all duration-300 hover:scale-105 ${
           isDarkMode
             ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-white/30 shadow-lg shadow-white/10 hover:shadow-xl hover:shadow-white/20'
-            : 'bg-gradient-to-r from-sky-50/80 via-blue-50/80 to-sky-50/80 hover:from-sky-100 hover:to-blue-100 shadow-md hover:shadow-lg border border-sky-100/50 backdrop-blur-sm'
+            : 'bg-white hover:bg-blue-50 shadow-md hover:shadow-lg border border-blue-900/30'
         }`}
         onClick={() => setOpen(!open)}
         aria-label="Change language"
@@ -408,7 +408,7 @@ const GoogleTranslateClient = () => {
           src="/assets/images/logos/translation.png" 
           alt="Translate" 
           className={`w-6 h-6 object-contain transition-all duration-200 ${
-            isDarkMode ? 'brightness-0 invert' : 'brightness-75'
+            isDarkMode ? 'brightness-0 invert' : 'brightness-0 saturate-150'
           }`}
         />
       </button>
