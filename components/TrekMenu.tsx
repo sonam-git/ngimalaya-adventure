@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trek } from '@/lib/types';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 interface TrekMenuProps {
   treks: Trek[];
@@ -11,6 +12,26 @@ interface TrekMenuProps {
 
 const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
   const router = useRouter();
+  const scrollRef = useRef<HTMLUListElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    if (el) el.addEventListener('scroll', checkScroll, { passive: true });
+    return () => el?.removeEventListener('scroll', checkScroll);
+  }, [treks, checkScroll]);
+
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' });
 
   const handleTrekSelect = (trekId: string) => {
     router.push(`/treks/${trekId}`);
@@ -18,10 +39,19 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
 
   return (
     <div
-      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
+      className="relative bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
       aria-label="Trek menu"
     >
-      <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
+      {canScrollLeft && (
+        <button
+          onClick={scrollLeft}
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-r from-blue-50 dark:from-gray-800 to-transparent"
+          aria-label="Scroll left"
+        >
+          <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+        </button>
+      )}
+      <ul ref={scrollRef} className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
         {treks.map(trek => (
           <li key={trek.id} className="flex-shrink-0 w-max">
             <button
@@ -40,6 +70,15 @@ const TrekMenu: React.FC<TrekMenuProps> = ({ treks, selectedTrekId }) => {
           </li>
         ))}
       </ul>
+      {canScrollRight && (
+        <button
+          onClick={scrollRight}
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-l from-blue-50 dark:from-gray-800 to-transparent"
+          aria-label="Scroll right"
+        >
+          <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+        </button>
+      )}
     </div>
   );
 };
