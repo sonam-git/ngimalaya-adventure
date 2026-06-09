@@ -27,18 +27,30 @@ const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSele
     return () => el?.removeEventListener('scroll', checkScroll);
   }, [regions, checkScroll]);
 
+  // Scroll active item to center when selection changes
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+    if (!activeEl) return;
+    container.scrollTo({
+      left: activeEl.offsetLeft - container.clientWidth / 2 + activeEl.offsetWidth / 2,
+      behavior: 'smooth',
+    });
+  }, [selectedRegion]);
+
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' });
   const scrollRight = () => scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' });
 
   return (
     <div
-      className="relative sticky top-[104px] xl:top-[120px] z-[35] bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 shadow-lg border-b border-green-300 dark:border-blue-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
+      className="sticky top-[104px] xl:top-[120px] z-[35] bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900 dark:to-blue-900 shadow-lg border-b border-green-300 dark:border-blue-700 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16"
       aria-label="Region menu"
     >
       {canScrollLeft && (
         <button
           onClick={scrollLeft}
-          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-r from-green-100 dark:from-green-900 to-transparent"
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-r from-green-100 dark:from-green-900 to-transparent"
           aria-label="Scroll left"
         >
           <MdChevronLeft className="w-6 h-6 text-green-700 dark:text-green-300 drop-shadow" />
@@ -50,6 +62,7 @@ const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSele
             <button
               type="button"
               onClick={() => onSelect(region)}
+              data-active={selectedRegion === region ? 'true' : undefined}
               className={`transition-all duration-200 px-4 py-2 rounded-md font-semibold whitespace-nowrap
                 ${selectedRegion === region
                   ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg scale-105'
@@ -61,15 +74,17 @@ const RegionMenu: React.FC<RegionMenuProps> = ({ regions, selectedRegion, onSele
             </button>
           </li>
         ))}
-      </ul>      {canScrollRight && (
+      </ul>
+      {canScrollRight && (
         <button
           onClick={scrollRight}
-          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-l from-green-100 dark:from-green-900 to-transparent"
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-l from-green-100 dark:from-green-900 to-transparent"
           aria-label="Scroll right"
         >
           <MdChevronRight className="w-6 h-6 text-green-700 dark:text-green-300 drop-shadow" />
         </button>
-      )}    </div>
+      )}
+    </div>
   );
 };
 

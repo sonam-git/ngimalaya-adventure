@@ -27,6 +27,18 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
     return () => el?.removeEventListener('scroll', checkScroll);
   }, [peaks, checkScroll]);
 
+  // Scroll active item to center when selection changes
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+    if (!activeEl) return;
+    container.scrollTo({
+      left: activeEl.offsetLeft - container.clientWidth / 2 + activeEl.offsetWidth / 2,
+      behavior: 'smooth',
+    });
+  }, [selectedPeak]);
+
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' });
   const scrollRight = () => scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' });
 
@@ -38,7 +50,7 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
       {canScrollLeft && (
         <button
           onClick={scrollLeft}
-          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-r from-white dark:from-gray-900 to-transparent"
+          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-r from-white dark:from-gray-900 to-transparent"
           aria-label="Scroll left"
         >
           <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
@@ -50,6 +62,7 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
             <button
               type="button"
               onClick={() => onSelect(peak.id)}
+              data-active={selectedPeak === peak.id ? 'true' : undefined}
               className={`transition-colors duration-200 px-4 py-2 rounded-md font-semibold text-blue-900 dark:text-white whitespace-nowrap
                 ${selectedPeak === peak.id
                   ? 'bg-blue-100 dark:bg-blue-900 shadow-md scale-105'
@@ -61,15 +74,17 @@ const PeakMenu: React.FC<PeakMenuProps> = ({ peaks, selectedPeak, onSelect }) =>
             </button>
           </li>
         ))}
-      </ul>      {canScrollRight && (
+      </ul>
+      {canScrollRight && (
         <button
           onClick={scrollRight}
-          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center px-1 bg-gradient-to-l from-white dark:from-gray-900 to-transparent"
+          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-l from-white dark:from-gray-900 to-transparent"
           aria-label="Scroll right"
         >
           <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
         </button>
-      )}    </div>
+      )}
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-react';
@@ -18,6 +18,7 @@ import { useTrekTab } from '../contexts/TrekTabContext';
 import { useSafariTab } from '../contexts/SafariTabContext';
 import { usePeakTab } from '../contexts/PeakTabContext';
 import { Trek, Region, PeakExpedition, SafariPackage } from '@/lib/types';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 const Header: React.FC = () => {
   const { activeTab, setActiveTab } = useTrekTab();
@@ -30,9 +31,38 @@ const Header: React.FC = () => {
   const [allTreks, setAllTreks] = useState<Trek[]>([]);
   const [allPeaks, setAllPeaks] = useState<PeakExpedition[]>([]);
   const [allSafaris, setAllSafaris] = useState<SafariPackage[]>([]);
+  const regionScrollRef = useRef<HTMLUListElement>(null);
+  const [regionCanScrollLeft, setRegionCanScrollLeft] = useState(false);
+  const [regionCanScrollRight, setRegionCanScrollRight] = useState(false);
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
+
+  const checkRegionScroll = useCallback(() => {
+    const el = regionScrollRef.current;
+    if (!el) return;
+    setRegionCanScrollLeft(el.scrollLeft > 0);
+    setRegionCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    checkRegionScroll();
+    const el = regionScrollRef.current;
+    if (el) el.addEventListener('scroll', checkRegionScroll, { passive: true });
+    return () => el?.removeEventListener('scroll', checkRegionScroll);
+  }, [trekRegions, checkRegionScroll]);
+
+  // Scroll active region to center in header menu
+  useEffect(() => {
+    const container = regionScrollRef.current;
+    if (!container) return;
+    const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+    if (!activeEl) return;
+    container.scrollTo({
+      left: activeEl.offsetLeft - container.clientWidth / 2 + activeEl.offsetWidth / 2,
+      behavior: 'smooth',
+    });
+  }, [pathname]);
 
   // Force font re-application after hydration to prevent FOUC
   useEffect(() => {
@@ -380,8 +410,17 @@ const Header: React.FC = () => {
           {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}
           {shouldShowRegionMenu && !isMobileMenuOpen && (
             <div className="relative -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16">
-              <div className="w-screen bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
-                <ul className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
+              <div className="relative w-screen bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
+                {regionCanScrollLeft && (
+                  <button
+                    onClick={() => regionScrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                    className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-r from-white dark:from-gray-900 to-transparent"
+                    aria-label="Scroll left"
+                  >
+                    <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+                  </button>
+                )}
+                <ul ref={regionScrollRef} className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
                 {trekRegions.map(region => {
                   const isSelected = getCurrentRegion() === region.name;
                   return (
@@ -389,6 +428,7 @@ const Header: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleRegionSelect(region.name)}
+                        data-active={isSelected ? 'true' : undefined}
                         className={`transition-colors duration-200 px-4 py-2 rounded-md font-semibold text-blue-900 dark:text-white whitespace-nowrap
                           ${isSelected
                             ? 'bg-blue-100 dark:bg-blue-900 shadow-md scale-105'
@@ -402,7 +442,16 @@ const Header: React.FC = () => {
                   );
                 })}
               </ul>
-            </div>
+                {regionCanScrollRight && (
+                  <button
+                    onClick={() => regionScrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                    className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-gradient-to-l from-white dark:from-gray-900 to-transparent"
+                    aria-label="Scroll right"
+                  >
+                    <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+                  </button>
+                )}
+              </div>
             </div>
           )}
 
