@@ -72,7 +72,7 @@ export default function HomePage() {
           trekReelComponent={<TrekReel />}
         />
       </div>
-      
+
       <div className="px-4 md:px-6 lg:px-8 space-y-8 md:space-y-12 py-8 ">
         <About showFull={false} />
         <TreksSection />

@@ -251,7 +251,7 @@ export default function RootLayout({
               <SafariTabProvider>
                 <BackgroundImage />
                 <Header />
-                <main className="mt-28 md:mt-30 relative z-0">
+                <main className="mt-20 md:mt-30 relative z-0">
                   {children}
                 </main>
                 <Footer />

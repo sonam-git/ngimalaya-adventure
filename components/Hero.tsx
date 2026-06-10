@@ -59,7 +59,7 @@ const HeroComponent: React.FC<HeroProps> = ({
       className="relative flex flex-col mt-0 sm:mt-1 md:mt-6 xl:-mt-32"
     >
       {/* Full-screen Hero Video/Image Background - extends under header */}
-      <div className="relative mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-0 min-h-[38vh] sm:min-h-[44vh] md:min-h-[50vh] lg:min-h-[56vh] xl:min-h-[62vh] w-auto xl:w-full overflow-hidden rounded-[2rem] border border-white/50 dark:border-gray-700/60 shadow-2xl xl:rounded-none xl:border-0 xl:shadow-none">
+      <div className="relative mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-0 min-h-[38vh] sm:min-h-[44vh] md:min-h-[50vh] lg:min-h-[56vh] xl:min-h-[76vh] w-auto xl:w-full overflow-hidden rounded-[2rem] border border-white/50 dark:border-gray-700/60 shadow-2xl xl:rounded-none xl:border-0 xl:shadow-none">
         {/* Video Background (Primary) */}
         {showVideo && !videoError && (
           <div className="absolute inset-0 z-0">
@@ -236,7 +236,7 @@ const HeroComponent: React.FC<HeroProps> = ({
 
       {/* Trek Reel - Right below hero */}
       {trekReelComponent && (
-        <div className="relative z-0 w-full">
+        <div className="relative z-0 w-full xl:-mt-1">
           {trekReelComponent}
         </div>
       )}

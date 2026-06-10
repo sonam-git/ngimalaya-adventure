@@ -349,13 +349,13 @@ const Header: React.FC = () => {
           : 'bg-transparent'
       }`}>
         <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
-          <div className="flex items-center justify-between h-24 xl:h-28 transition-all duration-500">
+          <div className="flex items-center justify-between h-20 xl:h-28 transition-all duration-500">
             {/* Logo Only - Clean and Simple */}
             <Link href="/" className="group ml-4 sm:ml-6 xl:ml-8 2xl:ml-10">
               <img
                 src={(isDarkMode || useHeroMode) ? '/assets/images/logos/logo-bw.png' : '/assets/images/logos/logo-light.png'}
                 alt="Ngimalaya Adventure Nepal"
-                className="h-20 sm:h-24 xl:h-28 2xl:h-32 w-auto transition-all duration-300 group-hover:scale-105"
+                className="h-16 sm:h-20 xl:h-28 2xl:h-32 w-auto transition-all duration-300 group-hover:scale-105"
               />
             </Link>
 
