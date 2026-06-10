@@ -44,7 +44,7 @@ const SafariDetail: React.FC<SafariDetailProps> = ({ safari }) => {
     <div className="min-h-screen pt-[55px] xl:pt-[105px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 py-8">
         {/* Tab Content */}
-        <div ref={contentRef} className="w-full">
+        <div ref={contentRef} className="w-full mt-3">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-6">

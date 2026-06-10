@@ -38,10 +38,10 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
                 <Calendar className="text-blue-600 dark:text-blue-400" size={18} />
               </div>
               <div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+                <div className="text-base sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
                   {trek.duration.split(' ')[0]}
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-300 uppercase font-semibold">Days</div>
+                <div className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-300 uppercase font-semibold">Days</div>
               </div>
             </div>
           </div>
@@ -49,9 +49,9 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
 
         {/* Price Badge - Enhanced styling */}
         {trek.price && trek.price.trim() !== '' && (
-          <div className="absolute top-4 right-4 bg-gradient-to-br from-green-500 to-emerald-600 backdrop-blur-md text-white px-5 py-3 rounded-xl shadow-xl border-2 border-white/20 z-20">
-            <div className="text-sm font-semibold uppercase tracking-wider opacity-90">From</div>
-            <div className="text-2xl font-bold">{trek.price}</div>
+          <div className="absolute top-4 right-4 bg-gradient-to-br from-green-500 to-emerald-600 backdrop-blur-md text-white px-3 sm:px-5 py-2 sm:py-3 rounded-xl shadow-xl border-2 border-white/20 z-20">
+            <div className="text-[10px] sm:text-sm font-semibold uppercase tracking-wider opacity-90">From</div>
+            <div className="text-base sm:text-2xl font-bold">{trek.price}</div>
           </div>
         )}
 
@@ -100,7 +100,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Difficulty</div>
             </div>
-            <div className={`font-bold text-base ${
+            <div className={`font-bold text-xs sm:text-base ${
               isDarkMode ? 'text-orange-300' : 'text-orange-700'
             }`}>
               {trek.difficulty}
@@ -120,7 +120,7 @@ const TrekCard: React.FC<TrekCardProps> = ({ trek, onExplore }) => {
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Max Elevation</div>
             </div>
-            <div className={`font-bold text-base ${
+            <div className={`font-bold text-xs sm:text-base ${
               isDarkMode ? 'text-purple-300' : 'text-purple-700'
             }`}>
               {trek.altitude || 'Unknown'}

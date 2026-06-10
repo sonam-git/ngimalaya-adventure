@@ -20,8 +20,8 @@ const BackgroundImage = () => {
       <div 
         className={`absolute inset-0 w-full h-full transition-colors duration-300 ${
           isDarkMode 
-            ? 'bg-gray-900/70' 
-            : 'bg-white/60'
+            ? 'bg-gray-900/85' 
+            : 'bg-white/85'
         }`}
       />
     </div>
