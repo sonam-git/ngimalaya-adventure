@@ -6,7 +6,6 @@ import { Home, User, Mountain, Flag, Binoculars, Mail, Calendar } from 'lucide-r
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import BookingModal from './BookingModal';
-import PrayerFlagBorder from './PrayerFlagBorder';
 import GoogleTranslateClient from './GoogleTranslateClient';
 import PeakMenu from './PeakMenu';
 import SafariMenu from './SafariMenu';
@@ -174,6 +173,16 @@ const Header: React.FC = () => {
                                       pathname === '/contact' ||
                                       pathname === '/services';
 
+  // Trekking, peak, and safari sections should keep a full blurred header in both themes.
+  const useSectionFullBlurHeader = pathname === '/regions' ||
+                                   pathname.startsWith('/regions/') ||
+                                   pathname === '/treks' ||
+                                   pathname.startsWith('/treks/') ||
+                                   pathname === '/peak-expedition' ||
+                                   pathname.startsWith('/peak-expedition/') ||
+                                   pathname === '/safari' ||
+                                   pathname.startsWith('/safari/');
+
   // Check if we're on the homepage (for transparent header with white text)
   const isHomePage = pathname === '/';
   
@@ -182,6 +191,9 @@ const Header: React.FC = () => {
 
   // Light theme styling for pages that allow transparent header treatment
   const useLightTopStyle = !isDarkMode && !shouldAlwaysHaveBackground && !isMobileMenuOpen;
+
+  // Make desktop menu more legible once page is scrolled (or on content-heavy pages).
+  const useScrolledMenuStyle = isScrolled || shouldAlwaysHaveBackground;
 
   // Light glass effect only for the 6 desktop menu items
   const useLightGlassMenuItems = !isDarkMode && !shouldAlwaysHaveBackground && !isMobileMenuOpen;
@@ -239,11 +251,26 @@ const Header: React.FC = () => {
     return '';
   };
 
+  const normalizeRegionName = (name: string) =>
+    name.toLowerCase().replace(/\s+region$/i, '').trim();
+
   const handleRegionSelect = (regionName: string) => {
     const region = trekRegions.find(r => r.name === regionName);
-    if (region) {
-      router.push(`/regions/${region.id}`);
+    if (!region) return;
+
+    const regionTreks = allTreks.filter(trek =>
+      trek.adventureType === 'trekking' &&
+      normalizeRegionName(trek.region) === normalizeRegionName(region.name)
+    );
+
+    // Open the first trek by default so its detail sub-tabs are immediately meaningful.
+    if (regionTreks.length > 0) {
+      setActiveTab('overview');
+      router.push(`/treks/${regionTreks[0].id}`);
+      return;
     }
+
+    router.push(`/regions/${region.id}`);
   };
 
   const handlePeakSelect = (peakId: string) => {
@@ -266,9 +293,10 @@ const Header: React.FC = () => {
   const getTreksFromCurrentRegion = () => {
     const currentRegion = getCurrentRegion();
     if (!currentRegion) return [];
-    return allTreks.filter(trek => 
-      trek.region === currentRegion && 
-      trek.adventureType === 'trekking'
+    const normalizedCurrentRegion = normalizeRegionName(currentRegion);
+    return allTreks.filter(trek =>
+      trek.adventureType === 'trekking' &&
+      normalizeRegionName(trek.region) === normalizedCurrentRegion
     );
   };
 
@@ -310,22 +338,22 @@ const Header: React.FC = () => {
           ? isDarkMode
             ? 'bg-gray-900/95 backdrop-blur-md shadow-lg'
             : 'bg-[#fdfcf6] backdrop-blur-sm shadow-sm'
-          : isScrolled || shouldAlwaysHaveBackground
-          ? isDarkMode 
-            ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
-            : shouldAlwaysHaveBackground
-              ? 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
-              : 'bg-transparent'
-          : isDarkMode
-            ? 'bg-transparent'
-            : 'bg-transparent'
+          : isScrolled
+            ? isDarkMode
+              ? 'bg-gray-900/85 backdrop-blur-sm shadow-md min-[1024px]:bg-transparent min-[1024px]:backdrop-blur-none min-[1024px]:shadow-none'
+              : 'bg-white/85 backdrop-blur-sm shadow-sm border-b border-black/10 min-[1024px]:bg-transparent min-[1024px]:backdrop-blur-none min-[1024px]:shadow-none min-[1024px]:border-b-0'
+          : useSectionFullBlurHeader
+            ? isDarkMode
+              ? 'bg-gray-900/85 backdrop-blur-md shadow-lg'
+              : 'bg-white/85 backdrop-blur-md shadow-md border-b border-black/10'
+          : 'bg-transparent'
       }`}>
         <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
           <div className="flex items-center justify-between h-24 xl:h-28 transition-all duration-500">
             {/* Logo Only - Clean and Simple */}
             <Link href="/" className="group ml-4 sm:ml-6 xl:ml-8 2xl:ml-10">
               <img
-                src={(isDarkMode || useHeroMode) ? '/assets/images/logo-dark.png' : '/assets/images/logo-light.png'}
+                src={(isDarkMode || useHeroMode) ? '/assets/images/logos/logo-bw.png' : '/assets/images/logos/logo-light.png'}
                 alt="Ngimalaya Adventure Nepal"
                 className="h-20 sm:h-24 xl:h-28 2xl:h-32 w-auto transition-all duration-300 group-hover:scale-105"
               />
@@ -334,7 +362,11 @@ const Header: React.FC = () => {
             {/* Desktop Navigation - Only show above 1024px */}
             <div className="hidden min-[1024px]:flex items-center">
               <div className={`flex items-center overflow-hidden rounded-2xl transition-all duration-500 ${
-                useLightGlassMenuItems
+                useScrolledMenuStyle
+                  ? isDarkMode
+                    ? 'bg-gray-900/75 backdrop-blur-sm border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.35)]'
+                    : 'bg-black/20 backdrop-blur-sm border border-black/20 shadow-[0_8px_30px_rgba(15,23,42,0.18)]'
+                  : useLightGlassMenuItems
                   ? 'bg-white/25 backdrop-blur-md border border-white/40 shadow-[0_8px_30px_rgba(15,23,42,0.08)]'
                   : ''
               }`}>
@@ -349,6 +381,8 @@ const Header: React.FC = () => {
                         active
                           ? (isDarkMode || useHeroMode)
                             ? 'bg-amber-500/20 text-amber-300 border-white/20'
+                            : useScrolledMenuStyle
+                              ? 'bg-[#1f4f1f] text-white border-white/25 shadow-lg'
                             : useLightTopStyle
                               ? 'bg-[#2f6f2f] text-white border-[#d4ba84] shadow-lg'
                               : 'bg-primary-600 text-white border-primary-300 shadow-lg'
@@ -358,9 +392,7 @@ const Header: React.FC = () => {
                               ? useLightTopStyle
                                 ? 'text-white border-[#d4ba84] hover:text-white'
                                 : 'text-white border-gray-200 hover:text-white'
-                              : useLightTopStyle
-                                ? 'text-[#111111] border-[#d4ba84] hover:text-[#111111]'
-                                : 'text-gray-800 border-gray-200 hover:text-gray-900'
+                              : 'text-blue-900 border-blue-900/25 hover:text-blue-950'
                       }`}
                     >
                       <Icon size={18} className={`transition-transform duration-300 group-hover:scale-110 ${
@@ -450,15 +482,6 @@ const Header: React.FC = () => {
                   />
                 </div>
               </button>
-            </div>
-          </div>
-
-          {/* Prayer flag border: always visible below header, full width across screen */}
-          <div className={`relative h-2 -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16 transition-opacity duration-500 ${
-            isScrolled || shouldAlwaysHaveBackground ? 'opacity-100' : 'opacity-0'
-          }`}>
-            <div className="absolute left-0 right-0 w-full">
-              <PrayerFlagBorder />
             </div>
           </div>
 

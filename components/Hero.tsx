@@ -56,49 +56,8 @@ const HeroComponent: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative flex flex-col mt-3 sm:mt-4 md:mt-6 xl:-mt-32"
+      className="relative flex flex-col mt-0 sm:mt-1 md:mt-6 xl:-mt-32"
     >
-      {/* Mobile/Tablet Hero Header - shown above video */}
-      <div className="xl:hidden px-4 sm:px-6 md:px-8 mb-3 md:mb-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 mb-2 md:mb-3 px-2">
-            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
-              <img
-                src="/assets/sketch/trekker-male.png"
-                alt="Male trekker"
-                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain opacity-90"
-              />
-            </div>
-
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl jaini-purva-regular tracking-wide text-blue-900 dark:text-white animate-fade-in-up text-center px-1"
-              style={{
-                animationDelay: "0.2s",
-                fontFamily: '"Jaini Purva", system-ui !important',
-                fontWeight: "400 !important",
-              }}
-            >
-              Ngimalaya Adventure
-            </h1>
-
-            <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.25s" }}>
-              <img
-                src="/assets/sketch/trekker-female.png"
-                alt="Female trekker"
-                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain opacity-90"
-              />
-            </div>
-          </div>
-
-          <p
-            className="text-[11px] sm:text-base md:text-lg font-body text-blue-900/90 dark:text-white/90 max-w-none sm:max-w-3xl mx-auto animate-fade-in-up text-center whitespace-nowrap"
-            style={{ animationDelay: "0.3s" }}
-          >
-            Discover Your Himalayan Escape, Where Culture Meets the Clouds
-          </p>
-        </div>
-      </div>
-
       {/* Full-screen Hero Video/Image Background - extends under header */}
       <div className="relative mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-0 min-h-[38vh] sm:min-h-[44vh] md:min-h-[50vh] lg:min-h-[56vh] xl:min-h-[62vh] w-auto xl:w-full overflow-hidden rounded-[2rem] border border-white/50 dark:border-gray-700/60 shadow-2xl xl:rounded-none xl:border-0 xl:shadow-none">
         {/* Video Background (Primary) */}
@@ -146,8 +105,52 @@ const HeroComponent: React.FC<HeroProps> = ({
 
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
+        {/* Large-screen light tint to soften desktop hero visuals */}
+        <div className="hidden xl:block absolute inset-0 bg-white/10 z-[15]" />
         
-        {/* Content Overlay - Desktop only */}
+        {/* Content Overlay - small screens only, aligned under top border */}
+        <div className="xl:hidden absolute inset-x-0 top-3 sm:top-4 md:top-5 z-20 px-3 sm:px-5 md:px-6">
+          <div className="max-w-6xl mx-auto rounded-2xl border border-white/35 bg-white/20 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.22)] px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
+            <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-6 mb-1.5 sm:mb-2 md:mb-3">
+              <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.15s" }}>
+                <img 
+                  src="/assets/sketch/trekker-male.png" 
+                  alt="Male trekker" 
+                  className="w-10 h-10 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-24 lg:h-24 xl:w-28 xl:h-28 object-contain opacity-95 drop-shadow-lg"
+                />
+              </div>
+
+              <h1 
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl jaini-purva-regular tracking-wide text-white animate-fade-in-up text-center px-1 leading-none"
+                style={{ 
+                  animationDelay: "0.2s",
+                  fontFamily: '"Jaini Purva", system-ui !important',
+                  fontWeight: '400 !important',
+                  textShadow: '2px 2px 8px rgba(0,0,0,0.45)'
+                }}
+              >
+                Ngimalaya Adventure
+              </h1>
+
+              <div className="animate-fade-in-up flex-shrink-0" style={{ animationDelay: "0.25s" }}>
+                <img 
+                  src="/assets/sketch/trekker-female.png" 
+                  alt="Female trekker" 
+                  className="w-10 h-10 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-24 lg:h-24 xl:w-28 xl:h-28 object-contain opacity-95 drop-shadow-lg"
+                />
+              </div>
+            </div>
+
+            <p
+              className="text-[11px] sm:text-sm md:text-lg lg:text-xl font-body text-white/95 max-w-4xl mx-auto animate-fade-in-up text-center"
+              style={{ animationDelay: "0.3s", textShadow: '1px 1px 4px rgba(0,0,0,0.45)' }}
+            >
+              Discover Your Himalayan Escape, Where Culture Meets the Clouds
+            </p>
+          </div>
+        </div>
+
+        {/* Content Overlay - Desktop only (kept as before) */}
         <div className="hidden xl:flex absolute inset-0 z-20 flex-col justify-center items-center px-4 pt-20 md:pt-24">
           {/* Main Headline with Trekker Images */}
           <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 mb-2 md:mb-4 px-2">
@@ -243,7 +246,7 @@ const HeroComponent: React.FC<HeroProps> = ({
         <div className="max-w-md mx-auto text-center">
           {/* Tagline for mobile */}
           <h2
-            className="text-base sm:text-lg lugrasimo-regular mb-4 text-blue-800 dark:text-gray-200 animate-fade-in-up"
+            className="block w-full text-center text-[clamp(9px,2.4vw,15px)] leading-tight whitespace-nowrap lugrasimo-regular mb-4 text-blue-800 dark:text-gray-200 animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
             Expert-Guided Treks Through Nepal's Majestic Landscapes
