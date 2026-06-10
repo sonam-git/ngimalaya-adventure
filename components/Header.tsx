@@ -340,8 +340,8 @@ const Header: React.FC = () => {
             : 'bg-[#fdfcf6] backdrop-blur-sm shadow-sm'
           : isScrolled
             ? isDarkMode
-              ? 'bg-gray-900/85 backdrop-blur-sm shadow-md min-[1024px]:bg-transparent min-[1024px]:backdrop-blur-none min-[1024px]:shadow-none'
-              : 'bg-white/85 backdrop-blur-sm shadow-sm border-b border-black/10 min-[1024px]:bg-transparent min-[1024px]:backdrop-blur-none min-[1024px]:shadow-none min-[1024px]:border-b-0'
+              ? 'bg-gray-900/85 backdrop-blur-sm shadow-md'
+              : 'bg-white/85 backdrop-blur-sm shadow-sm border-b border-black/10'
           : useSectionFullBlurHeader
             ? isDarkMode
               ? 'bg-gray-900/85 backdrop-blur-md shadow-lg'
