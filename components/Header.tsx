@@ -180,8 +180,11 @@ const Header: React.FC = () => {
   // Use hero mode (white text/icons) when on homepage and not scrolled
   const useHeroMode = isHomePage && !isScrolled && isDarkMode;
 
-  // Light theme top-state styling on homepage
-  const useLightTopStyle = isHomePage && !isScrolled && !isDarkMode;
+  // Light theme styling for pages that allow transparent header treatment
+  const useLightTopStyle = !isDarkMode && !shouldAlwaysHaveBackground && !isMobileMenuOpen;
+
+  // Light glass effect only for the 6 desktop menu items
+  const useLightGlassMenuItems = !isDarkMode && !shouldAlwaysHaveBackground && !isMobileMenuOpen;
 
   // Check if we should show the RegionMenu (for regions page, single region, or single trek pages)
   const shouldShowRegionMenu = pathname === '/regions' ||
@@ -196,10 +199,13 @@ const Header: React.FC = () => {
   const shouldShowSafariMenu = pathname === '/safari' || 
                                 pathname.startsWith('/safari/');
   
-  // Check if we should show the TrekMenu (only on individual trek pages, not region pages)
-  const shouldShowTrekMenu = pathname.startsWith('/treks/') && 
-                             pathname !== '/treks' && 
-                             !pathname.startsWith('/regions/');
+  // Check if we should show the TrekMenu:
+  // - on region detail pages (as associated sub-tabs)
+  // - on individual trek pages
+  const shouldShowTrekMenu = pathname.startsWith('/regions/') ||
+                             (pathname.startsWith('/treks/') &&
+                              pathname !== '/treks' &&
+                              !pathname.startsWith('/regions/'));
   
   // Get current region from pathname
   const getCurrentRegion = () => {
@@ -266,6 +272,17 @@ const Header: React.FC = () => {
     );
   };
 
+  // On region pages, default to first associated trek as active in sub-menu.
+  const getEffectiveSelectedTrekId = () => {
+    const currentTrekId = getCurrentTrekId();
+    if (currentTrekId) return currentTrekId;
+    if (pathname.startsWith('/regions/')) {
+      const regionTreks = getTreksFromCurrentRegion();
+      return regionTreks[0]?.id || '';
+    }
+    return '';
+  };
+
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'About', href: '/about', icon: User },
@@ -296,13 +313,15 @@ const Header: React.FC = () => {
           : isScrolled || shouldAlwaysHaveBackground
           ? isDarkMode 
             ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md shadow-lg' 
-            : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
+            : shouldAlwaysHaveBackground
+              ? 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg'
+              : 'bg-transparent'
           : isDarkMode
             ? 'bg-transparent'
-            : 'bg-white/95 backdrop-blur-sm shadow-sm'
+            : 'bg-transparent'
       }`}>
         <nav className="w-full px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 relative">
-          <div className="flex items-center justify-between h-24 xl:h-28">
+          <div className="flex items-center justify-between h-24 xl:h-28 transition-all duration-500">
             {/* Logo Only - Clean and Simple */}
             <Link href="/" className="group ml-4 sm:ml-6 xl:ml-8 2xl:ml-10">
               <img
@@ -313,45 +332,61 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Desktop Navigation - Only show above 1024px */}
-            <div className="hidden min-[1024px]:flex items-center gap-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const active = isActive(item.href);
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`group flex flex-col items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ${
-                      active
-                        ? (isDarkMode || useHeroMode)
-                          ? 'bg-amber-500/20 text-amber-300'
-                          : useLightTopStyle
-                            ? 'bg-blue-50 text-blue-900'
-                            : 'bg-primary-50 text-primary-600'
-                        : (isDarkMode || useHeroMode)
-                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                          : useLightTopStyle
-                            ? 'text-blue-900 hover:bg-blue-50 hover:text-blue-900'
-                            : 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
-                    }`}
-                  >
-                    <Icon size={22} className={`mb-1 transition-transform duration-300 group-hover:scale-110 ${
-                      active ? (isDarkMode || useHeroMode) ? 'text-amber-400' : useLightTopStyle ? 'text-blue-900' : 'text-primary-500' : ''
-                    }`} />
-                    <span className="font-display font-semibold uppercase tracking-wider text-sm">
-                      {item.name}
-                    </span>
-                  </Link>
-                );
-              })}
+            <div className="hidden min-[1024px]:flex items-center">
+              <div className={`flex items-center overflow-hidden rounded-2xl transition-all duration-500 ${
+                useLightGlassMenuItems
+                  ? 'bg-white/25 backdrop-blur-md border border-white/40 shadow-[0_8px_30px_rgba(15,23,42,0.08)]'
+                  : ''
+              }`}>
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`group inline-flex items-center gap-2 px-4 xl:px-5 2xl:px-6 h-[3.25rem] xl:h-[3.75rem] font-display font-bold uppercase tracking-[0.14em] text-sm border-r transition-all duration-300 hover:underline decoration-2 underline-offset-[10px] ${
+                        active
+                          ? (isDarkMode || useHeroMode)
+                            ? 'bg-amber-500/20 text-amber-300 border-white/20'
+                            : useLightTopStyle
+                              ? 'bg-[#2f6f2f] text-white border-[#d4ba84] shadow-lg'
+                              : 'bg-primary-600 text-white border-primary-300 shadow-lg'
+                          : (isDarkMode || useHeroMode)
+                            ? 'text-white border-white/20 hover:text-white'
+                            : isHomePage
+                              ? useLightTopStyle
+                                ? 'text-white border-[#d4ba84] hover:text-white'
+                                : 'text-white border-gray-200 hover:text-white'
+                              : useLightTopStyle
+                                ? 'text-[#111111] border-[#d4ba84] hover:text-[#111111]'
+                                : 'text-gray-800 border-gray-200 hover:text-gray-900'
+                      }`}
+                    >
+                      <Icon size={18} className={`transition-transform duration-300 group-hover:scale-110 ${
+                        active
+                          ? (isDarkMode || useHeroMode)
+                            ? 'text-amber-300'
+                            : 'text-white'
+                          : (isDarkMode || useHeroMode)
+                            ? 'text-white'
+                            : 'text-current'
+                      }`} />
+                      <span>
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
               
               {/* Book Now Button */}
               <button 
                 onClick={() => setIsBookingModalOpen(true)}
-                className="group flex flex-col items-center justify-center px-5 py-2 ml-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="group inline-flex items-center gap-2 h-14 xl:h-16 px-5 xl:px-6 ml-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-display font-bold uppercase tracking-[0.14em] text-sm"
               >
-                <Calendar size={22} className="mb-1 transition-transform duration-300 group-hover:scale-110" />
-                <span className="font-display font-bold uppercase tracking-wider text-sm">
+                <Calendar size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                <span>
                   Book Now
                 </span>
               </button>
@@ -430,17 +465,16 @@ const Header: React.FC = () => {
           {/* Region Menu - shown only on region and trek detail pages (hidden when mobile menu is open) */}
           {shouldShowRegionMenu && !isMobileMenuOpen && (
             <div className="relative -mx-4 xl:-mx-6 2xl:-mx-8 3xl:-mx-12 4xl:-mx-16">
-              <div className="relative w-screen bg-white dark:bg-gray-900 shadow-md border-b border-blue-300">
-                {regionCanScrollLeft && (
-                  <button
-                    onClick={() => regionScrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
-                    className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
-                    aria-label="Scroll left"
-                  >
-                    <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
-                  </button>
-                )}
-                <ul ref={regionScrollRef} className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-3 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
+              <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 shadow-md border-b border-blue-200 dark:border-gray-700">
+                <button
+                  onClick={() => regionScrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                  disabled={!regionCanScrollLeft}
+                  className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-blue-50 dark:bg-gray-800 disabled:opacity-45 disabled:cursor-not-allowed"
+                  aria-label="Scroll left"
+                >
+                  <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+                </button>
+                <ul ref={regionScrollRef} className="flex flex-nowrap overflow-x-auto scrollbar-hide gap-2 py-2 px-4 xl:px-6 2xl:px-8 3xl:px-12 4xl:px-16 justify-start xl:justify-center 2xl:justify-center 3xl:justify-center 4xl:justify-center">
                 {trekRegions.map(region => {
                   const isSelected = getCurrentRegion() === region.name;
                   return (
@@ -449,10 +483,10 @@ const Header: React.FC = () => {
                         type="button"
                         onClick={() => handleRegionSelect(region.name)}
                         data-active={isSelected ? 'true' : undefined}
-                        className={`transition-colors duration-200 px-4 py-2 rounded-md font-semibold text-blue-900 dark:text-white whitespace-nowrap
+                        className={`transition-all duration-200 px-3 py-1.5 rounded-md text-sm font-medium text-blue-900 dark:text-white whitespace-nowrap
                           ${isSelected
-                            ? 'bg-blue-100 dark:bg-blue-900 shadow-md scale-105'
-                            : 'bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-800 hover:scale-105'}
+                            ? 'bg-blue-200 dark:bg-blue-800 shadow-md scale-105'
+                            : 'bg-white dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-700 hover:scale-105'}
                           focus:outline-none focus:ring-2 focus:ring-blue-300`
                         }
                       >
@@ -462,25 +496,24 @@ const Header: React.FC = () => {
                   );
                 })}
               </ul>
-                {regionCanScrollRight && (
-                  <button
-                    onClick={() => regionScrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
-                    className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
-                    aria-label="Scroll right"
-                  >
-                    <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
-                  </button>
-                )}
+                <button
+                  onClick={() => regionScrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                  disabled={!regionCanScrollRight}
+                  className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-blue-50 dark:bg-gray-800 disabled:opacity-45 disabled:cursor-not-allowed"
+                  aria-label="Scroll right"
+                >
+                  <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300 drop-shadow" />
+                </button>
               </div>
             </div>
           )}
 
-          {/* Trek Menu - shown only on individual trek detail pages (below Region Menu, hidden when mobile menu is open) */}
+          {/* Trek Menu - shown on region detail and trek detail pages (below Region Menu, hidden when mobile menu is open) */}
           {shouldShowTrekMenu && !isMobileMenuOpen && (
             <>
               <TrekMenu
                 treks={getTreksFromCurrentRegion()}
-                selectedTrekId={getCurrentTrekId()}
+                selectedTrekId={getEffectiveSelectedTrekId()}
                 regionName={getCurrentRegion()}
               />
               <TrekDetailTabs
