@@ -26,8 +26,20 @@ interface TrekDetailTabsProps {
 const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange }) => {
   const { isDarkMode } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const hideArrowsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [showArrows, setShowArrows] = useState(true);
+
+  const revealArrows = useCallback(() => {
+    setShowArrows(true);
+    if (hideArrowsTimerRef.current) {
+      clearTimeout(hideArrowsTimerRef.current);
+    }
+    hideArrowsTimerRef.current = setTimeout(() => {
+      setShowArrows(false);
+    }, 1500);
+  }, []);
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -38,17 +50,32 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
 
   useEffect(() => {
     checkScroll();
+    revealArrows();
     const el = scrollRef.current;
-    if (el) el.addEventListener('scroll', checkScroll, { passive: true });
-    return () => el?.removeEventListener('scroll', checkScroll);
-  }, [checkScroll]);
+    if (el) {
+      const handleScroll = () => {
+        checkScroll();
+        revealArrows();
+      };
+      el.addEventListener('scroll', handleScroll, { passive: true });
+      return () => el.removeEventListener('scroll', handleScroll);
+    }
+  }, [checkScroll, revealArrows]);
+
+  useEffect(() => {
+    return () => {
+      if (hideArrowsTimerRef.current) {
+        clearTimeout(hideArrowsTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
     if (activeTab === 'overview') {
       container.scrollTo({
-        left: Math.max((container.scrollWidth - container.clientWidth) / 2, 0),
+        left: 0,
         behavior: 'smooth',
       });
       return;
@@ -85,16 +112,27 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
       className="relative bg-gradient-to-r from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16"
       aria-label="Trek detail tabs"
     >
-      {canScrollLeft && (
-        <button
-          onClick={() => scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
-          className="xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
-          aria-label="Scroll left"
-        >
-          <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300" />
-        </button>
-      )}
-      <div ref={scrollRef} className="flex justify-center overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <button
+        onClick={() => {
+          revealArrows();
+          scrollRef.current?.scrollBy({ left: -150, behavior: 'smooth' });
+        }}
+        disabled={!canScrollLeft}
+        className={`xl:hidden absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900 transition-opacity ${
+          showArrows ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        } ${
+          canScrollLeft ? 'opacity-100' : 'opacity-40 cursor-not-allowed'
+        }`}
+        aria-label="Scroll left"
+      >
+        <MdChevronLeft className="w-6 h-6 text-blue-700 dark:text-blue-300" />
+      </button>
+      <div
+        ref={scrollRef}
+        onTouchStart={revealArrows}
+        onMouseMove={revealArrows}
+        className="flex justify-center overflow-x-auto scrollbar-hide pl-12 pr-12 md:px-6 lg:px-8 xl:px-12 2xl:px-16"
+      >
         {tabs.map((tab) => {
             const IconComponent = tab.icon;
             return (
@@ -115,15 +153,21 @@ const TrekDetailTabs: React.FC<TrekDetailTabsProps> = ({ activeTab, onTabChange 
             );
           })}
       </div>
-      {canScrollRight && (
-        <button
-          onClick={() => scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
-          className="xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900"
-          aria-label="Scroll right"
-        >
-          <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300" />
-        </button>
-      )}
+      <button
+        onClick={() => {
+          revealArrows();
+          scrollRef.current?.scrollBy({ left: 150, behavior: 'smooth' });
+        }}
+        disabled={!canScrollRight}
+        className={`xl:hidden absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center w-10 bg-white dark:bg-gray-900 transition-opacity ${
+          showArrows ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        } ${
+          canScrollRight ? 'opacity-100' : 'opacity-40 cursor-not-allowed'
+        }`}
+        aria-label="Scroll right"
+      >
+        <MdChevronRight className="w-6 h-6 text-blue-700 dark:text-blue-300" />
+      </button>
     </div>
   );
 };
