@@ -47,6 +47,13 @@ const SafariDetailTabs: React.FC<SafariDetailTabsProps> = ({ activeTab, onTabCha
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
+    if (activeTab === 'overview') {
+      container.scrollTo({
+        left: Math.max((container.scrollWidth - container.clientWidth) / 2, 0),
+        behavior: 'smooth',
+      });
+      return;
+    }
     const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
     if (!activeEl) return;
     container.scrollTo({
@@ -89,7 +96,7 @@ const SafariDetailTabs: React.FC<SafariDetailTabsProps> = ({ activeTab, onTabCha
           <MdChevronLeft className="w-6 h-6 text-green-700 dark:text-green-300" />
         </button>
       )}
-      <div ref={scrollRef} className="flex overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div ref={scrollRef} className="flex justify-center overflow-x-auto scrollbar-hide px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
         {tabs.map((tab) => {
             const IconComponent = tab.icon;
             return (
