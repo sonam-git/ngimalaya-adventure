@@ -75,10 +75,7 @@ const SafariDetailTabs: React.FC<SafariDetailTabsProps> = ({ activeTab, onTabCha
     const container = scrollRef.current;
     if (!container) return;
     if (activeTab === 'overview') {
-      container.scrollTo({
-        left: 0,
-        behavior: 'smooth',
-      });
+      container.scrollLeft = 0;
       return;
     }
     const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
@@ -133,7 +130,7 @@ const SafariDetailTabs: React.FC<SafariDetailTabsProps> = ({ activeTab, onTabCha
         ref={scrollRef}
         onTouchStart={revealArrows}
         onMouseMove={revealArrows}
-        className="flex justify-center overflow-x-auto scrollbar-hide pl-12 pr-12 md:px-6 lg:px-8 xl:px-12 2xl:px-16"
+        className="flex overflow-x-auto scrollbar-hide pl-12 pr-12 md:justify-center md:px-6 lg:px-8 xl:px-12 2xl:px-16"
       >
         {tabs.map((tab) => {
             const IconComponent = tab.icon;
